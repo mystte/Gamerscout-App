@@ -1,3 +1,3 @@
-import ActivityEditor from './react/ActivityEditor';
+import AppRoot from './react/AppRoot';
 
-export default ActivityEditor;
+export default AppRoot;

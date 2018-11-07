@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
-import activity from './activityReducer';
+import app from './appReducer';
 
-export const activityReducers = {
-  activity,
+export const appReducers = {
+  app,
 };
 
-export default combineReducers(activityReducers);
+export default combineReducers(appReducers);

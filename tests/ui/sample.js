@@ -3,10 +3,10 @@ export default {
     browser.open();
   },
 
-  'Open demo activity': (browser) => {
+  'Open demo app': (browser) => {
     browser
       .waitForElementVisible('body', 1000)
-      .assert.title('Activity')
+      .assert.title('App')
       .assert.containsText('body', 'Test button')
       .end();
   },

@@ -1,10 +1,10 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
-import defaultActivityState from './activityMock';
+import defaultAppState from './appMock';
 
 const baseState = {
-  activity: defaultActivityState,
+  app: defaultAppState,
 };
 
 export const mockState = () => ({

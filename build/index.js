@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 
 // CSS
 import 'normalize.css';
-import '../src/assets/css/activity.less';
+import '../src/assets/css/app.less';
 
 import AppRoot from '../src';
 

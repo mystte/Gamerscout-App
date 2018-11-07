@@ -185,7 +185,7 @@ if (TARGET === 'watch') {
       stats: { colors: true },
       host: 'localhost',
       disableHostCheck: true,
-      port: 8082,
+      port: 3334,
     },
   });
 } else if (TARGET === 'build') {

@@ -10,10 +10,7 @@ const styles = {
 class AppRoot extends PureComponent {
   constructor(props) {
     super(props);
-    this.state = {
-      canvasRecord: new CanvasRecord(),
-      selectedElement: null,
-    };
+    this.state = {};
   }
 
   render() {

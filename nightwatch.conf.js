@@ -31,7 +31,7 @@ const config = {
       globals: {
         waitForConditionTimeout: 15000,
       },
-      launch_url: 'http://localhost:8082',
+      launch_url: 'http://localhost:3334',
       selenium_port: 4444,
       selenium_host: 'localhost',
       silent: true,

@@ -1,6 +1,0 @@
-.git/
-.gitlab/
-.history/
-node_modules/
-dist/
-build/

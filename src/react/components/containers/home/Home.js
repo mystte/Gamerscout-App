@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Input from '../../views/elements/input/Input';
+import Input , {INPUT_TYPE} from '../../views/elements/input/Input';
 import styles from './styles';
 
 class Home extends Component {
@@ -34,6 +34,10 @@ class Home extends Component {
           placeholder='placeholder'
           value='input value jack'
           title='input title'
+          onChange={() => {}}
+          message='feedback message'
+          type={INPUT_TYPE.TEXT}
+          length="2"
         />
       </div>
     );

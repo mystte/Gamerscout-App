@@ -1,7 +1,9 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Home from '../components/containers/home/Home';
-import FourOFour from '../components/containers/fourOFour/FourOFour';
+import Loading from '../components/views/loading/Loading';
+
+const Home = React.lazy(() => import('../components/containers/home/Home'));
+import FourOFour from '../components/containers/fourofour/FourOFour';
 
 import {
   APP_URL_BASE,
@@ -10,7 +12,11 @@ import {
 const AppRouter = () => (
   <Router>
     <Switch>
-      <Route path={APP_URL_BASE} exact component={Home} />
+      <Route path={APP_URL_BASE} exact render={() => (
+        <Suspense fallback={<Loading/>}>
+          <Home/>
+        </Suspense>)}
+      />
       <Route component={FourOFour} />
     </Switch>
   </Router>

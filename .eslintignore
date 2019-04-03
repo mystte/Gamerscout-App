@@ -1,0 +1,6 @@
+android/
+dist/
+ios/
+node_modules/
+release-notes/
+.git/

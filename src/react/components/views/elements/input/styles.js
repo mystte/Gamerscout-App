@@ -20,7 +20,14 @@ const styles = {
     marginBottom: 6,
     color: colorNameToHex('regentgray'),
     fontSize: 14,
-  }
+  },
+
+  message: {
+    color: colorNameToHex('red'),
+    fontSize: 12,
+    height: 19,
+    marginTop: 3,
+  },
 };
 
 export default styles;

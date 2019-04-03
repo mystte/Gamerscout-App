@@ -21,7 +21,6 @@ class App extends PureComponent {
   render() {
     return (
       <div id="app" style={styles.container}>
-        <p>App Is Initialized</p>
         <ErrorBoundary>
           <AppRouter />
         </ErrorBoundary>

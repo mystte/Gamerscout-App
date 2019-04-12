@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Input , {INPUT_TYPE} from '../../views/elements/input/Input';
+import Button from '../../views/elements/button/Button';
+import SVGIcon from '../../views/elements/svgicon/SVGIcon';
 import styles from './styles';
 
 class Home extends Component {
@@ -28,7 +30,7 @@ class Home extends Component {
 
   render() {
     return (
-      <div>
+      <div style={styles.container}>
         <h2>THIS IS HOME</h2>
         <Input
           placeholder='placeholder'
@@ -38,6 +40,14 @@ class Home extends Component {
           message='feedback message'
           type={INPUT_TYPE.TEXT}
           length="2"
+        />
+        <span>Button</span>
+        <Button
+          label="Delete"
+          icon="delete"
+        />
+        <SVGIcon
+          name="delete"
         />
       </div>
     );

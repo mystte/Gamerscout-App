@@ -27,7 +27,7 @@ const namedColors = {
   darkgoldenrod: '#b8860b',
   darkgray: '#a9a9a9',
   darkgreen: '#006400',
-  darkgrey: '#a9a9a9',
+  darkgrey: '#222C3C',
   darkkhaki: '#bdb76b',
   darkmagenta: '#8b008b',
   darkolivegreen: '#556b2f',

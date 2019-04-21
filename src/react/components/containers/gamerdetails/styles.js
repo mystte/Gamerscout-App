@@ -1,7 +1,5 @@
 const styles = {
   container: {
-    padding: 15,
-    flexDirection: 'row',
   },
 };
 

@@ -14,6 +14,7 @@ const styles = {
     borderWidth: 1,
     borderStyle: 'solid',
     borderColor: colorNameToHex('dimgrey'),
+    outline: 'none',
   },
 
   title: {

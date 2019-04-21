@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
+
 import Input , {INPUT_TYPE} from '../../views/elements/input/Input';
 import Button from '../../views/elements/button/Button';
-import SVGIcon from '../../views/elements/svgicon/SVGIcon';
+import {
+  getGamerDetailsUrl,
+} from '../../../config/routes';
 import styles from './styles';
 
 class Home extends Component {
@@ -16,42 +20,45 @@ class Home extends Component {
     super(props);
 
     this.state = {
+      searchValue: "",
     };
   }
 
   componentDidMount() {
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
+  componentWillUnmount() {
   }
 
-  componentWillUnmount() {
+  onSearchInputChange = (event) => {
+    this.setState({
+      searchValue: event.target.value,
+    });
+  }
+
+  onSearchClick = () => {
+    console.log("#### click");
+    this.props.history.push(getGamerDetailsUrl());
+
   }
 
   render() {
     return (
       <div style={styles.container}>
-        <h2>THIS IS HOME</h2>
         <Input
-          placeholder='placeholder'
-          value='input value jack'
-          title='input title'
-          onChange={() => {}}
-          message='feedback message'
+          placeholder='gamertag'
+          value={this.state.searchValue}
+          onChange={this.onSearchInputChange}
           type={INPUT_TYPE.TEXT}
-          length="2"
+          length="50"
         />
-        <span>Button</span>
         <Button
-          label="Delete"
-          icon="delete"
-        />
-        <SVGIcon
-          name="delete"
+          label="Search"
+          onClick={this.onSearchClick}
         />
       </div>
     );
   }
 }
 
-export default Home;
+export default withRouter(Home);

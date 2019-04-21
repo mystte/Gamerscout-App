@@ -14,6 +14,7 @@ class Button extends PureComponent {
     label: PropTypes.string.isRequired,
     icon: PropTypes.string,
     type: PropTypes.string,
+    onClick: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -32,13 +33,18 @@ class Button extends PureComponent {
     const typeStyle = this.props.type;
 
     return (
-      <button style={{
-        ...styles.container,
-        ...styles.default,
-      }}>
-        <span style={styles.iconContainer}>
-          <SVGIcon width={16} height={16} name="delete" />
-        </span>
+      <button
+        onClick={this.props.onClick}
+        style={{
+          ...styles.container,
+          ...styles.default,
+        }}
+      >
+        { this.props.icon &&
+          <span style={styles.iconContainer}>
+            <SVGIcon width={16} height={16} name={this.props.icon} />
+          </span>
+        }
         <span>{this.props.label}</span>
       </button>
     );

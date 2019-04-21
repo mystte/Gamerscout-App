@@ -1,10 +1,8 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
-import SVGIcon from '../../views/elements/svgicon/SVGIcon';
 import styles from './styles';
 
-class NavBar extends PureComponent {
+class GamerDetails extends Component {
   static propTypes = {
   };
 
@@ -21,14 +19,10 @@ class NavBar extends PureComponent {
   render() {
     return (
       <div style={styles.container}>
-        <SVGIcon
-          width={120}
-          height={22}
-          name="logo-beta"
-        />
+        Gamer Details
       </div>
     );
   }
 }
 
-export default NavBar;
+export default GamerDetails;

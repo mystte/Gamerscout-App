@@ -18,9 +18,6 @@ class FourOFour extends PureComponent {
   componentDidMount() {
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-  }
-
   componentWillUnmount() {
   }
 

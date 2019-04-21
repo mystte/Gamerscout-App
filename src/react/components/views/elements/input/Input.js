@@ -60,7 +60,7 @@ Input.defaultProps = {
   message: null,
   placeholder: null,
   title: null,
-  value: null,
+  value: "",
   message: null,
   focus: false,
 };

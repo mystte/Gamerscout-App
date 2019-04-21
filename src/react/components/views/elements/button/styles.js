@@ -11,6 +11,8 @@ const styles = {
     border: 'none',
     flexDirection: 'row',
     alignItems: 'center',
+    outline: 'none',
+    cursor: 'pointer',
   },
 
   iconContainer: {

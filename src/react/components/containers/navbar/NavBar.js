@@ -1,6 +1,10 @@
 import React, { PureComponent } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+import {
+  getHomeUrl,
+} from '../../../config/routes';
 import SVGIcon from '../../views/elements/svgicon/SVGIcon';
 import styles from './styles';
 
@@ -20,13 +24,15 @@ class NavBar extends PureComponent {
 
   render() {
     return (
-      <div style={styles.container}>
+      <Link style={styles.container}
+        to={getHomeUrl()}
+      >
         <SVGIcon
           width={120}
           height={22}
           name="logo-beta"
         />
-      </div>
+      </Link>
     );
   }
 }

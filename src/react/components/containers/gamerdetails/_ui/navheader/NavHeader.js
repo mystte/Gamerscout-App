@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
-import NavHeader from './_ui/navheader/NavHeader';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+
+import ActionButtons from './_ui/actionbuttons/ActionButtons';
 import styles from './styles';
 
-class GamerDetails extends Component {
+class NavHeader extends PureComponent {
   static propTypes = {
   };
 
@@ -17,13 +18,19 @@ class GamerDetails extends Component {
     };
   }
 
+  componentDidMount() {
+  }
+
+  componentWillUnmount() {
+  }
+
   render() {
     return (
       <div style={styles.container}>
-        <NavHeader />
+        <ActionButtons />
       </div>
     );
   }
 }
 
-export default GamerDetails;
+export default NavHeader;

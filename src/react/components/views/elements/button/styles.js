@@ -27,7 +27,7 @@ const styles = {
     background: `linear-gradient(135deg, #F85359 0%, #DC151D 100%)`,
   },
 
-  default: {
+  dark: {
     background: colorNameToHex('darkgrey'),
     borderWidth: 1,
     borderColor: colorNameToHex('dimgrey'),

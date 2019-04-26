@@ -38,7 +38,7 @@ const namedColors = {
   darkseagreen: '#8fbc8f',
   darkslateblue: '#483d8b',
   darkslategray: '#2f4f4f',
-  darkslategrey: '#2f4f4f',
+  darkslategrey: '#3F4D61',
   darkturquoise: '#00ced1',
   darkviolet: '#9400d3',
   deeppink: '#ff1493',

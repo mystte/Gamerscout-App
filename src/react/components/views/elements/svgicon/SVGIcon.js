@@ -8,32 +8,48 @@ const styles = {
   },
 };
 
+export const SVG_TYPE = {
+  SVG: 'svg',
+  PNG: 'png',
+  JPG: 'jpg',
+};
+
 const SVGIcon = ({
   name,
   width,
   height,
+  type,
 }) => {
   const containerStyle = {
     width: (width) ? width : styles.container.width,
     height: (height) ? height : styles.container.height,
   };
 
+  let imgSrc = null;
+  if (type === SVG_TYPE.SVG) {
+    imgSrc = require(`../../../../../assets/svg/${name}.svg`);
+  } else if (type === SVG_TYPE.PNG || type === SVG_TYPE.JPG) {
+    imgSrc = require(`../../../../../assets/img/${name}.${type}`);
+  }
+
   return (
     <img
       style={containerStyle}
-      src={require(`../../../../../assets/svg/${name}.svg`)}
-    />)
+      src={imgSrc}
+    />);
   };
 
 SVGIcon.propTypes = {
   name: PropTypes.string.isRequired,
-  width: PropTypes.number,
-  height: PropTypes.number,
+  width: PropTypes.string,
+  height: PropTypes.string,
+  type: PropTypes.string,
 };
 
 SVGIcon.defaultProps = {
   width: null,
   height: null,
+  type: SVG_TYPE.SVG,
 };
 
 export default SVGIcon;

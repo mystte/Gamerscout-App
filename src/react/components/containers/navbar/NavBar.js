@@ -28,8 +28,8 @@ class NavBar extends PureComponent {
         to={getHomeUrl()}
       >
         <SVGIcon
-          width={120}
-          height={22}
+          width='120'
+          height='22'
           name="logo-beta"
         />
       </Link>

@@ -6,7 +6,13 @@ import styles from './styles';
 export const buttonType = {
   ERROR: 'error',
   DEFAULT: 'default',
-  DROPDOWN: 'dropdown'
+  DROPDOWN: 'dropdown',
+};
+
+export const buttonTheme = {
+  BLUE: 'blue',
+  DARK: 'dark',
+  RED: 'red',
 };
 
 class Button extends PureComponent {
@@ -15,11 +21,13 @@ class Button extends PureComponent {
     icon: PropTypes.string,
     type: PropTypes.string,
     onClick: PropTypes.func.isRequired,
+    theme: PropTypes.string,
   };
 
   static defaultProps = {
     icon: null,
     type: buttonType.DEFAULT,
+    theme: buttonTheme.DARK,
   };
 
   constructor(props) {
@@ -37,12 +45,12 @@ class Button extends PureComponent {
         onClick={this.props.onClick}
         style={{
           ...styles.container,
-          ...styles.default,
+          ...styles[this.props.theme],
         }}
       >
         { this.props.icon &&
           <span style={styles.iconContainer}>
-            <SVGIcon width={16} height={16} name={this.props.icon} />
+            <SVGIcon width='16' height='16' name={this.props.icon} />
           </span>
         }
         <span>{this.props.label}</span>

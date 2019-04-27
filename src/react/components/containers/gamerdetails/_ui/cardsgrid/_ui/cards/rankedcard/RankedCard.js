@@ -1,12 +1,11 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import NavHeader from './_ui/navheader/NavHeader';
-import CardsGrid from './_ui/cardsgrid/CardsGrid';
 import styles from './styles';
 
-class GamerDetails extends PureComponent {
+class RankedCard extends PureComponent {
   static propTypes = {
+    data: PropTypes.array.isRequired,
   };
 
   static defaultProps = {
@@ -22,11 +21,10 @@ class GamerDetails extends PureComponent {
   render() {
     return (
       <div style={styles.container}>
-        <NavHeader />
-        <CardsGrid />
+        
       </div>
     );
   }
 }
 
-export default GamerDetails;
+export default RankedCard;

@@ -2,13 +2,15 @@ import { colorNameToHex } from '../../../../../utils/color';
 
 const styles = {
   container: {
-    width: 1110,
+    maxWidth: 1110,
+    width: '100%',
     height: 265,
     backgroundColor: colorNameToHex('ebonyclay'),
   },
 
   topBannerContainer: {
     position: 'relative',
+    height: 220,
   },
 
   gamerAvatarContainer: {

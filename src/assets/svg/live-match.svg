@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="8px" height="8px" viewBox="0 0 8 8" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 54.1 (76490) - https://sketchapp.com -->
+    <title>Oval</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Content/Gamer-Details" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Content/Gamer-Details/Header/LoL" transform="translate(-742.000000, -238.000000)" fill="#E6492D">
+            <g id="Gamer-Details-Navigation" transform="translate(0.000000, 215.000000)">
+                <circle id="Oval" cx="746" cy="27" r="4"></circle>
+            </g>
+        </g>
+    </g>
+</svg>

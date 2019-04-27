@@ -35,7 +35,7 @@ class NavHeader extends PureComponent {
             type={SVG_TYPE.PNG}
             name='lol-bg'
             width='100%'
-            height='220'
+            height={220}
           />
           <div style={styles.gamerAvatarContainer}>
             <GamerAvatar

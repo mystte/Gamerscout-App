@@ -1,11 +1,7 @@
-export const AUTH = {
-  INIT: 'AUTH_INIT',
-  LOGIN: 'AUTH_LOGIN',
-  LOGOUT: 'AUTH_LOGOUT',
-  SIGNUP: 'AUTH_SIGNUP',
-};
+export const loading = (type = '') => `${type}_LOADING`;
+export const success = (type = '') => `${type}_SUCCESS`;
+export const error = (type = '') => `${type}_ERROR`;
 
-export const MODAL = {
-  SHOW: 'SHOW',
-  HIDE: 'HIDE',
+export const GAMER_DETAILS = {
+  LOAD: 'LOAD',
 };

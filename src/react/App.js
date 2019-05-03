@@ -1,5 +1,8 @@
 import React, { PureComponent } from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import store from './redux/configureStore';
+
 import ErrorBoundary from './components/containers/errorboundary/ErrorBoundary';
 import AppRouter from './router/AppRouter';
 import { colorNameToHex } from './utils/color';
@@ -18,11 +21,17 @@ class App extends PureComponent {
     this.state = {};
   }
 
+  componentDidMount() {
+    console.log("#### ComponentDidMount");
+  }
+
   render() {
     return (
       <div id="app" style={styles.container}>
         <ErrorBoundary>
-          <AppRouter />
+          <Provider store={store}>
+            <AppRouter />
+          </Provider>
         </ErrorBoundary>
       </div>
     );

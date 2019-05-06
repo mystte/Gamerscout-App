@@ -1,6 +1,7 @@
 import { Record } from 'typed-immutable';
 
 const defaultProps = {
+  review: String,
 };
 
 const ExtendsWith = (superclass) => class extends superclass {

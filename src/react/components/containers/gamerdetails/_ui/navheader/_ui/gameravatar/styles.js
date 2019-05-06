@@ -21,7 +21,7 @@ const styles = {
   level: {
     width: 20,
     height: 20,
-    fontSize: 12,
+    fontSize: 8,
     backgroundColor: colorNameToHex('darkgrey'),
     borderStyle: 'solid',
     borderWidth: 1,

@@ -5,7 +5,7 @@ import styles from './styles';
 
 const GamerAvatar = ({
   gamertag,
-  icon,
+  iconUrl,
   level,
   region,
 }) => {
@@ -15,7 +15,7 @@ const GamerAvatar = ({
         <img
           style={styles.icon}
           alt={`profile ${gamertag} icon`}
-          src={`https://ddragon.leagueoflegends.com/cdn/6.24.1/img/profileicon/${icon}.png`}
+          src={iconUrl}
         ></img>
         <div style={styles.level}>{level}</div>
       </div>
@@ -30,12 +30,12 @@ const GamerAvatar = ({
 GamerAvatar.propTypes = {
   gamertag: PropTypes.string.isRequired,
   region: PropTypes.string.isRequired,
-  icon: PropTypes.string,
+  iconUrl: PropTypes.string,
   level: PropTypes.number,
 };
 
 GamerAvatar.defaultProps = {
-  icon: '23',
+  iconUrl: 'https://ddragon.leagueoflegends.com/cdn/6.24.1/img/profileicon/23.png',
   level: 1,
 };
 

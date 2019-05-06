@@ -1,6 +1,7 @@
 import { Record } from 'typed-immutable';
 
 const defaultProps = {
+  approvalsCount: Number,
 };
 
 const ExtendsWith = (superclass) => class extends superclass {

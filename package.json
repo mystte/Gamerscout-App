@@ -23,7 +23,8 @@
     "react-dom": "^16.8.6",
     "react-native": "^0.59.3",
     "react-router-dom": "^5.0.0",
-    "redux-saga": "^1.0.2"
+    "redux-saga": "^1.0.2",
+    "typed-immutable": "^0.1.2"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",

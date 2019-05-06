@@ -25,7 +25,7 @@ export default function reducer(state = initialState, action) {
 
     case success(GAMER_DETAILS.LOAD):
       return state.withMutations((mutate) => {
-        mutate.set('data', []);
+        mutate.set('data', action.data);
         mutate.set('loading', false);
         mutate.set('error', null);
       });

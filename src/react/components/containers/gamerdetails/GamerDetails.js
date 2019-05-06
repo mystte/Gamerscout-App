@@ -8,7 +8,7 @@ import CardsGrid from './_ui/cardsgrid/CardsGrid';
 import styles from './styles';
 
 const mapStateToProps = state => ({
-  data: state.gamerDetails.get('data'),
+  gamerData: state.gamerDetails.get('data'),
   loading: state.gamerDetails.get('loading'),
   error: state.gamerDetails.get('error'),
 });
@@ -31,12 +31,23 @@ class GamerDetails extends PureComponent {
   };
 
   render() {
-    return (
-      <div style={styles.container}>
-        <NavHeader />
-        <CardsGrid />
-      </div>
-    );
+    let renderedContent = null;
+    if (!this.props.loading) {
+      renderedContent = (
+        <div style={styles.container}>
+          <NavHeader
+            gamertag={this.props.gamerData.gamertag}
+            gamerLevel={this.props.gamerData.level}
+            region={this.props.gamerData.region}
+            gamerIconUrl={this.props.gamerData.gamerIconUrl}
+          />
+          <CardsGrid />
+        </div>
+      );
+    } else {
+
+    }
+    return renderedContent;
   }
 }
 

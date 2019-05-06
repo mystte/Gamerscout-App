@@ -1,13 +1,8 @@
-import { Record } from 'typed-immutable';
+import { Record, List } from 'typed-immutable';
+import RankedCardTabRecord from './RankedCardTabRecord';
 
 const defaultProps = {
-  title: String,
-  rank: String,
-  points: Number,
-  wins: Number,
-  losses: Number,
-  percentage: Number,
-  selected: false,
+  tabsList: List(RankedCardTabRecord),
 };
 
 const ExtendsWith = (superclass) => class extends superclass {
@@ -17,5 +12,13 @@ const ExtendsWith = (superclass) => class extends superclass {
 };
 
 export default class RankedCardRecord extends ExtendsWith(Record(defaultProps, 'RankedCardRecord')) {
+  static apiParser(data) {
+    const parsedData = {
+      tabsList: data.map((tabData, idx) => {
+        return RankedCardTabRecord.apiParser(tabData, idx === 0);
+      }),
+    };
 
+    return new RankedCardRecord(parsedData);
+  }
 }

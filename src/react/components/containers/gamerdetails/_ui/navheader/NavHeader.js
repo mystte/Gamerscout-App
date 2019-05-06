@@ -9,6 +9,10 @@ import styles from './styles';
 
 class NavHeader extends PureComponent {
   static propTypes = {
+    gamertag: PropTypes.string.isRequired,
+    gamerLevel: PropTypes.number.isRequired,
+    region: PropTypes.string.isRequired,
+    gamerIconUrl: PropTypes.string.isRequired,
   };
 
   static defaultProps = {
@@ -28,6 +32,7 @@ class NavHeader extends PureComponent {
   }
 
   render() {
+    console.log("##### NavHeader Props", this.props);
     return (
       <div style={styles.container}>
         <div style={styles.topBannerContainer}>
@@ -39,9 +44,10 @@ class NavHeader extends PureComponent {
           />
           <div style={styles.gamerAvatarContainer}>
             <GamerAvatar
-              gamertag='The Dao'
-              level={18}
-              region={'NA'}
+              gamertag={this.props.gamertag}
+              level={this.props.gamerLevel}
+              region={this.props.region}
+              iconUrl={this.props.gamerIconUrl}
             />
           </div>
           <div style={styles.reviewButtonsContainer}>

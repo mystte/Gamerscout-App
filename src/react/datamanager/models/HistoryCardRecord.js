@@ -1,6 +1,7 @@
 import { Record } from 'typed-immutable';
 
 const defaultProps = {
+  gameType: String,
 };
 
 const ExtendsWith = (superclass) => class extends superclass {

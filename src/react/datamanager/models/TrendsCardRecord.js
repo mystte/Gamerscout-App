@@ -1,6 +1,8 @@
-import { Record } from 'typed-immutable';
+import { Record, Maybe } from 'typed-immutable';
+import { List } from 'immutable';
 
 const defaultProps = {
+  data: Maybe(List),
 };
 
 const ExtendsWith = (superclass) => class extends superclass {

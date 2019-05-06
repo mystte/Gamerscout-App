@@ -32,7 +32,6 @@ class NavHeader extends PureComponent {
   }
 
   render() {
-    console.log("##### NavHeader Props", this.props);
     return (
       <div style={styles.container}>
         <div style={styles.topBannerContainer}>

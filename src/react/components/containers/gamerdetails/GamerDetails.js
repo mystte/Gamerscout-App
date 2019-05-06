@@ -8,6 +8,7 @@ import CardsGrid from './_ui/cardsgrid/CardsGrid';
 import styles from './styles';
 
 const mapStateToProps = state => ({
+  config: state.app.get('data'),
   gamerData: state.gamerDetails.get('data'),
   loading: state.gamerDetails.get('loading'),
   error: state.gamerDetails.get('error'),
@@ -31,23 +32,21 @@ class GamerDetails extends PureComponent {
   };
 
   render() {
-    let renderedContent = null;
-    if (!this.props.loading) {
-      renderedContent = (
-        <div style={styles.container}>
-          <NavHeader
-            gamertag={this.props.gamerData.gamertag}
-            gamerLevel={this.props.gamerData.level}
-            region={this.props.gamerData.region}
-            gamerIconUrl={this.props.gamerData.gamerIconUrl}
-          />
-          <CardsGrid />
-        </div>
-      );
-    } else {
-
-    }
-    return renderedContent;
+    return (
+      <React.Fragment>
+        {!this.props.loading &&
+          <div style={styles.container}>
+            <NavHeader
+              gamertag={this.props.gamerData.gamertag}
+              gamerLevel={this.props.gamerData.level}
+              region={this.props.config.getPlatformName(this.props.gamerData.region)}
+              gamerIconUrl={this.props.gamerData.gamerIconUrl}
+            />
+            <CardsGrid />
+          </div>
+        }
+      </React.Fragment>
+    );
   }
 }
 

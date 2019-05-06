@@ -2,6 +2,10 @@ export const loading = (type = '') => `${type}_LOADING`;
 export const success = (type = '') => `${type}_SUCCESS`;
 export const error = (type = '') => `${type}_ERROR`;
 
+export const APP = {
+  LOAD: 'APP_LOAD',
+};
+
 export const GAMER_DETAILS = {
-  LOAD: 'LOAD',
+  LOAD: 'GAMER_DETAILS_LOAD',
 };

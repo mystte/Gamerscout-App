@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import store from './redux/configureStore';
 
 import ErrorBoundary from './components/containers/errorboundary/ErrorBoundary';
-import AppRouter from './router/AppRouter';
+import AppBootstrap from './AppBootstrap';
 import { colorNameToHex } from './utils/color';
 import '../style.scss';
 
@@ -21,16 +21,12 @@ class App extends PureComponent {
     this.state = {};
   }
 
-  componentDidMount() {
-    console.log("#### ComponentDidMount");
-  }
-
   render() {
     return (
       <div id="app" style={styles.container}>
         <ErrorBoundary>
           <Provider store={store}>
-            <AppRouter />
+            <AppBootstrap />
           </Provider>
         </ErrorBoundary>
       </div>

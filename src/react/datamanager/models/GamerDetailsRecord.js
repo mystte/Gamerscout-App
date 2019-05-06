@@ -31,7 +31,7 @@ const ExtendsWith = (superclass) => class extends superclass {
 
 export default class GamerDetailsRecord extends ExtendsWith(Record(defaultProps, 'GamerDetailsRecord')) {
   static apiParser(data) {
-    const apiData = data.data[0];
+    const apiData = data[0];
     const parsedData = {
       accountId: apiData.account_id,
       game: apiData.game,
@@ -42,8 +42,6 @@ export default class GamerDetailsRecord extends ExtendsWith(Record(defaultProps,
       region: apiData.region,
       rankedCardRecord: apiData.stats.ranked ? RankedCardRecord.apiParser(apiData.stats.ranked) : null,
     };
-    console.log("###### GamerDetailsRecord API PARSER");
-    console.log("#### DATA = ", data);
     return new GamerDetailsRecord(parsedData);
   }
 }

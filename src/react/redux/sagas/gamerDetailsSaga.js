@@ -7,15 +7,14 @@ function* loadGamerDetails() {
   const actionType = GAMER_DETAILS.LOAD;
   try {
     const gamerDetailsData = yield fetchAsync(Api.loadGamerDetails);
-    yield put({ type: success(actionType), data: GamerDetailsRecord.apiParser(gamerDetailsData) });
+    yield put({ type: success(actionType), data: GamerDetailsRecord.apiParser(gamerDetailsData.data) });
   } catch (e) {
     yield put({ type: error(actionType), error: e.message });
   }
 }
-export function* usersSaga() {
-  // Allows concurrent fetches of users
+
+function* gamerDetailsSaga() {
   yield takeEvery(loading(GAMER_DETAILS.LOAD), loadGamerDetails);
-  // Does not allow concurrent fetches of users
-  // yield takeLatest(loading(GAMER_DETAILS.LOAD), loadGamerDetails);
 }
-export default usersSaga;
+
+export default gamerDetailsSaga;

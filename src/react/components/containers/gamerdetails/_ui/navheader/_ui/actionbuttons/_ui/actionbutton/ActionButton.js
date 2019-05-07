@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Labels from '../../../../../../../../../config/localization/labels/Labels';
+import Localization from '../../../../../../../../../config/localization/Localization';
 import SVGIcon from '../../../../../../../../views/elements/svgicon/SVGIcon';
 import styles from './styles';
 
@@ -39,7 +39,7 @@ const ActionButton = ({
           />
         </div>
       }
-      <div style={styles.label}>{Labels.gamerDetails[type]}</div>
+      <div style={styles.label}>{Localization.Labels.gamerDetails[type]}</div>
     </button>
   );
 }

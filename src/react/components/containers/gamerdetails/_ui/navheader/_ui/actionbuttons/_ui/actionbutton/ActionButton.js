@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import Labels from '../../../../../../../../../config/localization/labels/Labels';
 import SVGIcon from '../../../../../../../../views/elements/svgicon/SVGIcon';
 import styles from './styles';
 
@@ -9,7 +10,7 @@ export const BUTTON_TYPE = {
   REVIEWS: 'reviews',
   CHAMPIONS: 'champions',
   LEAGUES: 'leagues',
-  LIVE_MATCH: 'live match'
+  LIVE_MATCH: 'liveMatch'
 };
 
 const ActionButton = ({
@@ -38,7 +39,7 @@ const ActionButton = ({
           />
         </div>
       }
-      <div style={styles.label}>{type}</div>
+      <div style={styles.label}>{Labels.gamerDetails[type]}</div>
     </button>
   );
 }

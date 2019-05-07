@@ -12,23 +12,44 @@ import {
   getGamerDetailsUrl,
 } from '../config/routes';
 
-const AppRouter = () => (
-  <Router>
-    <NavBar />
-    <Switch>
-      <Route path={getHomeUrl()} exact render={() => (
-        <Suspense fallback={<Loading/>}>
-          <Home/>
-        </Suspense>
-      )} />
-      <Route path={getGamerDetailsUrl()} exact render={() => (
-        <Suspense fallback={<Loading />}>
-          <GamerDetails />
-        </Suspense>
-      )} />
-      <Route component={FourOFour} />
-    </Switch>
-  </Router>
-);
+const routesConfig = [
+  {
+    path: getHomeUrl(),
+    component: Home,
+  },
+  {
+    path: getGamerDetailsUrl(),
+    component: GamerDetails,
+  },
+];
+
+const AppRouter = () => {
+  const renderedRoutes = routesConfig.map((route) => {
+    return (
+      <Route
+        key={`route${route.component}`}
+        path={route.path}
+        exact
+        render={() =>
+          (
+            <Suspense fallback={<Loading />}>
+              <route.component />
+            </Suspense>
+          )
+        }
+      />
+    );
+  });
+
+  return (
+    <Router>
+      <NavBar />
+      <Switch>
+        {renderedRoutes}
+        <Route component={FourOFour} />
+      </Switch>
+    </Router>
+  );
+};
 
 export default AppRouter;

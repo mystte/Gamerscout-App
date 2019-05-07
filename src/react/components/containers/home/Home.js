@@ -37,7 +37,6 @@ class Home extends Component {
   }
 
   onSearchClick = () => {
-    console.log("#### click");
     this.props.history.push(getGamerDetailsUrl());
 
   }

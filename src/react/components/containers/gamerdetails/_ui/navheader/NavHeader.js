@@ -5,6 +5,7 @@ import SVGIcon, { SVG_TYPE } from '../../../../views/elements/svgicon/SVGIcon';
 import Button, { buttonTheme } from '../../../../views/elements/button/Button';
 import ActionButtons from './_ui/actionbuttons/ActionButtons';
 import GamerAvatar from './_ui/gameravatar/GamerAvatar';
+import Labels from '../../../../../config/localization/labels/Labels';
 import styles from './styles';
 
 class NavHeader extends PureComponent {
@@ -51,7 +52,7 @@ class NavHeader extends PureComponent {
           </div>
           <div style={styles.reviewButtonsContainer}>
             <Button
-              label='Review'
+              label={Labels.gamerDetails.reviewButton}
               theme={buttonTheme.BLUE}
               onClick={() => {}}
             />

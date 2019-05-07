@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import AppRouter from './router/AppRouter';
 import { loadAppData } from './redux/actions/app';
+import Labels from './config/localization/labels/Labels';
 
 const mapStateToProps = state => ({
   config: state.app.get('data'),
@@ -18,6 +19,8 @@ class AppBootstrap extends PureComponent {
 
   componentDidMount() {
     this.props.dispatch(loadAppData());
+    // Force app in English for now
+    Labels.setLanguage('en');
   }
 
   render() {

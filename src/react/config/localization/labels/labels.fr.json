@@ -1,0 +1,10 @@
+{
+  "gamerDetails": {
+    "overview": "Aperçu",
+    "reviews": "Commentaires",
+    "champions": "Champions",
+    "leagues": "Ligues",
+    "liveMatch": "Direct",
+    "reviewButton": "Commenter"
+  }
+}

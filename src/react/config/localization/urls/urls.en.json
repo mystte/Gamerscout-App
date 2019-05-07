@@ -1,0 +1,3 @@
+{
+  "GAMER_DETAILS_URL": "/gamer/:platform/:region/:game/:gamertag"
+}

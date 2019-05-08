@@ -18,7 +18,7 @@ export default function reducer(state = initialState, action) {
   switch (type) {
     case loading(GAMER_DETAILS.LOAD):
       return state.withMutations((mutate) => {
-        mutate.set('data', []);
+        mutate.set('data', null);
         mutate.set('loading', true);
         mutate.set('error', null);
       });
@@ -32,7 +32,7 @@ export default function reducer(state = initialState, action) {
 
     case error(GAMER_DETAILS.LOAD):
       return state.withMutations((mutate) => {
-        mutate.set('data', []);
+        mutate.set('data', null);
         mutate.set('loading', false);
         mutate.set('error', action.error);
       });

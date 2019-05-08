@@ -32,6 +32,6 @@ module.exports = {
       template: './src/index.html',
       filename: './index.html'
     }),
-    new ExtractTextPlugin('style.css')
+    new ExtractTextPlugin('style.css'),
   ]
 }

@@ -38,10 +38,12 @@ class GamerDetails extends PureComponent {
   };
 
   render() {
-    console.log("### GAMERDETAILS PROPS", this.props);
     return (
       <React.Fragment>
-        {!this.props.loading &&
+        {this.props.loading &&
+          <div>Loading</div>
+        }
+        {(!this.props.loading && this.props.gamerData) &&
           <div style={styles.container}>
             <NavHeader
               gamertag={this.props.gamerData.gamertag}
@@ -51,6 +53,9 @@ class GamerDetails extends PureComponent {
             />
             <CardsGrid />
           </div>
+        }
+        {(!this.props.loading && !this.props.gamerData) &&
+          <div>No gamer Found</div>
         }
       </React.Fragment>
     );

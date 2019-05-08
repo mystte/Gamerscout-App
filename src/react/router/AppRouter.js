@@ -27,16 +27,10 @@ const AppRouter = () => {
   const renderedRoutes = routesConfig.map((route) => {
     return (
       <Route
-        key={`route${route.component}`}
+        key={`route${route.path}`}
         path={route.path}
         exact
-        render={() =>
-          (
-            <Suspense fallback={<Loading />}>
-              <route.component />
-            </Suspense>
-          )
-        }
+        component={route.component}
       />
     );
   });
@@ -44,10 +38,12 @@ const AppRouter = () => {
   return (
     <Router>
       <NavBar />
-      <Switch>
-        {renderedRoutes}
-        <Route component={FourOFour} />
-      </Switch>
+      <Suspense fallback={<Loading />}>
+        <Switch>
+          {renderedRoutes}
+          <Route component={FourOFour} />
+        </Switch>
+      </Suspense>
     </Router>
   );
 };

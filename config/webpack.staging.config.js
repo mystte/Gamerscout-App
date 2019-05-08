@@ -4,18 +4,18 @@ var merge = require('webpack-merge');
 var baseConfig = require('./webpack.base.config');
 var optimizationConfig = require('./webpack.opt.config');
 
-const productionConfiguration = function () {
+const stagingConfiguration = function () {
 
   return {
-    mode: 'production',
+    mode: 'staging',
     plugins: [
       new webpack.EnvironmentPlugin({
-        'NODE_ENV': 'production',
-        'API_URL': 'https://api.gamerscout.com/api/1',
-        'DEBUG': false,
+        'NODE_ENV': 'staging',
+        'API_URL': 'https://api.dev.gamerscout.com/api/1',
+        'DEBUG': true,
       }),
     ]
   };
 }
 
-module.exports = merge.smart(baseConfig, optimizationConfig, productionConfiguration());
+module.exports = merge.smart(baseConfig, optimizationConfig, stagingConfiguration());

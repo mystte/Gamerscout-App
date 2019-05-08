@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { loadGamerDetails } from '../../../redux/actions/gamerDetails';
@@ -28,10 +29,16 @@ class GamerDetails extends PureComponent {
   }
   
   componentDidMount() {
-    this.props.dispatch(loadGamerDetails());
+    this.props.dispatch(loadGamerDetails(
+      this.props.match.params.platform,
+      this.props.match.params.region,
+      this.props.match.params.game,
+      this.props.match.params.gamertag,
+    ));
   };
 
   render() {
+    console.log("### GAMERDETAILS PROPS", this.props);
     return (
       <React.Fragment>
         {!this.props.loading &&
@@ -50,4 +57,6 @@ class GamerDetails extends PureComponent {
   }
 }
 
-export default connect(mapStateToProps)(GamerDetails);
+export default withRouter(
+  connect(mapStateToProps)(GamerDetails)
+);

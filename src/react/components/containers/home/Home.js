@@ -37,8 +37,9 @@ class Home extends Component {
   }
 
   onSearchClick = () => {
-    this.props.history.push(getGamerDetailsUrl());
-
+    if (this.state.searchValue) {
+      this.props.history.push(getGamerDetailsUrl("riot", "na1", "lol", this.state.searchValue));
+    }
   }
 
   render() {

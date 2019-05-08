@@ -12,18 +12,18 @@ import {
   getGamerDetailsUrl,
 } from '../config/routes';
 
-const routesConfig = [
-  {
-    path: getHomeUrl(),
-    component: Home,
-  },
-  {
-    path: getGamerDetailsUrl(),
-    component: GamerDetails,
-  },
-];
-
 const AppRouter = () => {
+  const routesConfig = [
+    {
+      path: getHomeUrl(),
+      component: Home,
+    },
+    {
+      path: getGamerDetailsUrl(),
+      component: GamerDetails,
+    },
+  ];
+
   const renderedRoutes = routesConfig.map((route) => {
     return (
       <Route

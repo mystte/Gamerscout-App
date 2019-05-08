@@ -43,7 +43,7 @@ class Localization {
   }
 
   getLanguage() {
-    return this.Labels.setLanguage(lang);
+    return this.Labels.getLanguage();
   }
 };
 

@@ -6,8 +6,8 @@ const CALL_TYPE = {
   PUT: 'put',
 };
 
-export async function fetchAsync(func) {
-  const response = await func();
+export async function fetchAsync(func, parameters) {
+  const response = await func(parameters);
 
   if (response.status >= 200 && response.status <= 201) {
     return await JSON.parse(JSON.stringify(response));
@@ -29,8 +29,10 @@ async function doApiCall(url, params, callType = CALL_TYPE.GET) {
 }
 
 export default class Api {
-  static loadGamerDetails() {
-    return doApiCall('/search/lol/na1/sevenaster');
+  static loadGamerDetails({ game, gamertag, platform, region }) {
+    const url = `/search/${game}/${region}/${gamertag}`;
+
+    return doApiCall(url);
   };
 
   static loadAppData() {

@@ -15,7 +15,7 @@ export default class RankedCardRecord extends ExtendsWith(Record(defaultProps, '
   static apiParser(data) {
     const parsedData = {
       tabsList: data.map((tabData, idx) => {
-        return RankedCardTabRecord.apiParser(tabData, idx === 0);
+        return RankedCardTabRecord.apiParser(tabData);
       }),
     };
 

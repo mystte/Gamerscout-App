@@ -2,13 +2,16 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import RankedCard from './_ui/cards/rankedcard/RankedCard';
+import RankedCardRecord from '../../../../../datamanager/models/RankedCardRecord';
 import styles from './styles';
 
 class CardsGrid extends PureComponent {
   static propTypes = {
+    rankedCardRecord: PropTypes.instanceOf(RankedCardRecord),
   };
 
   static defaultProps = {
+    rankedCardRecord: null,
   };
 
   constructor(props) {
@@ -19,36 +22,19 @@ class CardsGrid extends PureComponent {
   }
 
   render() {
+    if (!this.props.rankedCardRecord) return null;
+
     return (
       <div style={styles.container}>
         <div style={styles.firstRow}>
           <RankedCard
-            data={[
-              {
-                title: "RANKED SOLO",
-                rank: "Platinium 3",
-                points: 71,
-                wins: 10,
-                losses: 5,
-                percentage: 45,
-                selected: true,
-              },
-              {
-                title: "FLEX 5V5",
-                rank: "Platinium 2",
-                points: 30,
-                wins: 5,
-                losses: 5,
-                percentage: 50,
-                selected: false,
-              },
-            ]}
+            rankedList={this.props.rankedCardRecord.tabsList}
           />
           <RankedCard
-            data={[]}
+            rankedList={this.props.rankedCardRecord.tabsList}
           />
           <RankedCard
-            data={[]}
+            rankedList={this.props.rankedCardRecord.tabsList}
           />
         </div>
       </div>

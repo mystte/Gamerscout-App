@@ -3,7 +3,7 @@ import { colorNameToHex } from "../../../../../../../../utils/color";
 const styles = {
   container: {
     maxWidth: 350,
-    width: '34vw',
+    width: '31vw',
     height: 160,
     backgroundColor: colorNameToHex('ebonyclay'),
     marginTop: 30,

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import SVGIcon, { SVG_TYPE } from '../../../../views/elements/svgicon/SVGIcon';
+import SVGIcon, { IMG_TYPE } from '../../../../views/elements/svgicon/SVGIcon';
 import Button, { buttonTheme } from '../../../../views/elements/button/Button';
 import ActionButtons from './_ui/actionbuttons/ActionButtons';
 import GamerAvatar from './_ui/gameravatar/GamerAvatar';
@@ -37,7 +37,7 @@ class NavHeader extends PureComponent {
       <div style={styles.container}>
         <div style={styles.topBannerContainer}>
           <SVGIcon
-            type={SVG_TYPE.PNG}
+            type={IMG_TYPE.PNG}
             name='lol-bg'
             width='100%'
             height={220}

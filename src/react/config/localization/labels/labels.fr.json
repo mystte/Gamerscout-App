@@ -5,6 +5,12 @@
     "champions": "Champions",
     "leagues": "Ligues",
     "liveMatch": "Direct",
-    "reviewButton": "Commenter"
+    "reviewButton": "Commenter",
+
+    "RankedCard": {
+      "leaguePoints": "Pts",
+      "wins": "V",
+      "losses": "P"
+    }
   }
 }

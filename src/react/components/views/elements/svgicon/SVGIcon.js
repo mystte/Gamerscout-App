@@ -8,7 +8,7 @@ const styles = {
   },
 };
 
-export const SVG_TYPE = {
+export const IMG_TYPE = {
   SVG: 'svg',
   PNG: 'png',
   JPG: 'jpg',
@@ -26,9 +26,9 @@ const SVGIcon = ({
   };
 
   let imgSrc = null;
-  if (type === SVG_TYPE.SVG) {
+  if (type === IMG_TYPE.SVG) {
     imgSrc = require(`../../../../../assets/svg/${name}.svg`);
-  } else if (type === SVG_TYPE.PNG || type === SVG_TYPE.JPG) {
+  } else if (type === IMG_TYPE.PNG || type === IMG_TYPE.JPG) {
     imgSrc = require(`../../../../../assets/img/${name}.${type}`);
   }
 
@@ -55,7 +55,7 @@ SVGIcon.propTypes = {
 SVGIcon.defaultProps = {
   width: null,
   height: null,
-  type: SVG_TYPE.SVG,
+  type: IMG_TYPE.SVG,
 };
 
 export default SVGIcon;

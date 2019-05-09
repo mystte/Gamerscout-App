@@ -51,7 +51,9 @@ class GamerDetails extends PureComponent {
               region={this.props.config.getPlatformName(this.props.gamerData.region)}
               gamerIconUrl={this.props.gamerData.gamerIconUrl}
             />
-            <CardsGrid />
+            <CardsGrid
+              rankedCardRecord={this.props.gamerData.rankedCardRecord}
+            />
           </div>
         }
         {(!this.props.loading && !this.props.gamerData) &&

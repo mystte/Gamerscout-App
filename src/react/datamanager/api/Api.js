@@ -17,7 +17,7 @@ export async function fetchAsync(func, parameters) {
 }
 
 async function doApiCall(url, params, callType = CALL_TYPE.GET) {
-  const serverUrl = 'http://localhost:8002/api/1';
+  const serverUrl = process.env.API_URL;
   let result = null;
 
   if (callType === CALL_TYPE.GET) {

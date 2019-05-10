@@ -3,7 +3,7 @@ import { colorNameToHex } from '../../../../../../../../../utils/color';
 const styles = {
   button: {
     width: 118,
-    height: 44,
+    height: 43,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
@@ -28,7 +28,13 @@ const styles = {
   },
 
   label: {
+    fontWeight: 600,
+    fontSize: 12,
+  },
 
+  selected: {
+    backgroundColor: colorNameToHex('dimgrey'),
+    color: colorNameToHex('white'),
   },
 };
 

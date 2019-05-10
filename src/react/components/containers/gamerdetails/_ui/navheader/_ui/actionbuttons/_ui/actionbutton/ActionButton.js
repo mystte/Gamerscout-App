@@ -18,12 +18,9 @@ const ActionButton = ({
   type,
   onClick,
 }) => {
-  const buttonStyle = (type === BUTTON_TYPE.LIVE_MATCH) ? {
-    ...styles.button,
-    ...styles.lastButton,
-  } : {
-    ...styles.button,
-  };
+  let buttonStyle = { ...styles.button };
+  if (type === BUTTON_TYPE.LIVE_MATCH) buttonStyle = { ...buttonStyle, ...styles.lastButton };
+  if (selected) buttonStyle = { ...buttonStyle, ...styles.selected };
 
   return (
     <button

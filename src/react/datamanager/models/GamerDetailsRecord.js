@@ -7,9 +7,22 @@ import ReviewsCardRecord from './ReviewsCardRecord';
 import RankedCardRecord from './RankedCardRecord';
 import TrendsCardRecord from './TrendsCardRecord';
 
+export const GAME_PLATFORM = {
+  RIOT: 'riot',
+  STEAM: 'steam',
+  ORIGIN: 'origin',
+};
+
+export const GAME_CODE = {
+  LEAGUE_OF_LEGENDS: 'LOL',
+  ROCKET_LEAGUE: 'ROCKET_LEAGUE',
+};
+
 const defaultProps = {
   accountId: String,
+  platform: String,
   game: String,
+  gameCode: String,
   gamerId: String,
   gamertag: String,
   gamerIconUrl: String,
@@ -35,6 +48,8 @@ export default class GamerDetailsRecord extends ExtendsWith(Record(defaultProps,
     const parsedData = {
       accountId: apiData.account_id,
       game: apiData.game,
+      gameCode: apiData.game_code,
+      platform: apiData.platform,
       gamerId: apiData.gamer_id,
       gamertag: apiData.gamertag,
       gamerIconUrl: apiData.profile_picture,

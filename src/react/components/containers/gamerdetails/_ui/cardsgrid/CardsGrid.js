@@ -7,6 +7,8 @@ import styles from './styles';
 
 class CardsGrid extends PureComponent {
   static propTypes = {
+    gameCode: PropTypes.string.isRequired,
+    platform: PropTypes.string.isRequired,
     rankedCardRecord: PropTypes.instanceOf(RankedCardRecord),
   };
 
@@ -28,13 +30,19 @@ class CardsGrid extends PureComponent {
       <div style={styles.container}>
         <div style={styles.firstRow}>
           <RankedCard
-            rankedList={this.props.rankedCardRecord.tabsList}
+            gameCode={this.props.gameCode}
+            platform={this.props.platform}
+            rankedCardRecord={this.props.rankedCardRecord}
           />
           <RankedCard
-            rankedList={this.props.rankedCardRecord.tabsList}
+            gameCode={this.props.gameCode}
+            platform={this.props.platform}
+            rankedCardRecord={this.props.rankedCardRecord}
           />
           <RankedCard
-            rankedList={this.props.rankedCardRecord.tabsList}
+            gameCode={this.props.gameCode}
+            platform={this.props.platform}
+            rankedCardRecord={this.props.rankedCardRecord}
           />
         </div>
       </div>

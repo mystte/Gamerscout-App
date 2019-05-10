@@ -3,19 +3,18 @@ import PropTypes from 'prop-types';
 
 import Localization from '../../../../../../../../../../config/localization/Localization';
 import RankedCardTabRecord from '../../../../../../../../../../datamanager/models/RankedCardTabRecord';
+import Unranked from './_ui/unranked/Unranked';
 import SVGIcon, {IMG_TYPE} from '../../../../../../../../../views/elements/svgicon/SVGIcon';
 import styles from './styles';
 
 const RankedTab = ({
-  selected,
-  idx,
   rankedData,
 }) => {
   const rankedCardsLabels = Localization.Labels.gamerDetails.rankedCard;
 
   return (
     <div style={styles.container}>
-      {selected &&
+      {rankedData &&
         <div style={styles.cardContent}>
           <SVGIcon
             width={80}
@@ -38,19 +37,19 @@ const RankedTab = ({
           </div>
         </div>
       }
+      {!rankedData &&
+        <Unranked />
+      }
     </div>
   );
 };
 
 RankedTab.propTypes = {
-  rankedData: PropTypes.instanceOf(RankedCardTabRecord).isRequired,
-  selected: PropTypes.bool,
-  idx: PropTypes.number,
+  rankedData: PropTypes.instanceOf(RankedCardTabRecord),
 };
 
 RankedTab.defaultProps = {
-  selected: false,
-  idx: 0,
+  rankedData: null,
 };
 
 export default RankedTab;

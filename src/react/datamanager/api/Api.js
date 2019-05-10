@@ -30,7 +30,7 @@ async function doApiCall(url, params, callType = CALL_TYPE.GET) {
 
 export default class Api {
   static loadGamerDetails({ game, gamertag, platform, region }) {
-    const url = `/search/${game}/${region}/${gamertag}`;
+    const url = `/search/${platform}/${region}/${game}/${gamertag}`;
 
     return doApiCall(url);
   };

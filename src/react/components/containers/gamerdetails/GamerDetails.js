@@ -48,10 +48,12 @@ class GamerDetails extends PureComponent {
             <NavHeader
               gamertag={this.props.gamerData.gamertag}
               gamerLevel={this.props.gamerData.level}
-              region={this.props.config.getPlatformName(this.props.gamerData.region)}
+              region={this.props.gamerData.region}
               gamerIconUrl={this.props.gamerData.gamerIconUrl}
             />
             <CardsGrid
+              gameCode={this.props.gamerData.gameCode}
+              platform={this.props.gamerData.platform}
               rankedCardRecord={this.props.gamerData.rankedCardRecord}
             />
           </div>

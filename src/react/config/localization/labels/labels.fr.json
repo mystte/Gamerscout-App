@@ -7,10 +7,14 @@
     "liveMatch": "Direct",
     "reviewButton": "Commenter",
 
-    "RankedCard": {
+    "rankedCard": {
       "leaguePoints": "Pts",
       "wins": "V",
-      "losses": "P"
+      "losses": "P",
+      "rankedSolo5v5": "RANKED SOLO",
+      "rankedFlex5v5": "FLEX 5C5",
+      "rankedFlex3v3": "FLEX 3C3",
+      "unranked": "Non classé"
     }
   }
 }

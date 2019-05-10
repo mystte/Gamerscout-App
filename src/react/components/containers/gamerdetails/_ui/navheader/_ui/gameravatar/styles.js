@@ -48,6 +48,7 @@ const styles = {
     fontSize: 14,
     color: hexToRgbA('ffffff', 0.5),
     height: 19,
+    textTransform: 'uppercase',
   },
 };
 

@@ -1,12 +1,16 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
+import RankedCardRecord from '../../../../../../../../datamanager/models/RankedCardRecord';
+import TabSelector from '../../../../../../../views/elements/tabselector/TabSelector';
 import RankedTab from './_ui/rankedtab/RankedTab';
 import styles from './styles';
 
 class RankedCard extends PureComponent {
   static propTypes = {
-    rankedList: PropTypes.array.isRequired,
+    gameCode: PropTypes.string.isRequired,
+    platform: PropTypes.string.isRequired,
+    rankedCardRecord: PropTypes.instanceOf(RankedCardRecord).isRequired,
   };
 
   static defaultProps = {
@@ -16,27 +20,26 @@ class RankedCard extends PureComponent {
     super(props);
 
     this.state = {
-      selectedTab: 0,
+      headerList: this.props.rankedCardRecord.getRankedCardTabHeader(this.props.platform, this.props.gameCode),
     };
   }
 
-  onTabSelect = (idx) => {
-
-  }
-
   render() {
-    console.log("#### data = ", this.props.rankedList);
-    const renderedTabs = this.props.rankedList.map((rankedData, idx) => {
+    const renderedTabs = this.state.headerList.map((header, idx) => {
+      const filteredRankedData = this.props.rankedCardRecord.tabsList.filter((tabData) => (tabData.title === header.title));
+
       return (<RankedTab
         key={`rankedTab${idx}`}
-        selected={this.state.selectedTab === idx}
-        idx={idx}
-        rankedData={rankedData}
+        rankedData={filteredRankedData.size > 0 ? filteredRankedData.get(0) : null}
       />);
     });
+
     return (
       <div style={styles.container}>
-        {renderedTabs}
+        <TabSelector
+          headerList={this.state.headerList}
+          contentList={renderedTabs}
+        />
       </div>
     );
   }

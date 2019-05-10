@@ -19,11 +19,6 @@ const ExtendsWith = (superclass) => class extends superclass {
 
   static get defaultProps() { return defaultProps; }
   static get ExtendsWith() { return ExtendsWith; }
-
-  getPlatformName(platformCode, platformType = PLATFORM_TYPE.LOL) {
-    if (!platformCode) return null;
-    return this.regions.get(platformType).verbose[platformCode]; 
-  }
 };
 
 export default class AppRecord extends ExtendsWith(Record(defaultProps, 'AppRecord')) {

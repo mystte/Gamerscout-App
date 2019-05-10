@@ -10,7 +10,11 @@
     "rankedCard": {
       "leaguePoints": "LP",
       "wins": "W",
-      "losses": "L"
+      "losses": "L",
+      "rankedSolo5v5": "RANKED SOLO",
+      "rankedFlex5v5": "FLEX 5V5",
+      "rankedFlex3v3": "FLEX 3V3",
+      "unranked": "Unranked"
     }
   }
 }

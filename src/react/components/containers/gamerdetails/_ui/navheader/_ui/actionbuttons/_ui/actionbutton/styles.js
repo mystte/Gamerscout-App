@@ -14,6 +14,7 @@ const styles = {
     borderColor: colorNameToHex('dimgrey'),
     borderTop: 'none',
     borderRight: 'none',
+    borderBottom: 'none',
   },
 
   lastButton: {

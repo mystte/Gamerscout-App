@@ -1,3 +1,31 @@
+@font-face {
+  font-family: 'Open Sans Pro';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans Pro'), local('OpenSansPro'),
+    url('./assets/fonts/SourceSansPro/SourceSansPro-Regular.ttf') format('truetype'),
+}
+
+@font-face {
+  font-family: 'Open Sans Pro Semi Bold';
+  font-style: 'semi-bold';
+  font-weight: 600;
+  src: local('Open Sans Pro'), local('OpenSansPro'),
+    url('./assets/fonts/SourceSansPro/SourceSansPro-SemiBold.ttf') format('truetype'),
+}
+
+@font-face {
+  font-family: 'Open Sans Pro Bold';
+  font-style: 'bold';
+  font-weight: 800;
+  src: local('Open Sans Pro'), local('OpenSansPro'),
+    url('./assets/fonts/SourceSansPro/SourceSansPro-Bold.ttf') format('truetype'),
+}
+
+* {
+  font-family: 'Open Sans Pro';
+}
+
 button {
   outline: none;
   cursor: pointer;

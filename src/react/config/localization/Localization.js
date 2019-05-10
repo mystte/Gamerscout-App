@@ -17,11 +17,11 @@ class Localization {
     this.Errors = new LocalizedStrings({
       en: enErrors,
       fr: frErrors,
-    });;
+    });
     this.Labels = new LocalizedStrings({
       en: enLabels,
       fr: frLabels,
-    });;
+    });
   }
 
   Urls() {

@@ -24,6 +24,7 @@ const styles = {
 
   tier: {
     fontSize: 16,
+    textTransform: 'capitalize',
   },
 
   separator: {

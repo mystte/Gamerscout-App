@@ -4,8 +4,13 @@ import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { loadGamerDetails } from '../../../redux/actions/gamerDetails';
+import { BUTTON_TYPE } from './_ui/navheader/_ui/actionbuttons/_ui/actionbutton/ActionButton';
 import NavHeader from './_ui/navheader/NavHeader';
-import CardsGrid from './_ui/cardsgrid/CardsGrid';
+import CardsTab from './_ui/cardstab/CardsTab';
+import ReviewsTab from './_ui/reviewstab/ReviewsTab';
+import LeaguesTab from './_ui/leaguestab/LeaguesTab';
+import LiveMatchTab from './_ui/livematchtab/LiveMatchTab';
+import ChampionsTab from './_ui/championstab/ChampionsTab';
 import styles from './styles';
 
 const mapStateToProps = state => ({
@@ -25,6 +30,7 @@ class GamerDetails extends PureComponent {
     super(props);
 
     this.state = {
+      selectedTab: BUTTON_TYPE.OVERVIEW,
     };
   }
   
@@ -37,6 +43,33 @@ class GamerDetails extends PureComponent {
     ));
   };
 
+  onSelectHeaderTab = (buttonType) => {
+    if (buttonType !== this.state.selectedTab) {
+      this.setState({ selectedTab: buttonType });
+    }  
+  };
+
+  renderGamerDetailsContent = () => {
+    let content = null;
+    if (this.state.selectedTab === BUTTON_TYPE.OVERVIEW) {
+      content = (<CardsTab
+        gameCode={this.props.gamerData.gameCode}
+        platform={this.props.gamerData.platform}
+        rankedCardRecord={this.props.gamerData.rankedCardRecord}
+      />);
+    } else if (this.state.selectedTab === BUTTON_TYPE.REVIEWS) {
+      content = (<ReviewsTab />);
+    } else if (this.state.selectedTab === BUTTON_TYPE.CHAMPIONS) {
+      content = (<ChampionsTab />);
+    } else if (this.state.selectedTab === BUTTON_TYPE.LEAGUES) {
+      content = (<LeaguesTab />);
+    } else if (this.state.selectedTab === BUTTON_TYPE.LIVE_MATCH) {
+      content = (<LiveMatchTab />);
+    }
+
+    return content;
+  };
+
   render() {
     return (
       <React.Fragment>
@@ -46,16 +79,14 @@ class GamerDetails extends PureComponent {
         {(!this.props.loading && this.props.gamerData) &&
           <div style={styles.container}>
             <NavHeader
+              selectedTab={this.state.selectedTab}
               gamertag={this.props.gamerData.gamertag}
               gamerLevel={this.props.gamerData.level}
               region={this.props.gamerData.region}
               gamerIconUrl={this.props.gamerData.gamerIconUrl}
+              onSelectTab={this.onSelectHeaderTab}
             />
-            <CardsGrid
-              gameCode={this.props.gamerData.gameCode}
-              platform={this.props.gamerData.platform}
-              rankedCardRecord={this.props.gamerData.rankedCardRecord}
-            />
+            {this.renderGamerDetailsContent()}
           </div>
         }
         {(!this.props.loading && !this.props.gamerData) &&

@@ -14,6 +14,8 @@ class NavHeader extends PureComponent {
     gamerLevel: PropTypes.number.isRequired,
     region: PropTypes.string.isRequired,
     gamerIconUrl: PropTypes.string.isRequired,
+    onSeletTab: PropTypes.func.isRequired,
+    selectedTab: PropTypes.string.isRequired,
   };
 
   static defaultProps = {
@@ -58,7 +60,10 @@ class NavHeader extends PureComponent {
             />
           </div>
         </div>
-        <ActionButtons />
+        <ActionButtons
+          selectedTab={this.props.selectedTab}
+          onSelectTab={this.props.onSelectTab}
+        />
       </div>
     );
   }

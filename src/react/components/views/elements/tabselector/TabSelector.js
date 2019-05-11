@@ -6,7 +6,7 @@ import styles from './styles';
 class TabSelector extends PureComponent {
   static propTypes = {
     headerList: PropTypes.array.isRequired,
-    contentList: PropTypes.object.isRequired,
+    contentList: PropTypes.array.isRequired,
   };
 
   static defaultProps = {
@@ -21,7 +21,6 @@ class TabSelector extends PureComponent {
   }
 
   onSelectTab = (idx) => {
-    console.log("tab selected", idx);
     if (idx !== this.state.selectedTab) {
       this.setState({
         selectedTab: idx,
@@ -38,6 +37,7 @@ class TabSelector extends PureComponent {
 
       return (
         <div
+          key={`header-${idx}`}
           style={tabStyle}
           onClick={() => this.onSelectTab(idx)}
         >

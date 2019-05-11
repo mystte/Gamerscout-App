@@ -5,7 +5,7 @@ import RankedCard from './_ui/cards/rankedcard/RankedCard';
 import RankedCardRecord from '../../../../../datamanager/models/RankedCardRecord';
 import styles from './styles';
 
-class CardsGrid extends PureComponent {
+class CardsTab extends PureComponent {
   static propTypes = {
     gameCode: PropTypes.string.isRequired,
     platform: PropTypes.string.isRequired,
@@ -50,4 +50,4 @@ class CardsGrid extends PureComponent {
   }
 }
 
-export default CardsGrid;
+export default CardsTab;

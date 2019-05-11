@@ -29,4 +29,9 @@
 button {
   outline: none;
   cursor: pointer;
+
+  &:active {
+    outline: none;
+    border-style: solid;
+  }
 }

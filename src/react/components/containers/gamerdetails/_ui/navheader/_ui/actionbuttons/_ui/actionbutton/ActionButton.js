@@ -25,7 +25,7 @@ const ActionButton = ({
   return (
     <button
       style={buttonStyle}
-      onClick={onClick}
+      onClick={() => { onClick(type) }}
     >
       {type === BUTTON_TYPE.LIVE_MATCH &&
         <div style={styles.icon}>

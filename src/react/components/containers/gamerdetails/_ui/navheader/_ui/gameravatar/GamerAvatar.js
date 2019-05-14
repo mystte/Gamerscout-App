@@ -28,8 +28,8 @@ const GamerAvatar = ({
 }
 
 GamerAvatar.propTypes = {
-  gamertag: PropTypes.string.isRequired,
-  region: PropTypes.string.isRequired,
+  gamertag: PropTypes.string,
+  region: PropTypes.string,
   iconUrl: PropTypes.string,
   level: PropTypes.number,
 };
@@ -37,6 +37,8 @@ GamerAvatar.propTypes = {
 GamerAvatar.defaultProps = {
   iconUrl: 'https://ddragon.leagueoflegends.com/cdn/6.24.1/img/profileicon/23.png',
   level: 1,
+  region: null,
+  gamertag: null,
 };
 
 export default GamerAvatar;

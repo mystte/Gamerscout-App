@@ -10,15 +10,21 @@ import styles from './styles';
 
 class NavHeader extends PureComponent {
   static propTypes = {
-    gamertag: PropTypes.string.isRequired,
-    gamerLevel: PropTypes.number.isRequired,
-    region: PropTypes.string.isRequired,
-    gamerIconUrl: PropTypes.string.isRequired,
-    onSeletTab: PropTypes.func.isRequired,
-    selectedTab: PropTypes.string.isRequired,
+    gamertag: PropTypes.string,
+    gamerLevel: PropTypes.number,
+    region: PropTypes.string,
+    gamerIconUrl: PropTypes.string,
+    onSeletTab: PropTypes.func,
+    selectedTab: PropTypes.string,
   };
 
   static defaultProps = {
+    gamertag: null,
+    gamerlevel: 0,
+    region: null,
+    gamerIconUrl: null,
+    onSelectTab: null,
+    selectedTab: null,
   };
 
   constructor(props) {

@@ -174,13 +174,19 @@ function hexToRgb(hex) {
   } : null;
 }
 
-function hexToRgbA(hex, alpha) {
+function hexToRgba(hex, alpha) {
   const result = hexToRgb(hex);
   return result ? `rgba(${result.r}, ${result.g}, ${result.b}, ${alpha})` : null;
 }
 
+function colorNameToRgba(name, alpha) {
+  const hexColor = colorNameToHex(name);
+  return hexToRgba(hexColor, alpha);
+}
+
 export {
   colorNameToHex,
+  colorNameToRgba,
   hexToRgb,
-  hexToRgbA,
+  hexToRgba,
 };

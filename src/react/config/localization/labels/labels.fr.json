@@ -23,6 +23,14 @@
 
     "trendsCard": {
       "title": "Tendances"
+    },
+
+    "approvalsCard": {
+      "title": "J'approuve"
+    },
+
+    "disapprovalsCard": {
+      "title": "Je désapprouve"
     }
   }
 }

@@ -49,6 +49,10 @@ class GamerDetails extends PureComponent {
     }  
   };
 
+  onApprovalButtonClick = (type) => {
+    console.log(`on ${type} button button click`);
+  };
+
   renderGamerDetailsContent = () => {
     let content = null;
     if (this.state.selectedTab === BUTTON_TYPE.OVERVIEW) {
@@ -56,6 +60,9 @@ class GamerDetails extends PureComponent {
         gameCode={this.props.gamerData.gameCode}
         platform={this.props.gamerData.platform}
         rankedCardRecord={this.props.gamerData.rankedCardRecord}
+        approvalsCardRecord={this.props.gamerData.approvalsCardRecord}
+        disapprovalsCardRecord={this.props.gamerData.disapprovalsCardRecord}
+        onApprovalButtonClick={this.onApprovalButtonClick}
       />);
     } else if (this.state.selectedTab === BUTTON_TYPE.REVIEWS) {
       content = (<ReviewsTab />);

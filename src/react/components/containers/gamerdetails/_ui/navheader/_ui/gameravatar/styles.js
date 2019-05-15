@@ -1,4 +1,4 @@
-import { colorNameToHex, hexToRgbA } from '../../../../../../../utils/color';
+import { colorNameToHex, colorNameToRgba } from '../../../../../../../utils/color';
 
 colorNameToHex
 
@@ -46,7 +46,7 @@ const styles = {
 
   region: {
     fontSize: 14,
-    color: hexToRgbA('ffffff', 0.5),
+    color: colorNameToRgba('white', 0.5),
     height: 19,
     textTransform: 'uppercase',
   },

@@ -11,5 +11,14 @@ const ExtendsWith = (superclass) => class extends superclass {
 };
 
 export default class DisapprovalsCardRecord extends ExtendsWith(Record(defaultProps, 'DisapprovalsCardRecord')) {
+  static apiParser(data) {
+    const parsedData = {
+      disapprovalsCount: (data.flame_review_count) ? data.flame_review_count : 0,
+    };
+    return new DisapprovalsCardRecord(parsedData);
+  }
 
+  getCount() {
+    return this.disapprovalsCount;
+  }
 }

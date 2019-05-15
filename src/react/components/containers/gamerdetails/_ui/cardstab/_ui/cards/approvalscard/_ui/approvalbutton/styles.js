@@ -7,7 +7,8 @@ const styles = {
     borderRadius: '50%',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: colorNameToHex('ebonyclay'),
+    backgroundColor: colorNameToHex('dimgrey'),
+    border: 'none',
   },
 };
 

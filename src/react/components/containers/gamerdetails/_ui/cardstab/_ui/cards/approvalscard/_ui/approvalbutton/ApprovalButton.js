@@ -11,8 +11,8 @@ const ApprovalButton = ({ onClick, type }) => {
       onClick={() => onClick(type) }
     >
       <SVGIcon
-        width={20}
-        height={20}
+        width={6}
+        height={6}
         name={'add-icon'}
       />
     </button>

@@ -5,9 +5,13 @@ import RankedCard from './_ui/cards/rankedcard/RankedCard';
 import RecentPerformanceCard from './_ui/cards/recentperformancecard/RecentPerformanceCard';
 import ApprovalsCard, { APPROVAL_TYPE } from './_ui/cards/approvalscard/ApprovalsCard';
 import TrendsCard from './_ui/cards/trendscard/TrendsCard';
+import ChampionsCard from './_ui/cards/championscard/ChampionsCard';
+import ReviewsCard from './_ui/cards/reviewscard/ReviewsCard';
+
 import RankedCardRecord from '../../../../../datamanager/models/RankedCardRecord';
 import ApprovalsCardRecord from '../../../../../datamanager/models/ApprovalsCardRecord';
 import DisapprovalsCardRecord from '../../../../../datamanager/models/DisapprovalsCardRecord';
+
 import styles from './styles';
 
 class CardsTab extends PureComponent {
@@ -52,6 +56,7 @@ class CardsTab extends PureComponent {
         </div>
         <div style={styles.secondRow}>
           <div style={styles.leftColumn}>
+            <ChampionsCard />
             <div style={styles.rateContainer}>
               <ApprovalsCard
                 approvalsCardRecord={this.props.approvalsCardRecord}
@@ -64,6 +69,7 @@ class CardsTab extends PureComponent {
                 onClick={this.props.onApprovalButtonClick}
               />
             </div>
+            <ReviewsCard />
           </div>
           <div style={styles.reviewsColumn}>
 

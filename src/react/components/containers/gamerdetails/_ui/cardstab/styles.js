@@ -11,8 +11,7 @@ const styles = {
     minWidth: 279,
     width: '31vw',
     maxWidth: 350,
-    height: 500,
-    backgroundColor: 'red',
+    height: '100%',
     marginRight: 15,
     marginLeft: 15,
     marginTop: 30,
@@ -22,7 +21,7 @@ const styles = {
     minWidth: 590,
     width: '70vw',
     maxWidth: 730,
-    height: 500,
+    height: 720,
     backgroundColor: 'blue',
     marginRight: 15,
     marginLeft: 15,
@@ -31,6 +30,7 @@ const styles = {
 
   rateContainer: {
     flexDirection: 'row',
+    marginBottom: 30,
   },
 };
 

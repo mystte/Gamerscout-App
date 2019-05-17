@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
+import TabSelector from '../../../../../../../views/elements/tabselector/TabSelector';
 import styles from './styles';
 
 class ChampionsCard extends PureComponent {

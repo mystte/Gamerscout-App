@@ -11,6 +11,7 @@ import styles from './styles';
 
 class Home extends Component {
   static propTypes = {
+    history: PropTypes.func.isRequired,
   };
 
   static defaultProps = {

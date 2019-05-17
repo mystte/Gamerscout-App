@@ -1,9 +1,8 @@
-import { Record, List } from 'typed-immutable';
-
-import ReviewRecord from './ReviewRecord';
+import { Record, Maybe } from 'typed-immutable';
 
 const defaultProps = {
-  reviews: List(ReviewRecord),
+  comment: Maybe(String),
+  reviewerName: Maybe(String),
 };
 
 const ExtendsWith = (superclass) => class extends superclass {
@@ -15,10 +14,9 @@ const ExtendsWith = (superclass) => class extends superclass {
 export default class ReviewsCardRecord extends ExtendsWith(Record(defaultProps, 'ReviewsCardRecord')) {
   static apiParser(data) {
     const parsedData = {
-      reviews: data.reviews ? data.reviews.map((reviewData) => {
-        return ReviewRecord.apiParser(reviewData);
-      }) : [],
-    };
+      comment: data.comment ? data.comment : null,
+      reviewerName: data.username ? data.username : null,
+    }
 
     return new ReviewsCardRecord(parsedData);
   }

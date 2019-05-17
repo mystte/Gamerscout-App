@@ -11,6 +11,7 @@ import ReviewsCard from './_ui/cards/reviewscard/ReviewsCard';
 import RankedCardRecord from '../../../../../datamanager/models/RankedCardRecord';
 import ApprovalsCardRecord from '../../../../../datamanager/models/ApprovalsCardRecord';
 import DisapprovalsCardRecord from '../../../../../datamanager/models/DisapprovalsCardRecord';
+import ReviewsCardRecord from '../../../../../datamanager/models/ReviewsCardRecord';
 
 import styles from './styles';
 
@@ -21,7 +22,9 @@ class CardsTab extends PureComponent {
     rankedCardRecord: PropTypes.instanceOf(RankedCardRecord),
     approvalsCardRecord: PropTypes.instanceOf(ApprovalsCardRecord),
     disapprovalsCardRecord: PropTypes.instanceOf(DisapprovalsCardRecord),
+    reviewsCardRecord: PropTypes.instanceOf(ReviewsCardRecord),
     onApprovalButtonClick: PropTypes.func,
+    onReviewButtonClick: PropTypes.func,
   };
 
   static defaultProps = {
@@ -30,6 +33,7 @@ class CardsTab extends PureComponent {
     gameCode: null,
     rankedCardRecord: null,
     approvalsCardRecord: null,
+    reviewsCardRecord: null,
     onApprovalButtonClick: null,
   };
 
@@ -41,7 +45,10 @@ class CardsTab extends PureComponent {
   }
 
   render() {
-    if (!this.props.rankedCardRecord) return null;
+    if (!this.props.rankedCardRecord ||
+        !this.props.approvalsCardRecord ||
+        !this.props.reviewsCardRecord)
+        return null;
 
     return (
       <div style={styles.container}>
@@ -69,7 +76,10 @@ class CardsTab extends PureComponent {
                 onClick={this.props.onApprovalButtonClick}
               />
             </div>
-            <ReviewsCard />
+            <ReviewsCard
+              reviewsCardRecord={this.props.reviewsCardRecord}
+              onReviewButtonClick={this.props.onReviewButtonClick}
+            />
           </div>
           <div style={styles.reviewsColumn}>
 

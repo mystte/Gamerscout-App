@@ -4,6 +4,7 @@ import ApprovalsCardRecord from './ApprovalsCardRecord';
 import DisapprovalsCardRecord from './DisapprovalsCardRecord';
 import HistoryCardRecord from './HistoryCardRecord';
 import ReviewsCardRecord from './ReviewsCardRecord';
+import ChampionsCardRecord from './ChampionsCardRecord';
 import RankedCardRecord from './RankedCardRecord';
 import TrendsCardRecord from './TrendsCardRecord';
 
@@ -30,6 +31,7 @@ const defaultProps = {
   level: Number,
   rankedCardRecord: Maybe(RankedCardRecord),
   approvalsCardRecord: Maybe(ApprovalsCardRecord),
+  championsCardRecord: Maybe(ChampionsCardRecord),
   disapprovalsCardRecord: Maybe(DisapprovalsCardRecord),
   gameHistoryList: Maybe(List(HistoryCardRecord)),
   reviewsCardRecord: Maybe(ReviewsCardRecord),
@@ -59,6 +61,8 @@ export default class GamerDetailsRecord extends ExtendsWith(Record(defaultProps,
       rankedCardRecord: apiData.stats.ranked ? RankedCardRecord.apiParser(apiData.stats.ranked) : null,
       approvalsCardRecord: !isNaN(apiData.rep_review_count) ? ApprovalsCardRecord.apiParser(apiData) : null,
       disapprovalsCardRecord: !isNaN(apiData.flame_review_count) ? DisapprovalsCardRecord.apiParser(apiData) : null,
+      championsCardRecord: ChampionsCardRecord.apiParser(apiData),
+      reviewsCardRecord: apiData.reviews ? ReviewsCardRecord.apiParser(apiData) : null,
     };
     return new GamerDetailsRecord(parsedData);
   }

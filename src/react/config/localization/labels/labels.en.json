@@ -31,6 +31,12 @@
 
     "disapprovalsCard": {
       "title": "Disapprovals"
+    },
+
+    "reviewsCard": {
+      "title": "Reviews",
+      "viewAll": "View All",
+      "action": "Review gamer"
     }
   }
 }

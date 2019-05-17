@@ -28,6 +28,13 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.ellipsis-multiline {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
 button {
   outline: none;
   cursor: pointer;

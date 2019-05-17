@@ -21,9 +21,15 @@ const mapStateToProps = state => ({
 });
 class GamerDetails extends PureComponent {
   static propTypes = {
+    config: PropTypes.object.isRequired,
+    dispatch: PropTypes.func.isRequired,
+    match: PropTypes.object.isRequired,
+    gamerData: PropTypes.object,
+    loading: PropTypes.bool.isRequired,
   };
 
   static defaultProps = {
+    gamerData: null,
   };
 
   constructor(props) {
@@ -41,7 +47,7 @@ class GamerDetails extends PureComponent {
       this.props.match.params.game,
       this.props.match.params.gamertag,
     ));
-  };
+  }
 
   onSelectHeaderTab = (buttonType) => {
     if (buttonType !== this.state.selectedTab) {
@@ -53,6 +59,10 @@ class GamerDetails extends PureComponent {
     console.log(`on ${type} button button click`);
   };
 
+  onReviewButtonClick = () => {
+    console.log('On review button click');
+  }
+
   renderGamerDetailsContent = () => {
     let content = null;
     if (this.state.selectedTab === BUTTON_TYPE.OVERVIEW) {
@@ -62,7 +72,9 @@ class GamerDetails extends PureComponent {
         rankedCardRecord={this.props.gamerData.rankedCardRecord}
         approvalsCardRecord={this.props.gamerData.approvalsCardRecord}
         disapprovalsCardRecord={this.props.gamerData.disapprovalsCardRecord}
+        reviewsCardRecord={this.props.gamerData.reviewsCardRecord}
         onApprovalButtonClick={this.onApprovalButtonClick}
+        onReviewButtonClick={this.onReviewButtonClick}
       />);
     } else if (this.state.selectedTab === BUTTON_TYPE.REVIEWS) {
       content = (<ReviewsTab />);

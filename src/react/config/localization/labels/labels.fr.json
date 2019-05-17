@@ -31,6 +31,12 @@
 
     "disapprovalsCard": {
       "title": "Je désapprouve"
+    },
+
+    "reviewsCard": {
+      "title": "Commentaires",
+      "viewAll": "Voir tous",
+      "action": "Commenter"
     }
   }
 }

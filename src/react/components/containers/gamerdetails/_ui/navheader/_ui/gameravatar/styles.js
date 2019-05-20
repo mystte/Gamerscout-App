@@ -21,7 +21,6 @@ const styles = {
   level: {
     width: 20,
     height: 20,
-    fontSize: 8,
     backgroundColor: colorNameToHex('darkgrey'),
     borderStyle: 'solid',
     borderWidth: 1,
@@ -32,6 +31,14 @@ const styles = {
     position: 'absolute',
     bottom: 1,
     left: 45,
+  },
+
+  levelLabel: {
+    width: '100%',
+    height: '100%',
+    fontWeight: 600,
+    fontSize: 9,
+    textAlign: 'center',
   },
 
   gamertagContainer: {

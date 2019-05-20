@@ -17,7 +17,9 @@ const GamerAvatar = ({
           alt={`profile ${gamertag} icon`}
           src={iconUrl}
         ></img>
-        <div style={styles.level}>{level}</div>
+        <div style={styles.level}>
+          <div style={styles.levelLabel}>{level}</div>
+        </div>
       </div>
       <div style={styles.gamertagContainer}>
         <span style={styles.gamertag}>{gamertag}</span>

@@ -11,6 +11,7 @@ import ReviewsTab from './_ui/reviewstab/ReviewsTab';
 import LeaguesTab from './_ui/leaguestab/LeaguesTab';
 import LiveMatchTab from './_ui/livematchtab/LiveMatchTab';
 import ChampionsTab from './_ui/championstab/ChampionsTab';
+import GamerNotFound from './_ui/gamernotfound/GamerNotFound';
 import styles from './styles';
 
 const mapStateToProps = state => ({
@@ -117,7 +118,7 @@ class GamerDetails extends PureComponent {
           </div>
         }
         {(!this.props.loading && !this.props.gamerData) &&
-          <div>No gamer Found</div>
+          <GamerNotFound />
         }
       </React.Fragment>
     );

@@ -1,4 +1,4 @@
-import { Record, Maybe } from 'typed-immutable';
+import { Record } from 'typed-immutable';
 
 const defaultProps = {
   championId: String,

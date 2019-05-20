@@ -1,4 +1,4 @@
-import { put, takeEvery, takeLatest } from 'redux-saga/effects'
+import { put, takeEvery } from 'redux-saga/effects'
 import { GAMER_DETAILS, loading, success, error } from '../actions/actionTypes';
 import Api, { fetchAsync } from '../../datamanager/api/Api'
 import GamerDetailsRecord from '../../datamanager/models/GamerDetailsRecord';

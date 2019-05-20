@@ -33,7 +33,8 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',
-      filename: './index.html'
+      filename: './index.html',
+      favicon: './src/assets/img/favicon.png'
     }),
     new ExtractTextPlugin('style.css'),
   ]

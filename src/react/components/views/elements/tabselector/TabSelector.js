@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { List } from 'immutable';
 import styles from './styles';
 
 class TabSelector extends PureComponent {

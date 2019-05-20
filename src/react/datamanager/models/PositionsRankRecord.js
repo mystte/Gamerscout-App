@@ -1,4 +1,4 @@
-import { Record, Maybe } from 'typed-immutable';
+import { Record } from 'typed-immutable';
 
 export const POSITION_TYPE = {
   TOP: 'TOP',

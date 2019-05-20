@@ -27,8 +27,10 @@ const SVGIcon = ({
 
   let imgSrc = null;
   if (type === IMG_TYPE.SVG) {
+    // eslint-disable-next-line import/no-dynamic-require
     imgSrc = require(`../../../../../assets/svg/${name}.svg`);
   } else if (type === IMG_TYPE.PNG || type === IMG_TYPE.JPG) {
+    // eslint-disable-next-line import/no-dynamic-require
     imgSrc = require(`../../../../../assets/img/${name}.${type}`);
   }
 

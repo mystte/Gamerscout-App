@@ -1,11 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import Localization from '../../../../../../../../../../../../config/localization/Localization';
 import SVGIcon, { IMG_TYPE } from '../../../../../../../../../../../views/elements/svgicon/SVGIcon';
 import styles from './styles';
 
-const Unranked = ({}) => {
+const Unranked = () => {
   return (
     <div style={styles.container}>
       <SVGIcon

@@ -13,3 +13,5 @@ export function loadGamerDetails(platform, region, game, gamertag) {
     },
   };
 }
+
+export default null;

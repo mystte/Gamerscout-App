@@ -6,3 +6,5 @@ export function loadAppData() {
     type: loading(APP.LOAD),
   };
 }
+
+export default null;

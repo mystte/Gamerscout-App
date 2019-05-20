@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import Avatar from '../../../../../../../../../views/avatar/Avatar';
 import styles from './styles';
-import ReviewButton from '../reviewbutton/ReviewButton';
 
 
 const ReviewRow = ({

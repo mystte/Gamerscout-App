@@ -14,7 +14,7 @@ export const initialState = Immutable.fromJS({
 });
 
 export default function reducer(state = initialState, action) {
-  const { type, parameters } = action;
+  const { type } = action;
   switch (type) {
     case loading(APP.LOAD):
       return state.withMutations((mutate) => {

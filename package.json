@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "./src/index.js",
+  "jest": {
+    "testEnvironment": "jsdom"
+  },
   "scripts": {
     "start-native": "node node_modules/react-native/local-cli/cli.js start",
     "watch": "webpack-dev-server --mode development --config config/webpack.dev.config.js --open --hot --history-api-fallback",
@@ -28,6 +31,7 @@
     "react-native": "^0.59.3",
     "react-redux": "^7.0.3",
     "react-router-dom": "^5.0.0",
+    "redux": "^4.0.1",
     "redux-saga": "^1.0.2",
     "typed-immutable": "^0.1.2"
   },

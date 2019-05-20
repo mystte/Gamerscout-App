@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import AppRouter from './router/AppRouter';
 import { loadAppData } from './redux/actions/app';
@@ -12,6 +13,10 @@ const mapStateToProps = state => ({
 });
 
 class AppBootstrap extends PureComponent {
+  static propTypes = {
+    dispatch: PropTypes.func.isRequired,
+  };
+
   constructor(props) {
     super(props);
     this.state = {};

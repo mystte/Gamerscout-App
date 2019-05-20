@@ -1,6 +1,6 @@
 import { Record, List } from 'typed-immutable';
 import RankedCardTabRecord from './RankedCardTabRecord';
-import { GAME_PLATFORM, GAME_CODE } from './GamerDetailsRecord'; 
+import { GAME_CODE } from './AppRecord';
 import Localization from '../../config/localization/Localization';
 
 const defaultProps = {
@@ -15,7 +15,7 @@ const ExtendsWith = (superclass) => class extends superclass {
 export default class RankedCardRecord extends ExtendsWith(Record(defaultProps, 'RankedCardRecord')) {
   static apiParser(data) {
     const parsedData = {
-      tabsList: data.map((tabData, idx) => {
+      tabsList: data.map((tabData) => {
         return RankedCardTabRecord.apiParser(tabData);
       }),
     };

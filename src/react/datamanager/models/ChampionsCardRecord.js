@@ -1,4 +1,4 @@
-import { Record, Maybe, List } from 'typed-immutable';
+import { Record, List } from 'typed-immutable';
 
 import ChampionsRankRecord from './ChampionsRankRecord';
 import PositionsRankRecord from './PositionsRankRecord';
@@ -15,7 +15,7 @@ const ExtendsWith = (superclass) => class extends superclass {
 };
 
 export default class ChampionsCardRecord extends ExtendsWith(Record(defaultProps, 'ChampionsCardRecord')) {
-  static apiParser(data) {
+  static apiParser() {
     const parsedData = {
       championsStatsList: [],
     };

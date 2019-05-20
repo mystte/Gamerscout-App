@@ -14,7 +14,7 @@ class NavHeader extends PureComponent {
     gamerLevel: PropTypes.number,
     region: PropTypes.string,
     gamerIconUrl: PropTypes.string,
-    onSeletTab: PropTypes.func,
+    onSelectTab: PropTypes.func,
     selectedTab: PropTypes.string,
   };
 

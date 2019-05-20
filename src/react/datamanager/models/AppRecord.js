@@ -1,7 +1,14 @@
 import { Record, List, Maybe } from 'typed-immutable';
 
-const PLATFORM_TYPE = {
-  LOL: 'lol',
+export const GAME_PLATFORM = {
+  RIOT: 'riot',
+  STEAM: 'steam',
+  ORIGIN: 'origin',
+};
+
+export const GAME_CODE = {
+  LEAGUE_OF_LEGENDS: 'LOL',
+  ROCKET_LEAGUE: 'ROCKET_LEAGUE',
 };
 
 const defaultProps = {

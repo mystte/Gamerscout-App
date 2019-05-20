@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 
 import Localization from '../../../../../../../../config/localization/Localization';
 import DropDown from '../../../../../../../views/elements/dropdown/DropDown';
@@ -20,7 +19,7 @@ class RecentPerformanceCard extends PureComponent {
   }
 
   render() {
-    const labels = Localization.Labels.gamerDetails.recentPerformanceCard; 
+    const labels = Localization.Labels.gamerDetails.recentPerformanceCard;
 
     return (
       <div style={styles.container}>

@@ -23,7 +23,9 @@ async function doApiCall(url, params, callType = CALL_TYPE.GET) {
   if (callType === CALL_TYPE.GET) {
     result = await axios.get(`${serverUrl}${url}`);
   } else if (callType === CALL_TYPE.POST) {
+    result = null;
   } else if (callType === CALL_TYPE.PUT) {
+    result = null;
   }
   return result;
 }
@@ -33,9 +35,9 @@ export default class Api {
     const url = `/search/${platform}/${region}/${game}/${gamertag}`;
 
     return doApiCall(url);
-  };
+  }
 
   static loadAppData() {
     return doApiCall('/config');
-  };
+  }
 }

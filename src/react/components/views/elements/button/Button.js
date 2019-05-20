@@ -38,8 +38,6 @@ class Button extends PureComponent {
   }
 
   render() {
-    const typeStyle = this.props.type;
-
     return (
       <button
         onClick={this.props.onClick}

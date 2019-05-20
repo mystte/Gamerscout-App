@@ -28,7 +28,6 @@ class CardsTab extends PureComponent {
   };
 
   static defaultProps = {
-    rankedCardRecord: null,
     platform: null,
     gameCode: null,
     rankedCardRecord: null,

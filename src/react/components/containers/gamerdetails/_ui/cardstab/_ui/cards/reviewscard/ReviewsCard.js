@@ -38,17 +38,21 @@ class ReviewsCard extends PureComponent {
     if (!this.props.reviewsCardRecord) return null;
 
     const labels = Localisation.Labels.gamerDetails.reviewsCard;
+    const footerStyle = (this.props.reviewsCardRecord.reviews.size === 0) ? {
+      ...styles.footer,
+      ...styles.emptyFooter,
+    } : styles.footer;
 
     return (
       <div style={styles.container}>
         <div style={styles.header}>
           <div style={styles.title}>{labels.title}</div>
-          <div style={styles.viewAll}>{labels.viewAll}</div>
+          <button onClick={this.props.onReviewButtonClick} style={styles.viewAll}>{labels.viewAll}</button>
         </div>
         <div style={styles.reviewsContent}>
           { this.renderReviews() }
         </div>
-        <div style={styles.footer}>
+        <div style={footerStyle}>
           <ReviewButton onClick={this.props.onReviewButtonClick} />
           <div style={styles.actionLabel}>{labels.action}</div>
         </div>

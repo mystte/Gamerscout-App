@@ -39,7 +39,7 @@ class GamerDetails extends PureComponent {
       selectedTab: BUTTON_TYPE.OVERVIEW,
     };
   }
-  
+
   componentDidMount() {
     this.props.dispatch(loadGamerDetails(
       this.props.match.params.platform,
@@ -52,15 +52,23 @@ class GamerDetails extends PureComponent {
   onSelectHeaderTab = (buttonType) => {
     if (buttonType !== this.state.selectedTab) {
       this.setState({ selectedTab: buttonType });
-    }  
+    }
   };
 
   onApprovalButtonClick = (type) => {
     console.log(`on ${type} button button click`);
+    this.selectTab(BUTTON_TYPE.REVIEWS);
   };
 
   onReviewButtonClick = () => {
     console.log('On review button click');
+    this.selectTab(BUTTON_TYPE.REVIEWS);
+  }
+
+  selectTab = (tabType) => {
+    if (this.state.selectedTab !== tabType) {
+      this.setState({ selectedTab: tabType });
+    }
   }
 
   renderGamerDetailsContent = () => {

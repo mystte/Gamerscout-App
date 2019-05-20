@@ -5,12 +5,13 @@ const styles = {
     maxWidth: 350,
     minWidth: 279,
     width: '31vw',
-    height: 274,
+    minHeight: 160,
     backgroundColor: colorNameToHex('ebonyclay'),
     borderWidth: 1,
     borderColor: colorNameToHex('dimgrey'),
     borderStyle: 'solid',
     borderRadius: 1,
+    position: 'relative',
   },
 
   header: {
@@ -34,6 +35,8 @@ const styles = {
     alignSelf: 'flex-end',
     position: 'absolute',
     right: 0,
+    background: 'none',
+    border: 'none',
   },
 
   footer: {
@@ -43,6 +46,15 @@ const styles = {
     justifyContent: 'flex-start',
     alignItems: 'center',
     height: 60,
+  },
+
+  emptyFooter: {
+    position: 'absolute',
+    bottom: 0,
+    width: 'calc(100% - 30px)',
+    borderTopWidth: 1,
+    borderTopColor: colorNameToHex('dimgrey'),
+    borderTopStyle: 'solid',
   },
 
   actionLabel: {

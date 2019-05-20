@@ -14,7 +14,7 @@ const ReviewRow = ({
     <div style={styles.reviewerName}>
       <Avatar name={reviewerName} />
     </div>
-    <div className=".ellipsis-multiline" style={styles.comment}>{comment}</div>
+    <div className="multiline-ellipsis" style={styles.comment}>{comment}</div>
   </div>
 );
 

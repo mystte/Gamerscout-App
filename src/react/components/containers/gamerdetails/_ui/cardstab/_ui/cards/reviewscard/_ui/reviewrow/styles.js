@@ -21,6 +21,8 @@ const styles = {
     color: colorNameToHex('white'),
     fontSize: 12,
     fontWeight: 400,
+    width: '100%',
+    height: 12,
   },
 };
 

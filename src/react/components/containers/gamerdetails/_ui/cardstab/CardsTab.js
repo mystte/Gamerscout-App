@@ -80,7 +80,7 @@ class CardsTab extends PureComponent {
               onReviewButtonClick={this.props.onReviewButtonClick}
             />
           </div>
-          <div style={styles.reviewsColumn}>
+          <div style={styles.historyColumn}>
 
           </div>
         </div>

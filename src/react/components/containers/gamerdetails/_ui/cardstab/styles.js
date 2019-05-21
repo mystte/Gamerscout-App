@@ -17,7 +17,7 @@ const styles = {
     marginTop: 30,
   },
 
-  reviewsColumn: {
+  historyColumn: {
     minWidth: 590,
     width: '70vw',
     maxWidth: 730,

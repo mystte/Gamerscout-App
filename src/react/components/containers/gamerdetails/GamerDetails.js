@@ -12,6 +12,7 @@ import LeaguesTab from './_ui/leaguestab/LeaguesTab';
 import LiveMatchTab from './_ui/livematchtab/LiveMatchTab';
 import ChampionsTab from './_ui/championstab/ChampionsTab';
 import GamerNotFound from './_ui/gamernotfound/GamerNotFound';
+import GamerSkeleton from './_ui/gamerskeleton/GamerSkeleton';
 import styles from './styles';
 
 const mapStateToProps = state => ({
@@ -102,7 +103,7 @@ class GamerDetails extends PureComponent {
     return (
       <React.Fragment>
         {this.props.loading &&
-          <div>Loading</div>
+          <GamerSkeleton />
         }
         {(!this.props.loading && this.props.gamerData) &&
           <div style={styles.container}>

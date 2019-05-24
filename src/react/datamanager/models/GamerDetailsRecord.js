@@ -7,6 +7,7 @@ import ReviewsCardRecord from './ReviewsCardRecord';
 import ChampionsCardRecord from './ChampionsCardRecord';
 import RankedCardRecord from './RankedCardRecord';
 import TrendsCardRecord from './TrendsCardRecord';
+import AttributeRecord from './AttributeRecord';
 
 const defaultProps = {
   accountId: String,
@@ -25,6 +26,7 @@ const defaultProps = {
   gameHistoryList: Maybe(List(HistoryCardRecord)),
   reviewsCardRecord: Maybe(ReviewsCardRecord),
   trendsCardRecord: Maybe(TrendsCardRecord),
+  attributesList: Maybe(List(AttributeRecord)),
 };
 
 const ExtendsWith = (superclass) => class extends superclass {
@@ -34,8 +36,26 @@ const ExtendsWith = (superclass) => class extends superclass {
 };
 
 export default class GamerDetailsRecord extends ExtendsWith(Record(defaultProps, 'GamerDetailsRecord')) {
+
+  static parseAttributesData(apiData) {
+    if (!apiData.attributes) return apiData.allAttributes;
+
+    return apiData.allAttributes.map((attribute) => (
+      {
+        ratio: 0,
+        frequency: 0,
+        ...apiData.attributes.filter((userAttr) => attribute.name === userAttr.name)[0],
+        ...attribute,
+      }
+    )).sort((a, b) => {
+      if (a.ratio < b.ratio) return 1;
+      if (a.ratio > b.ratio) return -1;
+      return 0;
+    }).map((attr) => AttributeRecord.apiParser(attr));
+  }
+
   static apiParser(data) {
-    const apiData = data[0];
+    const apiData = data;
 
     const parsedData = {
       accountId: apiData.account_id,
@@ -52,6 +72,7 @@ export default class GamerDetailsRecord extends ExtendsWith(Record(defaultProps,
       disapprovalsCardRecord: !isNaN(apiData.flame_review_count) ? DisapprovalsCardRecord.apiParser(apiData) : null,
       championsCardRecord: ChampionsCardRecord.apiParser(apiData),
       reviewsCardRecord: apiData.reviews ? ReviewsCardRecord.apiParser(apiData) : null,
+      attributesList: GamerDetailsRecord.parseAttributesData(apiData),
     };
     return new GamerDetailsRecord(parsedData);
   }

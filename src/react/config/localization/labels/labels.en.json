@@ -39,10 +39,32 @@
       "action": "Review gamer"
     },
 
+    "attributesCard": {
+      "title": "Attributes",
+      "showAll": "Show all",
+      "showLess": "Show less"
+    },
+
     "notFound": {
       "title1": "We couldn’t find a gamer with those exact details",
       "title2": "Make sure your search matches the gamer's identification exactly and try again or find the closest matches below",
       "title3": "Closest matches"
     }
+  },
+
+  "attributes": {
+    "abusive": "Abusive",
+    "cheater": "Cheater",
+    "chill": "Chill",
+    "griefer": "Griefer",
+    "quitter": "Quitter",
+    "scammer": "Scammer",
+    "shotCaller": "Shot Caller",
+    "skilled": "Skilled",
+    "teamPlayer": "Team Player",
+    "troll": "Troll",
+    "unhelpful": "Unhelpful",
+    "unreviewed": "Unreviewed",
+    "unskilled": "Unskilled"
   }
 }

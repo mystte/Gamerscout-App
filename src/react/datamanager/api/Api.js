@@ -37,6 +37,12 @@ export default class Api {
     return doApiCall(url);
   }
 
+  static loadAttributes() {
+    const url = '/attributes';
+
+    return doApiCall(url);
+  }
+
   static loadAppData() {
     return doApiCall('/config');
   }

@@ -39,6 +39,7 @@ class GamerDetails extends PureComponent {
 
     this.state = {
       selectedTab: BUTTON_TYPE.OVERVIEW,
+      // selectedTab: BUTTON_TYPE.REVIEWS,
     };
   }
 
@@ -87,7 +88,12 @@ class GamerDetails extends PureComponent {
         onReviewButtonClick={this.onReviewButtonClick}
       />);
     } else if (this.state.selectedTab === BUTTON_TYPE.REVIEWS) {
-      content = (<ReviewsTab />);
+      content = (<ReviewsTab
+        approvalsCardRecord={this.props.gamerData.approvalsCardRecord}
+        disapprovalsCardRecord={this.props.gamerData.disapprovalsCardRecord}
+        reviewsCardRecord={this.props.gamerData.reviewsCardRecord}
+        attributesList={this.props.gamerData.attributesList}
+      />);
     } else if (this.state.selectedTab === BUTTON_TYPE.CHAMPIONS) {
       content = (<ChampionsTab />);
     } else if (this.state.selectedTab === BUTTON_TYPE.LEAGUES) {

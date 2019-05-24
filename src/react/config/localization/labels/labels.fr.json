@@ -39,10 +39,32 @@
       "action": "Commenter"
     },
 
+    "attributesCard": {
+      "title": "Attributs",
+      "showAll": "Voir tous",
+      "showLess": "Voir moins"
+    },
+
     "notFound": {
       "title1": "Impossible de trouver le joueur désiré",
       "title2": "Assurez-vous d'avoir le bon tag et rééssayez",
       "title3": "Joueurs similaires"
     }
+  },
+
+  "attributes": {
+    "abusive": "Abusif",
+    "cheater": "Tricheur",
+    "chill": "Cool",
+    "griefer": "Griefer",
+    "quitter": "Quitter",
+    "scammer": "Escroc",
+    "shotCaller": "Shot Caller",
+    "skilled": "Skilled",
+    "teamPlayer": "Travail en équipe",
+    "troll": "Troll",
+    "unhelpful": "Perso",
+    "unreviewed": "Pas de review",
+    "unskilled": "Inexpérimenté"
   }
 }

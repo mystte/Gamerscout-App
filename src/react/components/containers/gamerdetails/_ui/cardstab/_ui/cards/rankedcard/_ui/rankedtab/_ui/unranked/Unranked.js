@@ -10,18 +10,12 @@ const Unranked = () => {
       <SVGIcon
         width={80}
         height={80}
-        name={`lolRankingIcons/unranked`}
+        name={'lol/rankingIcons/unranked'}
         type={IMG_TYPE.PNG}
       />
       <div style={styles.title}>{Localization.Labels.gamerDetails.rankedCard.unranked}</div>
     </div>
   );
-};
-
-Unranked.propTypes = {
-};
-
-Unranked.defaultProps = {
 };
 
 export default Unranked;

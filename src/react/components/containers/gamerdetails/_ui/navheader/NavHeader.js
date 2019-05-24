@@ -46,7 +46,7 @@ class NavHeader extends PureComponent {
         <div style={styles.topBannerContainer}>
           <SVGIcon
             type={IMG_TYPE.PNG}
-            name='lol-bg'
+            name='lol/lol-bg'
             width='100%'
             height={220}
           />

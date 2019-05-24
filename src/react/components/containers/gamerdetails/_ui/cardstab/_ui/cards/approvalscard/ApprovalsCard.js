@@ -31,12 +31,14 @@ const ApprovalsCard = ({
     <div style={containerStyle}>
       <div style={styles.header}>
         <div style={styles.title}>{title}</div>
-        <div style={styles.buttonContainer}>
-          <ApprovalButton
-            type={type}
-            onClick={onClick}
-          />
-        </div>
+        {onClick &&
+          <div style={styles.buttonContainer}>
+            <ApprovalButton
+              type={type}
+              onClick={onClick}
+            />
+          </div>
+        }
       </div>
       <div style={styles.count}>{count}</div>
     </div>
@@ -49,12 +51,13 @@ ApprovalsCard.propTypes = {
     PropTypes.instanceOf(DisapprovalsCardRecord)
   ]),
   type: PropTypes.string,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
 };
 
 ApprovalsCard.defaultProps = {
   approvalsCardRecord: null,
   type: APPROVAL_TYPE.APPROVALS,
+  onClick: null,
 };
 
 export default ApprovalsCard;

@@ -41,7 +41,7 @@ const styles = {
   count: {
     fontSize: 36,
     marginLeft: 15,
-    marginTop: 15,
+    marginTop: 30,
     fontWeight: 400,
     color: colorNameToRgba('white', 0.75),
   },

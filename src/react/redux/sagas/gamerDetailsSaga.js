@@ -7,7 +7,12 @@ function* loadGamerDetails({ parameters }) {
   const actionType = GAMER_DETAILS.LOAD;
   try {
     const gamerDetailsData = yield fetchAsync(Api.loadGamerDetails, parameters);
-    yield put({ type: success(actionType), data: GamerDetailsRecord.apiParser(gamerDetailsData.data) });
+    const attributesData = yield fetchAsync(Api.loadAttributes);
+
+    yield put({ type: success(actionType), data: GamerDetailsRecord.apiParser({
+      ...gamerDetailsData.data[0],
+      allAttributes: attributesData.data.attributes,
+    })});
   } catch (e) {
     yield put({ type: error(actionType), error: e.message });
   }

@@ -17,6 +17,14 @@ const styles = {
     borderRadius: '50%',
   },
 
+  iconGood: {
+    borderColor: colorNameToHex('curiousblue'),
+  },
+
+  iconBad: {
+    borderColor: colorNameToHex('cinnabar'),
+  },
+
   gaugeContainer: {
     width: '90%',
     marginLeft: 10,
@@ -45,9 +53,16 @@ const styles = {
   },
 
   blueZone: {
+    backgroundColor: colorNameToHex('curiousblue'),
+  },
+
+  redZone: {
+    backgroundColor: colorNameToHex('cinnabar'),
+  },
+
+  gaugeSelected: {
     height: 3,
     width: 0,
-    backgroundColor: colorNameToHex('curiousblue'),
     borderRadius: 2,
     position: 'absolute',
     top: 0,

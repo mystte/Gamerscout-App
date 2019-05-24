@@ -1,10 +1,9 @@
 import { Record, Maybe } from 'typed-immutable';
 
-const ATTRIBUTE_TYPE = {
-  'GOOD': 'ATTRIBUTE_GOOD',
-  'NEUTRAL': 'ATTRIBUTE_NEUTRAL',
-  'BAD': 'ATTRIBUTE_BAD',
-  'UNKNOWN': 'ATTRIBUTE_UNKNOWN',
+export const ATTRIBUTE_TYPE = {
+  'GOOD': 'good',
+  'NEUTRAL': 'neutral',
+  'BAD': 'bad',
 };
 
 const defaultProps = {

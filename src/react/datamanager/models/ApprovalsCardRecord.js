@@ -1,5 +1,10 @@
 import { Record } from 'typed-immutable';
 
+export const APPROVAL_TYPE = {
+  APPROVAL: 'BUTTON_APPROVAL',
+  DISAPPROVAL: 'BUTTON_DISAPPROVAL',
+};
+
 const defaultProps = {
   approvalsCount: Number,
 };

@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 
 import { loadGamerDetails } from '../../../redux/actions/gamerDetails';
 import { BUTTON_TYPE } from './_ui/navheader/_ui/actionbuttons/_ui/actionbutton/ActionButton';
+// import { APPROVAL_TYPE } from '../../../datamanager/models/ApprovalsCardRecord';
 import NavHeader from './_ui/navheader/NavHeader';
 import CardsTab from './_ui/cardstab/CardsTab';
 import ReviewsTab from './_ui/reviewstab/ReviewsTab';
@@ -38,8 +39,9 @@ class GamerDetails extends PureComponent {
     super(props);
 
     this.state = {
-      selectedTab: BUTTON_TYPE.OVERVIEW,
-      // selectedTab: BUTTON_TYPE.REVIEWS,
+      // selectedTab: BUTTON_TYPE.OVERVIEW,
+      selectedTab: BUTTON_TYPE.REVIEWS,
+      preselect: null,
     };
   }
 
@@ -60,7 +62,7 @@ class GamerDetails extends PureComponent {
 
   onApprovalButtonClick = (type) => {
     console.log(`on ${type} button button click`);
-    this.selectTab(BUTTON_TYPE.REVIEWS);
+    this.selectTab(BUTTON_TYPE.REVIEWS, type);
   };
 
   onReviewButtonClick = () => {
@@ -68,9 +70,16 @@ class GamerDetails extends PureComponent {
     this.selectTab(BUTTON_TYPE.REVIEWS);
   }
 
-  selectTab = (tabType) => {
+  onReviewSubmitClick = () => {
+    console.log("On review submit click");
+  }
+
+  selectTab = (tabType, preselect) => {
     if (this.state.selectedTab !== tabType) {
-      this.setState({ selectedTab: tabType });
+      this.setState({
+        preselect: preselect ? preselect : null,
+        selectedTab: tabType
+      });
     }
   }
 
@@ -93,6 +102,8 @@ class GamerDetails extends PureComponent {
         disapprovalsCardRecord={this.props.gamerData.disapprovalsCardRecord}
         reviewsCardRecord={this.props.gamerData.reviewsCardRecord}
         attributesList={this.props.gamerData.attributesList}
+        onReviewSubmitClick={this.onReviewSubmitClick}
+        preselect={this.state.preselect}
       />);
     } else if (this.state.selectedTab === BUTTON_TYPE.CHAMPIONS) {
       content = (<ChampionsTab />);

@@ -1,5 +1,3 @@
-import { colorNameToHex } from '../../../../../utils/color';
-
 const styles = {
   container: {
     flexDirection: 'row',
@@ -15,10 +13,9 @@ const styles = {
     marginRight: 30,
   },
 
-  sectionContainer: {
+  reviewSectionContainer: {
     width: '70%',
     maxWidth: 730,
-    backgroundColor: colorNameToHex('blue'),
   },
 
   approvalsContainer: {

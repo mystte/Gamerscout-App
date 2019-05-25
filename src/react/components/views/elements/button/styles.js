@@ -6,6 +6,7 @@ const styles = {
     height: 36,
     justifyContent: 'center',
     fontSize: 14,
+    fontWeight: 600,
     color: colorNameToHex('white'),
     borderRadius: 1,
     border: 'none',
@@ -30,6 +31,10 @@ const styles = {
     borderWidth: 1,
     borderColor: colorNameToHex('dimgrey'),
     borderStyle: 'solid',
+  },
+
+  grey: {
+    background: colorNameToHex('oxfordblue'),
   },
 };
 

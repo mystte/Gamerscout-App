@@ -2,11 +2,12 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import styles from './styles';
-import ApprovalsCard, { APPROVAL_TYPE } from '../cardstab/_ui/cards/approvalscard/ApprovalsCard';
+import ApprovalsCard from '../cardstab/_ui/cards/approvalscard/ApprovalsCard';
 import AttributesCard from './_ui/attributescard/AttributesCard';
-import ApprovalsCardRecord from '../../../../../datamanager/models/ApprovalsCardRecord';
+import ApprovalsCardRecord, { APPROVAL_TYPE } from '../../../../../datamanager/models/ApprovalsCardRecord';
 import DisapprovalsCardRecord from '../../../../../datamanager/models/DisapprovalsCardRecord';
 import ReviewsCardRecord from '../../../../../datamanager/models/ReviewsCardRecord';
+import ReviewSection from './_ui/reviewsection/ReviewSection';
 
 
 class ReviewsTab extends PureComponent {
@@ -14,12 +15,15 @@ class ReviewsTab extends PureComponent {
     approvalsCardRecord: PropTypes.instanceOf(ApprovalsCardRecord),
     disapprovalsCardRecord: PropTypes.instanceOf(DisapprovalsCardRecord),
     reviewsCardRecord: PropTypes.instanceOf(ReviewsCardRecord),
+    onReviewSubmitClick: PropTypes.func.isRequired,
     attributesList: PropTypes.object,
+    preselect: PropTypes.string
   };
 
   static defaultProps = {
     reviewsCardRecord: null,
     attributesList: null,
+    preselect: null,
   };
 
   constructor(props) {
@@ -36,18 +40,22 @@ class ReviewsTab extends PureComponent {
           <div style={styles.approvalsContainer}>
             <ApprovalsCard
               approvalsCardRecord={this.props.approvalsCardRecord}
-              type={APPROVAL_TYPE.APPROVALS}
+              type={APPROVAL_TYPE.APPROVAL}
             />
             <ApprovalsCard
               approvalsCardRecord={this.props.disapprovalsCardRecord}
-              type={APPROVAL_TYPE.DISAPPROVALS}
+              type={APPROVAL_TYPE.DISAPPROVAL}
             />
           </div>
           <AttributesCard
             attributesList={this.props.attributesList}
           />
         </div>
-        <div style={styles.sectionContainer}>
+        <div style={styles.reviewSectionContainer}>
+          <ReviewSection
+            onReviewSubmitClick={this.props.onReviewSubmitClick}
+            preselect={this.props.preselect}
+          />
         </div>
       </div>
     );

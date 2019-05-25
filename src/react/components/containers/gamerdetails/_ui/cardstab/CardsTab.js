@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 
 import RankedCard from './_ui/cards/rankedcard/RankedCard';
 import RecentPerformanceCard from './_ui/cards/recentperformancecard/RecentPerformanceCard';
-import ApprovalsCard, { APPROVAL_TYPE } from './_ui/cards/approvalscard/ApprovalsCard';
+import ApprovalsCard from './_ui/cards/approvalscard/ApprovalsCard';
 import TrendsCard from './_ui/cards/trendscard/TrendsCard';
 import ChampionsCard from './_ui/cards/championscard/ChampionsCard';
 import ReviewsCard from './_ui/cards/reviewscard/ReviewsCard';
 
 import RankedCardRecord from '../../../../../datamanager/models/RankedCardRecord';
-import ApprovalsCardRecord from '../../../../../datamanager/models/ApprovalsCardRecord';
+import ApprovalsCardRecord, { APPROVAL_TYPE } from '../../../../../datamanager/models/ApprovalsCardRecord';
 import DisapprovalsCardRecord from '../../../../../datamanager/models/DisapprovalsCardRecord';
 import ReviewsCardRecord from '../../../../../datamanager/models/ReviewsCardRecord';
 
@@ -66,12 +66,12 @@ class CardsTab extends PureComponent {
             <div style={styles.rateContainer}>
               <ApprovalsCard
                 approvalsCardRecord={this.props.approvalsCardRecord}
-                type={APPROVAL_TYPE.APPROVALS}
+                type={APPROVAL_TYPE.APPROVAL}
                 onClick={this.props.onApprovalButtonClick}
               />
               <ApprovalsCard
                 approvalsCardRecord={this.props.disapprovalsCardRecord}
-                type={APPROVAL_TYPE.DISAPPROVALS}
+                type={APPROVAL_TYPE.DISAPPROVAL}
                 onClick={this.props.onApprovalButtonClick}
               />
             </div>

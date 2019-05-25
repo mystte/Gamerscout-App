@@ -22,7 +22,6 @@ const styles = {
     width: '70vw',
     maxWidth: 730,
     height: 720,
-    backgroundColor: 'blue',
     marginRight: 15,
     marginLeft: 15,
     marginTop: 30,

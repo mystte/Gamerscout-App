@@ -42,7 +42,15 @@
     "attributesCard": {
       "title": "Attributes",
       "showAll": "Show all",
-      "showLess": "Show less"
+      "showLess": "Show less",
+      "reviewSection": {
+        "title": "Review gamer",
+        "desc": "Tell us what you think.",
+        "approve": "Approve",
+        "disapprove": "Disapprove",
+        "attributes": "Attributes",
+        "review": "Review"
+      }
     },
 
     "notFound": {

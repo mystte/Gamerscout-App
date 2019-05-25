@@ -13,6 +13,7 @@ export const buttonTheme = {
   BLUE: 'blue',
   DARK: 'dark',
   RED: 'red',
+  GREY: 'grey',
 };
 
 class Button extends PureComponent {

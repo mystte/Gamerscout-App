@@ -22,6 +22,22 @@
     url('./assets/fonts/SourceSansPro/SourceSansPro-Bold.ttf') format('truetype'),
 }
 
+textarea::-webkit-input-placeholder {
+color: #90959D;
+}
+
+textarea:-moz-placeholder { /* Firefox 18- */
+color: #90959D;
+}
+
+textarea::-moz-placeholder {  /* Firefox 19+ */
+color: #90959D;
+}
+
+textarea:-ms-input-placeholder {
+color: #90959D;
+}
+
 * {
   font-family: 'Open Sans Pro';
   -webkit-font-smoothing: antialiased;
@@ -56,6 +72,13 @@
         100%,
 		}
 	}
+}
+
+textarea {
+  outline: none;
+  &:active {
+    outline: none;
+  }
 }
 
 button {

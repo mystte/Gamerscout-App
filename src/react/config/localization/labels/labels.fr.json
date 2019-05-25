@@ -42,7 +42,15 @@
     "attributesCard": {
       "title": "Attributs",
       "showAll": "Voir tous",
-      "showLess": "Voir moins"
+      "showLess": "Voir moins",
+      "reviewSection": {
+        "title": "Commenter",
+        "desc": "Dites-nous ce que vous pensez de ce joueur.",
+        "approve": "Like",
+        "disapprove": "Dislike",
+        "attributes": "Attributs",
+        "review": "Envoyer"
+      }
     },
 
     "notFound": {

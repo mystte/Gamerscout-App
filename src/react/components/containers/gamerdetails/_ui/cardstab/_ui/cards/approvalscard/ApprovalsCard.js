@@ -1,16 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ApprovalsCardRecord from '../../../../../../../../datamanager/models/ApprovalsCardRecord';
+import ApprovalsCardRecord, { APPROVAL_TYPE } from '../../../../../../../../datamanager/models/ApprovalsCardRecord';
 import DisapprovalsCardRecord from '../../../../../../../../datamanager/models/DisapprovalsCardRecord';
 import Localization from '../../../../../../../../config/localization/Localization';
 import ApprovalButton from './_ui/approvalbutton/ApprovalButton';
 import styles from './styles';
-
-export const APPROVAL_TYPE = {
-  APPROVALS: 'APPROVALS',
-  DISAPPROVALS: 'DISAPPROVALS',
-};
 
 const ApprovalsCard = ({
   approvalsCardRecord,
@@ -20,9 +15,9 @@ const ApprovalsCard = ({
   if (!approvalsCardRecord) return null;
 
   const labels = Localization.Labels.gamerDetails;
-  const title = (type === APPROVAL_TYPE.APPROVALS) ? labels.approvalsCard.title : labels.disapprovalsCard.title;
+  const title = (type === APPROVAL_TYPE.APPROVAL) ? labels.approvalsCard.title : labels.disapprovalsCard.title;
   const count = approvalsCardRecord.getCount();
-  const containerStyle = (type === APPROVAL_TYPE.APPROVALS) ? {
+  const containerStyle = (type === APPROVAL_TYPE.APPROVAL) ? {
     ...styles.container,
     ...styles.lastContainer,
   } : styles.container;
@@ -56,7 +51,7 @@ ApprovalsCard.propTypes = {
 
 ApprovalsCard.defaultProps = {
   approvalsCardRecord: null,
-  type: APPROVAL_TYPE.APPROVALS,
+  type: APPROVAL_TYPE.APPROVAL,
   onClick: null,
 };
 

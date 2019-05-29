@@ -6,10 +6,20 @@ import styles from './styles';
 class Avatar extends PureComponent {
   static propTypes = {
     name: PropTypes.string,
+    width: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number
+    ]),
+    height: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number
+    ]),
   };
 
   static defaultProps = {
     name: null,
+    width: 28,
+    height: 28,
   };
 
   constructor(props) {
@@ -23,8 +33,14 @@ class Avatar extends PureComponent {
   }
 
   render() {
+    const containerStyle = {
+      ...styles.container,
+      width: this.props.width,
+      height: this.props.height,
+    };
+
     return (
-      <div style={styles.container}>
+      <div style={containerStyle}>
         {this.renderAvatar()}
       </div>
     );

@@ -14,6 +14,7 @@ const CommentArea = ({ preselect }) => {
       <textarea
         style={styles.textarea}
         placeholder={labels.desc}
+        maxLength="500"
       />
       <div style={styles.horizontalSeparator}></div>
       <div style={styles.actionsBar}>

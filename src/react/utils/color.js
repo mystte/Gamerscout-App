@@ -108,6 +108,7 @@ const namedColors = {
   moccasin: '#ffe4b5',
   navajowhite: '#ffdead',
   navy: '#000080',
+  nightshadz: '#A23252',
   oldlace: '#fdf5e6',
   olive: '#808000',
   olivedrab: '#6b8e23',

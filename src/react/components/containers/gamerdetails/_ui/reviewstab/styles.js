@@ -18,6 +18,14 @@ const styles = {
     maxWidth: 730,
   },
 
+  reviewFilterContainer: {
+    marginTop: 38,
+    marginBottom: 38,
+  },
+
+  reviewsListContainer: {
+  },
+
   approvalsContainer: {
     flexDirection: 'row',
   },

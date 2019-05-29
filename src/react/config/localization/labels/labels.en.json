@@ -53,6 +53,11 @@
       }
     },
 
+    "review": {
+      "approval": "Approval",
+      "disapproval": "Disapproval"
+    },
+
     "notFound": {
       "title1": "We couldn’t find a gamer with those exact details",
       "title2": "Make sure your search matches the gamer's identification exactly and try again or find the closest matches below",

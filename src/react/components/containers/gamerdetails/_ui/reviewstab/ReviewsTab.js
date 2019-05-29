@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 
 import styles from './styles';
 import ApprovalsCard from '../cardstab/_ui/cards/approvalscard/ApprovalsCard';
+import Review from './_ui/review/Review';
 import AttributesCard from './_ui/attributescard/AttributesCard';
 import ApprovalsCardRecord, { APPROVAL_TYPE } from '../../../../../datamanager/models/ApprovalsCardRecord';
 import DisapprovalsCardRecord from '../../../../../datamanager/models/DisapprovalsCardRecord';
 import ReviewsCardRecord from '../../../../../datamanager/models/ReviewsCardRecord';
 import ReviewSection from './_ui/reviewsection/ReviewSection';
-
+import ReviewFilter from './_ui/reviewfilters/ReviewFilters';
 
 class ReviewsTab extends PureComponent {
   static propTypes = {
@@ -33,7 +34,18 @@ class ReviewsTab extends PureComponent {
     };
   }
 
+  renderReviews = () => {
+    return this.props.reviewsCardRecord.reviews.map((review, idx) => {
+      return (<Review
+        key={`review-${idx}`}
+        reviewRecord={review}
+      />);
+    });
+  }
+
   render() {
+    if (!this.props.reviewsCardRecord) return null;
+
     return (
       <div style={styles.container}>
         <div style={styles.statsContainer}>
@@ -56,6 +68,14 @@ class ReviewsTab extends PureComponent {
             onReviewSubmitClick={this.props.onReviewSubmitClick}
             preselect={this.props.preselect}
           />
+          {this.props.reviewsCardRecord.reviews.size > 0 &&
+            <div style={styles.reviewsListContainer}>
+              <div style={styles.reviewFilterContainer}>
+                <ReviewFilter />
+              </div>
+              {this.renderReviews()}
+            </div>
+          }
         </div>
       </div>
     );

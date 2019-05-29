@@ -53,6 +53,11 @@
       }
     },
 
+    "review": {
+      "approval": "Like",
+      "disapproval": "Dislike"
+    },
+
     "notFound": {
       "title1": "Impossible de trouver le joueur désiré",
       "title2": "Assurez-vous d'avoir le bon tag et rééssayez",

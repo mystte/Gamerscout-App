@@ -6,9 +6,11 @@ import styles from './styles';
 class DropDown extends PureComponent {
   static propTypes = {
     contentList: PropTypes.array.isRequired,
+    select: PropTypes.number,
   };
 
   static defaultProps = {
+    select: 0,
   };
 
   constructor(props) {
@@ -18,10 +20,17 @@ class DropDown extends PureComponent {
     };
   }
 
+  toggleListView = () => {
+  }
+
   render() {
 
     return (
-      <div style={styles.container}></div>
+      <div
+        onClick={this.toggleListView}
+        style={styles.container}>
+
+      </div>
     );
   }
 }

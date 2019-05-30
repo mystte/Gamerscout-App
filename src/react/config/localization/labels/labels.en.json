@@ -36,7 +36,14 @@
     "reviewsCard": {
       "title": "Reviews",
       "viewAll": "View All",
-      "action": "Review gamer"
+      "action": "Review gamer",
+      "filters": {
+        "all": "All",
+        "approvals": "Approvals",
+        "disapprovals": "Disapprovals",
+        "newest": "Newest",
+        "oldest": "Oldest"
+      }
     },
 
     "attributesCard": {

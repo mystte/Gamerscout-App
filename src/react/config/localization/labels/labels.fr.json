@@ -36,7 +36,14 @@
     "reviewsCard": {
       "title": "Commentaires",
       "viewAll": "Voir tous",
-      "action": "Commenter"
+      "action": "Commenter",
+      "filters": {
+        "all": "Tous",
+        "approvals": "Likes",
+        "disapprovals": "Dislikes",
+        "newest": "Nouveaux",
+        "oldest": "Anciens"
+      }
     },
 
     "attributesCard": {

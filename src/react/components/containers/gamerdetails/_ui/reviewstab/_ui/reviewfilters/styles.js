@@ -5,16 +5,18 @@ const styles = {
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
+    width: '100%',
   },
 
   border: {
-    width: '70%',
+    width: '80%',
     height: 1,
     backgroundColor: colorNameToHex('dimgrey'),
   },
 
   showFilter: {
     width: 100,
+    flexDirection: 'row',
   },
 };
 

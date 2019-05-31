@@ -9,7 +9,7 @@ const styles = {
   },
 
   border: {
-    width: '80%',
+    width: '70%',
     height: 1,
     backgroundColor: colorNameToHex('dimgrey'),
   },

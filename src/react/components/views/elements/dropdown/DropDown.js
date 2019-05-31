@@ -19,7 +19,7 @@ const DropDown = ({
   selectType,
 }) => {
   const node = useRef();
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [select, setSelect] = useState(1);
 
   useEffect(() => {

@@ -39,8 +39,8 @@ class GamerDetails extends PureComponent {
     super(props);
 
     this.state = {
-      // selectedTab: BUTTON_TYPE.OVERVIEW,
-      selectedTab: BUTTON_TYPE.REVIEWS,
+      selectedTab: BUTTON_TYPE.OVERVIEW,
+      // selectedTab: BUTTON_TYPE.REVIEWS,
       preselect: null,
     };
   }

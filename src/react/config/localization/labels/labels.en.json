@@ -38,6 +38,8 @@
       "viewAll": "View All",
       "action": "Review gamer",
       "filters": {
+        "show": "Show",
+        "filterBy": "Filter by",
         "all": "All",
         "approvals": "Approvals",
         "disapprovals": "Disapprovals",

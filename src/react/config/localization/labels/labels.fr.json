@@ -38,6 +38,8 @@
       "viewAll": "Voir tous",
       "action": "Commenter",
       "filters": {
+        "show": "Afficher",
+        "filterBy": "Filtrer par",
         "all": "Tous",
         "approvals": "Likes",
         "disapprovals": "Dislikes",

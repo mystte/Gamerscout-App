@@ -9,14 +9,22 @@ const styles = {
   },
 
   border: {
-    width: '70%',
+    width: '100%',
     height: 1,
     backgroundColor: colorNameToHex('dimgrey'),
   },
 
   showFilter: {
-    width: 100,
     flexDirection: 'row',
+    justifyCOntent: 'center',
+    alignItems: 'center',
+  },
+
+  filterLabel: {
+    marginLeft: 15,
+    fontSize: 14,
+    color: colorNameToHex('regentgray'),
+    whiteSpace: 'nowrap',
   },
 };
 

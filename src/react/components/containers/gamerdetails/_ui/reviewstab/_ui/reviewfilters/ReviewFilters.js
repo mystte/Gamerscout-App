@@ -12,6 +12,7 @@ const ReviewFilter = () => {
     <div style={styles.container}>
       <div style={styles.border}></div>
       <div style={styles.showFilter}>
+        <span style={styles.filterLabel}>{labels.show}:</span>
         <DropDown
           options={[
             { name: 'All', label: labels.all },
@@ -21,6 +22,7 @@ const ReviewFilter = () => {
           selectType={SELECT_TYPE.SIMPLE}
           dropDown={DROPDOWN_TYPE.DEFAULT}
         />
+        <span style={styles.filterLabel}>{labels.filterBy}:</span>
         <DropDown
           options={[
             { name: 'Newest', label: labels.all },

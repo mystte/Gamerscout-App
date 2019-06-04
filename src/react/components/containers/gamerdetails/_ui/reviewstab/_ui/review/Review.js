@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 
 import Localization from '../../../../../../../config/localization/Localization';
 import ReviewRecord, { REVIEW_TYPE } from '../../../../../../../datamanager/models/ReviewRecord';
@@ -73,7 +74,9 @@ class Review extends PureComponent {
             />
             <div style={styles.gamerContainer}>
               <span style={styles.name}>{this.props.reviewRecord.reviewerName}</span>
-              <span style={styles.date}>date</span>
+              <span style={styles.date}>
+                {moment(this.props.reviewRecord.date).fromNow()}
+              </span>
             </div>
           </div>
           <div style={styles.commentContainer}>{this.props.reviewRecord.comment}</div>

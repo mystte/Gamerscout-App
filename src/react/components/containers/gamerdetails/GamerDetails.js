@@ -3,7 +3,10 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import { loadGamerDetails } from '../../../redux/actions/gamerDetails';
+import {
+  loadGamerDetails,
+  applyReviewFilters
+} from '../../../redux/actions/gamerDetails';
 import { BUTTON_TYPE } from './_ui/navheader/_ui/actionbuttons/_ui/actionbutton/ActionButton';
 // import { APPROVAL_TYPE } from '../../../datamanager/models/ApprovalsCardRecord';
 import NavHeader from './_ui/navheader/NavHeader';
@@ -74,6 +77,12 @@ class GamerDetails extends PureComponent {
     console.log("On review submit click");
   }
 
+  onReviewFilterChange = (show, filterBy) => {
+    this.props.dispatch(applyReviewFilters(
+      this.props.gamerData.reviewsCardRecord.applyReviewsFilter(show, filterBy),
+    ));
+  }
+
   selectTab = (tabType, preselect) => {
     if (this.state.selectedTab !== tabType) {
       this.setState({
@@ -104,6 +113,7 @@ class GamerDetails extends PureComponent {
         attributesList={this.props.gamerData.attributesList}
         onReviewSubmitClick={this.onReviewSubmitClick}
         preselect={this.state.preselect}
+        onReviewFilterChange={this.onReviewFilterChange}
       />);
     } else if (this.state.selectedTab === BUTTON_TYPE.CHAMPIONS) {
       content = (<ChampionsTab />);

@@ -39,16 +39,10 @@ const styles = {
     minWidth: 'calc(100% + 2px)',
   },
 
-  listElem1: {
+  listElem: {
     width: '100%',
     height: 37,
     backgroundColor: colorNameToHex('ebonyclay'),
-  },
-
-  listElem2: {
-    width: '100%',
-    height: 37,
-    backgroundColor: colorNameToHex('dimgrey'),
   },
 
   elemLabel: {

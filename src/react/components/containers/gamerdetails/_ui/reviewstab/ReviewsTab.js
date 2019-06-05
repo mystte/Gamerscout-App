@@ -18,7 +18,8 @@ class ReviewsTab extends PureComponent {
     reviewsCardRecord: PropTypes.instanceOf(ReviewsCardRecord),
     onReviewSubmitClick: PropTypes.func.isRequired,
     attributesList: PropTypes.object,
-    preselect: PropTypes.string
+    preselect: PropTypes.string,
+    onReviewFilterChange: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -35,7 +36,7 @@ class ReviewsTab extends PureComponent {
   }
 
   renderReviews = () => {
-    return this.props.reviewsCardRecord.reviews.map((review, idx) => {
+    return this.props.reviewsCardRecord.filtered.map((review, idx) => {
       return (<Review
         key={`review-${idx}`}
         reviewRecord={review}
@@ -71,7 +72,9 @@ class ReviewsTab extends PureComponent {
           {this.props.reviewsCardRecord.reviews.size > 0 &&
             <div style={styles.reviewsListContainer}>
               <div style={styles.reviewFilterContainer}>
-                <ReviewFilter />
+                <ReviewFilter
+                  onReviewFilterChange={this.props.onReviewFilterChange}
+                />
               </div>
               {this.renderReviews()}
             </div>

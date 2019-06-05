@@ -49,20 +49,22 @@ const DropDown = ({
         ...styles.elemLabel,
         ...styles.elemLabelSelect,
       } : {
-          ...styles.elemLabel,
-        };
+        ...styles.elemLabel,
+      };
 
+      const elemLabel = (elem.label) ? elem.label : elem.name;
       return (
         <div
+          className={"option"}
           key={elem.name}
-          style={styles[`listElem${idx % 2 + 1}`]}
+          style={styles.listElem}
           onClick={() => onSelect(idx + 1)}
         >
           <span
             style={elemLabelStyle}
             className="noselect"
           >
-            {elem.name}
+            {elemLabel}
           </span>
         </div>
       );
@@ -86,7 +88,7 @@ const DropDown = ({
   }
 
   if (options.length === 0) return null;
-  const selectedLabel = options[select - 1].name;
+  const selectedLabel = (options[select - 1].label) ? options[select - 1].label : options[select - 1].name;
   const containerStyle = getSelectContainerStyle();
 
   return (

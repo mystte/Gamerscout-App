@@ -14,7 +14,7 @@ export const initialState = Immutable.fromJS({
 });
 
 export default function reducer(state = initialState, action) {
-  const { type } = action;
+  const { type, parameters } = action;
   switch (type) {
     case loading(GAMER_DETAILS.LOAD):
       return state.withMutations((mutate) => {
@@ -36,6 +36,9 @@ export default function reducer(state = initialState, action) {
         mutate.set('loading', false);
         mutate.set('error', action.error);
       });
+
+    case GAMER_DETAILS.APPLY_REVIEW_FILTERS:
+      return state.setIn(['data', 'reviewsCardRecord'], parameters.mutatedReviewRecord);
 
     default:
   }

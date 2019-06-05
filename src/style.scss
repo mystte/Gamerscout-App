@@ -91,6 +91,15 @@ button {
   }
 }
 
+.dropdown {
+  .option {
+    &:hover {
+      transition: background-color 0.3s ease;
+      background-color: #2C3748!important;
+    }
+  }
+}
+
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */

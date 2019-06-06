@@ -11,6 +11,7 @@ const styles = {
     justifyContent: 'flex-start',
     paddingLeft: 30,
     paddingRight: 30,
+    zIndex: 1,
   },
 
 };

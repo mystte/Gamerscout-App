@@ -27,7 +27,7 @@ const mapStateToProps = state => ({
 });
 class GamerDetails extends PureComponent {
   static propTypes = {
-    config: PropTypes.object.isRequired,
+    config: PropTypes.object,
     dispatch: PropTypes.func.isRequired,
     match: PropTypes.object.isRequired,
     gamerData: PropTypes.object,
@@ -35,6 +35,7 @@ class GamerDetails extends PureComponent {
   };
 
   static defaultProps = {
+    config: null,
     gamerData: null,
   };
 

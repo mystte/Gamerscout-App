@@ -1,4 +1,18 @@
 import { Record, List, Maybe } from 'typed-immutable';
+import ConfigRegionRecord from './ConfigRegionsRecord';
+
+export const GAME_REGIONS = {
+  NA: 'na',
+  BR: 'br',
+  EUE: 'eue',
+  EUW: 'euw',
+  KR: 'kr',
+  LAN: 'lan',
+  LAS: 'las',
+  OCE: 'oce',
+  RU: 'ru',
+  TR: 'tr',
+};
 
 export const GAME_PLATFORM = {
   RIOT: 'riot',
@@ -7,8 +21,8 @@ export const GAME_PLATFORM = {
 };
 
 export const GAME_CODE = {
-  LEAGUE_OF_LEGENDS: 'LOL',
-  ROCKET_LEAGUE: 'ROCKET_LEAGUE',
+  LEAGUE_OF_LEGENDS: 'lol',
+  ROCKET_LEAGUE: 'rocket_league',
 };
 
 const defaultProps = {
@@ -18,7 +32,7 @@ const defaultProps = {
     iconUrl: Maybe(String),
   })),
   regions: Record({
-    lol: Object,
+    riot: Object,
   }),
 };
 
@@ -29,6 +43,14 @@ const ExtendsWith = (superclass) => class extends superclass {
 };
 
 export default class AppRecord extends ExtendsWith(Record(defaultProps, 'AppRecord')) {
+  static parseRegionsData(regionsData) {
+    const parsedData = {
+      riot: (regionsData.riot) ? ConfigRegionRecord.apiParser({ ...regionsData.riot, platform: GAME_PLATFORM.RIOT}) : null,
+    };
+
+    return parsedData;
+  }
+
   static apiParser(data) {
     const parsedData = {
       platforms: (data.platforms) ? data.platforms.map((platform) => ({
@@ -36,7 +58,7 @@ export default class AppRecord extends ExtendsWith(Record(defaultProps, 'AppReco
         enabled: platform.enabled,
         iconUrl: platform['icon-url'],
       })) : [],
-      regions: (data.regions) ? data.regions : null,
+      regions: AppRecord.parseRegionsData(data.regions),
     };
     return new AppRecord(parsedData);
   }

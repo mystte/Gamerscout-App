@@ -14,11 +14,18 @@ const Input = ({
   onChange,
   placeholder,
   title,
-  value,
+  initValue,
   focus,
+  inputStyle,
 }) => {
   const [ref, setRef] = useState('');
   const [mounted, setMounted] = useState(false);
+  const [value, setValue] = useState(initValue);
+
+  const onInputChange = (e) => {
+    setValue(e.target.value);
+    if (onChange) onChange(e);
+  }
 
   useEffect(() => {
     if (ref && focus && !mounted) ref.focus();
@@ -32,11 +39,14 @@ const Input = ({
       }
       <input
         ref={(input) => { setRef(input); }}
-        style={styles.input}
+        style={{
+          ...styles.input,
+          ...inputStyle
+        }}
         type="text"
         placeholder={placeholder}
         value={value}
-        onChange={onChange}
+        onChange={onInputChange}
         maxLength={length}
       />
       {message &&
@@ -48,12 +58,13 @@ const Input = ({
 
 Input.propTypes = {
   length: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
   message: PropTypes.string,
   placeholder: PropTypes.string,
   title: PropTypes.string,
-  value: PropTypes.string,
-  focus: PropTypes.bool
+  initValue: PropTypes.string,
+  focus: PropTypes.bool,
+  inputStyle: PropTypes.object,
 };
 
 Input.defaultProps = {
@@ -61,8 +72,10 @@ Input.defaultProps = {
   message: null,
   placeholder: null,
   title: null,
-  value: "",
+  initValue: "",
   focus: false,
+  onChange: null,
+  inputStyle: null,
 };
 
 export default Input;

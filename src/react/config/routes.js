@@ -15,10 +15,10 @@ export const getGamerDetailsUrl = (platform, region, game, gamertag) => {
 
   if (platform && region && game && gamertag) {
     gamerDetailsUrl = Localization.Urls.formatString(gamerDetailsUrl, {
-      platform,
-      region,
-      game,
-      gamertag,
+      platform: platform.toLowerCase(),
+      region: region.toLowerCase(),
+      game: game.toLowerCase(),
+      gamertag: gamertag.toLowerCase(),
     });
   } else {
     gamerDetailsUrl = formatUrlForRouter(gamerDetailsUrl);

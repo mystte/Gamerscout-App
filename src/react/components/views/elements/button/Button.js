@@ -18,17 +18,20 @@ export const buttonTheme = {
 
 class Button extends PureComponent {
   static propTypes = {
-    label: PropTypes.string.isRequired,
+    label: PropTypes.string,
     icon: PropTypes.string,
     type: PropTypes.string,
     onClick: PropTypes.func.isRequired,
     theme: PropTypes.string,
+    buttonStyle: PropTypes.object,
   };
 
   static defaultProps = {
     icon: null,
     type: buttonType.DEFAULT,
     theme: buttonTheme.DARK,
+    label: null,
+    buttonStyle: null,
   };
 
   constructor(props) {
@@ -45,6 +48,7 @@ class Button extends PureComponent {
         style={{
           ...styles.container,
           ...styles[this.props.theme],
+          ...this.props.buttonStyle,
         }}
       >
         { this.props.icon &&

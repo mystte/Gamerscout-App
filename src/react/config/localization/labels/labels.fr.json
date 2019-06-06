@@ -1,4 +1,7 @@
 {
+  "navBar": {
+    "placeholder": "Gamertag"
+  },
   "gamerDetails": {
     "overview": "Aperçu",
     "reviews": "Commentaires",

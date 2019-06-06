@@ -1,4 +1,7 @@
 {
+  "navBar": {
+    "placeholder": "Summoner Name"
+  },
   "gamerDetails": {
     "overview": "Overview",
     "reviews": "Reviews",

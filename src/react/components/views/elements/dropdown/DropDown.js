@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import SVGIcon from '../svgicon/SVGIcon';
 import styles from './styles';
-import UseModal from '../../usemodal/UseModal';
+import UseModal from '../../hooks/UseModal';
 
 export const SELECT_TYPE = {
   DEFAULT: 'SELECT_DEFAULT',

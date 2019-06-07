@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import styles from './styles';
@@ -7,6 +7,7 @@ import Input from '../../../../views/elements/input/Input';
 import Localisation from '../../../../../config/localization/Localization';
 import DropDown, { SELECT_TYPE, DROPDOWN_TYPE } from '../../../../views/elements/dropdown/DropDown';
 import Button from '../../../../views/elements/button/Button';
+import UseKeyPress from '../../../../views/hooks/UseKeyPress';
 
 const SearchBar = ({
   regionsList,
@@ -15,6 +16,13 @@ const SearchBar = ({
   onSearchChange,
 }) => {
   const labels = Localisation.Labels.navBar;
+  const enterPressed = UseKeyPress('Enter');
+
+  useEffect(() => {
+    return () => {
+      if (enterPressed) onSearch();
+    }
+  }, [enterPressed])
 
   return (
     <div style={styles.container}>

@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import Input , {INPUT_TYPE} from '../../views/elements/input/Input';
-import Button from '../../views/elements/button/Button';
 import {
   getGamerDetailsUrl,
 } from '../../../config/routes';
@@ -59,17 +57,6 @@ class Home extends Component {
   render() {
     return (
       <div style={styles.container}>
-        <Input
-          placeholder='gamertag'
-          value={this.state.searchValue}
-          onChange={this.onSearchInputChange}
-          type={INPUT_TYPE.TEXT}
-          length="50"
-        />
-        <Button
-          label="Search"
-          onClick={this.onSearchClick}
-        />
       </div>
     );
   }

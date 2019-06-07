@@ -1,8 +1,9 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useState } from "react";
 import PropTypes from 'prop-types';
 
 import SVGIcon from '../svgicon/SVGIcon';
 import styles from './styles';
+import UseModal from '../../usemodal/UseModal';
 
 export const SELECT_TYPE = {
   DEFAULT: 'SELECT_DEFAULT',
@@ -18,24 +19,7 @@ const DropDown = ({
   options,
   selectType,
 }) => {
-  const node = useRef();
-  const [isOpen, setIsOpen] = useState(false);
   const [select, setSelect] = useState(1);
-
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClick);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClick);
-    };
-  }, []);
-
-  const handleClick = e => {
-    if (node.current.contains(e.target)) {
-      return;
-    }
-    setIsOpen(false);
-  };
 
   const onSelect = (selectedItemNumber) => {
     setSelect(selectedItemNumber);
@@ -71,10 +55,6 @@ const DropDown = ({
     });
   }
 
-  const toggleListView = () => {
-    setIsOpen(!isOpen);
-  }
-
   const getSelectContainerStyle = () => {
     let containerStyle = styles.selectContainer;
     if (selectType === SELECT_TYPE.SIMPLE) {
@@ -90,12 +70,13 @@ const DropDown = ({
   if (options.length === 0) return null;
   const selectedLabel = (options[select - 1].label) ? options[select - 1].label : options[select - 1].name;
   const containerStyle = getSelectContainerStyle();
+  const { isOpen, toggle, node } = UseModal();
 
   return (
     <div
       ref={node}
       className="dropdown noselect"
-      onClick={toggleListView}
+      onClick={toggle}
       style={containerStyle}>
       <span style={styles.selectedLabel}>{selectedLabel}</span>
       <SVGIcon

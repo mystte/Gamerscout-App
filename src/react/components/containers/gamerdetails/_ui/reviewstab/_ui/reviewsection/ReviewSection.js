@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import Localization from '../../../../../../../config/localization/Localization';
-import Button, { buttonTheme } from '../../../../../../views/elements/button/Button';
+import Button, { BUTTON_THEME } from '../../../../../../views/elements/button/Button';
 import CommentArea from './_ui/commentarea/CommentArea';
 import styles from './styles';
 
@@ -36,7 +36,7 @@ class ReviewSection extends PureComponent {
           <Button
             label={labels.review}
             onClick={this.props.onReviewSubmitClick}
-            theme={buttonTheme.GREY}
+            theme={BUTTON_THEME.GREY}
           />
         </div>
       </div>

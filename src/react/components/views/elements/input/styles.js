@@ -3,7 +3,7 @@ import { colorNameToHex } from '../../../../utils/color';
 const styles = {
   input: {
     color: colorNameToHex('white'),
-    width: 245,
+    width: '100%',
     height: 36,
     backgroundColor: colorNameToHex('oxfordblue'),
     paddingTop: 9,
@@ -17,6 +17,10 @@ const styles = {
     outline: 'none',
   },
 
+  defaultTheme: {
+    backgroundColor: colorNameToHex('darkgrey'),
+  },
+
   title: {
     marginBottom: 6,
     color: colorNameToHex('regentgray'),
@@ -28,6 +32,26 @@ const styles = {
     fontSize: 12,
     height: 19,
     marginTop: 3,
+  },
+
+  inputContainer: {
+    flexDirection: 'row',
+  },
+
+  iconLeftContainer: {
+    minWidth: 36,
+    height: 36,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderColor: colorNameToHex('dimgrey'),
+    borderRight: 'none',
+    backgroundColor: colorNameToHex('ebonyclay'),
+  },
+
+  focus: {
+    borderColor: colorNameToHex('dodgerblue'),
   },
 };
 

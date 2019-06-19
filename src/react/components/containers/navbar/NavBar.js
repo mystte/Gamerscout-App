@@ -15,14 +15,20 @@ import {
 import {
   loadGamerDetails,
 } from '../../../redux/actions/gamerDetails';
+import {
+  togglePopup,
+} from '../../../redux/actions/app';
 import SVGIcon from '../../views/elements/svgicon/SVGIcon';
 import SearchBar from './_ui/searchbar/SearchBar';
 import styles from './styles';
+import UserMenu, { USER_MENU_ACTIONS } from './_ui/usermenu/UserMenu';
+import { POPUP_TYPE } from '../../../datamanager/models/PopupRecord';
 
 const mapStateToProps = state => ({
   config: state.app.get('data'),
   loading: state.app.get('loading'),
   error: state.app.get('error'),
+  isAuthenticated: state.app.get('isAuthenticated'),
 });
 
 class NavBar extends PureComponent {
@@ -32,11 +38,13 @@ class NavBar extends PureComponent {
     match: PropTypes.object.isRequired,
     loading: PropTypes.bool.isRequired,
     history: PropTypes.object.isRequired,
+    isAuthenticated: PropTypes.bool,
     region: PropTypes.string,
   };
 
   static defaultProps = {
     config: null,
+    isAuthenticated: false,
   };
 
   constructor(props) {
@@ -59,6 +67,15 @@ class NavBar extends PureComponent {
     this.setState({
       searchValue: event.target.value,
     });
+  }
+
+  userMenuActions = (action) => {
+    console.log("userMenuAction", action);
+    if (action === USER_MENU_ACTIONS.SIGNIN) {
+      this.props.dispatch(togglePopup(POPUP_TYPE.SIGNIN));
+    } else if (action === USER_MENU_ACTIONS.SIGNUP) {
+      this.props.dispatch(togglePopup(POPUP_TYPE.SIGNUP));
+    }
   }
 
   onSearchClick = () => {
@@ -98,6 +115,12 @@ class NavBar extends PureComponent {
               onSearch={this.onSearchClick}
               onSearchChange={this.onSearchInputChange}
             />
+            <div style={styles.userMenu}>
+              <UserMenu
+                userMenuActions={this.userMenuActions}
+                isAuthenticated={this.isAuthenticated}
+              />
+            </div>
           </div>
         }
       </React.Fragment>

@@ -3,17 +3,19 @@ import PropTypes from 'prop-types';
 import SVGIcon from '../svgicon/SVGIcon';
 import styles from './styles';
 
-export const buttonType = {
+export const BUTTON_TYPE = {
   ERROR: 'error',
   DEFAULT: 'default',
   DROPDOWN: 'dropdown',
 };
 
-export const buttonTheme = {
+export const BUTTON_THEME = {
   BLUE: 'blue',
   DARK: 'dark',
   RED: 'red',
   GREY: 'grey',
+  SIMPLE: 'simple',
+  LINK: 'link',
 };
 
 class Button extends PureComponent {
@@ -28,8 +30,8 @@ class Button extends PureComponent {
 
   static defaultProps = {
     icon: null,
-    type: buttonType.DEFAULT,
-    theme: buttonTheme.DARK,
+    type: BUTTON_TYPE.DEFAULT,
+    theme: BUTTON_THEME.DARK,
     label: null,
     buttonStyle: null,
   };
@@ -42,6 +44,8 @@ class Button extends PureComponent {
   }
 
   render() {
+    const iconContainerStyle = (this.props.theme === BUTTON_THEME.SIMPLE) ? {} : styles.iconContainer;
+
     return (
       <button
         onClick={this.props.onClick}
@@ -52,7 +56,7 @@ class Button extends PureComponent {
         }}
       >
         { this.props.icon &&
-          <span style={styles.iconContainer}>
+          <span style={iconContainerStyle}>
             <SVGIcon width='16' height='16' name={this.props.icon} />
           </span>
         }

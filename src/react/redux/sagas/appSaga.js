@@ -3,11 +3,15 @@ import { APP, loading, success, error } from '../actions/actionTypes';
 import Api, { fetchAsync } from '../../datamanager/api/Api'
 import AppRecord from '../../datamanager/models/AppRecord';
 
-function* loadAppData() {
+function* loadAppData({ parameters }) {
+  console.log(parameters);
   const actionType = APP.LOAD;
   try {
     const appConfigData = yield fetchAsync(Api.loadAppData);
-    yield put({ type: success(actionType), data: AppRecord.apiParser(appConfigData.data) });
+    yield put({ type: success(actionType), data: AppRecord.apiParser({
+      ...appConfigData.data,
+      ...parameters.cookies,
+    }) });
   } catch (e) {
     yield put({ type: error(actionType), error: e.message });
   }

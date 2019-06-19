@@ -14,6 +14,10 @@ const styles = {
     zIndex: 1,
   },
 
+  userMenu: {
+    position: 'absolute',
+    right: 30,
+  },
 };
 
 export default styles;

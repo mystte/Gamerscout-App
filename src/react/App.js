@@ -1,12 +1,18 @@
 import React, { PureComponent } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import store from './redux/configureStore';
+import { CookiesProvider } from 'react-cookie';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
 
+import store from './redux/configureStore';
 import ErrorBoundary from './components/containers/errorboundary/ErrorBoundary';
 import AppBootstrap from './AppBootstrap';
 import { colorNameToHex } from './utils/color';
 import '../style.scss';
+
+// Used for font awesome
+library.add(faTimes);
 
 const styles = {
   container: {
@@ -25,9 +31,11 @@ class App extends PureComponent {
     return (
       <div id="app" style={styles.container}>
         <ErrorBoundary>
-          <Provider store={store}>
-            <AppBootstrap />
-          </Provider>
+          <CookiesProvider>
+            <Provider store={store}>
+              <AppBootstrap />
+            </Provider>
+          </CookiesProvider>
         </ErrorBoundary>
       </div>
     );

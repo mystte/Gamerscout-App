@@ -19,7 +19,6 @@ class LeaguesTab extends PureComponent {
   render() {
     return (
       <div style={styles.container}>
-        LeaguesTab
       </div>
     );
   }

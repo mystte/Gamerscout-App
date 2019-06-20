@@ -1,3 +1,6 @@
 {
-  
+  "signin": {
+    "errWrongEmail": "Aucun compte correspondant pour l'ensemble courriel / mot de passe",
+    "errWrongPassword": "Aucun compte correspondant pour l'ensemble courriel / mot de passe"
+  }
 }

@@ -1,2 +1,6 @@
 {
+  "signin": {
+    "errWrongEmail": "Email / Password does not match",
+    "errWrongPassword": "Email / Password does not match"
+  }
 }

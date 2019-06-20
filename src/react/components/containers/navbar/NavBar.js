@@ -28,7 +28,7 @@ const mapStateToProps = state => ({
   config: state.app.get('data'),
   loading: state.app.get('loading'),
   error: state.app.get('error'),
-  isAuthenticated: state.app.get('isAuthenticated'),
+  isAuthenticated: state.app.getIn(['data', 'isAuthenticated']),
 });
 
 class NavBar extends PureComponent {
@@ -118,7 +118,7 @@ class NavBar extends PureComponent {
             <div style={styles.userMenu}>
               <UserMenu
                 userMenuActions={this.userMenuActions}
-                isAuthenticated={this.isAuthenticated}
+                isAuthenticated={this.props.isAuthenticated}
               />
             </div>
           </div>

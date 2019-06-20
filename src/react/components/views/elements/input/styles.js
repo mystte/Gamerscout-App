@@ -15,6 +15,10 @@ const styles = {
     borderStyle: 'solid',
     borderColor: colorNameToHex('dimgrey'),
     outline: 'none',
+    fontWeight: 600,
+  },
+
+  inputPassword: {
   },
 
   defaultTheme: {
@@ -28,10 +32,11 @@ const styles = {
   },
 
   message: {
-    color: colorNameToHex('red'),
+    color: colorNameToHex('cinnabar'),
     fontSize: 12,
     height: 19,
     marginTop: 3,
+    fontWeight: 600,
   },
 
   inputContainer: {
@@ -52,6 +57,14 @@ const styles = {
 
   focus: {
     borderColor: colorNameToHex('dodgerblue'),
+  },
+
+  error: {
+    borderColor: colorNameToHex('cinnabar'),
+  },
+
+  valid: {
+    borderColor: colorNameToHex('apple'),
   },
 };
 

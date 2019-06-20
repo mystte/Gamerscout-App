@@ -28,6 +28,7 @@
     "core-js": "^3.1.4",
     "express": "^4.17.1",
     "immutable": "^4.0.0-rc.12",
+    "md5": "^2.2.1",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.25",
     "prop-types": "^15.7.2",
@@ -41,7 +42,8 @@
     "react-router-dom": "^5.0.1",
     "redux": "^4.0.1",
     "redux-saga": "^1.0.3",
-    "typed-immutable": "^0.1.2"
+    "typed-immutable": "^0.1.2",
+    "validator": "^11.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",

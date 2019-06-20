@@ -1,4 +1,5 @@
 import axios from 'axios';
+import md5 from 'md5';
 
 const CALL_TYPE = {
   GET: 'get',
@@ -11,6 +12,9 @@ export async function fetchAsync(func, parameters) {
 
   if (response.status >= 200 && response.status <= 201) {
     return await JSON.parse(JSON.stringify(response));
+  } else if (response.status) {
+    console.error("Api error : ", response);
+    throw new Error(response);
   } else {
     throw new Error("Unexpected error!!!");
   }
@@ -23,7 +27,9 @@ async function doApiCall(url, params, callType = CALL_TYPE.GET) {
   if (callType === CALL_TYPE.GET) {
     result = await axios.get(`${serverUrl}${url}`);
   } else if (callType === CALL_TYPE.POST) {
-    result = null;
+    result = await axios.post(`${serverUrl}${url}`, params, {
+      validateStatus: (status) => status >= 200 && status <= 500,
+    });
   } else if (callType === CALL_TYPE.PUT) {
     result = null;
   }
@@ -45,5 +51,14 @@ export default class Api {
 
   static loadAppData() {
     return doApiCall('/config');
+  }
+
+  static doLogin({email, password}) {
+    const data = {
+      email,
+      password: md5(password),
+    }
+
+    return doApiCall('/users/login', data, CALL_TYPE.POST);
   }
 }

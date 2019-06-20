@@ -18,7 +18,10 @@ export default function reducer(state = initialState, action) {
   switch (type) {
     case APP.TOGGLE_POPUP:
       return state.withMutations((mutate) => {
-        mutate.setIn(['data', 'popupData', 'showPopup'], !state.getIn(['data', 'popupData', 'showPopup']));
+        mutate.setIn(['data', 'popupData', 'showPopup'],
+          action.parameters.forceDisplay ?
+          action.parameters.forceDisplay :
+          !state.getIn(['data', 'popupData', 'showPopup']));
         mutate.setIn(['data', 'popupData', 'type'], action.parameters.type);
       });
 
@@ -40,6 +43,20 @@ export default function reducer(state = initialState, action) {
       return state.withMutations((mutate) => {
         mutate.set('data', null);
         mutate.set('loading', false);
+        mutate.set('error', action.error);
+      });
+
+    case success(APP.DO_LOGIN):
+      return state.withMutations((mutate) => {
+        mutate.setIn(['data', 'user'], action.data);
+        mutate.setIn(['data', 'isAuthenticated'], true);
+
+        mutate.set('loading', false);
+        mutate.set('error', null);
+      });
+
+    case error(APP.DO_LOGIN):
+      return state.withMutations((mutate) => {
         mutate.set('error', action.error);
       });
 

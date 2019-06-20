@@ -32,12 +32,27 @@ const Input = ({
   inputStyle,
   icon,
   iconPosition,
+  error,
+  valid,
 }) => {
   const [ref, setRef] = useState('');
   const [mounted, setMounted] = useState(false);
   const [value, setValue] = useState(initValue);
   const [toggleFocus, setToggleFocus] = useState(false);
   const focusStyle = (toggleFocus) ? styles.focus : null;
+  const errorStyle = (error) ? styles.error : null;
+  const validStyle = (valid) ? styles.valid : null;
+  const passwordStyle = (type === INPUT_TYPE.PASSWORD) ? styles.inputPassword : null;
+
+  const mergedInputStyle = {
+    ...styles.input,
+    ...styles[theme],
+    ...inputStyle,
+    ...passwordStyle,
+    ...focusStyle,
+    ...errorStyle,
+    ...validStyle,
+  };
 
   const renderedIcon = () => {
     let renderedIcon = null;
@@ -46,6 +61,8 @@ const Input = ({
         <div style={{
           ...styles.iconLeftContainer,
           ...focusStyle,
+          ...errorStyle,
+          ...validStyle,
         }}>
           <SVGIcon
             width={16}
@@ -90,12 +107,7 @@ const Input = ({
         }
         <input
           ref={(input) => { setRef(input); }}
-          style={{
-            ...styles.input,
-            ...styles[theme],
-            ...inputStyle,
-            ...focusStyle,
-          }}
+          style={mergedInputStyle}
           onFocus={() => setToggleFocus(true)}
           onBlur={() => setToggleFocus(false)}
           type={type}
@@ -128,6 +140,8 @@ Input.propTypes = {
   theme: PropTypes.string,
   icon: PropTypes.string,
   iconPosition: PropTypes.string,
+  error: PropTypes.bool,
+  valid: PropTypes.bool,
 };
 
 Input.defaultProps = {
@@ -143,6 +157,8 @@ Input.defaultProps = {
   theme: INPUT_THEME.DEFAULT,
   icon: null,
   iconPosition: ICON_POSITION.LEFT,
+  error: false,
+  valid: false,
 };
 
 export default Input;

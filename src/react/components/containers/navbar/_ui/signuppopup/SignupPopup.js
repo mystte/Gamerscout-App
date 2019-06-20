@@ -1,13 +1,17 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 // import PropTypes from 'prop-types';
 
 import Localization from '../../../../../config/localization/Localization';
 import styles from './styles';
 import Input, { INPUT_TYPE } from '../../../../views/elements/input/Input';
 import Button, { BUTTON_THEME } from '../../../../views/elements/button/Button';
+import { togglePopup } from '../../../../../redux/actions/app';
+import { POPUP_TYPE } from '../../../../../datamanager/models/PopupRecord';
 
 const SigninPopup = () => {
   const labels = Localization.Labels.signupPopup;
+  const dispatch = useDispatch();
 
   return (
     <div style={styles.container}>
@@ -59,7 +63,12 @@ const SigninPopup = () => {
       </div>
       <div style={styles.signinContainer}>
         {labels.haveAccount}
-        <span style={styles.signin}>{labels.signin}</span>
+        <span
+          style={styles.signin}
+          onClick={() => dispatch(togglePopup(POPUP_TYPE.SIGNIN, true))}
+        >
+          {labels.signin}
+        </span>
       </div>
     </div>
   );

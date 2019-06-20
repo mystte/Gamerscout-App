@@ -5,6 +5,7 @@ export const error = (type = '') => `${type}_ERROR`;
 export const APP = {
   LOAD: 'APP_LOAD',
   TOGGLE_POPUP: 'APP_TOGGLE_POPUP',
+  DO_LOGIN: 'APP_DO_LOGIN',
 };
 
 export const GAMER_DETAILS = {

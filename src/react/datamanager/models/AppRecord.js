@@ -66,10 +66,10 @@ export default class AppRecord extends ExtendsWith(Record(defaultProps, 'AppReco
         iconUrl: platform['icon-url'],
       })) : [],
       regions: AppRecord.parseRegionsData(data.regions),
-      isAuthenticated: data.cookies ? data.cookies.session_id : false,
+      isAuthenticated: data.user ? true : false,
       showPopup: true,
       popupData: PopupRecord.apiParser(data.popupData ? data.popupData : {}),
-      user: null,
+      user: data.user ? UserRecord.apiParser(data.user) : null,
     };
     return new AppRecord(parsedData);
   }

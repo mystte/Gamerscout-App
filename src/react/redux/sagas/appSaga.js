@@ -3,14 +3,20 @@ import { APP, loading, success, error } from '../actions/actionTypes';
 import Api, { fetchAsync } from '../../datamanager/api/Api'
 import AppRecord from '../../datamanager/models/AppRecord';
 import UserRecord from '../../datamanager/models/UserRecord';
+import { isEmpty } from '../../utils/objects';
 
 function* loadAppData({ parameters }) {
   const actionType = APP.LOAD;
   try {
     const appConfigData = yield fetchAsync(Api.loadAppData);
+    const authenticatedData = yield fetchAsync(Api.loadAuthenticatedUser);
+
     yield put({ type: success(actionType), data: AppRecord.apiParser({
       ...appConfigData.data,
-      ...parameters.cookies,
+      user: !isEmpty(authenticatedData.data) ? {
+        ...authenticatedData.data,
+        'gamerscout-api-session': parameters.cookies['gamerscout-api-session'],
+      } : null,
     }) });
   } catch(e) {
     yield put({ type: error(actionType), error: e.message });
@@ -22,7 +28,6 @@ function* doLogin({ parameters }) {
 
   try {
     const loginData = yield fetchAsync(Api.doLogin, parameters);
-
     yield put({
       type: success(actionType), data: UserRecord.apiParser(loginData.data),
     });

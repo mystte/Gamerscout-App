@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 // import PropTypes from 'prop-types';
 
 import Localization from '../../../../../config/localization/Localization';
@@ -22,6 +22,7 @@ const SigninPopup = () => {
   const [errorMessage, setErrorMessage] = useState(null);
   const labels = Localization.Labels.signinPopup;
   const errorsLabels = Localization.Errors.signin;
+  const apiError = useSelector(state => state.app.get('error'));
   const dispatch = useDispatch();
   const enterPressed = UseKeyPress('Enter');
 
@@ -42,7 +43,14 @@ const SigninPopup = () => {
     return () => {
       if (enterPressed) actionLogin();
     }
-  }, [enterPressed])
+  }, [enterPressed]);
+
+  useEffect(() => {
+    return () => {
+      setWrongEmail(true);
+      setWrongPassword(true);
+    }
+  }, [apiError]);
 
   return (
     <div style={styles.container}>
@@ -64,7 +72,7 @@ const SigninPopup = () => {
           onChange={(e) => setPassword(e.target.value)}
           icon={'lock'}
           type={INPUT_TYPE.PASSWORD}
-          message={errorMessage}
+          message={(apiError) ? errorsLabels[apiError] : errorMessage}
           error={wrongPassword}
         />
       </div>

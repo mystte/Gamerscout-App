@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 // import PropTypes from 'prop-types';
 
 import Localization from '../../../../../config/localization/Localization';
@@ -11,6 +11,7 @@ import { POPUP_TYPE } from '../../../../../datamanager/models/PopupRecord';
 
 const SigninPopup = () => {
   const labels = Localization.Labels.signupPopup;
+  const error = useSelector(state => state.error);
   const dispatch = useDispatch();
 
   return (

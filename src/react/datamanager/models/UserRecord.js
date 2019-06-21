@@ -7,6 +7,7 @@ const defaultProps = {
   email: Maybe(String),
   username: Maybe(String),
   validated: Boolean,
+  sessionId: String,
 };
 
 const ExtendsWith = (superclass) => class extends superclass {
@@ -24,6 +25,7 @@ export default class UserRecord extends ExtendsWith(Record(defaultProps, 'UserRe
       email: data.email ? data.email : null,
       username: data.username ? data.username : null,
       validated: data.validated ? data.validated : false,
+      sessionId: data['gamerscout-api-session'] ? data['gamerscout-api-session'] : null,
     };
 
     return new UserRecord(parsedData);

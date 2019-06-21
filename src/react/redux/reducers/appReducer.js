@@ -23,6 +23,7 @@ export default function reducer(state = initialState, action) {
           action.parameters.forceDisplay :
           !state.getIn(['data', 'popupData', 'showPopup']));
         mutate.setIn(['data', 'popupData', 'type'], action.parameters.type);
+        mutate.set('error', null);
       });
 
     case loading(APP.LOAD):

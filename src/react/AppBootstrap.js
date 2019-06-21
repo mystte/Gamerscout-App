@@ -13,6 +13,7 @@ import Popup from './components/views/elements/popup/Popup';
 
 const mapStateToProps = state => ({
   config: state.app.get('data'),
+  user: state.app.getIn(['data', 'user']),
   popupData: state.app.getIn(['data', 'popupData']),
   loading: state.app.get('loading'),
   error: state.app.get('error'),
@@ -23,12 +24,14 @@ class AppBootstrap extends PureComponent {
     dispatch: PropTypes.func.isRequired,
     cookies: PropTypes.object,
     popupData: PropTypes.object,
+    user: PropTypes.object,
   };
 
   static defaultProps = {
     cookies: null,
     showPopup: false,
     popupData: null,
+    user: null,
   };
 
   constructor(props) {
@@ -44,6 +47,14 @@ class AppBootstrap extends PureComponent {
     this.props.dispatch(loadAppData(this.props.cookies.cookies));
     // Force app in English for now
     Localization.setLanguage('en');
+  }
+
+  componentDidUpdate() {
+    if (this.props.user) {
+      if (this.props.cookies.get('gamerscout-api-session') !== this.props.user.get('sessionId')) {
+        this.props.cookies.set('gamerscout-api-session', this.props.user.get('sessionId'));
+      }
+    }
   }
 
   render() {

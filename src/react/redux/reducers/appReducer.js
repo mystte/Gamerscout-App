@@ -40,13 +40,6 @@ export default function reducer(state = initialState, action) {
         mutate.set('error', null);
       });
 
-    case error(APP.LOAD):
-      return state.withMutations((mutate) => {
-        mutate.set('data', null);
-        mutate.set('loading', false);
-        mutate.set('error', action.error);
-      });
-
     case success(APP.DO_LOGIN):
       return state.withMutations((mutate) => {
         mutate.setIn(['data', 'user'], action.data);
@@ -56,8 +49,17 @@ export default function reducer(state = initialState, action) {
         mutate.set('error', null);
       });
 
-    case error(APP.DO_LOGIN):
+    case success(APP.DO_LOGOUT):
       return state.withMutations((mutate) => {
+        mutate.setIn(['data', 'isAuthenticated'], false);
+        mutate.setIn(['data', 'user'], null);
+      });
+
+    case error(APP.LOAD):
+    case error(APP.DO_LOGIN):
+    case error(APP.DO_LOGOUT):
+      return state.withMutations((mutate) => {
+        mutate.set('loading', false);
         mutate.set('error', action.error);
       });
 

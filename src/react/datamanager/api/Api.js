@@ -10,7 +10,7 @@ const CALL_TYPE = {
 export async function fetchAsync(func, parameters) {
   const response = await func(parameters);
 
-  if (response.status >= 200 && response.status <= 201) {
+  if (response.status >= 200 && response.status <= 205) {
     return await JSON.parse(JSON.stringify(response));
   } else if (response.status) {
     console.error("Api error : ", response);
@@ -70,6 +70,10 @@ export default class Api {
     }
 
     return doApiCall('/users/login', data, CALL_TYPE.POST);
+  }
+
+  static doLogout() {
+    return doApiCall('/users/logout', null, CALL_TYPE.POST);
   }
 }
 

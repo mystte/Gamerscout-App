@@ -17,6 +17,7 @@ import {
 } from '../../../redux/actions/gamerDetails';
 import {
   togglePopup,
+  doLogout,
 } from '../../../redux/actions/app';
 import SVGIcon from '../../views/elements/svgicon/SVGIcon';
 import SearchBar from './_ui/searchbar/SearchBar';
@@ -79,6 +80,8 @@ class NavBar extends PureComponent {
       this.props.dispatch(togglePopup(POPUP_TYPE.SIGNIN));
     } else if (action === USER_MENU_ACTIONS.SIGNUP) {
       this.props.dispatch(togglePopup(POPUP_TYPE.SIGNUP));
+    } else if (action === USER_MENU_ACTIONS.LOGOUT) {
+      this.props.dispatch(doLogout());
     }
   }
 

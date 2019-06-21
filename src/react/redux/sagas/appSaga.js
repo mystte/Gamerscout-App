@@ -37,9 +37,24 @@ function* doLogin({ parameters }) {
   }
 }
 
+function* doLogout() {
+  const actionType = APP.DO_LOGOUT;
+
+  try {
+    const logoutData = yield fetchAsync(Api.doLogout);
+    yield put({
+      type: success(actionType), data: logoutData,
+    });
+  } catch (e) {
+    yield put({ type: error(actionType), error: e.message });
+  }
+}
+
+
 export function* appSaga() {
   yield takeEvery(loading(APP.LOAD), loadAppData);
   yield takeLatest(loading(APP.DO_LOGIN), doLogin);
+  yield takeLatest(loading(APP.DO_LOGOUT), doLogout);
 }
 
 export default appSaga;

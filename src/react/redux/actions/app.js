@@ -23,6 +23,12 @@ export function doLogin(
   };
 }
 
+export function doLogout() {
+  return {
+    type: loading(APP.DO_LOGOUT),
+  };
+}
+
 export function togglePopup(type = null, forceDisplay = null) {
   return {
     type: APP.TOGGLE_POPUP,

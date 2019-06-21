@@ -22,7 +22,12 @@
   "navBar": {
     "placeholder": "Summoner Name",
     "signup": "Create Account",
-    "login": "Sign In"
+    "login": "Sign In",
+    "userMenuOptions": {
+      "profile": "Profile",
+      "settings": "Settings",
+      "logout": "Logout"
+    }
   },
   "gamerDetails": {
     "overview": "Overview",

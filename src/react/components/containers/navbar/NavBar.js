@@ -21,14 +21,16 @@ import {
 import SVGIcon from '../../views/elements/svgicon/SVGIcon';
 import SearchBar from './_ui/searchbar/SearchBar';
 import styles from './styles';
-import UserMenu, { USER_MENU_ACTIONS } from './_ui/usermenu/UserMenu';
+import UserMenu from './_ui/usermenu/UserMenu';
 import { POPUP_TYPE } from '../../../datamanager/models/PopupRecord';
+import { USER_MENU_ACTIONS } from './_ui/usermenu/enums';
 
 const mapStateToProps = state => ({
   config: state.app.get('data'),
   loading: state.app.get('loading'),
   error: state.app.get('error'),
   isAuthenticated: state.app.getIn(['data', 'isAuthenticated']),
+  user: state.app.getIn(['data', 'user']),
 });
 
 class NavBar extends PureComponent {
@@ -40,11 +42,13 @@ class NavBar extends PureComponent {
     history: PropTypes.object.isRequired,
     isAuthenticated: PropTypes.bool,
     region: PropTypes.string,
+    user: PropTypes.object,
   };
 
   static defaultProps = {
     config: null,
     isAuthenticated: false,
+    user: null,
   };
 
   constructor(props) {
@@ -117,6 +121,7 @@ class NavBar extends PureComponent {
             />
             <div style={styles.userMenu}>
               <UserMenu
+                user={this.props.user}
                 userMenuActions={this.userMenuActions}
                 isAuthenticated={this.props.isAuthenticated}
               />

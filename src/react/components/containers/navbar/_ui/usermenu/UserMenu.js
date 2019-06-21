@@ -4,22 +4,25 @@ import PropTypes from 'prop-types';
 import Localization from '../../../../../config/localization/Localization';
 import Button from '../../../../views/elements/button/Button';
 import styles from './styles';
-
-export const USER_MENU_ACTIONS = {
-  SIGNIN: 'USER_MENU_SIGNIN',
-  SIGNUP: 'USER_MENU_SIGNUP',
-};
+import UserActionsWidget from './_ui/useractionswidget/UserActionsWidget';
+import { USER_MENU_ACTIONS } from './enums';
 
 const UserMenu = ({
   isAuthenticated,
   userMenuActions,
+  user,
 }) => {
   const labels = Localization.Labels.navBar;
 
   return (
     <div style={styles.container}>
       {isAuthenticated &&
-        <div>authenticated</div>
+        <div>
+          <UserActionsWidget
+            user={user}
+            onUserActions={userMenuActions}
+          />
+        </div>
       }
       {!isAuthenticated &&
         <div style={styles.signinSignupContainer}>
@@ -42,10 +45,12 @@ const UserMenu = ({
 UserMenu.propTypes = {
   isAuthenticated: PropTypes.bool,
   userMenuActions: PropTypes.func.isRequired,
+  user: PropTypes.object,
 };
 
 UserMenu.defaultProps = {
   isAuthenticated: false,
+  user: null,
 };
 
 export default UserMenu;

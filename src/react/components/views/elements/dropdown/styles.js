@@ -58,6 +58,10 @@ const styles = {
   elemLabelSelect: {
     color: colorNameToHex('dodgerblue'),
   },
+
+  customSelect: {
+    marginRight: 9,
+  },
 };
 
 export default styles;

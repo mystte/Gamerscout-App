@@ -22,7 +22,12 @@
   "navBar": {
     "placeholder": "Gamertag",
     "signup": "Créer un compte",
-    "login": "Login"
+    "login": "Login",
+    "userMenuOptions": {
+      "profile": "Profile",
+      "settings": "Paramètres",
+      "logout": "Déconnexion"
+    }
   },
   "gamerDetails": {
     "overview": "Aperçu",

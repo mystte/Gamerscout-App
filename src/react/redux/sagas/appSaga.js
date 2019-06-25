@@ -23,6 +23,18 @@ function* loadAppData({ parameters }) {
   }
 }
 
+function* doSignup({ parameters }) {
+  const actionType = APP.DO_SIGNUP;
+
+  try {
+    yield fetchAsync(Api.doSignup, parameters);
+    yield put({ type: success(actionType) });
+    yield put({ type: loading(APP.DO_LOGIN), parameters });
+  } catch (e) {
+    yield put({ type: error(actionType), error: e.message });
+  }
+}
+
 function* doLogin({ parameters }) {
   const actionType = APP.DO_LOGIN;
 
@@ -54,6 +66,7 @@ function* doLogout() {
 export function* appSaga() {
   yield takeEvery(loading(APP.LOAD), loadAppData);
   yield takeLatest(loading(APP.DO_LOGIN), doLogin);
+  yield takeLatest(loading(APP.DO_SIGNUP), doSignup);
   yield takeLatest(loading(APP.DO_LOGOUT), doLogout);
 }
 

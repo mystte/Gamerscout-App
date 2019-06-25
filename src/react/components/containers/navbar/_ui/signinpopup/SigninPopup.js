@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import PropTypes from 'prop-types';
 
 import Localization from '../../../../../config/localization/Localization';
 import Input, { INPUT_TYPE } from '../../../../views/elements/input/Input';
@@ -15,8 +14,8 @@ import Validator from '../../../../../datamanager/api/Validator';
 import UseKeyPress from '../../../../views/hooks/UseKeyPress';
 
 const SigninPopup = () => {
-  const [email, setEmail] = useState('toto@toto.com');
-  const [password, setPassword] = useState('tototo');
+  const [email, setEmail] = useState(null);
+  const [password, setPassword] = useState(null);
   const [wrongEmail, setWrongEmail] = useState(false);
   const [wrongPassword, setWrongPassword] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
@@ -57,7 +56,6 @@ const SigninPopup = () => {
       <div style={styles.title}>{labels.title}</div>
       <div style={styles.fieldsContainer}>
         <Input
-          initValue="toto@toto.com"
           placeholder={labels.email}
           icon={'email'}
           onChange={(e) => setEmail(e.target.value)}
@@ -67,7 +65,6 @@ const SigninPopup = () => {
         />
         <span style={styles.inputSeparator} />
         <Input
-          initValue="tototo"
           placeholder={labels.password}
           onChange={(e) => setPassword(e.target.value)}
           icon={'lock'}
@@ -105,12 +102,5 @@ const SigninPopup = () => {
     </div>
   );
 }
-
-SigninPopup.propTypes = {
-
-};
-
-SigninPopup.defaultProps = {
-};
 
 export default SigninPopup;

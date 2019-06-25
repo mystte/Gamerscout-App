@@ -23,6 +23,21 @@ export function doLogin(
   };
 }
 
+export function doSignup(
+  username,
+  email,
+  password,
+) {
+  return {
+    type: loading(APP.DO_SIGNUP),
+    parameters: {
+      username,
+      email,
+      password,
+    },
+  };
+}
+
 export function doLogout() {
   return {
     type: loading(APP.DO_LOGOUT),

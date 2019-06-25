@@ -3,5 +3,14 @@
     "errWrongEmail": "Aucun compte correspondant pour l'ensemble courriel / mot de passe",
     "errWrongPassword": "Aucun compte correspondant pour l'ensemble courriel / mot de passe",
     "errUserNotFound": "Aucun compte correspondant pour l'ensemble courriel / mot de passe"
+  },
+  "signup": {
+    "errUsernameRequired": "Le username est requis",
+    "errEmailRequired": "Le courriel est requis",
+    "errPasswordRequired": "Le mot de passe est requis",
+    "errShortUsername": "Le username doit être d'au moins 4 carcatères",
+    "errWrongEmail": "Le format du courriel est incorrect",
+    "errWrongPassword": "Le mot de passe doit être d'au moins 6 caractères",
+    "errUserExists": "Cet utilisateur a déjà un compte"
   }
 }

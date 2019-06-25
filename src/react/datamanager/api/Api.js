@@ -63,6 +63,16 @@ export default class Api {
     return doApiCall('/config');
   }
 
+  static doSignup({ username, email, password }) {
+    const data = {
+      username,
+      email,
+      password: md5(password),
+    }
+
+    return doApiCall('/users/signup', data, CALL_TYPE.POST);
+  }
+
   static doLogin({email, password}) {
     const data = {
       email,

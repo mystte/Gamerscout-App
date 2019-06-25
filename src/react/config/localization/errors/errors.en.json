@@ -3,5 +3,14 @@
     "errWrongEmail": "Email / Password does not match",
     "errWrongPassword": "Email / Password does not match",
     "errUserNotFound": "Email / Password does not match"
+  },
+  "signup": {
+    "errUsernameRequired": "Username is required",
+    "errEmailRequired": "Email is required",
+    "errPasswordRequired": "Password is required",
+    "errShortUsername": "Username must be at least 4 characters",
+    "errWrongEmail": "Email is bad formatted",
+    "errWrongPassword": "Password must be at least 6 characters",
+    "errUserExists": "User already has an account"
   }
 }

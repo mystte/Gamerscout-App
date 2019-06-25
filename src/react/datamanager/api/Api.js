@@ -82,6 +82,14 @@ export default class Api {
     return doApiCall('/users/login', data, CALL_TYPE.POST);
   }
 
+  static doFacebookLogin({ token }) {
+    const data = {
+      access_token: token,
+    }
+
+    return doApiCall('/users/facebook_auth', data, CALL_TYPE.POST);
+  }
+
   static doLogout() {
     return doApiCall('/users/logout', null, CALL_TYPE.POST);
   }

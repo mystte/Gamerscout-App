@@ -37,6 +37,7 @@ const defaultProps = {
   regions: Record({
     riot: Object,
   }),
+  facebookAppId: Maybe(String),
   isAuthenticated: Boolean,
   showPopup: Boolean,
   popupData: Maybe(PopupRecord),
@@ -70,6 +71,7 @@ export default class AppRecord extends ExtendsWith(Record(defaultProps, 'AppReco
       showPopup: true,
       popupData: PopupRecord.apiParser(data.popupData ? data.popupData : {}),
       user: data.user ? UserRecord.apiParser(data.user) : null,
+      facebookAppId: data.facebookAppId ? data.facebookAppId : null,
     };
     return new AppRecord(parsedData);
   }

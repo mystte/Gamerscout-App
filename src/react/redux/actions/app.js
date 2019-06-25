@@ -23,6 +23,15 @@ export function doLogin(
   };
 }
 
+export function doFacebookLogin(token) {
+  return {
+    type: loading(APP.DO_FACEBOOK_LOGIN),
+    parameters: {
+      token,
+    },
+  };
+}
+
 export function doSignup(
   username,
   email,

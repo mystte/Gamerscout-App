@@ -1,4 +1,7 @@
 {
+  "facebook": {
+    "title": "Facebook"
+  },
   "signupPopup": {
     "title": "Create Account",
     "username": "Username",

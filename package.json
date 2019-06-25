@@ -36,6 +36,7 @@
     "react-cookie": "^4.0.0",
     "react-dedux": "^0.4.0-beta.4",
     "react-dom": "^16.8.6",
+    "react-facebook": "^8.0.4",
     "react-localization": "^1.0.13",
     "react-native": "^0.59.9",
     "react-redux": "^7.1.0",

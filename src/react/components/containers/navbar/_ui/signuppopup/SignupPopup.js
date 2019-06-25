@@ -12,6 +12,7 @@ import {
 import { POPUP_TYPE } from '../../../../../datamanager/models/PopupRecord';
 import Validator from '../../../../../datamanager/api/Validator';
 import UseKeyPress from '../../../../views/hooks/UseKeyPress';
+import FacebookButton from '../../../../views/facebookbutton/FacebookButton';
 
 const SigninPopup = () => {
   const [username, setUsername] = useState(null);
@@ -98,10 +99,8 @@ const SigninPopup = () => {
           onClick={createAccount}
         />
         <span style={styles.inputSeparator} />
-        <Button
+        <FacebookButton
           label={labels.facebook}
-          theme={BUTTON_THEME.GREY}
-          onClick={() => { }}
         />
       </div>
       <div style={styles.aggreementContainer}>

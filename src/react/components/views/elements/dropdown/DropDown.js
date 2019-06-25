@@ -8,6 +8,7 @@ import UseModal from '../../hooks/UseModal';
 export const SELECT_TYPE = {
   DEFAULT: 'SELECT_DEFAULT',
   SIMPLE: 'SELECT_SIMPLE',
+  CUSTOM_CONTENT: 'SELECT_CUSTOM_CONTENT',
 };
 
 export const DROPDOWN_TYPE = {
@@ -18,6 +19,7 @@ const DropDown = ({
   onChange,
   options,
   selectType,
+  selectContent,
 }) => {
   const [select, setSelect] = useState(1);
 
@@ -25,6 +27,16 @@ const DropDown = ({
     setSelect(selectedItemNumber);
     if (onChange)
       onChange(options[selectedItemNumber - 1]);
+  }
+
+  const renderSelectContent = () => {
+    let result = <span style={styles.selectedLabel}>{selectedLabel}</span>;
+
+    if (selectType === SELECT_TYPE.CUSTOM_CONTENT) {
+    result = <div style={styles.customSelect}>{selectContent}</div>;
+    }
+
+    return result;
   }
 
   const renderListView = () => {
@@ -57,7 +69,8 @@ const DropDown = ({
 
   const getSelectContainerStyle = () => {
     let containerStyle = styles.selectContainer;
-    if (selectType === SELECT_TYPE.SIMPLE) {
+    if (selectType === SELECT_TYPE.SIMPLE ||
+      selectType === SELECT_TYPE.CUSTOM_CONTENT) {
       containerStyle = {
         ...containerStyle,
         ...styles.selectSimple,
@@ -78,7 +91,7 @@ const DropDown = ({
       className="dropdown noselect"
       onClick={toggle}
       style={containerStyle}>
-      <span style={styles.selectedLabel}>{selectedLabel}</span>
+      {renderSelectContent()}
       <SVGIcon
         name="dropdown-array"
         width={7}
@@ -102,6 +115,7 @@ const DropDown = ({
     selectType: PropTypes.string,
     dropDownType: PropTypes.string,
     onChange: PropTypes.func,
+    selectContent: PropTypes.object,
   };
 
   DropDown.defaultProps = {
@@ -109,6 +123,7 @@ const DropDown = ({
     selectType: SELECT_TYPE.DEFAULT,
     dropDownType: DROPDOWN_TYPE.DEFAULT,
     onChange: null,
+    selectContent: null,
   };
 
 export default DropDown;

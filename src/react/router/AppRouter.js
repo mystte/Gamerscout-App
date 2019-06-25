@@ -1,5 +1,6 @@
 import React, { Suspense } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import PropTypes from 'prop-types';
 
 import Loading from '../components/views/loading/Loading';
 import NavBar from '../components/containers/navbar/NavBar'
@@ -12,7 +13,7 @@ import {
 const Home = React.lazy(() => import('../components/containers/home/Home'));
 const GamerDetails = React.lazy(() => import('../components/containers/gamerdetails/GamerDetails'));
 
-const AppRouter = () => {
+const AppRouter = ({ cookies }) => {
   const routesConfig = [
     {
       path: getHomeUrl(),
@@ -27,6 +28,7 @@ const AppRouter = () => {
   const renderedRoutes = routesConfig.map((route) => {
     return (
       <Route
+        cookies={cookies}
         key={`route${route.path}`}
         path={route.path}
         exact
@@ -46,6 +48,14 @@ const AppRouter = () => {
       </Suspense>
     </Router>
   );
+};
+
+AppRouter.propTypes = {
+  cookies: PropTypes.object,
+};
+
+AppRouter.defaultProps = {
+  cookies: null,
 };
 
 export default AppRouter;

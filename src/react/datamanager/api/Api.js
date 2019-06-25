@@ -1,4 +1,5 @@
 import axios from 'axios';
+import md5 from 'md5';
 
 const CALL_TYPE = {
   GET: 'get',
@@ -9,8 +10,11 @@ const CALL_TYPE = {
 export async function fetchAsync(func, parameters) {
   const response = await func(parameters);
 
-  if (response.status >= 200 && response.status <= 201) {
+  if (response.status >= 200 && response.status <= 205) {
     return await JSON.parse(JSON.stringify(response));
+  } else if (response.status) {
+    console.error("Api error : ", response);
+    throw new Error(response.data.error);
   } else {
     throw new Error("Unexpected error!!!");
   }
@@ -18,12 +22,17 @@ export async function fetchAsync(func, parameters) {
 
 async function doApiCall(url, params, callType = CALL_TYPE.GET) {
   const serverUrl = process.env.API_URL;
+
   let result = null;
+  const axiosOptions = {
+    validateStatus: (status) => status >= 200 && status <= 500,
+    withCredentials: true,
+  }
 
   if (callType === CALL_TYPE.GET) {
-    result = await axios.get(`${serverUrl}${url}`);
+    result = await axios.get(`${serverUrl}${url}`, axiosOptions);
   } else if (callType === CALL_TYPE.POST) {
-    result = null;
+    result = await axios.post(`${serverUrl}${url}`, params, axiosOptions);
   } else if (callType === CALL_TYPE.PUT) {
     result = null;
   }
@@ -31,8 +40,15 @@ async function doApiCall(url, params, callType = CALL_TYPE.GET) {
 }
 
 export default class Api {
+
   static loadGamerDetails({ game, gamertag, platform, region }) {
     const url = `/search/${platform}/${region}/${game}/${gamertag}`;
+
+    return doApiCall(url);
+  }
+
+  static loadAuthenticatedUser() {
+    const url = '/users/_/authenticated';
 
     return doApiCall(url);
   }
@@ -46,4 +62,28 @@ export default class Api {
   static loadAppData() {
     return doApiCall('/config');
   }
+
+  static doSignup({ username, email, password }) {
+    const data = {
+      username,
+      email,
+      password: md5(password),
+    }
+
+    return doApiCall('/users/signup', data, CALL_TYPE.POST);
+  }
+
+  static doLogin({email, password}) {
+    const data = {
+      email,
+      password: md5(password),
+    }
+
+    return doApiCall('/users/login', data, CALL_TYPE.POST);
+  }
+
+  static doLogout() {
+    return doApiCall('/users/logout', null, CALL_TYPE.POST);
+  }
 }
+

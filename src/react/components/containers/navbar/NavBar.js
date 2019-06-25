@@ -15,14 +15,23 @@ import {
 import {
   loadGamerDetails,
 } from '../../../redux/actions/gamerDetails';
+import {
+  togglePopup,
+  doLogout,
+} from '../../../redux/actions/app';
 import SVGIcon from '../../views/elements/svgicon/SVGIcon';
 import SearchBar from './_ui/searchbar/SearchBar';
 import styles from './styles';
+import UserMenu from './_ui/usermenu/UserMenu';
+import { POPUP_TYPE } from '../../../datamanager/models/PopupRecord';
+import { USER_MENU_ACTIONS } from './_ui/usermenu/enums';
 
 const mapStateToProps = state => ({
   config: state.app.get('data'),
   loading: state.app.get('loading'),
   error: state.app.get('error'),
+  isAuthenticated: state.app.getIn(['data', 'isAuthenticated']),
+  user: state.app.getIn(['data', 'user']),
 });
 
 class NavBar extends PureComponent {
@@ -32,11 +41,15 @@ class NavBar extends PureComponent {
     match: PropTypes.object.isRequired,
     loading: PropTypes.bool.isRequired,
     history: PropTypes.object.isRequired,
+    isAuthenticated: PropTypes.bool,
     region: PropTypes.string,
+    user: PropTypes.object,
   };
 
   static defaultProps = {
     config: null,
+    isAuthenticated: false,
+    user: null,
   };
 
   constructor(props) {
@@ -59,6 +72,17 @@ class NavBar extends PureComponent {
     this.setState({
       searchValue: event.target.value,
     });
+  }
+
+  userMenuActions = (action) => {
+    console.log("userMenuAction", action);
+    if (action === USER_MENU_ACTIONS.SIGNIN) {
+      this.props.dispatch(togglePopup(POPUP_TYPE.SIGNIN));
+    } else if (action === USER_MENU_ACTIONS.SIGNUP) {
+      this.props.dispatch(togglePopup(POPUP_TYPE.SIGNUP));
+    } else if (action === USER_MENU_ACTIONS.LOGOUT) {
+      this.props.dispatch(doLogout());
+    }
   }
 
   onSearchClick = () => {
@@ -98,6 +122,13 @@ class NavBar extends PureComponent {
               onSearch={this.onSearchClick}
               onSearchChange={this.onSearchInputChange}
             />
+            <div style={styles.userMenu}>
+              <UserMenu
+                user={this.props.user}
+                userMenuActions={this.userMenuActions}
+                isAuthenticated={this.props.isAuthenticated}
+              />
+            </div>
           </div>
         }
       </React.Fragment>

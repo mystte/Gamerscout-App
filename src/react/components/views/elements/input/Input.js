@@ -2,8 +2,19 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import styles from './styles';
+import SVGIcon from '../svgicon/SVGIcon';
+
+export const ICON_POSITION = {
+  LEFT: 'ICON_POSITION_LEFT',
+  RIGHT: 'ICON_POSITION_RIGHT',
+}
+
+export const INPUT_THEME = {
+  DEFAULT: 'defaultTheme',
+};
 
 export const INPUT_TYPE = {
+  EMAIL: 'email',
   TEXT: 'text',
   PASSWORD: 'password',
 }
@@ -14,13 +25,63 @@ const Input = ({
   onChange,
   placeholder,
   title,
+  type,
+  theme,
   initValue,
   focus,
   inputStyle,
+  icon,
+  iconPosition,
+  error,
+  valid,
 }) => {
   const [ref, setRef] = useState('');
   const [mounted, setMounted] = useState(false);
   const [value, setValue] = useState(initValue);
+  const [toggleFocus, setToggleFocus] = useState(false);
+  const focusStyle = (toggleFocus) ? styles.focus : null;
+  const errorStyle = (error) ? styles.error : null;
+  const validStyle = (valid) ? styles.valid : null;
+  const passwordStyle = (type === INPUT_TYPE.PASSWORD) ? styles.inputPassword : null;
+
+  const mergedInputStyle = {
+    ...styles.input,
+    ...styles[theme],
+    ...inputStyle,
+    ...passwordStyle,
+    ...focusStyle,
+    ...errorStyle,
+    ...validStyle,
+  };
+
+  const renderedIcon = () => {
+    let renderedIcon = null;
+    if (iconPosition === ICON_POSITION.LEFT) {
+      renderedIcon = (
+        <div style={{
+          ...styles.iconLeftContainer,
+          ...focusStyle,
+          ...errorStyle,
+          ...validStyle,
+        }}>
+          <SVGIcon
+            width={16}
+            name={icon}
+          />
+        </div>
+      );
+    } else if (iconPosition === ICON_POSITION.RIGHT) {
+      renderedIcon = (
+        <div style={styles.iconRightContainer}>
+          <SVGIcon
+            width={16}
+            name={icon}
+          />
+        </div>
+      );
+    }
+    return renderedIcon;
+  }
 
   const onInputChange = (e) => {
     setValue(e.target.value);
@@ -28,7 +89,10 @@ const Input = ({
   }
 
   useEffect(() => {
-    if (ref && focus && !mounted) ref.focus();
+    if (ref && focus && !mounted) {
+      ref.focus();
+      setToggleFocus(true);
+    }
     if (ref && !mounted) setMounted(true);
   });
 
@@ -37,18 +101,25 @@ const Input = ({
       {title &&
         <div style={styles.title}>{title}</div>
       }
-      <input
-        ref={(input) => { setRef(input); }}
-        style={{
-          ...styles.input,
-          ...inputStyle
-        }}
-        type="text"
-        placeholder={placeholder}
-        value={value}
-        onChange={onInputChange}
-        maxLength={length}
-      />
+      <div style={styles.inputContainer}>
+        {icon && iconPosition === ICON_POSITION.LEFT &&
+          renderedIcon()
+        }
+        <input
+          ref={(input) => { setRef(input); }}
+          style={mergedInputStyle}
+          onFocus={() => setToggleFocus(true)}
+          onBlur={() => setToggleFocus(false)}
+          type={type}
+          placeholder={placeholder}
+          value={value}
+          onChange={onInputChange}
+          maxLength={length}
+        />
+        {icon && iconPosition === ICON_POSITION.RIGHT &&
+          renderedIcon()
+        }
+      </div>
       {message &&
         <div style={styles.message}>{message}</div>
       }
@@ -65,6 +136,12 @@ Input.propTypes = {
   initValue: PropTypes.string,
   focus: PropTypes.bool,
   inputStyle: PropTypes.object,
+  type: PropTypes.string,
+  theme: PropTypes.string,
+  icon: PropTypes.string,
+  iconPosition: PropTypes.string,
+  error: PropTypes.bool,
+  valid: PropTypes.bool,
 };
 
 Input.defaultProps = {
@@ -76,6 +153,12 @@ Input.defaultProps = {
   focus: false,
   onChange: null,
   inputStyle: null,
+  type: INPUT_TYPE.TEXT,
+  theme: INPUT_THEME.DEFAULT,
+  icon: null,
+  iconPosition: ICON_POSITION.LEFT,
+  error: false,
+  valid: false,
 };
 
 export default Input;

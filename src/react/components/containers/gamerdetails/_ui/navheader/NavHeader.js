@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import SVGIcon, { IMG_TYPE } from '../../../../views/elements/svgicon/SVGIcon';
-import Button, { buttonTheme } from '../../../../views/elements/button/Button';
+import Button, { BUTTON_THEME } from '../../../../views/elements/button/Button';
 import ActionButtons from './_ui/actionbuttons/ActionButtons';
 import GamerAvatar from './_ui/gameravatar/GamerAvatar';
 import Localization from '../../../../../config/localization/Localization';
@@ -61,7 +61,7 @@ class NavHeader extends PureComponent {
           <div style={styles.reviewButtonsContainer}>
             <Button
               label={Localization.Labels.gamerDetails.reviewButton}
-              theme={buttonTheme.BLUE}
+              theme={BUTTON_THEME.BLUE}
               onClick={() => {}}
             />
           </div>

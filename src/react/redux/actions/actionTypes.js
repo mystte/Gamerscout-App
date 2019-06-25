@@ -4,6 +4,10 @@ export const error = (type = '') => `${type}_ERROR`;
 
 export const APP = {
   LOAD: 'APP_LOAD',
+  TOGGLE_POPUP: 'APP_TOGGLE_POPUP',
+  DO_SIGNUP: 'APP_DO_SIGNUP',
+  DO_LOGIN: 'APP_DO_LOGIN',
+  DO_LOGOUT: 'APP_DO_LOGOUT',
 };
 
 export const GAMER_DETAILS = {

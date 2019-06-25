@@ -1,6 +1,33 @@
 {
+  "signupPopup": {
+    "username": "Username",
+    "email": "Courriel",
+    "password": "Mot de passe",
+    "create": "Créer un compte",
+    "facebook": "Se connecter avec Facebook",
+    "haveAccount": "Vous avez déjà un compte?",
+    "terms": "Conditions d'utilisation",
+    "policy": "Politique de confidentialité",
+    "agreement": "En continuant, vous acceptez les {0} et {1} de Gamerscout.",
+    "signin": "Login"
+  },
+  "signinPopup": {
+    "title": "Login",
+    "email": "Email",
+    "password": "Mot de passe",
+    "facebook": "Login avec Facebook",
+    "createAccount": "Créer un compte",
+    "reset": "Mot de passe oublié"
+  },
   "navBar": {
-    "placeholder": "Gamertag"
+    "placeholder": "Gamertag",
+    "signup": "Créer un compte",
+    "login": "Login",
+    "userMenuOptions": {
+      "profile": "Profile",
+      "settings": "Paramètres",
+      "logout": "Déconnexion"
+    }
   },
   "gamerDetails": {
     "overview": "Aperçu",

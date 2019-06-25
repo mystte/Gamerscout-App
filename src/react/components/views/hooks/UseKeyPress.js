@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const useKeyPress = (targetKey) => {
+const UseKeyPress = (targetKey) => {
   const [keyPressed, setKeyPressed] = useState(false);
 
   const downHandler = ({ key }) => {
@@ -28,4 +28,4 @@ const useKeyPress = (targetKey) => {
   return keyPressed;
 }
 
-export default useKeyPress;
+export default UseKeyPress;

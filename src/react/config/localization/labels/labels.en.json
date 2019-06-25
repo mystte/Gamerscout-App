@@ -1,6 +1,33 @@
 {
+  "signupPopup": {
+    "title": "Create Account",
+    "username": "Username",
+    "email": "Email",
+    "password": "Password",
+    "facebook": "Connect with Facebook",
+    "haveAccount": "Already have an account?",
+    "terms": "Terms of Use",
+    "policy": "Provacy Policy",
+    "agreement": "By continuing, you agree to Gamerscout's {0} and {1}.",
+    "signin": "Sign in"
+  },
+  "signinPopup": {
+    "title": "Sign In",
+    "email": "Email",
+    "password": "Password",
+    "facebook": "Sign in with Facebook",
+    "createAccount": "Create Account",
+    "reset": "Reset Password"
+  },
   "navBar": {
-    "placeholder": "Summoner Name"
+    "placeholder": "Summoner Name",
+    "signup": "Create Account",
+    "login": "Sign In",
+    "userMenuOptions": {
+      "profile": "Profile",
+      "settings": "Settings",
+      "logout": "Logout"
+    }
   },
   "gamerDetails": {
     "overview": "Overview",

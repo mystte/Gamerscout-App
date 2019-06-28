@@ -35,6 +35,17 @@ function* doSignup({ parameters }) {
   }
 }
 
+function* doResetPassword({ parameters }) {
+  const actionType = APP.DO_RESET_PWD;
+
+  try {
+    yield fetchAsync(Api.doResetPassword, parameters);
+    yield put({ type: success(actionType) });
+  } catch (e) {
+    yield put({ type: error(actionType), error: e.message });
+  }
+}
+
 function* doLogin({ parameters }) {
   const actionType = APP.DO_LOGIN;
 
@@ -83,6 +94,7 @@ export function* appSaga() {
   yield takeLatest(loading(APP.DO_FACEBOOK_LOGIN), doFacebookLogin);
   yield takeLatest(loading(APP.DO_SIGNUP), doSignup);
   yield takeLatest(loading(APP.DO_LOGOUT), doLogout);
+  yield takeLatest(loading(APP.DO_RESET_PWD), doResetPassword);
 }
 
 export default appSaga;

@@ -2,6 +2,15 @@
   "facebook": {
     "title": "Facebook"
   },
+  "forgetPasswordPopup": {
+    "title": "Mot de passe oublié",
+    "desc": "Entrez votre adresse courriel et nous vous enverrons un lien pour réinitialiser votre mot de passe.",
+    "placeholder": "Courriel",
+    "submit": "Réinitialiser le mot de passe",
+    "back": "Retour",
+    "success": "Les instructions de réinitialisation du mot de passe vous seront envoyées par e-mail.",
+    "close": "Fermer"
+  },
   "signupPopup": {
     "username": "Username",
     "email": "Courriel",

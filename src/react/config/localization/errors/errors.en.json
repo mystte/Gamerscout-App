@@ -1,4 +1,8 @@
 {
+  "resetPassword": {
+    "errEmailRequired": "Email is required",
+    "errWrongEmail": "Enter a valid email address"
+  },
   "signin": {
     "errWrongEmail": "Email / Password does not match",
     "errWrongPassword": "Email / Password does not match",

@@ -22,4 +22,12 @@ export default class Validator {
 
     return true;
   }
+
+  static doResetPasswordValidator(email) {
+
+    if (!email) return ERROR_TYPES.ERR_EMAIL_REQUIRED;
+    if (!validator.isEmail(email)) return ERROR_TYPES.ERR_WRONG_EMAIL;
+
+    return true;
+  }
 }

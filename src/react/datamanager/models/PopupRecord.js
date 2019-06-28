@@ -3,6 +3,7 @@ import { Record, Maybe } from 'typed-immutable';
 export const POPUP_TYPE = {
   SIGNIN: 'POPUP_SIGNIN',
   SIGNUP: 'POPUP_SIGNUP',
+  FORGET_PWD: 'FORGET_PWD',
 };
 
 const defaultProps = {

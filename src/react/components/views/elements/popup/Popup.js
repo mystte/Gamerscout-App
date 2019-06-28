@@ -6,6 +6,7 @@ import Button, { BUTTON_THEME } from '../button/Button';
 import UseKeyPress from '../../hooks/UseKeyPress';
 import SigninPopup from '../../../containers/navbar/_ui/signinpopup/SigninPopup';
 import SignupPopup from '../../../containers/navbar/_ui/signuppopup/SignupPopup';
+import ForgetPasswordPopup from '../../../containers/navbar/_ui/forgetpasswordpopup/ForgetPasswordPopup';
 import { POPUP_TYPE } from '../../../../datamanager/models/PopupRecord';
 
 const Popup = ({
@@ -21,6 +22,8 @@ const Popup = ({
       result = <SigninPopup />;
     } else if (type === POPUP_TYPE.SIGNUP) {
       result = <SignupPopup />;
+    } else if (type === POPUP_TYPE.FORGET_PWD) {
+      result = <ForgetPasswordPopup />;
     }
     return result;
   }

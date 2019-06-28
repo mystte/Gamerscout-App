@@ -47,6 +47,17 @@ export function doSignup(
   };
 }
 
+export function doResetPassword(
+  email
+) {
+  return {
+    type: loading(APP.DO_RESET_PWD),
+    parameters: {
+      email,
+    },
+  };
+}
+
 export function doLogout() {
   return {
     type: loading(APP.DO_LOGOUT),

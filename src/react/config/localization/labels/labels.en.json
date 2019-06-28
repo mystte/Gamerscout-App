@@ -2,6 +2,15 @@
   "facebook": {
     "title": "Facebook"
   },
+  "forgetPasswordPopup": {
+    "title": "Reset Password",
+    "desc": "Enter your email address and we'll send a link to reset your password.",
+    "placeholder": "Email",
+    "submit": "Reset Password",
+    "back": "Return to Sign In",
+    "success": "Password reset instructions will be sent to your email",
+    "close": "Close"
+  },
   "signupPopup": {
     "title": "Create Account",
     "username": "Username",

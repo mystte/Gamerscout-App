@@ -95,7 +95,7 @@ const SigninPopup = () => {
         <Button
           label={labels.reset}
           theme={BUTTON_THEME.LINK}
-          onClick={() => { }}
+          onClick={() => dispatch(togglePopup(POPUP_TYPE.FORGET_PWD, true))}
         />
       </div>
     </div>

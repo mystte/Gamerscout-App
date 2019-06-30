@@ -20,8 +20,12 @@ const DropDown = ({
   options,
   selectType,
   selectContent,
+  noSelectFeedback,
 }) => {
+  if (options.length === 0) return null;
   const [select, setSelect] = useState(1);
+  const selectedLabel = (options[select - 1].label) ? options[select - 1].label : options[select - 1].name;
+  const { isOpen, toggle, node } = UseModal();
 
   const onSelect = (selectedItemNumber) => {
     setSelect(selectedItemNumber);
@@ -33,7 +37,7 @@ const DropDown = ({
     let result = <span style={styles.selectedLabel}>{selectedLabel}</span>;
 
     if (selectType === SELECT_TYPE.CUSTOM_CONTENT) {
-    result = <div style={styles.customSelect}>{selectContent}</div>;
+      result = <div style={styles.customSelect}>{selectContent}</div>;
     }
 
     return result;
@@ -41,7 +45,7 @@ const DropDown = ({
 
   const renderListView = () => {
     return options.map((elem, idx) => {
-      const elemLabelStyle = (idx === select - 1) ? {
+      const elemLabelStyle = (idx === select - 1 && !noSelectFeedback) ? {
         ...styles.elemLabel,
         ...styles.elemLabelSelect,
       } : {
@@ -80,10 +84,7 @@ const DropDown = ({
     return containerStyle;
   }
 
-  if (options.length === 0) return null;
-  const selectedLabel = (options[select - 1].label) ? options[select - 1].label : options[select - 1].name;
   const containerStyle = getSelectContainerStyle();
-  const { isOpen, toggle, node } = UseModal();
 
   return (
     <div
@@ -111,19 +112,19 @@ const DropDown = ({
 
   DropDown.propTypes = {
     options: PropTypes.array.isRequired,
-    select: PropTypes.number,
     selectType: PropTypes.string,
     dropDownType: PropTypes.string,
     onChange: PropTypes.func,
     selectContent: PropTypes.object,
+    noSelectFeedback: PropTypes.bool,
   };
 
   DropDown.defaultProps = {
-    select: 0,
     selectType: SELECT_TYPE.DEFAULT,
     dropDownType: DROPDOWN_TYPE.DEFAULT,
     onChange: null,
     selectContent: null,
+    noSelectFeedback: false,
   };
 
 export default DropDown;

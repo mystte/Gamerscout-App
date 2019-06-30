@@ -1,4 +1,33 @@
 {
+  "settings": {
+    "title": "Paramètres",
+    "nav": {
+      "profile": "Profile",
+      "emailPassword": "Courriel & mot de passe",
+      "accounts": "Comptes"
+    },
+    "profile": {
+      "title": "Paramètres",
+      "info": "Informations du profil",
+      "desc": "Modifier les informations de profil",
+      "edit": "Mofifier le profil"
+    },
+    "emailPassword": {
+      "title": "Courriel & mot de passe",
+      "email": "Courriel",
+      "emailDesc": "Mettre à jour votre adresse courriel",
+      "password": "Mot de passe",
+      "passwordDesc": "Modifier mot de passe",
+      "edit": "Éditer"
+    },
+    "accounts": {
+      "title": "Comptes connectés",
+      "facebook": "facebook",
+      "facebookDesc": "Connecter ou déconnecter Facebook",
+      "connected": "{0} compte(s)",
+      "edit": "Éditer"
+    }
+  },
   "facebook": {
     "title": "Facebook"
   },

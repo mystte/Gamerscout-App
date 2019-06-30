@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import {
   getHomeUrl,
   getGamerDetailsUrl,
+  getSettingsUrl,
 } from '../../../config/routes';
 import {
   GAME_PLATFORM,
@@ -82,6 +83,8 @@ class NavBar extends PureComponent {
       this.props.dispatch(togglePopup(POPUP_TYPE.SIGNUP));
     } else if (action === USER_MENU_ACTIONS.LOGOUT) {
       this.props.dispatch(doLogout());
+    } else if (action === USER_MENU_ACTIONS.SETTINGS) {
+      this.props.history.push(getSettingsUrl());
     }
   }
 

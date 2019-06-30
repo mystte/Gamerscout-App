@@ -1,4 +1,33 @@
 {
+  "settings": {
+    "title": "Settings",
+    "nav": {
+      "profile": "Profile",
+      "emailPassword": "Email & password",
+      "accounts": "Accounts"
+    },
+    "profile": {
+      "title": "Profile",
+      "info": "Profile information",
+      "desc": "Change profile information, such as display name",
+      "edit": "Edit profile"
+    },
+    "emailPassword": {
+      "title": "Email & password",
+      "email": "Email address",
+      "emailDesc": "Change the email address used for sign in and communications",
+      "password": "Password",
+      "passwordDesc": "Update your password",
+      "edit": "Change"
+    },
+    "accounts": {
+      "title": "Connected accounts",
+      "facebook": "facebook",
+      "facebookDesc": "Connect or disconnect Facebook",
+      "connected": "{0} account(s)",
+      "edit": "Change"
+    }
+  },
   "facebook": {
     "title": "Facebook"
   },
@@ -19,7 +48,7 @@
     "facebook": "Connect with Facebook",
     "haveAccount": "Already have an account?",
     "terms": "Terms of Use",
-    "policy": "Provacy Policy",
+    "policy": "Privacy Policy",
     "agreement": "By continuing, you agree to Gamerscout's {0} and {1}.",
     "signin": "Sign in"
   },

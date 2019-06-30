@@ -10,6 +10,8 @@ const formatUrlForRouter = (url) => {
 
 export const getHomeUrl = () => APP_URL_BASE;
 
+export const getSettingsUrl = () => Localization.Urls.settingsUrl;
+
 export const getGamerDetailsUrl = (platform, region, game, gamertag) => {
   let gamerDetailsUrl = Localization.Urls.gamerDetailsUrl;
 

@@ -1,0 +1,7 @@
+export const NAV_SECTION = {
+  PROFILE: 'NAV_SECTION_PROFILE',
+  EMAIL_PASSWORD: 'NAV_SECTION_EMAIL',
+  ACCOUNTS: 'NAV_SECTION_ACCOUNTS',
+}
+
+export default null;

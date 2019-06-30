@@ -1,3 +1,4 @@
 {
-  "gamerDetailsUrl": "/gamer/{platform}/{region}/{game}/{gamertag}"
+  "gamerDetailsUrl": "/gamer/{platform}/{region}/{game}/{gamertag}",
+  "settingsUrl": "/settings"
 }

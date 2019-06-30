@@ -8,16 +8,22 @@ import FourOFour from '../components/containers/fourofour/FourOFour';
 import {
   getHomeUrl,
   getGamerDetailsUrl,
+  getSettingsUrl,
 } from '../config/routes';
 
 const Home = React.lazy(() => import('../components/containers/home/Home'));
 const GamerDetails = React.lazy(() => import('../components/containers/gamerdetails/GamerDetails'));
+const Settings = React.lazy(() => import('../components/containers/settings/Settings'));
 
 const AppRouter = ({ cookies }) => {
   const routesConfig = [
     {
       path: getHomeUrl(),
       component: Home,
+    },
+    {
+      path: getSettingsUrl(),
+      component: Settings,
     },
     {
       path: getGamerDetailsUrl(),

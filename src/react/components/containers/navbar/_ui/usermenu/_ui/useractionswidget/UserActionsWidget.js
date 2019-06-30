@@ -48,6 +48,7 @@ const UserActionsWidget = ({
         selectContent={getAvatar()}
         dropDown={DROPDOWN_TYPE.DEFAULT}
         onChange={onDropdownSelect}
+        noSelectFeedback
       />
     </div>
   );

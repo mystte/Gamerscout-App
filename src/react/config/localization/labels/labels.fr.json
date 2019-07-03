@@ -10,7 +10,8 @@
       "title": "Paramètres",
       "info": "Informations du profil",
       "desc": "Modifier les informations de profil",
-      "edit": "Mofifier le profil"
+      "edit": "Mofifier le profil",
+      "close": "Fermer"
     },
     "emailPassword": {
       "title": "Courriel & mot de passe",
@@ -18,14 +19,19 @@
       "emailDesc": "Mettre à jour votre adresse courriel",
       "password": "Mot de passe",
       "passwordDesc": "Modifier mot de passe",
-      "edit": "Éditer"
+      "edit": "Éditer",
+      "close": "Fermer",
+      "cancel": "Annuler",
+      "submit": "Valider",
+      "newPassword": "nouveau mot de passe"
     },
     "accounts": {
       "title": "Comptes connectés",
       "facebook": "facebook",
       "facebookDesc": "Connecter ou déconnecter Facebook",
       "connected": "{0} compte(s)",
-      "edit": "Éditer"
+      "edit": "Éditer",
+      "close": "Fermer"
     }
   },
   "facebook": {

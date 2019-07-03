@@ -26,6 +26,7 @@ class Button extends PureComponent {
     onClick: PropTypes.func.isRequired,
     theme: PropTypes.string,
     buttonStyle: PropTypes.object,
+    disabled: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -34,6 +35,7 @@ class Button extends PureComponent {
     theme: BUTTON_THEME.DARK,
     label: null,
     buttonStyle: null,
+    disabled: false,
   };
 
   constructor(props) {

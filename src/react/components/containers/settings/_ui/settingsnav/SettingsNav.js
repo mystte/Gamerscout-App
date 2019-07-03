@@ -21,9 +21,9 @@ const SettingsNav = ({
         onClick={onNavSelect}
       />
       <NavElem
-        selected={selectedNav === NAV_SECTION.EMAIL_PASSWORD}
+        selected={selectedNav === NAV_SECTION.EMAIL}
         label={labels.emailPassword}
-        type={NAV_SECTION.EMAIL_PASSWORD}
+        type={NAV_SECTION.EMAIL}
         onClick={onNavSelect}
       />
       <NavElem

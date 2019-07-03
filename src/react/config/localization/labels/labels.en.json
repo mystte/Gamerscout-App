@@ -10,7 +10,8 @@
       "title": "Profile",
       "info": "Profile information",
       "desc": "Change profile information, such as display name",
-      "edit": "Edit profile"
+      "edit": "Edit profile",
+      "close": "Close"
     },
     "emailPassword": {
       "title": "Email & password",
@@ -18,14 +19,19 @@
       "emailDesc": "Change the email address used for sign in and communications",
       "password": "Password",
       "passwordDesc": "Update your password",
-      "edit": "Change"
+      "edit": "Change",
+      "close": "Close",
+      "cancel": "Cancel",
+      "submit": "Send verification",
+      "newPassword": "new password"
     },
     "accounts": {
       "title": "Connected accounts",
       "facebook": "facebook",
       "facebookDesc": "Connect or disconnect Facebook",
       "connected": "{0} account(s)",
-      "edit": "Change"
+      "edit": "Change",
+      "close": "Close"
     }
   },
   "facebook": {

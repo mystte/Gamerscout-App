@@ -24,6 +24,10 @@ const styles = {
     position: 'relative',
   },
 
+  dataContainerEditMode: {
+    borderColor: colorNameToHex('dodgerblue'),
+  },
+
   infoTitle: {
     color: colorNameToHex('white'),
     fontWeight: 600,

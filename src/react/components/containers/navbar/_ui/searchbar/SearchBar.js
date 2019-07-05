@@ -18,6 +18,10 @@ const SearchBar = ({
   const labels = Localisation.Labels.navBar;
   const enterPressed = UseKeyPress('Enter');
 
+  const disableEnter = (e) => {
+    e.which === 13 ? e.preventDefault() : null;
+  }
+
   useEffect(() => {
     return () => {
       if (enterPressed) onSearch();
@@ -34,7 +38,7 @@ const SearchBar = ({
         />
       </div>
       <div style={styles.searchContainer}>
-        <form autoComplete="false">
+        <form onKeyDown={disableEnter} autoComplete="false">
           <Input
             length="50"
             placeholder={labels.placeholder}

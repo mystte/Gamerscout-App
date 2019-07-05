@@ -47,14 +47,16 @@ class Button extends PureComponent {
 
   render() {
     const iconContainerStyle = (this.props.theme === BUTTON_THEME.SIMPLE) ? {} : styles.iconContainer;
+    const buttonDisabledStyle = (this.props.disabled) ? styles.disabled : null;
 
     return (
       <button
-        onClick={this.props.onClick}
+        onClick={(this.props.disabled) ? null : this.props.onClick}
         style={{
           ...styles.container,
           ...styles[this.props.theme],
           ...this.props.buttonStyle,
+          ...buttonDisabledStyle,
         }}
       >
         { this.props.icon &&

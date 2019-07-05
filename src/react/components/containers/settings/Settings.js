@@ -1,5 +1,5 @@
 import React , { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Localization from '../../../config/localization/Localization';
 import styles from './styles';
@@ -8,24 +8,33 @@ import { NAV_SECTION } from './enums'
 import ProfileInformation from './_ui/profileinformation/ProfileInformation';
 import EmailAndPassword from './_ui/emailandpassword/EmailAndPassword';
 import ConnectedAccounts from './_ui/connectedaccounts/ConnectedAccounts';
+import { doUpdateUser, clearAppError } from '../../../redux/actions/app';
+
 
 const Settings = () => {
   const labels = Localization.Labels.settings;
   const [selectedNav, setSelectedNav] = useState(NAV_SECTION.PROFILE);
   const [editingSection, setEditingSection] = useState(null);
   const connectedUser = useSelector(state => state.app.getIn(['data', 'user']));
+  const dispatch = useDispatch();
 
   if (!connectedUser) return null;
 
   const onSettingsUpdate = (type, data) => {
     console.log("##### On Settings update click", type, data);
-    if (editingSection === type) {
+    if (data) {
+      if (type === NAV_SECTION.EMAIL) {
+        dispatch(doUpdateUser({ newEmail: data.email, id: connectedUser.id }));
+      } else if (type === NAV_SECTION.PASSWORD) {
+        console.log("#### UPDATE PASSWORD");
+      }
+    } else if (editingSection === type) {
       setEditingSection(null);
+      dispatch(clearAppError());
     } else {
       setEditingSection(type);
       setSelectedNav(type);
     }
-
   }
 
   return (

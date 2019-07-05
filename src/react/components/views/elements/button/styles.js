@@ -53,6 +53,11 @@ const styles = {
     color: colorNameToHex('dodgerblue'),
     fontWeight: 200,
   },
+
+  disabled: {
+    opacity: 0.3,
+    cursor: 'default',
+  },
 };
 
 export default styles;

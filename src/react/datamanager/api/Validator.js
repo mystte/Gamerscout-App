@@ -30,4 +30,20 @@ export default class Validator {
 
     return true;
   }
+
+  static doEmailValidator(email) {
+    if (!validator.isEmail(email)) return ERROR_TYPES.ERR_WRONG_EMAIL;
+
+    return true
+  }
+
+  static doUpdateEmailDisabledValidator(newEmail, email) {
+    if (newEmail === null || newEmail === email || newEmail === "") return true;
+    return false;
+  }
+
+  static doUpdatePasswordDisabledValidator(password, passwordConfirm) {
+    if (password !== passwordConfirm || password === null || password === "") return true;
+    return false;
+  }
 }

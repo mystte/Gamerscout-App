@@ -41,6 +41,7 @@ const styles = {
 
   inputContainer: {
     flexDirection: 'row',
+    height: '100%',
   },
 
   iconLeftContainer: {

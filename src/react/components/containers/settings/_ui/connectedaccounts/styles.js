@@ -44,7 +44,7 @@ const styles = {
     right: 30,
     top: 41,
     cursor: 'pointer',
-    color: colorNameToHex('dodgerblue'),
+    color: colorNameToHex('white'),
     fontSize: 14,
     fontWeight: 600,
   },

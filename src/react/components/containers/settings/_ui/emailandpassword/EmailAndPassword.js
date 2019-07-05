@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 
 import Localization from '../../../../../config/localization/Localization';
-
 import styles from './styles';
 import { NAV_SECTION } from '../../enums';
 import Input, { INPUT_TYPE } from '../../../../views/elements/input/Input';
 import Button, { BUTTON_THEME } from '../../../../views/elements/button/Button';
+import Validator from '../../../../../datamanager/api/Validator';
 
 const EmailAndPassword = ({
   isEditEmailMode,
@@ -17,7 +18,40 @@ const EmailAndPassword = ({
   const labels = Localization.Labels.settings.emailPassword;
   const editEmailLabel = (isEditEmailMode) ? labels.close : labels.edit;
   const editPasswordLabel = (isEditPasswordMode) ? labels.close : labels.edit;
+  const [newEmail, setNewEmail] = useState(null);
+  const [newPassword, setNewPassword] = useState(null);
+  const [newPasswordConfirm, setNewPasswordConfirm] = useState(null);
+  const [wrongEmail, setWrongEmail] = useState(null);
+  const [emailErrorMessage, setEmailErrorMessage] = useState(null);
+  const apiError = useSelector(state => state.app.get('error'));
+  const errorLabels = Localization.Errors.userUpdate;
   const maxInputLength = "150";
+
+  const onEmailUpdateSubmit = () => {
+    const isValid = Validator.doEmailValidator(newEmail);
+    if (isValid === true) {
+      onUpdate(NAV_SECTION.EMAIL, { email: newEmail });
+    } else {
+      setEmailErrorMessage(errorLabels[isValid]);
+      setWrongEmail(isValid !== true);
+    }
+  }
+
+  const getEmailErrorMessage = () => {
+    let errorMessage = null;
+
+    if (emailErrorMessage) errorMessage = emailErrorMessage;
+    else if (apiError) errorMessage = errorLabels[apiError];
+    return errorMessage;
+  }
+
+  const onCancelClick = () => {
+    onUpdate(NAV_SECTION.EMAIL, null);
+    setNewEmail(null);
+    setNewPassword(null);
+    setEmailErrorMessage(null);
+    setWrongEmail(null);
+  }
 
   const getEMailDataContainerStyle = () => {
     return (isEditEmailMode) ? {
@@ -49,6 +83,9 @@ const EmailAndPassword = ({
             focus
             placeholder={email}
             length={maxInputLength}
+            onChange={(e) => setNewEmail(e.target.value)}
+            message={getEmailErrorMessage()}
+            error={wrongEmail || apiError}
           />
         </div>
         <div style={styles.submitlButtonsContainer}>
@@ -56,15 +93,15 @@ const EmailAndPassword = ({
               <Button
                 label={labels.cancel}
                 theme={BUTTON_THEME.GREY}
-                onClick={() => onUpdate(NAV_SECTION.EMAIL, null)}
+                onClick={onCancelClick}
               />
             </div>
             <div style={styles.submitButtonContainer}>
               <Button
                 label={labels.submit}
                 theme={BUTTON_THEME.BLUE}
-                onClick={() => {}}
-                disabled
+                onClick={onEmailUpdateSubmit}
+                disabled={Validator.doUpdateEmailDisabledValidator(newEmail, email)}
               />
             </div>
         </div>
@@ -84,12 +121,18 @@ const EmailAndPassword = ({
             type={INPUT_TYPE.PASSWORD}
             placeholder={labels.newPassword}
             length={maxInputLength}
+            onChange={(e) => {
+              setNewPassword(e.target.value);
+            }}
           />
           <span style={styles.inputSeparator}/>
           <Input
             type={INPUT_TYPE.PASSWORD}
             placeholder={labels.newPassword}
             length={maxInputLength}
+            onChange={(e) => {
+              setNewPasswordConfirm(e.target.value);
+            }}
           />
         </div>
         <div style={styles.submitlButtonsContainer}>
@@ -97,7 +140,7 @@ const EmailAndPassword = ({
             <Button
               label={labels.cancel}
               theme={BUTTON_THEME.GREY}
-              onClick={() => onUpdate(NAV_SECTION.EMAIL, null)}
+              onClick={onCancelClick}
             />
           </div>
           <div style={styles.submitButtonContainer}>
@@ -105,7 +148,7 @@ const EmailAndPassword = ({
               label={labels.submit}
               theme={BUTTON_THEME.BLUE}
               onClick={() => { }}
-              disabled
+              disabled={Validator.doUpdatePasswordDisabledValidator(newPassword, newPasswordConfirm)}
             />
           </div>
         </div>
@@ -123,7 +166,7 @@ const EmailAndPassword = ({
         <div style={styles.infoDesc}>{labels.emailDesc}</div>
         <div
           style={styles.edit}
-          onClick={() => onUpdate(NAV_SECTION.EMAIL, null)}
+          onClick={() => isEditEmailMode ? onCancelClick() : onUpdate(NAV_SECTION.EMAIL, null)}
         >
           {editEmailLabel}
         </div>

@@ -30,6 +30,7 @@ export default function reducer(state = initialState, action) {
     case loading(APP.DO_LOGIN):
     case loading(APP.DO_LOGOUT):
     case loading(APP.DO_SIGNUP):
+    case loading(APP.DO_UPDATE_USER):
       return state.withMutations((mutate) => {
         mutate.set('loading', true);
         mutate.set('error', null);
@@ -58,15 +59,26 @@ export default function reducer(state = initialState, action) {
         mutate.set('error', null);
       });
 
+    case success(APP.DO_UPDATE_USER):
+      return state.withMutations((mutate) => {
+        mutate.set('loading', false);
+        mutate.setIn(['data', 'user'], state.getIn(['data', 'user']).updateUser(action.data));
+        mutate.set('error', null);
+      });
+
     case error(APP.LOAD):
     case error(APP.DO_LOGIN):
     case error(APP.DO_LOGOUT):
     case error(APP.DO_SIGNUP):
-      console.log("ACTION ERROR = ", action.error);
+    case error(APP.DO_UPDATE_USER):
+      console.log("ACTION ERROR = ", action);
       return state.withMutations((mutate) => {
         mutate.set('loading', false);
         mutate.set('error', action.error);
       });
+
+    case APP.CLEAR_ERROR:
+      return state.set('error', null);
 
     default:
   }

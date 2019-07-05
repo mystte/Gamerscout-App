@@ -34,7 +34,7 @@ async function doApiCall(url, params, callType = CALL_TYPE.GET) {
   } else if (callType === CALL_TYPE.POST) {
     result = await axios.post(`${serverUrl}${url}`, params, axiosOptions);
   } else if (callType === CALL_TYPE.PUT) {
-    result = null;
+    result = await axios.put(`${serverUrl}${url}`, params, axiosOptions);
   }
   return result;
 }
@@ -80,6 +80,14 @@ export default class Api {
     }
 
     return doApiCall('/users/login', data, CALL_TYPE.POST);
+  }
+
+  static doUpdateUser({ id, email, password }) {
+    const data = { id };
+
+    if (email) data.email = email;
+    if (password) data.password = md5(password);
+    return doApiCall(`/users/${id}`, data, CALL_TYPE.PUT);
   }
 
   static doResetPassword({ email }) {

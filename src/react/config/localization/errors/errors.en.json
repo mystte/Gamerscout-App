@@ -16,5 +16,10 @@
     "errWrongEmail": "Email is bad formatted",
     "errWrongPassword": "Password must be at least 6 characters",
     "errUserExists": "User already has an account"
+  },
+
+  "userUpdate": {
+    "errWrongEmail": "Email is bad formatted",
+    "errEmailExists": "Email already taken"
   }
 }

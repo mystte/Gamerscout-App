@@ -28,7 +28,7 @@ class Avatar extends PureComponent {
 
   renderAvatar = () => {
     return this.props.name.split('').map((letter, idx) => {
-      return (idx < 2) ? <div key={`letter-${letter}`} style={styles.letter}>{letter}</div> : null;
+      return (idx < 2) ? <div key={`letter-${letter}${idx}`} style={styles.letter}>{letter}</div> : null;
     });
   }
 

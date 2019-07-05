@@ -47,6 +47,21 @@ export function doSignup(
   };
 }
 
+export function doUpdateUser({
+  id,
+  newEmail = null,
+  newPassword = null,
+}) {
+  return {
+    type: loading(APP.DO_UPDATE_USER),
+    parameters: {
+      id,
+      email: newEmail,
+      password: newPassword,
+    },
+  }
+}
+
 export function doResetPassword(
   email
 ) {
@@ -61,6 +76,12 @@ export function doResetPassword(
 export function doLogout() {
   return {
     type: loading(APP.DO_LOGOUT),
+  };
+}
+
+export function clearAppError() {
+  return {
+    type: APP.CLEAR_ERROR
   };
 }
 

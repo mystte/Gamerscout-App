@@ -34,12 +34,14 @@ const SearchBar = ({
         />
       </div>
       <div style={styles.searchContainer}>
-        <Input
-          length="50"
-          placeholder={labels.placeholder}
-          inputStyle={styles.inputStyle}
-          onChange={onSearchChange}
-        />
+        <form autoComplete="false">
+          <Input
+            length="50"
+            placeholder={labels.placeholder}
+            inputStyle={styles.inputStyle}
+            onChange={onSearchChange}
+          />
+        </form>
         <div style={styles.dropdownContainer}>
           <DropDown
             options={regionsList.toArray()}

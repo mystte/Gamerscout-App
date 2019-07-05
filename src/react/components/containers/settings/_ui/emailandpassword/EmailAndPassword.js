@@ -77,35 +77,35 @@ const EmailAndPassword = ({
 
     if (isEditEmailMode) {
       renderDataContent = (
-      <div style={styles.inputDataContainer}>
-        <div style={styles.inputContainer}>
-          <Input
-            focus
-            placeholder={email}
-            length={maxInputLength}
-            onChange={(e) => setNewEmail(e.target.value)}
-            message={getEmailErrorMessage()}
-            error={wrongEmail || apiError}
-          />
-        </div>
-        <div style={styles.submitlButtonsContainer}>
-            <div style={styles.cancelButtonContainer}>
-              <Button
-                label={labels.cancel}
-                theme={BUTTON_THEME.GREY}
-                onClick={onCancelClick}
-              />
-            </div>
-            <div style={styles.submitButtonContainer}>
-              <Button
-                label={labels.submit}
-                theme={BUTTON_THEME.BLUE}
-                onClick={onEmailUpdateSubmit}
-                disabled={Validator.doUpdateEmailDisabledValidator(newEmail, email)}
-              />
-            </div>
-        </div>
-      </div>);
+        <div style={styles.inputDataContainer}>
+          <div style={styles.inputContainer}>
+            <Input
+              focus
+              placeholder={email}
+              length={maxInputLength}
+              onChange={(e) => setNewEmail(e.target.value)}
+              message={getEmailErrorMessage()}
+              error={wrongEmail || apiError}
+            />
+          </div>
+          <div style={styles.submitlButtonsContainer}>
+              <div style={styles.cancelButtonContainer}>
+                <Button
+                  label={labels.cancel}
+                  theme={BUTTON_THEME.GREY}
+                  onClick={onCancelClick}
+                />
+              </div>
+              <div style={styles.submitButtonContainer}>
+                <Button
+                  label={labels.submit}
+                  theme={BUTTON_THEME.BLUE}
+                  onClick={onEmailUpdateSubmit}
+                  disabled={Validator.doUpdateEmailDisabledValidator(newEmail, email)}
+                />
+              </div>
+          </div>
+        </div>);
     }
     return renderDataContent;
   }
@@ -161,7 +161,7 @@ const EmailAndPassword = ({
   return (
     <div style={styles.container}>
       <div style={styles.title}>{labels.title}</div>
-      <div style={getEMailDataContainerStyle()}>
+      <div className="settings-animation" style={getEMailDataContainerStyle()}>
         <div style={styles.infoTitle}>{labels.email}</div>
         <div style={styles.infoDesc}>{labels.emailDesc}</div>
         <div
@@ -172,7 +172,7 @@ const EmailAndPassword = ({
         </div>
         {renderEmailDataContent()}
       </div>
-      <div style={getPasswordDataContainerStyle()}>
+      <div className="settings-animation" style={getPasswordDataContainerStyle()}>
         <div style={styles.infoTitle}>{labels.password}</div>
         <div style={styles.infoDesc}>{labels.passwordDesc}</div>
         <div

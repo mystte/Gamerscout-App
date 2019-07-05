@@ -35,7 +35,7 @@ const ConnectedAccounts = ({
   return (
     <div style={styles.container}>
       <div style={styles.title}>{labels.title}</div>
-      <div style={getDataContainerStyle()}>
+      <div className="settings-animation" style={getDataContainerStyle()}>
         <div style={styles.infoTitle}>{labels.facebook}</div>
         <div style={styles.infoDesc}>{labels.facebookDesc}</div>
         <div

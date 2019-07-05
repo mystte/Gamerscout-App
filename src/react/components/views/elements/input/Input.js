@@ -106,6 +106,7 @@ const Input = ({
           renderedIcon()
         }
         <input
+          className="input-animation"
           ref={(input) => { setRef(input); }}
           style={mergedInputStyle}
           onFocus={() => setToggleFocus(true)}
@@ -121,7 +122,7 @@ const Input = ({
         }
       </div>
       {message &&
-        <div style={styles.message}>{message}</div>
+        <div className="input-animation" style={styles.message}>{message}</div>
       }
     </div>
   );

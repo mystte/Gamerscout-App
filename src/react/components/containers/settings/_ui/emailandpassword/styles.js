@@ -14,6 +14,7 @@ const styles = {
   dataContainer: {
     width: '100%',
     minHeight: 100,
+    height: 100,
     backgroundColor: colorNameToHex('ebonyclay'),
     borderStyle: 'solid',
     borderColor: colorNameToHex('dimgrey'),
@@ -26,11 +27,13 @@ const styles = {
 
   dataContainerEmailEditMode: {
     borderColor: colorNameToHex('dodgerblue'),
+    height: 215,
   },
 
   dataContainerPwdEditMode: {
     borderColor: colorNameToHex('dodgerblue'),
     borderTopWidth: 1,
+    height: 260,
   },
 
   pwdDataContainer: {
@@ -60,6 +63,7 @@ const styles = {
 
   inputDataContainer: {
     marginTop: 20,
+    overflow: 'hidden',
   },
 
   inputContainer: {

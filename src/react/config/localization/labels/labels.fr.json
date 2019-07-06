@@ -1,4 +1,9 @@
 {
+  "notifications": {
+    "invalidAccount": {
+      "title": "Votre courriel n'a pas encore été validé. {0}"
+    }
+  },
   "settings": {
     "title": "Paramètres",
     "nav": {

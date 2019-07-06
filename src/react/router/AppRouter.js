@@ -10,6 +10,7 @@ import {
   getGamerDetailsUrl,
   getSettingsUrl,
 } from '../config/routes';
+import NotificationsManager from "../components/containers/notifiationsmanager/NotificationsManager";
 
 const Home = React.lazy(() => import('../components/containers/home/Home'));
 const GamerDetails = React.lazy(() => import('../components/containers/gamerdetails/GamerDetails'));
@@ -46,6 +47,7 @@ const AppRouter = ({ cookies }) => {
   return (
     <Router>
       <NavBar />
+      <NotificationsManager />
       <Suspense fallback={<Loading />}>
         <Switch>
           {renderedRoutes}

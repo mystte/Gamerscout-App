@@ -1,4 +1,9 @@
 {
+  "notifications": {
+    "invalidAccount": {
+      "title": "Your email has not been validated yet. {0}"
+    }
+  },
   "settings": {
     "title": "Settings",
     "nav": {

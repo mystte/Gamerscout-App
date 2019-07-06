@@ -10,6 +10,8 @@ import {
 } from './redux/actions/app';
 import Localization from './config/localization/Localization';
 import Popup from './components/views/elements/popup/Popup';
+import { pushNotification } from './redux/actions/notifications';
+import NotificationRecord, { MOCKED_NOTIFICATION } from './datamanager/models/NotificationRecord';
 
 const mapStateToProps = state => ({
   config: state.app.get('data'),
@@ -53,6 +55,10 @@ class AppBootstrap extends PureComponent {
     if (this.props.user) {
       if (this.props.cookies.get('gamerscout-api-session') !== this.props.user.get('sessionId')) {
         this.props.cookies.set('gamerscout-api-session', this.props.user.get('sessionId'));
+      }
+
+      if (!this.props.user.validated) {
+        this.props.dispatch(pushNotification(NotificationRecord.getMockedNotif(MOCKED_NOTIFICATION.INVALID_ACCOUNT)));
       }
     }
   }

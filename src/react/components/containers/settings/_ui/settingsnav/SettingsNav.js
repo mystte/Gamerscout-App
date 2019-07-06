@@ -37,11 +37,12 @@ const SettingsNav = ({
 }
 
 SettingsNav.propTypes = {
-  selectedNav: PropTypes.string.isRequired,
+  selectedNav: PropTypes.string,
   onNavSelect: PropTypes.func.isRequired,
 };
 
 SettingsNav.defaultProps = {
+  selectedNav: null,
 };
 
 export default SettingsNav;

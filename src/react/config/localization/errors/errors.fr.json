@@ -20,6 +20,7 @@
 
   "userUpdate": {
     "errWrongEmail": "Le format du courriel est incorrect",
-    "errEmailExists": "Ce courriel à déjà un compte existant"
+    "errEmailExists": "Ce courriel à déjà un compte existant",
+    "errShortPassword": "Le mot de passe doit être d'au moins 6 caractères"
   }
 }

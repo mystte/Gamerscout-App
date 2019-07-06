@@ -37,6 +37,13 @@ export default class Validator {
     return true
   }
 
+  static doNewPasswordValidator(password, passwordConfirm) {
+    if (password !== passwordConfirm) return ERROR_TYPES.ERR_WRONG_PASSWORD;
+    if (password.length < 6) return ERROR_TYPES.ERR_SHORT_PASSWORD;
+
+    return true
+  }
+
   static doUpdateEmailDisabledValidator(newEmail, email) {
     if (newEmail === null || newEmail === email || newEmail === "") return true;
     return false;

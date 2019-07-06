@@ -20,6 +20,7 @@
 
   "userUpdate": {
     "errWrongEmail": "Email is bad formatted",
-    "errEmailExists": "Email already taken"
+    "errEmailExists": "Email already taken",
+    "errShortPassword": "Password must be at least 6 characters long"
   }
 }

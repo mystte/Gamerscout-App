@@ -33,7 +33,7 @@ const Settings = () => {
       dispatch(clearAppError());
     } else {
       setEditingSection(type);
-      setSelectedNav(type);
+      setSelectedNav(type === NAV_SECTION.PASSWORD ? NAV_SECTION.EMAIL : type);
     }
   }
 

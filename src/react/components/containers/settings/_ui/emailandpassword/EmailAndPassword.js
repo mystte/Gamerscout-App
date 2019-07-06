@@ -23,9 +23,21 @@ const EmailAndPassword = ({
   const [newPasswordConfirm, setNewPasswordConfirm] = useState(null);
   const [wrongEmail, setWrongEmail] = useState(null);
   const [emailErrorMessage, setEmailErrorMessage] = useState(null);
+  const [pwdErrorMessage, setpwdErrorMessage] = useState(null);
   const apiError = useSelector(state => state.app.get('error'));
   const errorLabels = Localization.Errors.userUpdate;
   const maxInputLength = "150";
+
+  const onPasswordUpdateSubmit = () => {
+    const isValid = Validator.doNewPasswordValidator(newPassword, newPasswordConfirm);
+
+    if (isValid === true) {
+      console.log("##### PASSWORD VALID");
+    } else {
+      setpwdErrorMessage(errorLabels[isValid]);
+    }
+    console.log(isValid);
+  }
 
   const onEmailUpdateSubmit = () => {
     const isValid = Validator.doEmailValidator(newEmail);
@@ -37,19 +49,20 @@ const EmailAndPassword = ({
     }
   }
 
-  const getEmailErrorMessage = () => {
+  const getErrorMessage = (localErrorMessage) => {
     let errorMessage = null;
 
-    if (emailErrorMessage) errorMessage = emailErrorMessage;
+    if (localErrorMessage) errorMessage = localErrorMessage;
     else if (apiError) errorMessage = errorLabels[apiError];
     return errorMessage;
   }
 
-  const onCancelClick = () => {
-    onUpdate(NAV_SECTION.EMAIL, null);
+  const onCancelClick = (section) => {
+    onUpdate(section, null);
     setNewEmail(null);
     setNewPassword(null);
     setEmailErrorMessage(null);
+    setpwdErrorMessage(null),
     setWrongEmail(null);
   }
 
@@ -84,7 +97,7 @@ const EmailAndPassword = ({
               placeholder={email}
               length={maxInputLength}
               onChange={(e) => setNewEmail(e.target.value)}
-              message={getEmailErrorMessage()}
+              message={getErrorMessage(emailErrorMessage)}
               error={wrongEmail || apiError}
             />
           </div>
@@ -93,7 +106,7 @@ const EmailAndPassword = ({
                 <Button
                   label={labels.cancel}
                   theme={BUTTON_THEME.GREY}
-                  onClick={onCancelClick}
+                  onClick={() => onCancelClick(NAV_SECTION.EMAIL)}
                 />
               </div>
               <div style={styles.submitButtonContainer}>
@@ -124,6 +137,7 @@ const EmailAndPassword = ({
             onChange={(e) => {
               setNewPassword(e.target.value);
             }}
+            error={pwdErrorMessage !== null}
           />
           <span style={styles.inputSeparator}/>
           <Input
@@ -133,6 +147,8 @@ const EmailAndPassword = ({
             onChange={(e) => {
               setNewPasswordConfirm(e.target.value);
             }}
+            error={pwdErrorMessage !== null}
+            message={pwdErrorMessage}
           />
         </div>
         <div style={styles.submitlButtonsContainer}>
@@ -140,14 +156,14 @@ const EmailAndPassword = ({
             <Button
               label={labels.cancel}
               theme={BUTTON_THEME.GREY}
-              onClick={onCancelClick}
+              onClick={() => onCancelClick(NAV_SECTION.PASSWORD)}
             />
           </div>
           <div style={styles.submitButtonContainer}>
             <Button
               label={labels.submit}
               theme={BUTTON_THEME.BLUE}
-              onClick={() => { }}
+              onClick={onPasswordUpdateSubmit}
               disabled={Validator.doUpdatePasswordDisabledValidator(newPassword, newPasswordConfirm)}
             />
           </div>
@@ -177,7 +193,7 @@ const EmailAndPassword = ({
         <div style={styles.infoDesc}>{labels.passwordDesc}</div>
         <div
           style={styles.edit}
-          onClick={() => onUpdate(NAV_SECTION.PASSWORD, null)}
+          onClick={() => isEditPasswordMode ? onCancelClick() : onUpdate(NAV_SECTION.PASSWORD, null)}
         >
           {editPasswordLabel}
         </div>

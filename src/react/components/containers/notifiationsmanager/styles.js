@@ -5,8 +5,12 @@ const styles = {
     top: 70,
     right: 0,
     maxWidth: 520,
-    minWidth: 300,
+    minWidth: 400,
     width: '40%',
+  },
+
+  notificationContainer: {
+    marginBottom: 5,
   },
 };
 

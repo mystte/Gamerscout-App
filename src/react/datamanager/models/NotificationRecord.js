@@ -10,6 +10,8 @@ export const NOTIFICATION_TYPE = {
 
 export const MOCKED_NOTIFICATION = {
   INVALID_ACCOUNT: 'invalidAccount',
+  INVALID_ACCOUNT1: 'invalidAccount1',
+  INVALID_ACCOUNT2: 'invalidAccount2',
 }
 
 const defaultProps = {
@@ -46,9 +48,24 @@ export default class NotificationRecord extends ExtendsWith(Record(defaultProps,
           display: true,
           type: NOTIFICATION_TYPE.DEFAULT,
         };
+      break;
+
+      case MOCKED_NOTIFICATION.INVALID_ACCOUNT1:
+        notificationData = {
+          title: "test1",
+          display: true,
+          type: NOTIFICATION_TYPE.DEFAULT,
+        };
+      break;
+
+      case MOCKED_NOTIFICATION.INVALID_ACCOUNT2:
+        notificationData = {
+          title: "test2",
+          display: true,
+          type: NOTIFICATION_TYPE.DEFAULT,
+        };
     }
 
-    console.log(notificationData, type);
     return NotificationRecord.apiParser(notificationData);
   }
 }

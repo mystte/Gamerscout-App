@@ -9,10 +9,18 @@ const styles = {
     paddingBottom: 9,
     justifyContent: 'flex-start',
     alignItems: 'center',
+    position: 'relative',
   },
 
   title: {
     marginLeft: 12,
+    marginRight: 20,
+  },
+
+  close: {
+    position: 'absolute',
+    top: 14,
+    right: 14,
   },
 
   NOTIFICATION_DEFAULT: {

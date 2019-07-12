@@ -9,11 +9,13 @@ const defaultProps = {
 const ExtendsWith = (superclass) => class extends superclass {
 
   push = (record) => {
-    return this.set('notifList', this.notifList.push(record));
+    const newNotifyList = this.get('notifList').push(record);
+    return NotificationsManagerRecord.apiParser({'notifList': newNotifyList});
   }
 
-  pop = () => {
-
+  delete = (idx) => {
+    const newNotifyList = this.notifList.delete(idx);
+    return NotificationsManagerRecord.apiParser({ 'notifList': newNotifyList });
   }
 
   static get defaultProps() { return defaultProps; }

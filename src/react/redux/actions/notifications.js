@@ -10,4 +10,13 @@ export function pushNotification(notificationRecord) {
   };
 }
 
+export function deleteNotification(idx) {
+  return {
+    type: NOTIFICATIONS.DELETE,
+    parameters: {
+      idx,
+    },
+  };
+}
+
 export default null;

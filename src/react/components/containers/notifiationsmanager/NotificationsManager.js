@@ -1,28 +1,51 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 import Notification from './_ui/notification/Notification';
-// import PropTypes from 'prop-types';
-
 import styles from './styles';
+import { deleteNotification } from '../../../redux/actions/notifications';
 
 const NotificationsManager = () => {
   const notifications = useSelector(state => state.notifications.get('notificationsManagerRecord'));
+  const dispatch = useDispatch();
 
   const renderNotifications = () => {
     return notifications.get('notifList').map((notification, idx) => {
-      return (<div key={`notification-${idx}`}>
-        <Notification
-          title={notification.title}
-          type={notification.type}
-        />
-      </div>);
-    });
+      return (
+        <CSSTransition
+          timeout={800}
+          classNames="notification"
+          key={`notification-${idx}`}
+          appear
+          unmountOnExit
+        >
+        <div
+          style={styles.notificationContainer}
+        >
+          <Notification
+            id={idx}
+            title={notification.title}
+            type={notification.type}
+            onClose={onNotificationClose}
+          />
+        </div>
+        </CSSTransition>);
+      });
+    }
+
+  const onNotificationClose = (id) => {
+    console.log("id = ", id);
+    dispatch(deleteNotification(id));
   }
 
   return (
     <div style={styles.container}>
-      {notifications && renderNotifications()}
+      {notifications &&
+        <TransitionGroup>
+          {renderNotifications()}
+        </TransitionGroup>
+      }
     </div>
   );
 }

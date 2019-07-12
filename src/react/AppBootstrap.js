@@ -59,6 +59,8 @@ class AppBootstrap extends PureComponent {
 
       if (!this.props.user.validated) {
         this.props.dispatch(pushNotification(NotificationRecord.getMockedNotif(MOCKED_NOTIFICATION.INVALID_ACCOUNT)));
+        this.props.dispatch(pushNotification(NotificationRecord.getMockedNotif(MOCKED_NOTIFICATION.INVALID_ACCOUNT1)));
+        this.props.dispatch(pushNotification(NotificationRecord.getMockedNotif(MOCKED_NOTIFICATION.INVALID_ACCOUNT2)));
       }
     }
   }

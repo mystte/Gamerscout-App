@@ -41,6 +41,7 @@
     "react-native": "^0.59.9",
     "react-redux": "^7.1.0",
     "react-router-dom": "^5.0.1",
+    "react-transition-group": "^4.2.1",
     "redux": "^4.0.1",
     "redux-saga": "^1.0.3",
     "typed-immutable": "^0.1.2",

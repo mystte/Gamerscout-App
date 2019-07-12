@@ -57,10 +57,9 @@ class AppBootstrap extends PureComponent {
         this.props.cookies.set('gamerscout-api-session', this.props.user.get('sessionId'));
       }
 
-      if (!this.props.user.validated) {
+      if (!this.props.user.validated && !this.props.cookies.get('gs-notif')) {
+        this.props.cookies.set('gs-notif', 1, { maxAge: 3600 });
         this.props.dispatch(pushNotification(NotificationRecord.getMockedNotif(MOCKED_NOTIFICATION.INVALID_ACCOUNT)));
-        this.props.dispatch(pushNotification(NotificationRecord.getMockedNotif(MOCKED_NOTIFICATION.INVALID_ACCOUNT1)));
-        this.props.dispatch(pushNotification(NotificationRecord.getMockedNotif(MOCKED_NOTIFICATION.INVALID_ACCOUNT2)));
       }
     }
   }

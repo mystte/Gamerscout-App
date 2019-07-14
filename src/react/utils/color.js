@@ -106,6 +106,7 @@ const namedColors = {
   mediumvioletred: '#c71585',
   midnightblue: '#191970',
   mintcream: '#f5fffa',
+  mirage: '#1b2431',
   mistyrose: '#ffe4e1',
   moccasin: '#ffe4b5',
   navajowhite: '#ffdead',

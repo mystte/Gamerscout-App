@@ -12,6 +12,7 @@ import {
   GAME_CODE,
 } from '../../../datamanager/models/AppRecord';
 import styles from './styles';
+import Checkbox from '../../views/elements/checkbox/Checkbox';
 
 const mapStateToProps = state => ({
   config: state.app.get('data'),
@@ -57,6 +58,10 @@ class Home extends Component {
   render() {
     return (
       <div style={styles.container}>
+        <Checkbox
+          label="label"
+          isSelected
+        />
       </div>
     );
   }

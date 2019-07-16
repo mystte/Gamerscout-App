@@ -32,11 +32,14 @@
     },
     "accounts": {
       "title": "Connected accounts",
+      "add": "Add account",
       "facebook": "facebook",
       "facebookDesc": "Connect or disconnect Facebook",
       "connected": "{0} account(s)",
       "edit": "Change",
-      "close": "Close"
+      "close": "Close",
+      "cancel": "Cancel",
+      "disconnect": "Disconnect"
     }
   },
   "facebook": {

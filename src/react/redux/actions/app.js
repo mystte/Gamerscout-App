@@ -32,6 +32,13 @@ export function doFacebookLogin(token) {
   };
 }
 
+export function doDisconnectFacebook() {
+  return {
+    type: loading(APP.DO_DISCONNECT_FACEBOOK),
+    parameters: null,
+  };
+}
+
 export function doSignup(
   username,
   email,

@@ -9,6 +9,7 @@ const defaultProps = {
   username: Maybe(String),
   validated: Boolean,
   sessionId: String,
+  facebookId: Maybe(Number),
 };
 
 const ExtendsWith = (superclass) => class extends superclass {
@@ -22,12 +23,21 @@ const ExtendsWith = (superclass) => class extends superclass {
     });
   }
 
+  getLinkedAccountNumber = () => {
+    let count = 0;
+
+    if (this.facebookId) count += 1;
+
+    return count;
+  }
+
   static get defaultProps() { return defaultProps; }
   static get ExtendsWith() { return ExtendsWith; }
 };
 
 export default class UserRecord extends ExtendsWith(Record(defaultProps, 'UserRecord')) {
   static apiParser(data) {
+
     const parsedData = {
       id: data._id ? data._id : null,
       firstName: data.first_name ? data.first_name : null,
@@ -37,6 +47,7 @@ export default class UserRecord extends ExtendsWith(Record(defaultProps, 'UserRe
       username: data.username ? data.username : null,
       validated: data.validated ? data.validated : false,
       sessionId: data['gamerscout-api-session'] ? data['gamerscout-api-session'] : null,
+      facebookId: data.facebook_id ? data.facebook_id : null,
     };
 
     return new UserRecord(parsedData);

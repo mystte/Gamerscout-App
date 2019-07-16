@@ -8,6 +8,7 @@ const Checkbox = ({
   label,
   disabled,
   isSelected,
+  onChange,
 }) => {
   const [selected, setSelected] = useState(isSelected ? isSelected : false);
   let disabledStyle = {};
@@ -17,6 +18,7 @@ const Checkbox = ({
   if (selected) selectedStyle = styles.selected;
 
   const onClick = () => {
+    if (onChange) onChange(!selected);
     setSelected(!selected);
   }
 
@@ -55,12 +57,14 @@ Checkbox.propTypes = {
   label: PropTypes.string,
   disabled: PropTypes.bool,
   isSelected: PropTypes.bool,
+  onChange: PropTypes.func,
 };
 
 Checkbox.defaultProps = {
   label: null,
   disabled: false,
   isSelected: false,
+  onChange: null,
 };
 
 export default Checkbox;

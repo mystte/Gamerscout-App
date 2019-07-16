@@ -106,6 +106,11 @@ export default class Api {
     return doApiCall('/users/facebook_auth', data, CALL_TYPE.POST);
   }
 
+  static doDisconnectFacebook() {
+
+    return doApiCall('/users/facebook_disconnect', null, CALL_TYPE.POST);
+  }
+
   static doLogout() {
     return doApiCall('/users/logout', null, CALL_TYPE.POST);
   }

@@ -3,6 +3,7 @@ import { colorNameToHex } from "../../../../../utils/color";
 const styles = {
   container: {
     marginBottom: 30,
+    cursor: 'pointer',
   },
 
   title: {

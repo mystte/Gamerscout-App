@@ -31,15 +31,12 @@ const ProfileInformation = ({
   }
 
   return (
-    <div style={styles.container}>
+    <div onClick={() => onUpdate(NAV_SECTION.PROFILE, null)} style={styles.container}>
       <div style={styles.title}>{labels.title}</div>
       <div className="settings-animation" style={getDataContainerStyle()}>
         <div style={styles.infoTitle}>{labels.info}</div>
         <div style={styles.infoDesc}>{labels.desc}</div>
-        <div
-          style={styles.edit}
-          onClick={() => onUpdate(NAV_SECTION.PROFILE, null)}
-        >
+        <div style={styles.edit}>
           {editLabel}
         </div>
         {renderDataContent()}

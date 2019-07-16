@@ -177,7 +177,7 @@ const EmailAndPassword = ({
   return (
     <div style={styles.container}>
       <div style={styles.title}>{labels.title}</div>
-      <div className="settings-animation" style={getEMailDataContainerStyle()}>
+      <div onClick={() => onUpdate(NAV_SECTION.EMAIL, null)} className="settings-animation" style={getEMailDataContainerStyle()}>
         <div style={styles.infoTitle}>{labels.email}</div>
         <div style={styles.infoDesc}>{labels.emailDesc}</div>
         <div
@@ -188,7 +188,7 @@ const EmailAndPassword = ({
         </div>
         {renderEmailDataContent()}
       </div>
-      <div className="settings-animation" style={getPasswordDataContainerStyle()}>
+      <div onClick={() => onUpdate(NAV_SECTION.PASSWORD, null)} className="settings-animation" style={getPasswordDataContainerStyle()}>
         <div style={styles.infoTitle}>{labels.password}</div>
         <div style={styles.infoDesc}>{labels.passwordDesc}</div>
         <div

@@ -51,6 +51,9 @@ export default function reducer(state = initialState, action) {
         mutate.set('error', null);
       });
 
+    case success(APP.DO_DISCONNECT_FACEBOOK):
+      return state.setIn(['data', 'user', 'facebookId'], null);
+
     case success(APP.DO_LOGOUT):
       return state.withMutations((mutate) => {
         mutate.setIn(['data', 'isAuthenticated'], false);

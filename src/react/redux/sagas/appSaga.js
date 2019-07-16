@@ -88,6 +88,17 @@ function* doFacebookLogin({ parameters }) {
   }
 }
 
+function* doDisconnectFacebook() {
+  const actionType = APP.DO_DISCONNECT_FACEBOOK;
+
+  try {
+    yield fetchAsync(Api.doDisconnectFacebook);
+    yield put({ type: success(actionType) });
+  } catch (e) {
+    yield put({ type: error(actionType), error: e.message });
+  }
+}
+
 function* doLogout() {
   const actionType = APP.DO_LOGOUT;
 
@@ -106,6 +117,7 @@ export function* appSaga() {
   yield takeEvery(loading(APP.LOAD), loadAppData);
   yield takeLatest(loading(APP.DO_LOGIN), doLogin);
   yield takeLatest(loading(APP.DO_FACEBOOK_LOGIN), doFacebookLogin);
+  yield takeLatest(loading(APP.DO_DISCONNECT_FACEBOOK), doDisconnectFacebook);
   yield takeLatest(loading(APP.DO_SIGNUP), doSignup);
   yield takeLatest(loading(APP.DO_LOGOUT), doLogout);
   yield takeLatest(loading(APP.DO_RESET_PWD), doResetPassword);

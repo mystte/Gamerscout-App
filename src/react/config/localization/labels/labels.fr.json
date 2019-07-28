@@ -22,12 +22,13 @@
       "title": "Courriel & mot de passe",
       "email": "Courriel",
       "emailDesc": "Mettre à jour votre adresse courriel",
-      "password": "Mot de passe",
+      "password": "Mot de passe actuel",
       "passwordDesc": "Modifier mot de passe",
       "edit": "Éditer",
       "close": "Fermer",
       "cancel": "Annuler",
       "submit": "Valider",
+      "currentPasswordPlaceholder": "mot de passe actuel",
       "newPassword": "nouveau mot de passe"
     },
     "accounts": {

@@ -28,6 +28,7 @@
       "close": "Close",
       "cancel": "Cancel",
       "submit": "Send verification",
+      "currentPasswordPlaceholder": "current password",
       "newPassword": "new password"
     },
     "accounts": {

@@ -50,8 +50,14 @@ export default class Validator {
     return false;
   }
 
-  static doUpdatePasswordDisabledValidator(password, passwordConfirm) {
-    if (password !== passwordConfirm || password === null || password === "") return true;
+  static doUpdatePasswordDisabledValidator(currentPassword, password, passwordConfirm) {
+    if (
+      password !== passwordConfirm ||
+      password === null ||
+      password === "" ||
+      password.length < 6 ||
+      currentPassword.length < 6
+    ) return true;
     return false;
   }
 }

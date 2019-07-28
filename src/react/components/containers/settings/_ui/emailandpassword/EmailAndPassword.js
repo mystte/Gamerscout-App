@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Localization from '../../../../../config/localization/Localization';
 import styles from './styles';
@@ -15,6 +15,7 @@ const EmailAndPassword = ({
   onUpdate,
   email,
 }) => {
+  const dispatch = useDispatch();
   const labels = Localization.Labels.settings.emailPassword;
   const editEmailLabel = (isEditEmailMode) ? labels.close : labels.edit;
   const editPasswordLabel = (isEditPasswordMode) ? labels.close : labels.edit;
@@ -32,7 +33,7 @@ const EmailAndPassword = ({
     const isValid = Validator.doNewPasswordValidator(newPassword, newPasswordConfirm);
 
     if (isValid === true) {
-      console.log("##### PASSWORD VALID");
+      dispatch(null);
     } else {
       setpwdErrorMessage(errorLabels[isValid]);
     }
@@ -131,6 +132,16 @@ const EmailAndPassword = ({
         <div style={styles.inputContainer}>
           <Input
             focus
+            type={INPUT_TYPE.PASSWORD}
+            placeholder={labels.currentPasswordPlaceholder}
+            length={maxInputLength}
+            onChange={(e) => {
+              setNewPassword(e.target.value);
+            }}
+            error={pwdErrorMessage !== null}
+          />
+          <span style={styles.inputSeparator} />
+          <Input
             type={INPUT_TYPE.PASSWORD}
             placeholder={labels.newPassword}
             length={maxInputLength}

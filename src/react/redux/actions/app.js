@@ -69,6 +69,15 @@ export function doUpdateUser({
   }
 }
 
+export function doConfirmPassword(password) {
+  return {
+    type: loading(APP.DO_CONFIRM_PASSWORD),
+    parameters: {
+      password,
+    },
+  };
+}
+
 export function doResetPassword(
   email
 ) {
@@ -92,12 +101,13 @@ export function clearAppError() {
   };
 }
 
-export function togglePopup(type = null, forceDisplay = null) {
+export function togglePopup(type = null, forceDisplay = null, params) {
   return {
     type: APP.TOGGLE_POPUP,
     parameters: {
       type,
       forceDisplay,
+      params,
     },
   };
 }

@@ -14,8 +14,7 @@ const styles = {
   },
 
   container: {
-    marginBottom: 30,
-    cursor: 'pointer',
+    marginBottom: 30
   },
 
   title: {
@@ -89,6 +88,10 @@ const styles = {
     position: 'absolute',
     right: 30,
     top: 55,
+  },
+
+  titleContainer: {
+    cursor: 'pointer',
   },
 
   submitButtonContainer: {

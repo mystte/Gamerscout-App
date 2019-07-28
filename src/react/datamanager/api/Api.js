@@ -98,6 +98,14 @@ export default class Api {
     return doApiCall('/users/forgotten_password', data, CALL_TYPE.POST);
   }
 
+  static doConfirmPassword({ password }) {
+    const data = {
+      password: md5(password),
+    };
+
+    return doApiCall('/users/validate_password', data, CALL_TYPE.POST);
+  }
+
   static doFacebookLogin({ token }) {
     const data = {
       access_token: token,

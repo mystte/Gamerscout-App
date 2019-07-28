@@ -45,6 +45,12 @@
   "facebook": {
     "title": "Facebook"
   },
+  "confirmPassword": {
+    "title": "Security Verification",
+    "desc": "For your security, please verify your password",
+    "submit": "Submit",
+    "placeholder": "Password"
+  },
   "forgetPasswordPopup": {
     "title": "Reset Password",
     "desc": "Enter your email address and we'll send a link to reset your password.",

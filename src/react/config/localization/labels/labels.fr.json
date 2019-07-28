@@ -45,6 +45,12 @@
   "facebook": {
     "title": "Facebook"
   },
+  "confirmPassword": {
+    "title": "Vérification du mot de passe",
+    "desc": "Pour des raisons de securité, vérifiez votre mot de passe",
+    "submit": "Envoyer",
+    "placeholder": "Mot de passe"
+  },
   "forgetPasswordPopup": {
     "title": "Mot de passe oublié",
     "desc": "Entrez votre adresse courriel et nous vous enverrons un lien pour réinitialiser votre mot de passe.",

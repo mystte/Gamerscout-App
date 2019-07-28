@@ -46,6 +46,18 @@ function* doResetPassword({ parameters }) {
   }
 }
 
+function* doConfirmPassword({ parameters }) {
+  const actionType = APP.DO_CONFIRM_PASSWORD;
+
+  try {
+    yield fetchAsync(Api.doConfirmPassword, parameters);
+    yield put({ type: success(actionType) });
+    yield put({ type: APP.TOGGLE_POPUP, parameters: {} });
+  } catch(e) {
+    yield put({ type: error(actionType), error: e.message });
+  }
+}
+
 function* doUpdateUser({ parameters }) {
   const actionType = APP.DO_UPDATE_USER;
 
@@ -122,6 +134,7 @@ export function* appSaga() {
   yield takeLatest(loading(APP.DO_LOGOUT), doLogout);
   yield takeLatest(loading(APP.DO_RESET_PWD), doResetPassword);
   yield takeLatest(loading(APP.DO_UPDATE_USER), doUpdateUser);
+  yield takeLatest(loading(APP.DO_CONFIRM_PASSWORD), doConfirmPassword);
 }
 
 export default appSaga;

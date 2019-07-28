@@ -8,6 +8,7 @@ import SigninPopup from '../../../containers/navbar/_ui/signinpopup/SigninPopup'
 import SignupPopup from '../../../containers/navbar/_ui/signuppopup/SignupPopup';
 import ForgetPasswordPopup from '../../../containers/navbar/_ui/forgetpasswordpopup/ForgetPasswordPopup';
 import { POPUP_TYPE } from '../../../../datamanager/models/PopupRecord';
+import ConfirmPassword from './_ui/confirmpassword/ConfirmPassword';
 
 const Popup = ({
   togglePopup,
@@ -24,6 +25,8 @@ const Popup = ({
       result = <SignupPopup />;
     } else if (type === POPUP_TYPE.FORGET_PWD) {
       result = <ForgetPasswordPopup />;
+    } else if (type === POPUP_TYPE.CONFIRM_PWD) {
+      result = <ConfirmPassword />;
     }
     return result;
   }

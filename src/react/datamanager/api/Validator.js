@@ -38,6 +38,7 @@ export default class Validator {
   }
 
   static doNewPasswordValidator(password, passwordConfirm) {
+    if (!password || !passwordConfirm) return ERROR_TYPES.ERR_PASSWORD_REQUIRED;
     if (password !== passwordConfirm) return ERROR_TYPES.ERR_WRONG_PASSWORD;
     if (password.length < 6) return ERROR_TYPES.ERR_SHORT_PASSWORD;
 

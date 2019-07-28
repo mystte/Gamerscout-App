@@ -23,6 +23,8 @@ export default function reducer(state = initialState, action) {
           action.parameters.forceDisplay :
           !state.getIn(['data', 'popupData', 'showPopup']));
         mutate.setIn(['data', 'popupData', 'type'], action.parameters.type);
+        if (action.parameters.params)
+          mutate.setIn(['data', 'popupData', 'params'], action.parameters.params);
         mutate.set('error', null);
       });
 
@@ -31,6 +33,7 @@ export default function reducer(state = initialState, action) {
     case loading(APP.DO_LOGOUT):
     case loading(APP.DO_SIGNUP):
     case loading(APP.DO_UPDATE_USER):
+    case loading(APP.DO_CONFIRM_PASSWORD):
       return state.withMutations((mutate) => {
         mutate.set('loading', true);
         mutate.set('error', null);
@@ -74,6 +77,7 @@ export default function reducer(state = initialState, action) {
     case error(APP.DO_LOGOUT):
     case error(APP.DO_SIGNUP):
     case error(APP.DO_UPDATE_USER):
+    case error(APP.DO_CONFIRM_PASSWORD):
       console.log("ACTION ERROR = ", action);
       return state.withMutations((mutate) => {
         mutate.set('loading', false);

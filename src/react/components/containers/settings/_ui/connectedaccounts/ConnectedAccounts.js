@@ -9,7 +9,9 @@ import { NAV_SECTION } from '../../enums';
 import Checkbox from '../../../../views/elements/checkbox/Checkbox';
 import SVGIcon from '../../../../views/elements/svgicon/SVGIcon';
 import Button, { BUTTON_THEME } from '../../../../views/elements/button/Button';
-import { doDisconnectFacebook } from '../../../../../redux/actions/app';
+import { togglePopup } from '../../../../../redux/actions/app';
+import { POPUP_TYPE } from '../../../../../datamanager/models/PopupRecord';
+import { APP } from '../../../../../redux/actions/actionTypes';
 
 const ConnectedAccounts = ({
   isEditMode,
@@ -36,10 +38,6 @@ const ConnectedAccounts = ({
 
   const onCancelClick = (section) => {
     onUpdate(section, null);
-  }
-
-  const disconnectAccount = () => {
-    dispatch(doDisconnectFacebook());
   }
 
   const renderDataContent = () => {
@@ -73,7 +71,7 @@ const ConnectedAccounts = ({
                 label={labels.disconnect}
                 theme={BUTTON_THEME.BLUE}
                 disabled={accountSelected === false}
-                onClick={disconnectAccount}
+                onClick={() => dispatch(togglePopup(POPUP_TYPE.CONFIRM_PWD, true, { onValidAction: APP.DO_DISCONNECT_FACEBOOK }))}
               />
             </div>
           </div>
@@ -85,15 +83,17 @@ const ConnectedAccounts = ({
   }
 
   return (
-    <div
-      style={styles.container}
-      onClick={() => onUpdate(NAV_SECTION.ACCOUNTS, null)}
-    >
+    <div style={styles.container}>
       <div style={styles.title}>{labels.title}</div>
-      <div className="settings-animation" style={getDataContainerStyle()}>
-        <div style={styles.infoTitle}>{labels.facebook}</div>
-        <div style={styles.infoDesc}>{labels.facebookDesc}</div>
-        <div style={styles.edit}>{editLabel}</div>
+      <div
+        className="settings-animation"
+        style={getDataContainerStyle()}
+      >
+        <div onClick={() => onUpdate(NAV_SECTION.ACCOUNTS, null)} style={styles.titleContainer}>
+          <div style={styles.infoTitle}>{labels.facebook}</div>
+          <div style={styles.infoDesc}>{labels.facebookDesc}</div>
+        </div>
+        <div onClick={() => onUpdate(NAV_SECTION.ACCOUNTS, null)} style={styles.edit}>{editLabel}</div>
         <div style={styles.connectedLabels}>{Localization.Labels.formatString(labels.connected, connectedUser.getLinkedAccountNumber())}</div>
         {renderDataContent()}
       </div>

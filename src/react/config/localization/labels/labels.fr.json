@@ -32,6 +32,7 @@
       "cancel": "Annuler",
       "submit": "Valider",
       "currentPasswordPlaceholder": "mot de passe actuel",
+      "save": "Enregistrer",
       "newPassword": "nouveau mot de passe"
     },
     "accounts": {

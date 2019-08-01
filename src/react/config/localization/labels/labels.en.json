@@ -31,6 +31,7 @@
       "close": "Close",
       "cancel": "Cancel",
       "submit": "Send verification",
+      "save": "Save",
       "currentPasswordPlaceholder": "current password",
       "newPassword": "new password"
     },

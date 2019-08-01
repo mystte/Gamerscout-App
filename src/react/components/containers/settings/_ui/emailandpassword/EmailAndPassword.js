@@ -189,7 +189,7 @@ const EmailAndPassword = ({
           </div>
           <div style={styles.submitButtonContainer}>
             <Button
-              label={labels.submit}
+              label={labels.save}
               theme={BUTTON_THEME.BLUE}
               onClick={onPasswordUpdateSubmit}
               disabled={Validator.doUpdatePasswordDisabledValidator(currentPassword, newPassword, newPasswordConfirm)}

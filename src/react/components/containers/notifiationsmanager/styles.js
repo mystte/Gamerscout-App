@@ -1,12 +1,13 @@
 const styles = {
   container: {
     padding: 15,
-    position: 'absolute',
+    position: 'fixed',
     top: 70,
     right: 0,
     maxWidth: 520,
     minWidth: 400,
     width: '40%',
+    zIndex: 10,
   },
 
   notificationContainer: {

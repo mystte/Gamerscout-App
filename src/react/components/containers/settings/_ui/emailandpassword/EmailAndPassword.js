@@ -8,6 +8,7 @@ import { NAV_SECTION } from '../../enums';
 import Input, { INPUT_TYPE } from '../../../../views/elements/input/Input';
 import Button, { BUTTON_THEME } from '../../../../views/elements/button/Button';
 import Validator from '../../../../../datamanager/api/Validator';
+import { doUpdatePassword } from '../../../../../redux/actions/app';
 
 const EmailAndPassword = ({
   isEditEmailMode,
@@ -20,12 +21,14 @@ const EmailAndPassword = ({
   const editEmailLabel = (isEditEmailMode) ? labels.close : labels.edit;
   const editPasswordLabel = (isEditPasswordMode) ? labels.close : labels.edit;
   const [newEmail, setNewEmail] = useState(null);
+  const [currentPassword, setCurrentPassword] = useState(null);
   const [newPassword, setNewPassword] = useState(null);
   const [newPasswordConfirm, setNewPasswordConfirm] = useState(null);
   const [wrongEmail, setWrongEmail] = useState(null);
   const [emailErrorMessage, setEmailErrorMessage] = useState(null);
   const [pwdErrorMessage, setpwdErrorMessage] = useState(null);
   const apiError = useSelector(state => state.app.get('error'));
+  const currentUser = useSelector(state => state.app.getIn(['data', 'user']));
   const errorLabels = Localization.Errors.userUpdate;
   const maxInputLength = "150";
 
@@ -33,11 +36,14 @@ const EmailAndPassword = ({
     const isValid = Validator.doNewPasswordValidator(newPassword, newPasswordConfirm);
 
     if (isValid === true) {
-      dispatch(null);
+      dispatch(doUpdatePassword({
+        userId: currentUser.id,
+        currentPassword,
+        newPassword,
+      }));
     } else {
       setpwdErrorMessage(errorLabels[isValid]);
     }
-    console.log(isValid);
   }
 
   const onEmailUpdateSubmit = () => {
@@ -55,6 +61,9 @@ const EmailAndPassword = ({
 
     if (localErrorMessage) errorMessage = localErrorMessage;
     else if (apiError) errorMessage = errorLabels[apiError];
+
+    console.log("errorMessage = ", errorMessage);
+    console.log("apiError = ", apiError);
     return errorMessage;
   }
 
@@ -136,7 +145,7 @@ const EmailAndPassword = ({
             placeholder={labels.currentPasswordPlaceholder}
             length={maxInputLength}
             onChange={(e) => {
-              setNewPassword(e.target.value);
+              setCurrentPassword(e.target.value);
             }}
             error={pwdErrorMessage !== null}
           />
@@ -159,7 +168,7 @@ const EmailAndPassword = ({
               setNewPasswordConfirm(e.target.value);
             }}
             error={pwdErrorMessage !== null}
-            message={pwdErrorMessage}
+            message={getErrorMessage(pwdErrorMessage)}
           />
         </div>
         <div style={styles.submitlButtonsContainer}>
@@ -175,7 +184,7 @@ const EmailAndPassword = ({
               label={labels.submit}
               theme={BUTTON_THEME.BLUE}
               onClick={onPasswordUpdateSubmit}
-              disabled={Validator.doUpdatePasswordDisabledValidator(newPassword, newPasswordConfirm)}
+              disabled={Validator.doUpdatePasswordDisabledValidator(currentPassword, newPassword, newPasswordConfirm)}
             />
           </div>
         </div>

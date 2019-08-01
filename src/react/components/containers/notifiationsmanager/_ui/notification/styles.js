@@ -27,12 +27,16 @@ const styles = {
     backgroundColor: colorNameToHex('dodgerblue'),
   },
 
-  NOTIFICATION_WARNING: {
+  NOTIFICATION_SUCCESS: {
+    backgroundColor: colorNameToHex('apple'),
+  },
 
+  NOTIFICATION_WARNING: {
+    backgroundColor: colorNameToHex('treepoppy'),
   },
 
   NOTIFICATION_ALERT: {
-
+    backgroundColor: colorNameToHex('cinnabar'),
   },
 };
 

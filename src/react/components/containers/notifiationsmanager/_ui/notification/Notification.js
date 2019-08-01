@@ -7,6 +7,7 @@ import { NOTIFICATION_TYPE } from '../../../../../datamanager/models/Notificatio
 import Button, { BUTTON_THEME } from '../../../../views/elements/button/Button';
 
 const Notification = ({ title, type, onClose, id }) => {
+  const icon = (type === NOTIFICATION_TYPE.ALERT) ? 'notif-alert-type' : 'info';
 
   return (
     <div
@@ -18,7 +19,7 @@ const Notification = ({ title, type, onClose, id }) => {
       <SVGIcon
         width={16}
         height={16}
-        name={'info'}
+        name={icon}
       />
       <span className="ellipsis" style={styles.title}>{title}</span>
       <span style={styles.close}>

@@ -1,9 +1,10 @@
 import { put, takeEvery, takeLatest } from 'redux-saga/effects'
-import { APP, loading, success, error } from '../actions/actionTypes';
+import { APP, NOTIFICATIONS, loading, success, error } from '../actions/actionTypes';
 import Api, { fetchAsync } from '../../datamanager/api/Api'
 import AppRecord from '../../datamanager/models/AppRecord';
 import UserRecord from '../../datamanager/models/UserRecord';
 import { isEmpty } from '../../utils/objects';
+import NotificationRecord, { MOCKED_NOTIFICATION } from '../../datamanager/models/NotificationRecord';
 
 function* loadAppData({ parameters }) {
   const actionType = APP.LOAD;
@@ -40,6 +41,22 @@ function* doResetPassword({ parameters }) {
 
   try {
     yield fetchAsync(Api.doResetPassword, parameters);
+    yield put({ type: success(actionType) });
+  } catch (e) {
+    yield put({ type: error(actionType), error: e.message });
+  }
+}
+
+function* doUpdatePassword({ parameters }) {
+  const actionType = APP.DO_UPDATE_PASSWORD;
+
+  try {
+    yield fetchAsync(Api.doConfirmPassword, { password: parameters.currentPassword });
+    yield fetchAsync(Api.doUpdateUser, {
+      id: parameters.userId,
+      password: parameters.newPassword,
+    });
+    yield put({ type: NOTIFICATIONS.PUSH, parameters: { record: NotificationRecord.getMockedNotif(MOCKED_NOTIFICATION.UPATED_PASSWORD)} });
     yield put({ type: success(actionType) });
   } catch (e) {
     yield put({ type: error(actionType), error: e.message });
@@ -135,6 +152,7 @@ export function* appSaga() {
   yield takeLatest(loading(APP.DO_RESET_PWD), doResetPassword);
   yield takeLatest(loading(APP.DO_UPDATE_USER), doUpdateUser);
   yield takeLatest(loading(APP.DO_CONFIRM_PASSWORD), doConfirmPassword);
+  yield takeLatest(loading(APP.DO_UPDATE_PASSWORD), doUpdatePassword);
 }
 
 export default appSaga;

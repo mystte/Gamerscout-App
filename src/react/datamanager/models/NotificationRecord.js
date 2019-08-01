@@ -10,7 +10,9 @@ export const NOTIFICATION_TYPE = {
 };
 
 export const MOCKED_NOTIFICATION = {
-  INVALID_ACCOUNT: 'invalidAccount',
+  INVALID_ACCOUNT: 'MOCKED_NOTIF_INVALID_ACCOUNT',
+  UPATED_PASSWORD: 'MOCKED_NOTIF_UPDATED_PASSWORD',
+  TEST: 'MOCKED_NOTIF_TEST',
 }
 
 const defaultProps = {
@@ -46,6 +48,22 @@ export default class NotificationRecord extends ExtendsWith(Record(defaultProps,
           title: labels.invalidAccount.title,
           display: true,
           type: NOTIFICATION_TYPE.DEFAULT,
+        };
+      break;
+
+      case MOCKED_NOTIFICATION.UPATED_PASSWORD:
+        notificationData = {
+          title: labels.updatedPassword.title,
+          display: true,
+          type: NOTIFICATION_TYPE.SUCCESS,
+        };
+      break;
+
+      case MOCKED_NOTIFICATION.TEST:
+        notificationData = {
+          title: "test notification",
+          display: true,
+          type: NOTIFICATION_TYPE.ALERT,
         };
       break;
     }

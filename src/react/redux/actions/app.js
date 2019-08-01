@@ -54,6 +54,21 @@ export function doSignup(
   };
 }
 
+export function doUpdatePassword({
+  userId,
+  currentPassword,
+  newPassword,
+}) {
+  return {
+    type: loading(APP.DO_UPDATE_PASSWORD),
+    parameters: {
+      userId,
+      currentPassword,
+      newPassword,
+    },
+  };
+}
+
 export function doUpdateUser({
   id,
   newEmail = null,
@@ -68,6 +83,7 @@ export function doUpdateUser({
     },
   }
 }
+
 
 export function doConfirmPassword(password) {
   return {

@@ -1,7 +1,10 @@
 {
   "notifications": {
     "invalidAccount": {
-      "title": "Your email has not been validated yet. {0}"
+      "title": "Your email has not been validated yet."
+    },
+    "updatedPassword": {
+      "title": "Your password was successfully changed."
     }
   },
   "settings": {

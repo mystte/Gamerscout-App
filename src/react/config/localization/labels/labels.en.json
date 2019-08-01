@@ -22,6 +22,8 @@
       "close": "Close"
     },
     "emailPassword": {
+      "unverified": "Unverified",
+      "verified": "Verified",
       "title": "Email & password",
       "email": "Email address",
       "emailDesc": "Change the email address used for sign in and communications",

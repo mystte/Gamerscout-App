@@ -60,7 +60,8 @@ const Settings = () => {
             isEditEmailMode={editingSection === NAV_SECTION.EMAIL}
             isEditPasswordMode={editingSection === NAV_SECTION.PASSWORD}
             email={connectedUser.email}
-          />
+            isVerified={connectedUser.validated}
+        />
           <ConnectedAccounts
             onUpdate={onSettingsUpdate}
             isEditMode={editingSection === NAV_SECTION.ACCOUNTS}

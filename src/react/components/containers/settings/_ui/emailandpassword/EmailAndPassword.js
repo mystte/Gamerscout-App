@@ -15,6 +15,7 @@ const EmailAndPassword = ({
   isEditPasswordMode,
   onUpdate,
   email,
+  isVerified,
 }) => {
   const dispatch = useDispatch();
   const labels = Localization.Labels.settings.emailPassword;
@@ -29,6 +30,8 @@ const EmailAndPassword = ({
   const [pwdErrorMessage, setpwdErrorMessage] = useState(null);
   const apiError = useSelector(state => state.app.get('error'));
   const errorLabels = Localization.Errors.userUpdate;
+  const isVerifiedLabel = (isVerified) ? labels.verified : labels.unverified;
+  const verifiedLabelStyle = (isVerified) ? styles.emailStatusLabel : { ...styles.emailStatusLabel, ...styles.unverified };
   const maxInputLength = "150";
 
   const onPasswordUpdateSubmit = () => {
@@ -214,7 +217,8 @@ const EmailAndPassword = ({
           style={styles.edit}
           onClick={() => isEditEmailMode ? onCancelClick() : onUpdate(NAV_SECTION.EMAIL, null)}
         >
-          {editEmailLabel}
+          <span style={styles.editEmailLabel}>{editEmailLabel}</span>
+          <span style={verifiedLabelStyle}>{isVerifiedLabel}</span>
         </div>
         {renderEmailDataContent()}
       </div>
@@ -239,6 +243,7 @@ EmailAndPassword.propTypes = {
   isEditEmailMode: PropTypes.bool,
   isEditPasswordMode: PropTypes.bool,
   onUpdate: PropTypes.func.isRequired,
+  isVerified: PropTypes.bool.isRequired,
   email: PropTypes.string,
 };
 

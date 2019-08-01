@@ -63,6 +63,18 @@ const styles = {
     color: colorNameToHex('white'),
     fontSize: 14,
     fontWeight: 600,
+    alignItems: 'flex-end',
+  },
+
+  emailStatusLabel: {
+    fontSize: 12,
+    color: colorNameToHex('regentgray'),
+    fontWeight: 400,
+  },
+
+  unverified: {
+    color: colorNameToHex('cinnabar'),
+    fontWeight: 600,
   },
 
   inputDataContainer: {

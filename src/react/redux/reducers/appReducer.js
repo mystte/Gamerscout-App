@@ -34,6 +34,7 @@ export default function reducer(state = initialState, action) {
     case loading(APP.DO_SIGNUP):
     case loading(APP.DO_UPDATE_USER):
     case loading(APP.DO_CONFIRM_PASSWORD):
+    case loading(APP.DO_UPDATE_PASSWORD):
       return state.withMutations((mutate) => {
         mutate.set('loading', true);
         mutate.set('error', null);
@@ -78,6 +79,7 @@ export default function reducer(state = initialState, action) {
     case error(APP.DO_SIGNUP):
     case error(APP.DO_UPDATE_USER):
     case error(APP.DO_CONFIRM_PASSWORD):
+    case error(APP.DO_UPDATE_PASSWORD):
       console.log("ACTION ERROR = ", action);
       return state.withMutations((mutate) => {
         mutate.set('loading', false);

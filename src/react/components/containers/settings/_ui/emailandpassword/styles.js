@@ -37,7 +37,7 @@ const styles = {
   dataContainerPwdEditMode: {
     borderColor: colorNameToHex('dodgerblue'),
     borderTopWidth: 1,
-    height: 307,
+    height: 320,
   },
 
   pwdDataContainer: {

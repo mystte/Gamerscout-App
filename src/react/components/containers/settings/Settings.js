@@ -8,7 +8,7 @@ import { NAV_SECTION } from './enums'
 import ProfileInformation from './_ui/profileinformation/ProfileInformation';
 import EmailAndPassword from './_ui/emailandpassword/EmailAndPassword';
 import ConnectedAccounts from './_ui/connectedaccounts/ConnectedAccounts';
-import { doUpdateUser, clearAppError } from '../../../redux/actions/app';
+import { doUpdateUser, clearAppError, doUpdatePassword } from '../../../redux/actions/app';
 
 
 const Settings = () => {
@@ -26,12 +26,17 @@ const Settings = () => {
       if (type === NAV_SECTION.EMAIL) {
         dispatch(doUpdateUser({ newEmail: data.email, id: connectedUser.id }));
       } else if (type === NAV_SECTION.PASSWORD) {
-        console.log("#### UPDATE PASSWORD");
+        dispatch(doUpdatePassword({
+          userId: connectedUser.id,
+          currentPassword: data.currentPassword,
+          newPassword: data.newPassword,
+        }));
       }
     } else if (editingSection === type) {
-      setEditingSection(null);
       dispatch(clearAppError());
+      setEditingSection(null);
     } else {
+      dispatch(clearAppError());
       setEditingSection(type);
       setSelectedNav(type === NAV_SECTION.PASSWORD ? NAV_SECTION.EMAIL : type);
     }

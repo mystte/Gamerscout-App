@@ -8,7 +8,7 @@ import { NAV_SECTION } from '../../enums';
 import Input, { INPUT_TYPE } from '../../../../views/elements/input/Input';
 import Button, { BUTTON_THEME } from '../../../../views/elements/button/Button';
 import Validator from '../../../../../datamanager/api/Validator';
-import { doUpdatePassword } from '../../../../../redux/actions/app';
+import { clearAppError } from '../../../../../redux/actions/app';
 
 const EmailAndPassword = ({
   isEditEmailMode,
@@ -28,7 +28,6 @@ const EmailAndPassword = ({
   const [emailErrorMessage, setEmailErrorMessage] = useState(null);
   const [pwdErrorMessage, setpwdErrorMessage] = useState(null);
   const apiError = useSelector(state => state.app.get('error'));
-  const currentUser = useSelector(state => state.app.getIn(['data', 'user']));
   const errorLabels = Localization.Errors.userUpdate;
   const maxInputLength = "150";
 
@@ -36,11 +35,7 @@ const EmailAndPassword = ({
     const isValid = Validator.doNewPasswordValidator(newPassword, newPasswordConfirm);
 
     if (isValid === true) {
-      dispatch(doUpdatePassword({
-        userId: currentUser.id,
-        currentPassword,
-        newPassword,
-      }));
+      onUpdate(NAV_SECTION.PASSWORD, { currentPassword, newPassword });
     } else {
       setpwdErrorMessage(errorLabels[isValid]);
     }
@@ -62,18 +57,31 @@ const EmailAndPassword = ({
     if (localErrorMessage) errorMessage = localErrorMessage;
     else if (apiError) errorMessage = errorLabels[apiError];
 
-    console.log("errorMessage = ", errorMessage);
-    console.log("apiError = ", apiError);
     return errorMessage;
+  }
+
+  const hasPwdError = () => {
+    return pwdErrorMessage !== null || apiError !== null;
+  }
+
+  const clearPwdData = () => {
+    setCurrentPassword(null);
+    setNewPassword(null);
+    setNewPasswordConfirm(null);
+    setpwdErrorMessage(null);
+  }
+
+  const clearEmailData = () => {
+    setNewEmail(null);
+    setEmailErrorMessage(null);
+    setWrongEmail(null);
   }
 
   const onCancelClick = (section) => {
     onUpdate(section, null);
-    setNewEmail(null);
-    setNewPassword(null);
-    setEmailErrorMessage(null);
-    setpwdErrorMessage(null),
-    setWrongEmail(null);
+    clearEmailData();
+    clearPwdData();
+    dispatch(clearAppError());
   }
 
   const getEMailDataContainerStyle = () => {
@@ -147,7 +155,7 @@ const EmailAndPassword = ({
             onChange={(e) => {
               setCurrentPassword(e.target.value);
             }}
-            error={pwdErrorMessage !== null}
+            error={hasPwdError()}
           />
           <span style={styles.inputSeparator} />
           <Input
@@ -157,7 +165,7 @@ const EmailAndPassword = ({
             onChange={(e) => {
               setNewPassword(e.target.value);
             }}
-            error={pwdErrorMessage !== null}
+            error={hasPwdError()}
           />
           <span style={styles.inputSeparator}/>
           <Input
@@ -167,7 +175,7 @@ const EmailAndPassword = ({
             onChange={(e) => {
               setNewPasswordConfirm(e.target.value);
             }}
-            error={pwdErrorMessage !== null}
+            error={hasPwdError()}
             message={getErrorMessage(pwdErrorMessage)}
           />
         </div>
@@ -198,7 +206,7 @@ const EmailAndPassword = ({
     <div style={styles.container}>
       <div style={styles.title}>{labels.title}</div>
       <div className="settings-animation" style={getEMailDataContainerStyle()}>
-        <div onClick={() => onUpdate(NAV_SECTION.EMAIL, null)} style={styles.infosContainer}>
+        <div onClick={() => { onUpdate(NAV_SECTION.EMAIL, null); clearEmailData(); }} style={styles.infosContainer}>
           <div style={styles.infoTitle}>{labels.email}</div>
           <div style={styles.infoDesc}>{labels.emailDesc}</div>
         </div>
@@ -211,7 +219,7 @@ const EmailAndPassword = ({
         {renderEmailDataContent()}
       </div>
       <div className="settings-animation" style={getPasswordDataContainerStyle()}>
-        <div onClick={() => onUpdate(NAV_SECTION.PASSWORD, null)} style={styles.infosContainer}>
+        <div onClick={() => { onUpdate(NAV_SECTION.PASSWORD, null); clearPwdData(); }} style={styles.infosContainer}>
           <div style={styles.infoTitle}>{labels.password}</div>
           <div style={styles.infoDesc}>{labels.passwordDesc}</div>
         </div>

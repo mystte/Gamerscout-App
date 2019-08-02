@@ -69,7 +69,13 @@ function* doConfirmPassword({ parameters }) {
   try {
     yield fetchAsync(Api.doConfirmPassword, parameters);
     yield put({ type: success(actionType) });
+    if (parameters.onSuccessData) {
+      const action = parameters.onSuccessData.onValidAction;
+      const actionParams = parameters.onSuccessData.data;
+      yield put({ type: action, parameters: actionParams });
+    }
     yield put({ type: APP.TOGGLE_POPUP, parameters: {} });
+
   } catch(e) {
     yield put({ type: error(actionType), error: e.message });
   }
@@ -141,6 +147,17 @@ function* doLogout() {
   }
 }
 
+function* doResendValidationEmail() {
+  const actionType = APP.DO_RESEND_VALIDATION_EMAIL;
+
+  try {
+    yield fetchAsync(Api.doResendValidationEmail);
+    yield put({ type: success(actionType) });
+    yield put({ type: NOTIFICATIONS.PUSH, parameters: { record: NotificationRecord.getMockedNotif(MOCKED_NOTIFICATION.VALIDATION_EMAIL_RESENT) } });
+  } catch(e) {
+    yield put({type: error(actionType), error: e.message });
+  }
+}
 
 export function* appSaga() {
   yield takeEvery(loading(APP.LOAD), loadAppData);
@@ -153,6 +170,8 @@ export function* appSaga() {
   yield takeLatest(loading(APP.DO_UPDATE_USER), doUpdateUser);
   yield takeLatest(loading(APP.DO_CONFIRM_PASSWORD), doConfirmPassword);
   yield takeLatest(loading(APP.DO_UPDATE_PASSWORD), doUpdatePassword);
+  yield takeLatest(loading(APP.DO_RESEND_VALIDATION_EMAIL), doResendValidationEmail);
+
 }
 
 export default appSaga;

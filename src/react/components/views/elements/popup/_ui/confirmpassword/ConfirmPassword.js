@@ -17,14 +17,14 @@ const ConfirmPassword = () => {
   const [ wrongPassword, setWrongPassword ] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
   const apiError = useSelector(state => state.app.get('error'));
-  // const validPwdActionData = useSelector(state => state.app.getIn(['data', 'popupData', 'params']));
+  const validPwdActionData = useSelector(state => state.app.getIn(['data', 'popupData', 'params']));
   const enterPressed = UseKeyPress('Enter');
 
   const onSubmitClick = () => {
     if (password) {
       const valid = Validator.doNewPasswordValidator(password, password);
       if (valid === true) {
-        dispatch(doConfirmPassword(password));
+        dispatch(doConfirmPassword(password, validPwdActionData));
       } else {
         setWrongPassword(valid !== true);
         setErrorMessage(errorsLabels[valid]);
@@ -48,7 +48,7 @@ const ConfirmPassword = () => {
         icon={'lock'}
         type={INPUT_TYPE.PASSWORD}
         message={(apiError) ? errorsLabels[apiError] : errorMessage}
-        error={wrongPassword || apiError !== null}
+        error={wrongPassword !== false || apiError !== null}
         focus
       />
       <div style={styles.submit}>

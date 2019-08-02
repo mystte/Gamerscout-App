@@ -30,7 +30,8 @@
       "edit": "Éditer",
       "close": "Fermer",
       "cancel": "Annuler",
-      "submit": "Valider",
+      "resubmit": "Renvoyer courriel de validation",
+      "submit": "Envoyer courriel de validation",
       "currentPasswordPlaceholder": "mot de passe actuel",
       "save": "Enregistrer",
       "newPassword": "nouveau mot de passe"

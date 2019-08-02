@@ -8,7 +8,7 @@ import { NAV_SECTION } from '../../enums';
 import Input, { INPUT_TYPE } from '../../../../views/elements/input/Input';
 import Button, { BUTTON_THEME } from '../../../../views/elements/button/Button';
 import Validator from '../../../../../datamanager/api/Validator';
-import { clearAppError } from '../../../../../redux/actions/app';
+import { clearAppError, doResendValidationEmail } from '../../../../../redux/actions/app';
 
 const EmailAndPassword = ({
   isEditEmailMode,
@@ -45,12 +45,16 @@ const EmailAndPassword = ({
   }
 
   const onEmailUpdateSubmit = () => {
-    const isValid = Validator.doEmailValidator(newEmail);
-    if (isValid === true) {
-      onUpdate(NAV_SECTION.EMAIL, { email: newEmail });
+    if (isVerified) {
+      const isValid = Validator.doEmailValidator(newEmail);
+      if (isValid === true) {
+        onUpdate(NAV_SECTION.EMAIL, { email: newEmail });
+      } else {
+        setEmailErrorMessage(errorLabels[isValid]);
+        setWrongEmail(isValid !== true);
+      }
     } else {
-      setEmailErrorMessage(errorLabels[isValid]);
-      setWrongEmail(isValid !== true);
+      dispatch(doResendValidationEmail());
     }
   }
 
@@ -106,6 +110,17 @@ const EmailAndPassword = ({
     };
   }
 
+  const renderEmailValidationButton = () => {
+    const label = (isVerified) ? labels.submit : labels.resubmit;
+
+    return (<Button
+      label={label}
+      theme={BUTTON_THEME.BLUE}
+      onClick={onEmailUpdateSubmit}
+      disabled={Validator.doUpdateEmailDisableValidator(newEmail, email, isVerified)}
+    />);
+  }
+
   const renderEmailDataContent = () => {
     let renderDataContent = null;
 
@@ -131,12 +146,7 @@ const EmailAndPassword = ({
                 />
               </div>
               <div style={styles.submitButtonContainer}>
-                <Button
-                  label={labels.submit}
-                  theme={BUTTON_THEME.BLUE}
-                  onClick={onEmailUpdateSubmit}
-                  disabled={Validator.doUpdateEmailDisabledValidator(newEmail, email)}
-                />
+                {renderEmailValidationButton()}
               </div>
           </div>
         </div>);

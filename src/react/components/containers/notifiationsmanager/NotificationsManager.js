@@ -12,6 +12,7 @@ const NotificationsManager = () => {
 
   const renderNotifications = () => {
     return notifications.get('notifList').map((notification, idx) => {
+
       return (
         <CSSTransition
           timeout={800}
@@ -28,6 +29,7 @@ const NotificationsManager = () => {
             title={notification.title}
             type={notification.type}
             onClose={onNotificationClose}
+            isPersistent={notification.isPersistent ? notification.isPersistent : false}
           />
         </div>
         </CSSTransition>);
@@ -35,7 +37,6 @@ const NotificationsManager = () => {
     }
 
   const onNotificationClose = (id) => {
-    console.log("id = ", id);
     dispatch(deleteNotification(id));
   }
 

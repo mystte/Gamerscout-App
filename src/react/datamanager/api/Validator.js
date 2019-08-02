@@ -45,7 +45,8 @@ export default class Validator {
     return true
   }
 
-  static doUpdateEmailDisabledValidator(newEmail, email) {
+  static doUpdateEmailDisableValidator(newEmail, email, isVerified) {
+    if (!isVerified) return false;
     if (newEmail === null || newEmail === email || newEmail === "") return true;
     return false;
   }

@@ -32,6 +32,12 @@ export function doFacebookLogin(token) {
   };
 }
 
+export function doResendValidationEmail() {
+  return {
+    type: loading(APP.DO_RESEND_VALIDATION_EMAIL),
+  };
+}
+
 export function doDisconnectFacebook() {
   return {
     type: loading(APP.DO_DISCONNECT_FACEBOOK),
@@ -85,11 +91,12 @@ export function doUpdateUser({
 }
 
 
-export function doConfirmPassword(password) {
+export function doConfirmPassword(password, onSuccessData = null) {
   return {
     type: loading(APP.DO_CONFIRM_PASSWORD),
     parameters: {
       password,
+      onSuccessData,
     },
   };
 }

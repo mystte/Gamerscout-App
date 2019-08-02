@@ -8,7 +8,9 @@ import { NAV_SECTION } from './enums'
 import ProfileInformation from './_ui/profileinformation/ProfileInformation';
 import EmailAndPassword from './_ui/emailandpassword/EmailAndPassword';
 import ConnectedAccounts from './_ui/connectedaccounts/ConnectedAccounts';
-import { doUpdateUser, clearAppError, doUpdatePassword } from '../../../redux/actions/app';
+import { clearAppError, doUpdatePassword, togglePopup } from '../../../redux/actions/app';
+import { POPUP_TYPE } from '../../../datamanager/models/PopupRecord';
+import { APP, loading } from '../../../redux/actions/actionTypes';
 
 
 const Settings = () => {
@@ -24,7 +26,15 @@ const Settings = () => {
     console.log("##### On Settings update click", type, data);
     if (data) {
       if (type === NAV_SECTION.EMAIL) {
-        dispatch(doUpdateUser({ newEmail: data.email, id: connectedUser.id }));
+        const params = {
+          onValidAction: loading(APP.DO_UPDATE_USER),
+          data: {
+            newEmail: data.email,
+            id: connectedUser.id,
+          },
+        };
+        dispatch(togglePopup(POPUP_TYPE.CONFIRM_PWD, true, params));
+        // dispatch(doUpdateUser({ newEmail: data.email, id: connectedUser.id }));
       } else if (type === NAV_SECTION.PASSWORD) {
         dispatch(doUpdatePassword({
           userId: connectedUser.id,

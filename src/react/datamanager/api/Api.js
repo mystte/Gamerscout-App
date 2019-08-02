@@ -122,5 +122,9 @@ export default class Api {
   static doLogout() {
     return doApiCall('/users/logout', null, CALL_TYPE.POST);
   }
+
+  static doResendValidationEmail() {
+    return doApiCall('/users/validation/email/resend', null, CALL_TYPE.POST);
+  }
 }
 

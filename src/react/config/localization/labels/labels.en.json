@@ -5,6 +5,9 @@
     },
     "updatedPassword": {
       "title": "Your password was successfully changed."
+    },
+    "validationEmailResent": {
+      "title": "An email verification has been sent."
     }
   },
   "settings": {
@@ -32,6 +35,7 @@
       "edit": "Change",
       "close": "Close",
       "cancel": "Cancel",
+      "resubmit": "Resend verification",
       "submit": "Send verification",
       "save": "Save",
       "currentPasswordPlaceholder": "current password",

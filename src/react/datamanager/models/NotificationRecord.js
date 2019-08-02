@@ -12,6 +12,7 @@ export const NOTIFICATION_TYPE = {
 export const MOCKED_NOTIFICATION = {
   INVALID_ACCOUNT: 'MOCKED_NOTIF_INVALID_ACCOUNT',
   UPATED_PASSWORD: 'MOCKED_NOTIF_UPDATED_PASSWORD',
+  VALIDATION_EMAIL_RESENT: 'MOCKED_NOTIF_VALIDATION_EMAIL_RESENT',
   TEST: 'MOCKED_NOTIF_TEST',
 }
 
@@ -48,6 +49,7 @@ export default class NotificationRecord extends ExtendsWith(Record(defaultProps,
           title: labels.invalidAccount.title,
           display: true,
           type: NOTIFICATION_TYPE.DEFAULT,
+          isPersistent: false,
         };
       break;
 
@@ -56,6 +58,7 @@ export default class NotificationRecord extends ExtendsWith(Record(defaultProps,
           title: labels.updatedPassword.title,
           display: true,
           type: NOTIFICATION_TYPE.SUCCESS,
+          isPersistent: false,
         };
       break;
 
@@ -64,8 +67,16 @@ export default class NotificationRecord extends ExtendsWith(Record(defaultProps,
           title: "test notification",
           display: true,
           type: NOTIFICATION_TYPE.ALERT,
+          isPersistent: false,
         };
       break;
+
+      case MOCKED_NOTIFICATION.VALIDATION_EMAIL_RESENT:
+        notificationData = {
+          title: labels.validationEmailResent.title,
+          display: true,
+          type: NOTIFICATION_TYPE.DEFAULT,
+        };
     }
 
     return NotificationRecord.apiParser(notificationData);

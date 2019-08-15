@@ -38,7 +38,7 @@ module.exports = {
       filename: './index.html',
       favicon: './src/assets/img/favicon.png'
     }),
-    new ExtractTextPlugin('style.css'),
+    new ExtractTextPlugin('style.scss'),
     new MomentLocalesPlugin({
       localesToKeep: ['fr'],
     }),

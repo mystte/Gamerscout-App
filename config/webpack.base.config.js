@@ -1,6 +1,5 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 
 module.exports = {
@@ -19,10 +18,11 @@ module.exports = {
       },
       {
         test: /\.(scss)$/,
-        use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: "css-loader!sass-loader",
-        })
+        use: [
+          'style-loader',
+          'css-loader',
+          'sass-loader',
+        ],
       },
       {
         test: /\.(png|svg|jpg|gif|ttf)$/,
@@ -38,7 +38,6 @@ module.exports = {
       filename: './index.html',
       favicon: './src/assets/img/favicon.png'
     }),
-    new ExtractTextPlugin('style.scss'),
     new MomentLocalesPlugin({
       localesToKeep: ['fr'],
     }),

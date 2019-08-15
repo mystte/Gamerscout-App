@@ -1,4 +1,4 @@
-import { colorNameToHex } from "../../../../../../../../../../../../../utils/color";
+import { colorNameToHex } from '../../../../../../../../../../../../../utils/color';
 
 const styles = {
   approveButton: {
@@ -29,7 +29,7 @@ const styles = {
     fontWeight: 600,
     fontSize: 12,
     marginLeft: 5,
-  }
+  },
 };
 
 export default styles;

@@ -10,7 +10,7 @@ const Checkbox = ({
   isSelected,
   onChange,
 }) => {
-  const [selected, setSelected] = useState(isSelected ? isSelected : false);
+  const [selected, setSelected] = useState(isSelected);
   let disabledStyle = {};
   let selectedStyle = {};
 
@@ -20,7 +20,7 @@ const Checkbox = ({
   const onClick = () => {
     if (onChange) onChange(!selected);
     setSelected(!selected);
-  }
+  };
 
   return (
     <div
@@ -29,8 +29,8 @@ const Checkbox = ({
       style={styles.container}
     >
       <div style={styles.checkbox}>
-        {selected &&
-          <div style={{
+        {selected
+          && <div style={{
             ...styles.selectedContainer,
             ...disabledStyle,
           }}>
@@ -42,8 +42,8 @@ const Checkbox = ({
           </div>
         }
       </div>
-      {label &&
-        <span style={{
+      {label
+        && <span style={{
           ...styles.label,
           ...selectedStyle,
           ...disabledStyle,
@@ -51,7 +51,7 @@ const Checkbox = ({
       }
     </div>
   );
-}
+};
 
 Checkbox.propTypes = {
   label: PropTypes.string,

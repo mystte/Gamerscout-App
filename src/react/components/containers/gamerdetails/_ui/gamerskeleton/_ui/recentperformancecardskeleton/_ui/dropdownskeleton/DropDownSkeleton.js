@@ -23,13 +23,13 @@ const styles = {
   },
 };
 
-const DropdownSkeleton = () => {
-  return (
+const DropdownSkeleton = () => (
+  (
     <div style={styles.container}>
       <div style={styles.rect}><Rectangle width={120} height={20} /></div>
       <SVGIcon width={7} height={4} name={'arrow-down'} />
     </div>
-  );
-}
+  )
+);
 
 export default DropdownSkeleton;

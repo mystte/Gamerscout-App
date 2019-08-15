@@ -15,10 +15,10 @@ class ApprovalsToggle extends PureComponent {
   };
 
   componentWillMount() {
-    if (this.props.preselect === APPROVAL_TYPE.APPROVAL)
-      this.setState({ approveSelected: true });
-    if (this.props.preselect === APPROVAL_TYPE.DISAPPROVAL)
+    if (this.props.preselect === APPROVAL_TYPE.APPROVAL) this.setState({ approveSelected: true });
+    if (this.props.preselect === APPROVAL_TYPE.DISAPPROVAL) {
       this.setState({ disapproveSelected: true });
+    }
   }
 
   constructor(props) {
@@ -32,8 +32,7 @@ class ApprovalsToggle extends PureComponent {
 
   onApproveButtonClick = (type) => {
     this.setState((state) => {
-      let approveSelected = state.approveSelected;
-      let disapproveSelected = state.disapproveSelected;
+      let { approveSelected, disapproveSelected } = state;
 
       if (type === APPROVAL_TYPE.APPROVAL) {
         approveSelected = !approveSelected;

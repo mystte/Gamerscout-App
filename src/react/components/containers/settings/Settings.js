@@ -1,10 +1,10 @@
-import React , { useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Localization from '../../../config/localization/Localization';
 import styles from './styles';
 import SettingsNav from './_ui/settingsnav/SettingsNav';
-import { NAV_SECTION } from './enums'
+import { NAV_SECTION } from './enums';
 import ProfileInformation from './_ui/profileinformation/ProfileInformation';
 import EmailAndPassword from './_ui/emailandpassword/EmailAndPassword';
 import ConnectedAccounts from './_ui/connectedaccounts/ConnectedAccounts';
@@ -17,13 +17,13 @@ const Settings = () => {
   const labels = Localization.Labels.settings;
   const [selectedNav, setSelectedNav] = useState(NAV_SECTION.PROFILE);
   const [editingSection, setEditingSection] = useState(null);
-  const connectedUser = useSelector(state => state.app.getIn(['data', 'user']));
+  const connectedUser = useSelector((state) => state.app.getIn(['data', 'user']));
   const dispatch = useDispatch();
 
   if (!connectedUser) return null;
 
   const onSettingsUpdate = (type, data) => {
-    console.log("##### On Settings update click", type, data);
+    console.log('##### On Settings update click', type, data);
     if (data) {
       if (type === NAV_SECTION.EMAIL) {
         const params = {
@@ -50,7 +50,7 @@ const Settings = () => {
       setEditingSection(type);
       setSelectedNav(type === NAV_SECTION.PASSWORD ? NAV_SECTION.EMAIL : type);
     }
-  }
+  };
 
   return (
     <div style={styles.container}>
@@ -80,6 +80,6 @@ const Settings = () => {
       </div>
     </div>
   );
-}
+};
 
 export default Settings;

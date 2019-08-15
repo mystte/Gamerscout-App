@@ -11,20 +11,20 @@ import Button, { BUTTON_THEME } from '../elements/button/Button';
 const FacebookButton = ({
   label,
 }) => {
-  const appId = useSelector(state => state.app.getIn(['data', 'facebookAppId']));
+  const appId = useSelector((state) => state.app.getIn(['data', 'facebookAppId']));
   const dispatch = useDispatch();
 
   const onLoginClick = () => {
-    window.FB.getLoginStatus(function (response) {
+    window.FB.getLoginStatus((response) => {
       if (response.status === 'connected') {
         dispatch(doFacebookLogin(response.authResponse.accessToken));
       } else {
-        window.FB.login(function (response) {
-          dispatch(doFacebookLogin(response.authResponse.accessToken));
+        window.FB.login((wResponse) => {
+          dispatch(doFacebookLogin(wResponse.authResponse.accessToken));
         }, { scope: 'email,public_profile' });
       }
     });
-  }
+  };
 
   return (
     <FacebookProvider appId={appId}>
@@ -35,7 +35,7 @@ const FacebookButton = ({
       />
     </FacebookProvider>
   );
-}
+};
 
 FacebookButton.propTypes = {
   label: PropTypes.string,

@@ -16,16 +16,16 @@ const UserMenu = ({
 
   return (
     <div style={styles.container}>
-      {isAuthenticated &&
-        <div>
+      {isAuthenticated
+        && <div>
           <UserActionsWidget
             user={user}
             onUserActions={userMenuActions}
           />
         </div>
       }
-      {!isAuthenticated &&
-        <div style={styles.signinSignupContainer}>
+      {!isAuthenticated
+        && <div style={styles.signinSignupContainer}>
           <Button
             label={labels.login}
             buttonStyle={styles.buttonLabel}
@@ -40,7 +40,7 @@ const UserMenu = ({
       }
     </div>
   );
-}
+};
 
 UserMenu.propTypes = {
   isAuthenticated: PropTypes.bool,

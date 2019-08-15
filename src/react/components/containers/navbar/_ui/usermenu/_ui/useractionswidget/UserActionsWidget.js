@@ -23,27 +23,25 @@ const UserActionsWidget = ({
       userAction = USER_MENU_ACTIONS.LOGOUT;
     }
     onUserActions(userAction);
-  }
+  };
 
-  const getAvatar = () => {
-    return <Avatar
+  const getAvatar = () => (
+    <Avatar
       name={user.username}
       width={36}
       height={36}
     />
-  }
+  );
 
   return (
     <div style={styles.container}>
       <DropDown
         options={
-        Object.values(labels).map((label) => {
-          return {
+          Object.values(labels).map((label) => ({
             name: label,
-            label: label,
-          }
-        })
-      }
+            label,
+          }))
+        }
         selectType={SELECT_TYPE.CUSTOM_CONTENT}
         selectContent={getAvatar()}
         dropDown={DROPDOWN_TYPE.DEFAULT}
@@ -52,7 +50,7 @@ const UserActionsWidget = ({
       />
     </div>
   );
-}
+};
 
 UserActionsWidget.propTypes = {
   user: PropTypes.object.isRequired,

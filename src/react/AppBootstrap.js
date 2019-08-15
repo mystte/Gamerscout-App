@@ -13,7 +13,7 @@ import Popup from './components/views/elements/popup/Popup';
 import { pushNotification } from './redux/actions/notifications';
 import NotificationRecord, { MOCKED_NOTIFICATION } from './datamanager/models/NotificationRecord';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   config: state.app.get('data'),
   user: state.app.getIn(['data', 'user']),
   popupData: state.app.getIn(['data', 'popupData']),
@@ -47,7 +47,9 @@ class AppBootstrap extends PureComponent {
 
   componentDidMount() {
     this.props.dispatch(loadAppData(this.props.cookies.cookies));
-    // this.props.dispatch(pushNotification(NotificationRecord.getMockedNotif(MOCKED_NOTIFICATION.TEST)));
+    // this.props.dispatch(pushNotification(
+    //   NotificationRecord.getMockedNotif(MOCKED_NOTIFICATION.TEST),
+    // ));
     // Force app in English for now
     Localization.setLanguage('en');
   }
@@ -60,7 +62,9 @@ class AppBootstrap extends PureComponent {
 
       if (!this.props.user.validated && !this.props.cookies.get('gs-notif')) {
         this.props.cookies.set('gs-notif', 1, { maxAge: 3600 });
-        this.props.dispatch(pushNotification(NotificationRecord.getMockedNotif(MOCKED_NOTIFICATION.INVALID_ACCOUNT)));
+        this.props.dispatch(
+          pushNotification(NotificationRecord.getMockedNotif(MOCKED_NOTIFICATION.INVALID_ACCOUNT)),
+        );
       }
     }
   }
@@ -83,5 +87,5 @@ class AppBootstrap extends PureComponent {
 }
 
 export default withCookies(
-  connect(mapStateToProps)(AppBootstrap)
+  connect(mapStateToProps)(AppBootstrap),
 );

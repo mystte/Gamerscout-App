@@ -3,6 +3,6 @@ export const NAV_SECTION = {
   EMAIL: 'NAV_SECTION_EMAIL',
   PASSWORD: 'NAV_SECTION_PASSWORD',
   ACCOUNTS: 'NAV_SECTION_ACCOUNTS',
-}
+};
 
 export default null;

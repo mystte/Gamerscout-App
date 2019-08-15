@@ -27,7 +27,7 @@ const styles = {
 
   firstRect: {
     marginBottom: 8,
-  }
+  },
 };
 
 export default styles;

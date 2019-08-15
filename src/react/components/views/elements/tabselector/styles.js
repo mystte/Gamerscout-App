@@ -1,4 +1,4 @@
-import { colorNameToHex } from "../../../../utils/color";
+import { colorNameToHex } from '../../../../utils/color';
 
 const styles = {
   headerContainer: {

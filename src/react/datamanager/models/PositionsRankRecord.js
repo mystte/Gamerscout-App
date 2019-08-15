@@ -6,7 +6,7 @@ export const POSITION_TYPE = {
   JUNGLE: 'JUNGLE',
   BOTTOM: 'BOTTOM',
   SUPPORT: 'SUPPORT',
-}
+};
 
 const defaultProps = {
   positionType: String,
@@ -18,8 +18,8 @@ const defaultProps = {
 };
 
 const ExtendsWith = (superclass) => class extends superclass {
-
   static get defaultProps() { return defaultProps; }
+
   static get ExtendsWith() { return ExtendsWith; }
 };
 

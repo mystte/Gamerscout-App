@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 import { Record, List } from 'typed-immutable';
 
 import NotificationRecord from './NotificationRecord';
@@ -7,18 +8,22 @@ const defaultProps = {
 };
 
 const ExtendsWith = (superclass) => class extends superclass {
-
   push = (record) => {
     const newNotifyList = this.get('notifList').push(record);
-    return NotificationsManagerRecord.apiParser({'notifList': newNotifyList});
+    return NotificationsManagerRecord.apiParser({
+      notifList: newNotifyList,
+    });
   }
 
   delete = (idx) => {
     const newNotifyList = this.notifList.delete(idx);
-    return NotificationsManagerRecord.apiParser({ 'notifList': newNotifyList });
+    return NotificationsManagerRecord.apiParser({
+      notifList: newNotifyList,
+    });
   }
 
   static get defaultProps() { return defaultProps; }
+
   static get ExtendsWith() { return ExtendsWith; }
 };
 

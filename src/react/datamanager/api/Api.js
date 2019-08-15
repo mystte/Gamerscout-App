@@ -9,15 +9,18 @@ const CALL_TYPE = {
 
 export async function fetchAsync(func, parameters) {
   const response = await func(parameters);
+  let resultJson = null;
 
   if (response.status >= 200 && response.status <= 205) {
-    return await JSON.parse(JSON.stringify(response));
+    resultJson = JSON.parse(JSON.stringify(response));
   } else if (response.status) {
-    console.error("Api error : ", response);
+    console.error('Api error : ', response);
     throw new Error(response.data.error);
   } else {
-    throw new Error("Unexpected error!!!");
+    throw new Error('Unexpected error!!!');
   }
+
+  return resultJson;
 }
 
 async function doApiCall(url, params, callType = CALL_TYPE.GET) {
@@ -27,7 +30,7 @@ async function doApiCall(url, params, callType = CALL_TYPE.GET) {
   const axiosOptions = {
     validateStatus: (status) => status >= 200 && status <= 500,
     withCredentials: true,
-  }
+  };
 
   if (callType === CALL_TYPE.GET) {
     result = await axios.get(`${serverUrl}${url}`, axiosOptions);
@@ -40,8 +43,9 @@ async function doApiCall(url, params, callType = CALL_TYPE.GET) {
 }
 
 export default class Api {
-
-  static loadGamerDetails({ game, gamertag, platform, region }) {
+  static loadGamerDetails({
+    game, gamertag, platform, region,
+  }) {
     const url = `/search/${platform}/${region}/${game}/${gamertag}`;
 
     return doApiCall(url);
@@ -68,16 +72,16 @@ export default class Api {
       username,
       email,
       password: md5(password),
-    }
+    };
 
     return doApiCall('/users/signup', data, CALL_TYPE.POST);
   }
 
-  static doLogin({email, password}) {
+  static doLogin({ email, password }) {
     const data = {
       email,
       password: md5(password),
-    }
+    };
 
     return doApiCall('/users/login', data, CALL_TYPE.POST);
   }
@@ -93,7 +97,7 @@ export default class Api {
   static doResetPassword({ email }) {
     const data = {
       email,
-    }
+    };
 
     return doApiCall('/users/forgotten_password', data, CALL_TYPE.POST);
   }
@@ -109,13 +113,12 @@ export default class Api {
   static doFacebookLogin({ token }) {
     const data = {
       access_token: token,
-    }
+    };
 
     return doApiCall('/users/facebook_auth', data, CALL_TYPE.POST);
   }
 
   static doDisconnectFacebook() {
-
     return doApiCall('/users/facebook_disconnect', null, CALL_TYPE.POST);
   }
 
@@ -127,4 +130,3 @@ export default class Api {
     return doApiCall('/users/validation/email/resend', null, CALL_TYPE.POST);
   }
 }
-

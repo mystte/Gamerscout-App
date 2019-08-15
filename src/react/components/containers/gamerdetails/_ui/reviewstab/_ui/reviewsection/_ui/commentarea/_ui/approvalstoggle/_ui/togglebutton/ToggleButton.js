@@ -33,7 +33,7 @@ const ToggleButton = ({
       <span style={labelStyle}>{title}</span>
     </button>
   );
-}
+};
 
 ToggleButton.propTypes = {
   onClick: PropTypes.func.isRequired,

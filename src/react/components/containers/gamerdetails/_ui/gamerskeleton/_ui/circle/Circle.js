@@ -14,7 +14,7 @@ const Circle = ({ radius, colorName }) => {
   return (
     <div style={containerStyle} />
   );
-}
+};
 
 Circle.propTypes = {
   radius: PropTypes.number,

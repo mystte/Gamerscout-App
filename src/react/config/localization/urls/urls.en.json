@@ -1,4 +1,5 @@
 {
+  "validateAccountUrl": "/v/{token}",
   "gamerDetailsUrl": "/gamer/{platform}/{region}/{game}/{gamertag}",
   "settingsUrl": "/settings"
 }

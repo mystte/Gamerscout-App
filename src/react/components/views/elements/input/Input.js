@@ -7,7 +7,7 @@ import SVGIcon from '../svgicon/SVGIcon';
 export const ICON_POSITION = {
   LEFT: 'ICON_POSITION_LEFT',
   RIGHT: 'ICON_POSITION_RIGHT',
-}
+};
 
 export const INPUT_THEME = {
   DEFAULT: 'defaultTheme',
@@ -17,7 +17,7 @@ export const INPUT_TYPE = {
   EMAIL: 'email',
   TEXT: 'text',
   PASSWORD: 'password',
-}
+};
 
 const Input = ({
   length,
@@ -55,9 +55,9 @@ const Input = ({
   };
 
   const renderedIcon = () => {
-    let renderedIcon = null;
+    let iconToRender = null;
     if (iconPosition === ICON_POSITION.LEFT) {
-      renderedIcon = (
+      iconToRender = (
         <div style={{
           ...styles.iconLeftContainer,
           ...focusStyle,
@@ -71,7 +71,7 @@ const Input = ({
         </div>
       );
     } else if (iconPosition === ICON_POSITION.RIGHT) {
-      renderedIcon = (
+      iconToRender = (
         <div style={styles.iconRightContainer}>
           <SVGIcon
             width={16}
@@ -80,13 +80,13 @@ const Input = ({
         </div>
       );
     }
-    return renderedIcon;
-  }
+    return iconToRender;
+  };
 
   const onInputChange = (e) => {
     setValue(e.target.value);
     if (onChange) onChange(e);
-  }
+  };
 
   useEffect(() => {
     if (ref && focus && !mounted) {
@@ -98,12 +98,12 @@ const Input = ({
 
   return (
     <div>
-      {title &&
-        <div style={styles.title}>{title}</div>
+      {title
+        && <div style={styles.title}>{title}</div>
       }
       <div style={styles.inputContainer}>
-        {icon && iconPosition === ICON_POSITION.LEFT &&
-          renderedIcon()
+        {icon && iconPosition === ICON_POSITION.LEFT
+          && renderedIcon()
         }
         <input
           className="input-animation"
@@ -117,16 +117,16 @@ const Input = ({
           onChange={onInputChange}
           maxLength={length}
         />
-        {icon && iconPosition === ICON_POSITION.RIGHT &&
-          renderedIcon()
+        {icon && iconPosition === ICON_POSITION.RIGHT
+          && renderedIcon()
         }
       </div>
-      {message &&
-        <div className="input-animation" style={styles.message}>{message}</div>
+      {message
+        && <div className="input-animation" style={styles.message}>{message}</div>
       }
     </div>
   );
-}
+};
 
 Input.propTypes = {
   length: PropTypes.string,
@@ -146,11 +146,11 @@ Input.propTypes = {
 };
 
 Input.defaultProps = {
-  length: "42",
+  length: '42',
   message: null,
   placeholder: null,
   title: null,
-  initValue: "",
+  initValue: '',
   focus: false,
   onChange: null,
   inputStyle: null,

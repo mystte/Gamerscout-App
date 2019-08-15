@@ -22,7 +22,7 @@ const SigninPopup = () => {
   const [errorMessage, setErrorMessage] = useState(null);
   const labels = Localization.Labels.signinPopup;
   const errorsLabels = Localization.Errors.signin;
-  const apiError = useSelector(state => state.app.get('error'));
+  const apiError = useSelector((state) => state.app.get('error'));
   const dispatch = useDispatch();
   const enterPressed = UseKeyPress('Enter');
 
@@ -37,20 +37,20 @@ const SigninPopup = () => {
         setErrorMessage(errorsLabels[valid]);
       }
     }
-  }
+  };
 
-  useEffect(() => {
-    return () => {
+  useEffect(() => (
+    () => {
       if (enterPressed) actionLogin();
     }
-  }, [enterPressed]);
+  ), [enterPressed]);
 
-  useEffect(() => {
-    return () => {
+  useEffect(() => (
+    () => {
       setWrongEmail(true);
       setWrongPassword(true);
     }
-  }, [apiError]);
+  ), [apiError]);
 
   return (
     <div style={styles.container}>
@@ -100,6 +100,6 @@ const SigninPopup = () => {
       </div>
     </div>
   );
-}
+};
 
 export default SigninPopup;

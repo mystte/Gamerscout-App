@@ -14,12 +14,10 @@ const defaultProps = {
 };
 
 const ExtendsWith = (superclass) => class extends superclass {
-
-  updateViewContent = (newViewContent) => {
-    return this.set('viewContent', newViewContent);
-  }
+  updateViewContent = (newViewContent) => this.set('viewContent', newViewContent);
 
   static get defaultProps() { return defaultProps; }
+
   static get ExtendsWith() { return ExtendsWith; }
 };
 

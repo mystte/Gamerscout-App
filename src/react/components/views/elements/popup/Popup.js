@@ -29,18 +29,18 @@ const Popup = ({
       result = <ConfirmPassword />;
     }
     return result;
-  }
+  };
 
-  useEffect(() => {
-    return () => {
+  useEffect(() => (
+    () => {
       if (escapePressed && show) togglePopup();
     }
-  }, [escapePressed])
+  ), [escapePressed]);
 
   return (
     <React.Fragment>
-      {show &&
-        <div style={styles.popupBackground}>
+      {show
+        && <div style={styles.popupBackground}>
           <div
             style={styles.container}
           >
@@ -57,7 +57,7 @@ const Popup = ({
       }
     </React.Fragment>
   );
-}
+};
 
 Popup.propTypes = {
   togglePopup: PropTypes.func.isRequired,

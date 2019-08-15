@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import SVGIcon from '../svgicon/SVGIcon';
@@ -24,14 +24,15 @@ const DropDown = ({
 }) => {
   if (options.length === 0) return null;
   const [select, setSelect] = useState(1);
-  const selectedLabel = (options[select - 1].label) ? options[select - 1].label : options[select - 1].name;
+  const selectedLabel = (options[select - 1].label)
+    ? options[select - 1].label
+    : options[select - 1].name;
   const { isOpen, toggle, node } = UseModal();
 
   const onSelect = (selectedItemNumber) => {
     setSelect(selectedItemNumber);
-    if (onChange)
-      onChange(options[selectedItemNumber - 1]);
-  }
+    if (onChange) onChange(options[selectedItemNumber - 1]);
+  };
 
   const renderSelectContent = () => {
     let result = <span style={styles.selectedLabel}>{selectedLabel}</span>;
@@ -41,10 +42,10 @@ const DropDown = ({
     }
 
     return result;
-  }
+  };
 
-  const renderListView = () => {
-    return options.map((elem, idx) => {
+  const renderListView = () => (
+    options.map((elem, idx) => {
       const elemLabelStyle = (idx === select - 1 && !noSelectFeedback) ? {
         ...styles.elemLabel,
         ...styles.elemLabelSelect,
@@ -55,34 +56,34 @@ const DropDown = ({
       const elemLabel = (elem.label) ? elem.label : elem.name;
       return (
         <div
-          className={"option"}
+          className={'option'}
           key={elem.name}
           style={styles.listElem}
           onClick={() => onSelect(idx + 1)}
         >
           <span
             style={elemLabelStyle}
-            className="noselect"
+            className='noselect'
           >
             {elemLabel}
           </span>
         </div>
       );
-    });
-  }
+    })
+  );
 
   const getSelectContainerStyle = () => {
     let containerStyle = styles.selectContainer;
-    if (selectType === SELECT_TYPE.SIMPLE ||
-      selectType === SELECT_TYPE.CUSTOM_CONTENT) {
+    if (selectType === SELECT_TYPE.SIMPLE
+      || selectType === SELECT_TYPE.CUSTOM_CONTENT) {
       containerStyle = {
         ...containerStyle,
         ...styles.selectSimple,
-      }
+      };
     }
 
     return containerStyle;
-  }
+  };
 
   const containerStyle = getSelectContainerStyle();
 
@@ -98,8 +99,8 @@ const DropDown = ({
         width={7}
         height={4}
       />
-      {isOpen &&
-        <div
+      {isOpen
+        && <div
           className="listContainer shadow"
           style={styles.listViewContainer}
         >
@@ -108,23 +109,23 @@ const DropDown = ({
       }
     </div>
   );
-}
+};
 
-  DropDown.propTypes = {
-    options: PropTypes.array.isRequired,
-    selectType: PropTypes.string,
-    dropDownType: PropTypes.string,
-    onChange: PropTypes.func,
-    selectContent: PropTypes.object,
-    noSelectFeedback: PropTypes.bool,
-  };
+DropDown.propTypes = {
+  options: PropTypes.array.isRequired,
+  selectType: PropTypes.string,
+  dropDownType: PropTypes.string,
+  onChange: PropTypes.func,
+  selectContent: PropTypes.object,
+  noSelectFeedback: PropTypes.bool,
+};
 
-  DropDown.defaultProps = {
-    selectType: SELECT_TYPE.DEFAULT,
-    dropDownType: DROPDOWN_TYPE.DEFAULT,
-    onChange: null,
-    selectContent: null,
-    noSelectFeedback: false,
-  };
+DropDown.defaultProps = {
+  selectType: SELECT_TYPE.DEFAULT,
+  dropDownType: DROPDOWN_TYPE.DEFAULT,
+  onChange: null,
+  selectContent: null,
+  noSelectFeedback: false,
+};
 
 export default DropDown;

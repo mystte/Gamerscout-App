@@ -15,7 +15,9 @@ const ApprovalsCard = ({
   if (!approvalsCardRecord) return null;
 
   const labels = Localization.Labels.gamerDetails;
-  const title = (type === APPROVAL_TYPE.APPROVAL) ? labels.approvalsCard.title : labels.disapprovalsCard.title;
+  const title = (type === APPROVAL_TYPE.APPROVAL)
+    ? labels.approvalsCard.title
+    : labels.disapprovalsCard.title;
   const count = approvalsCardRecord.getCount();
   const containerStyle = (type === APPROVAL_TYPE.APPROVAL) ? {
     ...styles.container,
@@ -26,8 +28,8 @@ const ApprovalsCard = ({
     <div style={containerStyle}>
       <div style={styles.header}>
         <div style={styles.title}>{title}</div>
-        {onClick &&
-          <div style={styles.buttonContainer}>
+        {onClick
+          && <div style={styles.buttonContainer}>
             <ApprovalButton
               type={type}
               onClick={onClick}
@@ -43,7 +45,7 @@ const ApprovalsCard = ({
 ApprovalsCard.propTypes = {
   approvalsCardRecord: PropTypes.oneOfType([
     PropTypes.instanceOf(ApprovalsCardRecord),
-    PropTypes.instanceOf(DisapprovalsCardRecord)
+    PropTypes.instanceOf(DisapprovalsCardRecord),
   ]),
   type: PropTypes.string,
   onClick: PropTypes.func,

@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import { Record, Maybe, List } from 'typed-immutable';
 
 import ApprovalsCardRecord from './ApprovalsCardRecord';
@@ -30,13 +31,12 @@ const defaultProps = {
 };
 
 const ExtendsWith = (superclass) => class extends superclass {
-
   static get defaultProps() { return defaultProps; }
+
   static get ExtendsWith() { return ExtendsWith; }
 };
 
 export default class GamerDetailsRecord extends ExtendsWith(Record(defaultProps, 'GamerDetailsRecord')) {
-
   static parseAttributesData(apiData) {
     if (!apiData.attributes) return apiData.allAttributes;
 
@@ -67,9 +67,15 @@ export default class GamerDetailsRecord extends ExtendsWith(Record(defaultProps,
       gamerIconUrl: apiData.profile_picture,
       level: apiData.level,
       region: apiData.region,
-      rankedCardRecord: apiData.stats.ranked ? RankedCardRecord.apiParser(apiData.stats.ranked) : null,
-      approvalsCardRecord: !isNaN(apiData.rep_review_count) ? ApprovalsCardRecord.apiParser(apiData) : null,
-      disapprovalsCardRecord: !isNaN(apiData.flame_review_count) ? DisapprovalsCardRecord.apiParser(apiData) : null,
+      rankedCardRecord: apiData.stats.ranked
+        ? RankedCardRecord.apiParser(apiData.stats.ranked)
+        : null,
+      approvalsCardRecord: !isNaN(apiData.rep_review_count)
+        ? ApprovalsCardRecord.apiParser(apiData)
+        : null,
+      disapprovalsCardRecord: !isNaN(apiData.flame_review_count)
+        ? DisapprovalsCardRecord.apiParser(apiData)
+        : null,
       championsCardRecord: ChampionsCardRecord.apiParser(apiData),
       reviewsCardRecord: apiData.reviews ? ReviewsCardRecord.apiParser(apiData) : null,
       attributesList: GamerDetailsRecord.parseAttributesData(apiData),

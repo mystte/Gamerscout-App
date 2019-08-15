@@ -1,4 +1,4 @@
-import { colorNameToHex } from "../../../../../utils/color";
+import { colorNameToHex } from '../../../../../utils/color';
 
 const styles = {
   container: {
@@ -28,7 +28,7 @@ const styles = {
 
   inputStyle: {
     width: 200,
-    height: '100%',
+    height: '98%',
     border: 'none',
     backgroundColor: colorNameToHex('darkgrey'),
   },

@@ -27,7 +27,7 @@ import UserMenu from './_ui/usermenu/UserMenu';
 import { POPUP_TYPE } from '../../../datamanager/models/PopupRecord';
 import { USER_MENU_ACTIONS } from './_ui/usermenu/enums';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   config: state.app.get('data'),
   loading: state.app.get('loading'),
   error: state.app.get('error'),
@@ -76,7 +76,6 @@ class NavBar extends PureComponent {
   }
 
   userMenuActions = (action) => {
-    console.log("userMenuAction", action);
     if (action === USER_MENU_ACTIONS.SIGNIN) {
       this.props.dispatch(togglePopup(POPUP_TYPE.SIGNIN));
     } else if (action === USER_MENU_ACTIONS.SIGNUP) {
@@ -90,7 +89,12 @@ class NavBar extends PureComponent {
 
   onSearchClick = () => {
     if (this.state.searchValue) {
-      this.props.history.push(getGamerDetailsUrl(GAME_PLATFORM.RIOT, this.state.selectedRegion, GAME_CODE.LEAGUE_OF_LEGENDS, this.state.searchValue));
+      this.props.history.push(getGamerDetailsUrl(
+        GAME_PLATFORM.RIOT,
+        this.state.selectedRegion,
+        GAME_CODE.LEAGUE_OF_LEGENDS,
+        this.state.searchValue,
+      ));
       this.props.dispatch(loadGamerDetails(
         GAME_PLATFORM.RIOT,
         this.state.selectedRegion,
@@ -105,11 +109,11 @@ class NavBar extends PureComponent {
 
     return (
       <React.Fragment>
-        {this.props.loading &&
-          <div>Loading...</div>
+        {this.props.loading
+          && <div>Loading...</div>
         }
-        {!this.props.loading &&
-          <div style={styles.container}>
+        {!this.props.loading
+          && <div style={styles.container}>
             <Link style={styles.link}
               to={getHomeUrl()}
             >
@@ -140,5 +144,5 @@ class NavBar extends PureComponent {
 }
 
 export default withRouter(
-  connect(mapStateToProps)(NavBar)
+  connect(mapStateToProps)(NavBar),
 );

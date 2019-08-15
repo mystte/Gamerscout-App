@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import React, { PureComponent } from 'react';
 
 class FourOFour extends PureComponent {

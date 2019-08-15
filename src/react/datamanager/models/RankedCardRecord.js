@@ -9,21 +9,10 @@ const defaultProps = {
 
 const ExtendsWith = (superclass) => class extends superclass {
   static get defaultProps() { return defaultProps; }
+
   static get ExtendsWith() { return ExtendsWith; }
-};
 
-export default class RankedCardRecord extends ExtendsWith(Record(defaultProps, 'RankedCardRecord')) {
-  static apiParser(data) {
-    const parsedData = {
-      tabsList: data.map((tabData) => {
-        return RankedCardTabRecord.apiParser(tabData);
-      }),
-    };
-
-    return new RankedCardRecord(parsedData);
-  }
-
-  getRankedCardTabHeader(platform, gameCode) {
+  getRankedCardTabHeader = (_platform, gameCode) => {
     const labels = Localization.Labels.gamerDetails.rankedCard;
     let result = [];
 
@@ -40,10 +29,20 @@ export default class RankedCardRecord extends ExtendsWith(Record(defaultProps, '
         {
           title: 'RANKED_FLEX_TT',
           name: labels.rankedFlex3v3,
-        }
-      ]
+        },
+      ];
     }
 
     return result;
+  }
+};
+
+export default class RankedCardRecord extends ExtendsWith(Record(defaultProps, 'RankedCardRecord')) {
+  static apiParser(data) {
+    const parsedData = {
+      tabsList: data.map((tabData) => RankedCardTabRecord.apiParser(tabData)),
+    };
+
+    return new RankedCardRecord(parsedData);
   }
 }

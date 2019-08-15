@@ -1,26 +1,26 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from 'react';
 
 const useModal = () => {
   const [isOpen, setIsOpen] = useState(false);
   const node = useRef();
 
+  const handleClick = (e) => {
+    if (node.current.contains(e.target)) {
+      return;
+    }
+    setIsOpen(false);
+  };
+
   useEffect(() => {
-    document.addEventListener("mousedown", handleClick);
+    document.addEventListener('mousedown', handleClick);
 
     return () => {
-      document.removeEventListener("mousedown", handleClick);
+      document.removeEventListener('mousedown', handleClick);
     };
   }, []);
 
   const toggle = () => {
     setIsOpen(!isOpen);
-  }
-
-  const handleClick = e => {
-    if (node.current.contains(e.target)) {
-      return;
-    }
-    setIsOpen(false);
   };
 
   return {

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Localization from '../../../../../../../../../config/localization/Localization'
+import Localization from '../../../../../../../../../config/localization/Localization';
 import styles from './styles';
 import ApprovalsToggle from './_ui/approvalstoggle/ApprovalsToggle';
 import AddButton from '../../../../../../../../views/addbutton/AddButton';
@@ -30,7 +30,7 @@ const CommentArea = ({ preselect }) => {
       </div>
     </div>
   );
-}
+};
 
 CommentArea.propTypes = {
   preselect: PropTypes.string,

@@ -1,6 +1,8 @@
-import { put, takeEvery } from 'redux-saga/effects'
-import { GAMER_DETAILS, loading, success, error } from '../actions/actionTypes';
-import Api, { fetchAsync } from '../../datamanager/api/Api'
+import { put, takeEvery } from 'redux-saga/effects';
+import {
+  GAMER_DETAILS, loading, success, error,
+} from '../actions/actionTypes';
+import Api, { fetchAsync } from '../../datamanager/api/Api';
 import GamerDetailsRecord from '../../datamanager/models/GamerDetailsRecord';
 
 function* loadGamerDetails({ parameters }) {
@@ -9,10 +11,13 @@ function* loadGamerDetails({ parameters }) {
     const gamerDetailsData = yield fetchAsync(Api.loadGamerDetails, parameters);
     const attributesData = yield fetchAsync(Api.loadAttributes);
 
-    yield put({ type: success(actionType), data: GamerDetailsRecord.apiParser({
-      ...gamerDetailsData.data[0],
-      allAttributes: attributesData.data.attributes,
-    })});
+    yield put({
+      type: success(actionType),
+      data: GamerDetailsRecord.apiParser({
+        ...gamerDetailsData.data[0],
+        allAttributes: attributesData.data.attributes,
+      }),
+    });
   } catch (e) {
     yield put({ type: error(actionType), error: e.message });
   }

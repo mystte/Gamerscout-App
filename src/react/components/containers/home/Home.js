@@ -14,7 +14,7 @@ import {
 import styles from './styles';
 import Checkbox from '../../views/elements/checkbox/Checkbox';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   config: state.app.get('data'),
   loading: state.app.get('loading'),
   error: state.app.get('error'),
@@ -33,14 +33,8 @@ class Home extends Component {
     super(props);
 
     this.state = {
-      searchValue: "",
+      searchValue: '',
     };
-  }
-
-  componentDidMount() {
-  }
-
-  componentWillUnmount() {
   }
 
   onSearchInputChange = (event) => {
@@ -51,7 +45,12 @@ class Home extends Component {
 
   onSearchClick = () => {
     if (this.state.searchValue) {
-      this.props.history.push(getGamerDetailsUrl(GAME_PLATFORM.RIOT, GAME_REGIONS.NA, GAME_CODE.LEAGUE_OF_LEGENDS, this.state.searchValue));
+      this.props.history.push(getGamerDetailsUrl(
+        GAME_PLATFORM.RIOT,
+        GAME_REGIONS.NA,
+        GAME_CODE.LEAGUE_OF_LEGENDS,
+        this.state.searchValue,
+      ));
     }
   }
 
@@ -68,5 +67,5 @@ class Home extends Component {
 }
 
 export default withRouter(
-  connect(mapStateToProps)(Home)
+  connect(mapStateToProps)(Home),
 );

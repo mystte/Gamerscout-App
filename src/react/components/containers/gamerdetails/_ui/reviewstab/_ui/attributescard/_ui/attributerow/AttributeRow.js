@@ -51,7 +51,7 @@ const AttributeRow = ({ attributeRecord }) => {
       <div style={styles.ratio}>{`${attributeRecord.ratio}%`}</div>
     </div>
   );
-}
+};
 
 AttributeRow.propTypes = {
   attributeRecord: PropTypes.instanceOf(AttributeRecord),

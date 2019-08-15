@@ -32,6 +32,15 @@ export function doFacebookLogin(token) {
   };
 }
 
+export function validateAccount(token) {
+  return {
+    type: loading(APP.DO_VALIDATE_ACCOUNT),
+    parameters: {
+      token,
+    },
+  };
+}
+
 export function doResendValidationEmail() {
   return {
     type: loading(APP.DO_RESEND_VALIDATION_EMAIL),
@@ -87,7 +96,7 @@ export function doUpdateUser({
       email: newEmail,
       password: newPassword,
     },
-  }
+  };
 }
 
 
@@ -102,7 +111,7 @@ export function doConfirmPassword(password, onSuccessData = null) {
 }
 
 export function doResetPassword(
-  email
+  email,
 ) {
   return {
     type: loading(APP.DO_RESET_PWD),
@@ -120,7 +129,7 @@ export function doLogout() {
 
 export function clearAppError() {
   return {
-    type: APP.CLEAR_ERROR
+    type: APP.CLEAR_ERROR,
   };
 }
 

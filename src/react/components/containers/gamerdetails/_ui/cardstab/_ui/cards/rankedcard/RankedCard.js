@@ -20,13 +20,18 @@ class RankedCard extends PureComponent {
     super(props);
 
     this.state = {
-      headerList: this.props.rankedCardRecord.getRankedCardTabHeader(this.props.platform, this.props.gameCode),
+      headerList: this.props.rankedCardRecord.getRankedCardTabHeader(
+        this.props.platform,
+        this.props.gameCode,
+      ),
     };
   }
 
   render() {
     const renderedTabs = this.state.headerList.map((header, idx) => {
-      const filteredRankedData = this.props.rankedCardRecord.tabsList.filter((tabData) => (tabData.title === header.title));
+      const filteredRankedData = this.props.rankedCardRecord.tabsList.filter(
+        (tabData) => (tabData.title === header.title),
+      );
 
       return (<RankedTab
         key={`rankedTab${idx}`}

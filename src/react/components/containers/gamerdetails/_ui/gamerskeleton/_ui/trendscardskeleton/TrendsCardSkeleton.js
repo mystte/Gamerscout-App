@@ -19,12 +19,12 @@ const styles = {
   },
 };
 
-const DropdownSkeleton = () => {
-  return (
+const DropdownSkeleton = () => (
+  (
     <div style={styles.container}>
       <Rectangle width={120} height={15} />
     </div>
-  );
-}
+  )
+);
 
 export default DropdownSkeleton;

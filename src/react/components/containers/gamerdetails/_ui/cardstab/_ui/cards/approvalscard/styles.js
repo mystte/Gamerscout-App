@@ -1,7 +1,7 @@
 import {
   colorNameToHex,
   colorNameToRgba,
-} from "../../../../../../../../utils/color";
+} from '../../../../../../../../utils/color';
 
 const styles = {
   container: {

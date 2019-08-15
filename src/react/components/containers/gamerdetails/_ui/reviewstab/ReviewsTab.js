@@ -35,14 +35,14 @@ class ReviewsTab extends PureComponent {
     };
   }
 
-  renderReviews = () => {
-    return this.props.reviewsCardRecord.filtered.map((review, idx) => {
-      return (<Review
+  renderReviews = () => (
+    this.props.reviewsCardRecord.filtered.map((review, idx) => (
+      (<Review
         key={`review-${idx}`}
         reviewRecord={review}
-      />);
-    });
-  }
+      />)
+    ))
+  );
 
   render() {
     if (!this.props.reviewsCardRecord) return null;
@@ -69,8 +69,8 @@ class ReviewsTab extends PureComponent {
             onReviewSubmitClick={this.props.onReviewSubmitClick}
             preselect={this.props.preselect}
           />
-          {this.props.reviewsCardRecord.reviews.size > 0 &&
-            <div style={styles.reviewsListContainer}>
+          {this.props.reviewsCardRecord.reviews.size > 0
+            && <div style={styles.reviewsListContainer}>
               <div style={styles.reviewFilterContainer}>
                 <ReviewFilter
                   onReviewFilterChange={this.props.onReviewFilterChange}

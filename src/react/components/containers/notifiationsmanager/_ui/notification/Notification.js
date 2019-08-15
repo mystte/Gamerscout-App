@@ -7,18 +7,22 @@ import { NOTIFICATION_TYPE } from '../../../../../datamanager/models/Notificatio
 import Button, { BUTTON_THEME } from '../../../../views/elements/button/Button';
 import UseTimeout from '../../../../views/hooks/UseTimeout';
 
-const Notification = ({ title, type, onClose, id, isPersistent }) => {
+const Notification = ({
+  title,
+  type,
+  onClose,
+  id,
+  isPersistent,
+}) => {
   const icon = (type === NOTIFICATION_TYPE.ALERT) ? 'notif-alert-type' : 'info';
   let timeout = null;
 
-  if (!isPersistent)
-    timeout = UseTimeout(() => onClose(id), 7000);
+  if (!isPersistent) timeout = UseTimeout(() => onClose(id), 7000);
 
   const onCloseNotification = () => {
-    if (timeout)
-      clearTimeout(timeout);
+    if (timeout) clearTimeout(timeout);
     onClose(id);
-  }
+  };
 
   return (
     <div
@@ -42,7 +46,7 @@ const Notification = ({ title, type, onClose, id, isPersistent }) => {
       </span>
     </div>
   );
-}
+};
 
 Notification.propTypes = {
   id: PropTypes.number.isRequired,

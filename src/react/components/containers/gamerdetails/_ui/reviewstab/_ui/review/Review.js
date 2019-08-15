@@ -25,8 +25,8 @@ class Review extends PureComponent {
     };
   }
 
-  renderAttributesIcons = () => {
-    return this.props.reviewRecord.attributes.map((attribute, idx) => {
+  renderAttributesIcons = () => (
+    this.props.reviewRecord.attributes.map((attribute, idx) => {
       let attributeIconStyle = {
         ...styles.attributeIcon,
         ...styles.iconGood,
@@ -48,8 +48,8 @@ class Review extends PureComponent {
           type={IMG_TYPE.PNG}
         />
       </div>);
-    });
-  }
+    })
+  );
 
   render() {
     if (!this.props.reviewRecord) return null;
@@ -61,7 +61,8 @@ class Review extends PureComponent {
       ...styles.reviewType,
       ...styles.disapproval,
     };
-    const reviewTypeLabel = (this.props.reviewRecord.type === REVIEW_TYPE.APPROVAL) ? labels.approval : labels.disapproval;
+    const reviewTypeLabel = (this.props.reviewRecord.type === REVIEW_TYPE.APPROVAL)
+      ? labels.approval : labels.disapproval;
 
     return (
       <div style={styles.container}>

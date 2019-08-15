@@ -1,7 +1,5 @@
 import { colorNameToHex, colorNameToRgba } from '../../../../../../../utils/color';
 
-colorNameToHex
-
 const styles = {
   container: {
     flexDirection: 'row',

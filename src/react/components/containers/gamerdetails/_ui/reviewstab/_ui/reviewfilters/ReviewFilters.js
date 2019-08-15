@@ -1,4 +1,4 @@
-import React, {  useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import Localization from '../../../../../../../config/localization/Localization';
@@ -16,9 +16,9 @@ const ReviewFilter = ({ onReviewFilterChange }) => {
     let newShowFilter = showFilter;
     let newFilterBy = filterBy;
 
-    if (selectedFilter.name === REVIEW_FILTER.SHOW_ALL ||
-        selectedFilter.name === REVIEW_FILTER.SHOW_APPROVALS ||
-        selectedFilter.name === REVIEW_FILTER.SHOW_DISAPPROVALS) {
+    if (selectedFilter.name === REVIEW_FILTER.SHOW_ALL
+        || selectedFilter.name === REVIEW_FILTER.SHOW_APPROVALS
+        || selectedFilter.name === REVIEW_FILTER.SHOW_DISAPPROVALS) {
       setShowFilter(selectedFilter.name);
       newShowFilter = selectedFilter.name;
     } else {
@@ -26,7 +26,7 @@ const ReviewFilter = ({ onReviewFilterChange }) => {
       newFilterBy = selectedFilter.name;
     }
     return onReviewFilterChange(newShowFilter, newFilterBy);
-  }
+  };
 
   return (
     <div style={styles.container}>
@@ -56,7 +56,7 @@ const ReviewFilter = ({ onReviewFilterChange }) => {
       </div>
     </div>
   );
-}
+};
 
 ReviewFilter.propTypes = {
   onReviewFilterChange: PropTypes.func,

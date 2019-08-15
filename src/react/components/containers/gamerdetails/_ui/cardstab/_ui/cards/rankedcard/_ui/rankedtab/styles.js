@@ -1,6 +1,4 @@
-import { colorNameToHex } from "../../../../../../../../../../utils/color";
-
-colorNameToHex
+import { colorNameToHex } from '../../../../../../../../../../utils/color';
 
 const styles = {
   container: {

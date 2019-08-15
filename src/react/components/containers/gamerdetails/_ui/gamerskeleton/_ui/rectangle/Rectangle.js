@@ -1,9 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
 import { colorNameToHex } from '../../../../../../../utils/color';
 
-const Rectangle = ({width, height, colorName}) => {
+const Rectangle = ({
+  width,
+  height,
+  colorName,
+}) => {
   const containerStyle = {
     width,
     height,
@@ -13,16 +17,16 @@ const Rectangle = ({width, height, colorName}) => {
   return (
     <div className="loading" style={containerStyle} />
   );
-}
+};
 
 Rectangle.propTypes = {
   width: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.number
+    PropTypes.number,
   ]),
   height: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.number
+    PropTypes.number,
   ]),
   colorName: PropTypes.string,
 };

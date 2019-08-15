@@ -26,7 +26,7 @@ class ErrorBoundary extends React.Component {
       error,
       info,
     });
-    console.log("*** Caught error *** ", error, info);
+    console.log('*** Caught error *** ', error, info);
   }
 
   render() {

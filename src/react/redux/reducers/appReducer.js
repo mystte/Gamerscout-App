@@ -19,12 +19,11 @@ export default function reducer(state = initialState, action) {
     case APP.TOGGLE_POPUP:
       return state.withMutations((mutate) => {
         mutate.setIn(['data', 'popupData', 'showPopup'],
-          action.parameters.forceDisplay ?
-          action.parameters.forceDisplay :
-          !state.getIn(['data', 'popupData', 'showPopup']));
+          action.parameters.forceDisplay
+            ? action.parameters.forceDisplay
+            : !state.getIn(['data', 'popupData', 'showPopup']));
         mutate.setIn(['data', 'popupData', 'type'], action.parameters.type);
-        if (action.parameters.params)
-          mutate.setIn(['data', 'popupData', 'params'], action.parameters.params);
+        if (action.parameters.params) mutate.setIn(['data', 'popupData', 'params'], action.parameters.params);
         mutate.set('error', null);
       });
 
@@ -80,7 +79,7 @@ export default function reducer(state = initialState, action) {
     case error(APP.DO_UPDATE_USER):
     case error(APP.DO_CONFIRM_PASSWORD):
     case error(APP.DO_UPDATE_PASSWORD):
-      console.log("ACTION ERROR = ", action);
+      console.log('ACTION ERROR = ', action);
       return state.withMutations((mutate) => {
         mutate.set('loading', false);
         mutate.set('error', action.error);

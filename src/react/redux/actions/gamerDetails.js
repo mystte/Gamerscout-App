@@ -17,7 +17,7 @@ export function applyReviewFilters(mutatedReviewRecord) {
   return {
     type: GAMER_DETAILS.APPLY_REVIEW_FILTERS,
     parameters: {
-      mutatedReviewRecord
+      mutatedReviewRecord,
     },
   };
 }

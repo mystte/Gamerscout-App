@@ -8,7 +8,7 @@ const NavElem = ({
   selected,
   onClick,
   type,
- }) => {
+}) => {
   const labelStyle = (selected) ? {
     ...styles.container,
     ...styles.selected,
@@ -24,7 +24,7 @@ const NavElem = ({
       {label}
     </div>
   );
-}
+};
 
 NavElem.propTypes = {
   onClick: PropTypes.func.isRequired,

@@ -18,36 +18,36 @@ const ConnectedAccounts = ({
   onUpdate,
 }) => {
   const dispatch = useDispatch();
-  const [ accountSelected, setAccountSelected ] = useState(false);
+  const [accountSelected, setAccountSelected] = useState(false);
   const labels = Localization.Labels.settings.accounts;
   const editLabel = (isEditMode) ? labels.close : labels.edit;
-  const connectedUser = useSelector(state => state.app.getIn(['data', 'user']));
+  const connectedUser = useSelector((state) => state.app.getIn(['data', 'user']));
 
-  const getDataContainerStyle = () => {
-    return (isEditMode) ? {
+  const getDataContainerStyle = () => (
+    (isEditMode) ? {
       ...styles.dataContainer,
       ...styles.dataContainerEditMode,
     } : {
-        ...styles.dataContainer,
-      };
-  }
+      ...styles.dataContainer,
+    }
+  );
 
   const onAccountCheckboxClick = (value) => {
     setAccountSelected(value);
-  }
+  };
 
   const onCancelClick = (section) => {
     onUpdate(section, null);
-  }
+  };
 
   const renderDataContent = () => {
-    let renderDataContent = null;
+    let renderDataContentView = null;
 
     if (isEditMode) {
-      renderDataContent = (
+      renderDataContentView = (
         <div style={styles.detailsContainer}>
-          {connectedUser.facebookId &&
-            <div style={styles.emailContainer}>
+          {connectedUser.facebookId
+            && <div style={styles.emailContainer}>
               <Checkbox
                 label={connectedUser.email}
                 onChange={onAccountCheckboxClick}
@@ -71,7 +71,11 @@ const ConnectedAccounts = ({
                 label={labels.disconnect}
                 theme={BUTTON_THEME.BLUE}
                 disabled={accountSelected === false}
-                onClick={() => dispatch(togglePopup(POPUP_TYPE.CONFIRM_PWD, true, { onValidAction: APP.DO_DISCONNECT_FACEBOOK }))}
+                onClick={() => dispatch(togglePopup(
+                  POPUP_TYPE.CONFIRM_PWD,
+                  true,
+                  { onValidAction: APP.DO_DISCONNECT_FACEBOOK },
+                ))}
               />
             </div>
           </div>
@@ -79,8 +83,8 @@ const ConnectedAccounts = ({
       );
     }
 
-    return renderDataContent;
-  }
+    return renderDataContentView;
+  };
 
   return (
     <div style={styles.container}>
@@ -93,13 +97,20 @@ const ConnectedAccounts = ({
           <div style={styles.infoTitle}>{labels.facebook}</div>
           <div style={styles.infoDesc}>{labels.facebookDesc}</div>
         </div>
-        <div onClick={() => onUpdate(NAV_SECTION.ACCOUNTS, null)} style={styles.edit}>{editLabel}</div>
-        <div style={styles.connectedLabels}>{Localization.Labels.formatString(labels.connected, connectedUser.getLinkedAccountNumber())}</div>
+        <div onClick={() => onUpdate(NAV_SECTION.ACCOUNTS, null)} style={styles.edit}>
+          {editLabel}
+        </div>
+        <div style={styles.connectedLabels}>
+          {Localization.Labels.formatString(
+            labels.connected,
+            connectedUser.getLinkedAccountNumber(),
+          )}
+        </div>
         {renderDataContent()}
       </div>
     </div>
   );
-}
+};
 
 ConnectedAccounts.propTypes = {
   isEditMode: PropTypes.bool,

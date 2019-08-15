@@ -26,12 +26,12 @@ class RecentPerformanceCard extends PureComponent {
         <div style={styles.header}>
           <div style={styles.positionsFilter}>
             <DropDown options={[
-              { name: "All Positions" }
+              { name: 'All Positions' },
             ]} />
           </div>
           <div style={styles.championsFilter}>
             <DropDown options={[
-              { name: "All Champions" }
+              { name: 'All Champions' },
             ]} />
           </div>
         </div>

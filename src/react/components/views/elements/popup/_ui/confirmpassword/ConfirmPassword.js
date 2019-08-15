@@ -13,11 +13,11 @@ const ConfirmPassword = () => {
   const dispatch = useDispatch();
   const labels = Localization.Labels.confirmPassword;
   const errorsLabels = Localization.Errors.signin;
-  const [ password, setPassword ] = useState(null);
-  const [ wrongPassword, setWrongPassword ] = useState(false);
+  const [password, setPassword] = useState(null);
+  const [wrongPassword, setWrongPassword] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
-  const apiError = useSelector(state => state.app.get('error'));
-  const validPwdActionData = useSelector(state => state.app.getIn(['data', 'popupData', 'params']));
+  const apiError = useSelector((state) => state.app.get('error'));
+  const validPwdActionData = useSelector((state) => state.app.getIn(['data', 'popupData', 'params']));
   const enterPressed = UseKeyPress('Enter');
 
   const onSubmitClick = () => {
@@ -30,12 +30,10 @@ const ConfirmPassword = () => {
         setErrorMessage(errorsLabels[valid]);
       }
     }
-  }
+  };
 
-  useEffect(() => {
-    return () => {
-      if (enterPressed) onSubmitClick();
-    }
+  useEffect(() => () => {
+    if (enterPressed) onSubmitClick();
   }, [enterPressed]);
 
   return (
@@ -61,7 +59,7 @@ const ConfirmPassword = () => {
       </div>
     </div>
   );
-}
+};
 
 ConfirmPassword.propTypes = {
 };

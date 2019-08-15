@@ -28,14 +28,14 @@ class AttributesCard extends PureComponent {
     this.setState({ expanded: !this.state.expanded });
   }
 
-  renderAttributes = () => {
-    return this.props.attributesList.map((attribute, idx) => {
-      return (!this.state.expanded && idx < 3 || this.state.expanded) ? (<AttributeRow
+  renderAttributes = () => (
+    this.props.attributesList.map((attribute, idx) => (
+      ((!this.state.expanded && idx < 3) || this.state.expanded) ? (<AttributeRow
         key={`attribute-${idx}`}
         attributeRecord={attribute}
-      />) : <div key={`attribute-${idx}`} />;
-    });
-  }
+      />) : <div key={`attribute-${idx}`} />
+    ))
+  );
 
   render() {
     if (!this.props.attributesList) return null;

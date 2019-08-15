@@ -8,11 +8,11 @@ class Avatar extends PureComponent {
     name: PropTypes.string,
     width: PropTypes.oneOfType([
       PropTypes.string,
-      PropTypes.number
+      PropTypes.number,
     ]),
     height: PropTypes.oneOfType([
       PropTypes.string,
-      PropTypes.number
+      PropTypes.number,
     ]),
   };
 
@@ -22,15 +22,9 @@ class Avatar extends PureComponent {
     height: 28,
   };
 
-  constructor(props) {
-    super(props);
-  }
-
-  renderAvatar = () => {
-    return this.props.name.split('').map((letter, idx) => {
-      return (idx < 2) ? <div key={`letter-${letter}${idx}`} style={styles.letter}>{letter}</div> : null;
-    });
-  }
+  renderAvatar = () => (
+    this.props.name.split('').map((letter, idx) => ((idx < 2) ? <div key={`letter-${letter}${idx}`} style={styles.letter}>{letter}</div> : null))
+  )
 
   render() {
     const containerStyle = {

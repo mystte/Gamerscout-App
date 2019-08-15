@@ -21,7 +21,7 @@ const ForgetPasswordPopup = () => {
   const [errorMessage, setErrorMessage] = useState(null);
   const labels = Localization.Labels.forgetPasswordPopup;
   const errorsLabels = Localization.Errors.resetPassword;
-  const apiError = useSelector(state => state.app.get('error'));
+  const apiError = useSelector((state) => state.app.get('error'));
   const enterPressed = UseKeyPress('Enter');
 
   const onSubmit = () => {
@@ -34,28 +34,26 @@ const ForgetPasswordPopup = () => {
       setWrongEmail(true);
       setErrorMessage(errorsLabels[valid]);
     }
-  }
+  };
 
-  useEffect(() => {
-    return () => {
+  useEffect(() => (
+    () => {
       if (enterPressed) onSubmit();
     }
-  }, [enterPressed]);
+  ), [enterPressed]);
 
-  useEffect(() => {
-    return () => {
-      setWrongEmail(true);
-    }
+  useEffect(() => () => {
+    setWrongEmail(true);
   }, [apiError]);
 
   return (
     <div style={styles.container}>
       <div style={styles.title}>{labels.title}</div>
-      {resetDone &&
-        <div>Sent</div>
+      {resetDone
+        && <div>Sent</div>
       }
-      {!resetDone &&
-        <React.Fragment>
+      {!resetDone
+        && <React.Fragment>
           <div style={styles.desc}>{labels.desc}</div>
           <div style={styles.fieldsContainer}>
             <Input
@@ -86,6 +84,6 @@ const ForgetPasswordPopup = () => {
       }
     </div>
   );
-}
+};
 
 export default ForgetPasswordPopup;

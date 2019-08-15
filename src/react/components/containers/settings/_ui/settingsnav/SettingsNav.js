@@ -34,7 +34,7 @@ const SettingsNav = ({
       />
     </div>
   );
-}
+};
 
 SettingsNav.propTypes = {
   selectedNav: PropTypes.string,

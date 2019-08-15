@@ -1,9 +1,9 @@
 import { Record, Maybe } from 'typed-immutable';
 
 export const ATTRIBUTE_TYPE = {
-  'GOOD': 'good',
-  'NEUTRAL': 'neutral',
-  'BAD': 'bad',
+  GOOD: 'good',
+  NEUTRAL: 'neutral',
+  BAD: 'bad',
 };
 
 const defaultProps = {
@@ -11,12 +11,12 @@ const defaultProps = {
   name: Maybe(String),
   type: Maybe(String),
   frequency: Maybe(Number),
-  ratio: Maybe(Number)
+  ratio: Maybe(Number),
 };
 
 const ExtendsWith = (superclass) => class extends superclass {
-
   static get defaultProps() { return defaultProps; }
+
   static get ExtendsWith() { return ExtendsWith; }
 };
 
@@ -28,7 +28,7 @@ export default class AttributeRecord extends ExtendsWith(Record(defaultProps, 'R
       type: data.type ? data.type : ATTRIBUTE_TYPE.NEUTRAL,
       ratio: data.ratio ? data.ratio : 0,
       frequency: data.frequency ? data.frequency : 0,
-    }
+    };
 
     return new AttributeRecord(parsedData);
   }

@@ -20,11 +20,11 @@ const styles = {
   },
 
   blue: {
-    background: `linear-gradient(180deg, #1991EB 0%, #2DA1F8 100%)`,
+    background: 'linear-gradient(180deg, #1991EB 0%, #2DA1F8 100%)',
   },
 
   red: {
-    background: `linear-gradient(180deg, #F85359 0%, #DC151D 100%)`,
+    background: 'linear-gradient(180deg, #F85359 0%, #DC151D 100%)',
   },
 
   dark: {
@@ -35,7 +35,7 @@ const styles = {
   },
 
   grey: {
-    background: `linear-gradient(180deg, #516173 0%, #3B4857 100%)`,
+    background: 'linear-gradient(180deg, #516173 0%, #3B4857 100%)',
   },
 
   simple: {

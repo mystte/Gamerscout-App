@@ -10,7 +10,7 @@ export const BUTTON_TYPE = {
   REVIEWS: 'reviews',
   CHAMPIONS: 'champions',
   LEAGUES: 'leagues',
-  LIVE_MATCH: 'liveMatch'
+  LIVE_MATCH: 'liveMatch',
 };
 
 const ActionButton = ({
@@ -25,10 +25,10 @@ const ActionButton = ({
   return (
     <button
       style={buttonStyle}
-      onClick={() => { onClick(type) }}
+      onClick={() => { onClick(type); }}
     >
-      {type === BUTTON_TYPE.LIVE_MATCH &&
-        <div style={styles.icon}>
+      {type === BUTTON_TYPE.LIVE_MATCH
+        && <div style={styles.icon}>
           <SVGIcon
             name='live-match'
             width={8}
@@ -39,7 +39,7 @@ const ActionButton = ({
       <div style={styles.label}>{Localization.Labels.gamerDetails[type]}</div>
     </button>
   );
-}
+};
 
 ActionButton.propTypes = {
   selected: PropTypes.bool,

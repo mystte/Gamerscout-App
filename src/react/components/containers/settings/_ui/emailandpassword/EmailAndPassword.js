@@ -28,11 +28,12 @@ const EmailAndPassword = ({
   const [wrongEmail, setWrongEmail] = useState(null);
   const [emailErrorMessage, setEmailErrorMessage] = useState(null);
   const [pwdErrorMessage, setpwdErrorMessage] = useState(null);
-  const apiError = useSelector(state => state.app.get('error'));
+  const apiError = useSelector((state) => state.app.get('error'));
   const errorLabels = Localization.Errors.userUpdate;
   const isVerifiedLabel = (isVerified) ? labels.verified : labels.unverified;
-  const verifiedLabelStyle = (isVerified) ? styles.emailStatusLabel : { ...styles.emailStatusLabel, ...styles.unverified };
-  const maxInputLength = "150";
+  const verifiedLabelStyle = (isVerified)
+    ? styles.emailStatusLabel : { ...styles.emailStatusLabel, ...styles.unverified };
+  const maxInputLength = '150';
 
   const onPasswordUpdateSubmit = () => {
     const isValid = Validator.doNewPasswordValidator(newPassword, newPasswordConfirm);
@@ -42,7 +43,7 @@ const EmailAndPassword = ({
     } else {
       setpwdErrorMessage(errorLabels[isValid]);
     }
-  }
+  };
 
   const onEmailUpdateSubmit = () => {
     if (isVerified) {
@@ -56,7 +57,7 @@ const EmailAndPassword = ({
     } else {
       dispatch(doResendValidationEmail());
     }
-  }
+  };
 
   const getErrorMessage = (localErrorMessage) => {
     let errorMessage = null;
@@ -65,50 +66,48 @@ const EmailAndPassword = ({
     else if (apiError) errorMessage = errorLabels[apiError];
 
     return errorMessage;
-  }
+  };
 
-  const hasPwdError = () => {
-    return pwdErrorMessage !== null || apiError !== null;
-  }
+  const hasPwdError = () => pwdErrorMessage !== null || apiError !== null;
 
   const clearPwdData = () => {
     setCurrentPassword(null);
     setNewPassword(null);
     setNewPasswordConfirm(null);
     setpwdErrorMessage(null);
-  }
+  };
 
   const clearEmailData = () => {
     setNewEmail(null);
     setEmailErrorMessage(null);
     setWrongEmail(null);
-  }
+  };
 
   const onCancelClick = (section) => {
     onUpdate(section, null);
     clearEmailData();
     clearPwdData();
     dispatch(clearAppError());
-  }
+  };
 
-  const getEMailDataContainerStyle = () => {
-    return (isEditEmailMode) ? {
+  const getEMailDataContainerStyle = () => (
+    ((isEditEmailMode) ? {
       ...styles.dataContainer,
       ...styles.dataContainerEmailEditMode,
     } : {
       ...styles.dataContainer,
-    };
-  }
+    })
+  );
 
-  const getPasswordDataContainerStyle = () => {
-    return (isEditPasswordMode) ? {
+  const getPasswordDataContainerStyle = () => (
+    ((isEditPasswordMode) ? {
       ...styles.dataContainer,
       ...styles.dataContainerPwdEditMode,
     } : {
       ...styles.dataContainer,
       ...styles.pwdDataContainer,
-    };
-  }
+    })
+  );
 
   const renderEmailValidationButton = () => {
     const label = (isVerified) ? labels.submit : labels.resubmit;
@@ -119,7 +118,7 @@ const EmailAndPassword = ({
       onClick={onEmailUpdateSubmit}
       disabled={Validator.doUpdateEmailDisableValidator(newEmail, email, isVerified)}
     />);
-  }
+  };
 
   const renderEmailDataContent = () => {
     let renderDataContent = null;
@@ -152,7 +151,7 @@ const EmailAndPassword = ({
         </div>);
     }
     return renderDataContent;
-  }
+  };
 
   const renderPasswordDataContent = () => {
     let renderdataContent = null;
@@ -205,7 +204,11 @@ const EmailAndPassword = ({
               label={labels.save}
               theme={BUTTON_THEME.BLUE}
               onClick={onPasswordUpdateSubmit}
-              disabled={Validator.doUpdatePasswordDisabledValidator(currentPassword, newPassword, newPasswordConfirm)}
+              disabled={Validator.doUpdatePasswordDisabledValidator(
+                currentPassword,
+                newPassword,
+                newPasswordConfirm,
+              )}
             />
           </div>
         </div>
@@ -213,19 +216,23 @@ const EmailAndPassword = ({
     }
 
     return renderdataContent;
-  }
+  };
 
   return (
     <div style={styles.container}>
       <div style={styles.title}>{labels.title}</div>
       <div className="settings-animation" style={getEMailDataContainerStyle()}>
-        <div onClick={() => { onUpdate(NAV_SECTION.EMAIL, null); clearEmailData(); }} style={styles.infosContainer}>
+        <div onClick={() => {
+          onUpdate(NAV_SECTION.EMAIL, null); clearEmailData();
+        }} style={styles.infosContainer}>
           <div style={styles.infoTitle}>{labels.email}</div>
           <div style={styles.infoDesc}>{labels.emailDesc}</div>
         </div>
         <div
           style={styles.edit}
-          onClick={() => isEditEmailMode ? onCancelClick() : onUpdate(NAV_SECTION.EMAIL, null)}
+          onClick={() => (isEditEmailMode
+            ? onCancelClick() : onUpdate(NAV_SECTION.EMAIL, null))
+          }
         >
           <span style={styles.editEmailLabel}>{editEmailLabel}</span>
           <span style={verifiedLabelStyle}>{isVerifiedLabel}</span>
@@ -233,13 +240,17 @@ const EmailAndPassword = ({
         {renderEmailDataContent()}
       </div>
       <div className="settings-animation" style={getPasswordDataContainerStyle()}>
-        <div onClick={() => { onUpdate(NAV_SECTION.PASSWORD, null); clearPwdData(); }} style={styles.infosContainer}>
+        <div onClick={() => {
+          onUpdate(NAV_SECTION.PASSWORD, null); clearPwdData();
+        }} style={styles.infosContainer}>
           <div style={styles.infoTitle}>{labels.password}</div>
           <div style={styles.infoDesc}>{labels.passwordDesc}</div>
         </div>
         <div
           style={styles.edit}
-          onClick={() => isEditPasswordMode ? onCancelClick() : onUpdate(NAV_SECTION.PASSWORD, null)}
+          onClick={() => (isEditPasswordMode
+            ? onCancelClick() : onUpdate(NAV_SECTION.PASSWORD, null))
+          }
         >
           {editPasswordLabel}
         </div>
@@ -247,7 +258,7 @@ const EmailAndPassword = ({
       </div>
     </div>
   );
-}
+};
 
 EmailAndPassword.propTypes = {
   isEditEmailMode: PropTypes.bool,

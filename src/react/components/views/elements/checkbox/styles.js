@@ -39,6 +39,6 @@ const styles = {
   selected: {
     fontWeight: 600,
   },
-}
+};
 
 export default styles;

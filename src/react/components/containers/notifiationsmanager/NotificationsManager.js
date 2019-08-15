@@ -7,20 +7,22 @@ import styles from './styles';
 import { deleteNotification } from '../../../redux/actions/notifications';
 
 const NotificationsManager = () => {
-  const notifications = useSelector(state => state.notifications.get('notificationsManagerRecord'));
+  const notifications = useSelector((state) => state.notifications.get('notificationsManagerRecord'));
   const dispatch = useDispatch();
 
-  const renderNotifications = () => {
-    return notifications.get('notifList').map((notification, idx) => {
+  const onNotificationClose = (id) => {
+    dispatch(deleteNotification(id));
+  };
 
-      return (
-        <CSSTransition
-          timeout={800}
-          classNames="notification"
-          key={`notification-${idx}`}
-          appear
-          unmountOnExit
-        >
+  const renderNotifications = () => (
+    notifications.get('notifList').map((notification, idx) => (
+      <CSSTransition
+        timeout={800}
+        classNames="notification"
+        key={`notification-${idx}`}
+        appear
+        unmountOnExit
+      >
         <div
           style={styles.notificationContainer}
         >
@@ -32,24 +34,20 @@ const NotificationsManager = () => {
             isPersistent={notification.isPersistent ? notification.isPersistent : false}
           />
         </div>
-        </CSSTransition>);
-      });
-    }
-
-  const onNotificationClose = (id) => {
-    dispatch(deleteNotification(id));
-  }
+      </CSSTransition>
+    ))
+  );
 
   return (
     <div style={styles.container}>
-      {notifications &&
-        <TransitionGroup>
+      {notifications
+        && <TransitionGroup>
           {renderNotifications()}
         </TransitionGroup>
       }
     </div>
   );
-}
+};
 
 NotificationsManager.propTypes = {
 };

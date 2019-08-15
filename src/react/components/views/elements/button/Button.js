@@ -46,7 +46,8 @@ class Button extends PureComponent {
   }
 
   render() {
-    const iconContainerStyle = (this.props.theme === BUTTON_THEME.SIMPLE) ? {} : styles.iconContainer;
+    const iconContainerStyle = (this.props.theme === BUTTON_THEME.SIMPLE)
+      ? {} : styles.iconContainer;
     const buttonDisabledStyle = (this.props.disabled) ? styles.disabled : null;
 
     return (
@@ -59,8 +60,8 @@ class Button extends PureComponent {
           ...buttonDisabledStyle,
         }}
       >
-        { this.props.icon &&
-          <span style={iconContainerStyle}>
+        { this.props.icon
+          && <span style={iconContainerStyle}>
             <SVGIcon width='16' height='16' name={this.props.icon} />
           </span>
         }

@@ -1,4 +1,4 @@
-import { colorNameToHex, colorNameToRgba } from "../../../../../../utils/color";
+import { colorNameToHex, colorNameToRgba } from '../../../../../../utils/color';
 
 const styles = {
   title: {

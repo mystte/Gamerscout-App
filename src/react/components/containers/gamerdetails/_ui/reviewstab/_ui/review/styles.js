@@ -1,13 +1,13 @@
 import {
   colorNameToHex,
   colorNameToRgba,
-} from "../../../../../../../utils/color";
+} from '../../../../../../../utils/color';
 
 const styles = {
   container: {
     minHeight: 148,
     width: '100%',
-    marginBottom : 18,
+    marginBottom: 18,
     backgroundColor: colorNameToHex('ebonyclay'),
     borderWidth: 1,
     borderColor: colorNameToHex('dimgrey'),

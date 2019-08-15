@@ -8,8 +8,8 @@ const GamerAvatar = ({
   iconUrl,
   level,
   region,
-}) => {
-  return (
+}) => (
+  (
     <div style={styles.container}>
       <div style={styles.iconContainer}>
         <img
@@ -26,8 +26,8 @@ const GamerAvatar = ({
         <span style={styles.region}>{region}</span>
       </div>
     </div>
-  );
-}
+  )
+);
 
 GamerAvatar.propTypes = {
   gamertag: PropTypes.string,

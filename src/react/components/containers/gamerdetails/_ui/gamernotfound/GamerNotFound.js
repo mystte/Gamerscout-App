@@ -13,7 +13,7 @@ const GamerNotFound = () => {
       <div style={styles.title3}>{labels.title3}</div>
     </div>
   );
-}
+};
 
 GamerNotFound.propTypes = {
 };

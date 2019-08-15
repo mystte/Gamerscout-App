@@ -1,4 +1,4 @@
-import { colorNameToHex } from "../../../../../utils/color";
+import { colorNameToHex } from '../../../../../utils/color';
 
 const styles = {
   addAccountContainer: {
@@ -14,7 +14,7 @@ const styles = {
   },
 
   container: {
-    marginBottom: 30
+    marginBottom: 30,
   },
 
   title: {

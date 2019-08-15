@@ -3,8 +3,8 @@ import { Record, Maybe, List } from 'typed-immutable';
 import AttributeRecord from './AttributeRecord';
 
 export const REVIEW_TYPE = {
-  'APPROVAL': 'REVIEW_TYPE_APPROVAL',
-  'DISAPPROVAL': 'REVIEW_TYPE_DISAPPROVAL',
+  APPROVAL: 'REVIEW_TYPE_APPROVAL',
+  DISAPPROVAL: 'REVIEW_TYPE_DISAPPROVAL',
 };
 
 const defaultProps = {
@@ -16,8 +16,8 @@ const defaultProps = {
 };
 
 const ExtendsWith = (superclass) => class extends superclass {
-
   static get defaultProps() { return defaultProps; }
+
   static get ExtendsWith() { return ExtendsWith; }
 };
 
@@ -27,8 +27,7 @@ export default class ReviewRecord extends ExtendsWith(Record(defaultProps, 'Revi
       AttributeRecord.apiParser({
         ...attribute,
         frequency: 1,
-      }))
-    );
+      })));
   }
 
   static apiParser(data) {
@@ -38,7 +37,7 @@ export default class ReviewRecord extends ExtendsWith(Record(defaultProps, 'Revi
       date: data.date ? data.date : null,
       type: data.review_type === 'REP' ? REVIEW_TYPE.APPROVAL : REVIEW_TYPE.DISAPPROVAL,
       attributes: ReviewRecord.parseAttributes(data.tags),
-    }
+    };
 
     return new ReviewRecord(parsedData);
   }

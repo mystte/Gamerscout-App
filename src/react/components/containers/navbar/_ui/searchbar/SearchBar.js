@@ -18,15 +18,11 @@ const SearchBar = ({
   const labels = Localisation.Labels.navBar;
   const enterPressed = UseKeyPress('Enter');
 
-  const disableEnter = (e) => {
-    e.which === 13 ? e.preventDefault() : null;
-  }
+  const disableEnter = (e) => ((e.which === 13) ? e.preventDefault() : null);
 
-  useEffect(() => {
-    return () => {
-      if (enterPressed) onSearch();
-    }
-  }, [enterPressed])
+  useEffect(() => () => {
+    if (enterPressed) onSearch();
+  }, [enterPressed]);
 
   return (
     <div style={styles.container}>
@@ -64,7 +60,7 @@ const SearchBar = ({
       </div>
     </div>
   );
-}
+};
 
 SearchBar.propTypes = {
   regionsList: PropTypes.object.isRequired,

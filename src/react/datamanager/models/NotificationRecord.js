@@ -14,7 +14,7 @@ export const MOCKED_NOTIFICATION = {
   UPATED_PASSWORD: 'MOCKED_NOTIF_UPDATED_PASSWORD',
   VALIDATION_EMAIL_RESENT: 'MOCKED_NOTIF_VALIDATION_EMAIL_RESENT',
   TEST: 'MOCKED_NOTIF_TEST',
-}
+};
 
 const defaultProps = {
   title: Maybe(String),
@@ -23,8 +23,8 @@ const defaultProps = {
 };
 
 const ExtendsWith = (superclass) => class extends superclass {
-
   static get defaultProps() { return defaultProps; }
+
   static get ExtendsWith() { return ExtendsWith; }
 };
 
@@ -43,7 +43,7 @@ export default class NotificationRecord extends ExtendsWith(Record(defaultProps,
     const labels = Localization.Labels.notifications;
     let notificationData = null;
 
-    switch(type) {
+    switch (type) {
       case MOCKED_NOTIFICATION.INVALID_ACCOUNT:
         notificationData = {
           title: labels.invalidAccount.title,
@@ -51,7 +51,7 @@ export default class NotificationRecord extends ExtendsWith(Record(defaultProps,
           type: NOTIFICATION_TYPE.DEFAULT,
           isPersistent: false,
         };
-      break;
+        break;
 
       case MOCKED_NOTIFICATION.UPATED_PASSWORD:
         notificationData = {
@@ -60,16 +60,16 @@ export default class NotificationRecord extends ExtendsWith(Record(defaultProps,
           type: NOTIFICATION_TYPE.SUCCESS,
           isPersistent: false,
         };
-      break;
+        break;
 
       case MOCKED_NOTIFICATION.TEST:
         notificationData = {
-          title: "test notification",
+          title: 'test notification',
           display: true,
           type: NOTIFICATION_TYPE.ALERT,
           isPersistent: false,
         };
-      break;
+        break;
 
       case MOCKED_NOTIFICATION.VALIDATION_EMAIL_RESENT:
         notificationData = {
@@ -77,6 +77,9 @@ export default class NotificationRecord extends ExtendsWith(Record(defaultProps,
           display: true,
           type: NOTIFICATION_TYPE.DEFAULT,
         };
+        break;
+
+      default:
     }
 
     return NotificationRecord.apiParser(notificationData);

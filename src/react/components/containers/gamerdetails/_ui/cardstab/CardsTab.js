@@ -44,10 +44,9 @@ class CardsTab extends PureComponent {
   }
 
   render() {
-    if (!this.props.rankedCardRecord ||
-        !this.props.approvalsCardRecord ||
-        !this.props.reviewsCardRecord)
-        return null;
+    if (!this.props.rankedCardRecord
+        || !this.props.approvalsCardRecord
+        || !this.props.reviewsCardRecord) return null;
 
     return (
       <div style={styles.container}>

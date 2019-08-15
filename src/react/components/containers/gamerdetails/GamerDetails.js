@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import {
   loadGamerDetails,
-  applyReviewFilters
+  applyReviewFilters,
 } from '../../../redux/actions/gamerDetails';
 import { BUTTON_TYPE } from './_ui/navheader/_ui/actionbuttons/_ui/actionbutton/ActionButton';
 // import { APPROVAL_TYPE } from '../../../datamanager/models/ApprovalsCardRecord';
@@ -19,7 +19,7 @@ import GamerNotFound from './_ui/gamernotfound/GamerNotFound';
 import GamerSkeleton from './_ui/gamerskeleton/GamerSkeleton';
 import styles from './styles';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   config: state.app.get('data'),
   gamerData: state.gamerDetails.get('data'),
   loading: state.gamerDetails.get('loading'),
@@ -75,7 +75,7 @@ class GamerDetails extends PureComponent {
   }
 
   onReviewSubmitClick = () => {
-    console.log("On review submit click");
+    console.log('On review submit click');
   }
 
   onReviewFilterChange = (show, filterBy) => {
@@ -84,11 +84,11 @@ class GamerDetails extends PureComponent {
     ));
   }
 
-  selectTab = (tabType, preselect) => {
+  selectTab = (tabType, preselect = null) => {
     if (this.state.selectedTab !== tabType) {
       this.setState({
-        preselect: preselect ? preselect : null,
-        selectedTab: tabType
+        preselect,
+        selectedTab: tabType,
       });
     }
   }
@@ -130,11 +130,11 @@ class GamerDetails extends PureComponent {
   render() {
     return (
       <React.Fragment>
-        {this.props.loading &&
-          <GamerSkeleton />
+        {this.props.loading
+          && <GamerSkeleton />
         }
-        {(!this.props.loading && this.props.gamerData) &&
-          <div style={styles.container}>
+        {(!this.props.loading && this.props.gamerData)
+          && <div style={styles.container}>
             <NavHeader
               selectedTab={this.state.selectedTab}
               gamertag={this.props.gamerData.gamertag}
@@ -146,8 +146,8 @@ class GamerDetails extends PureComponent {
             {this.renderGamerDetailsContent()}
           </div>
         }
-        {(!this.props.loading && !this.props.gamerData) &&
-          <GamerNotFound />
+        {(!this.props.loading && !this.props.gamerData)
+          && <GamerNotFound />
         }
       </React.Fragment>
     );
@@ -155,5 +155,5 @@ class GamerDetails extends PureComponent {
 }
 
 export default withRouter(
-  connect(mapStateToProps)(GamerDetails)
+  connect(mapStateToProps)(GamerDetails),
 );

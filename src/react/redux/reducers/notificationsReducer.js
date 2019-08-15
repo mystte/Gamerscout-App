@@ -21,6 +21,8 @@ export default function reducer(state = initialState, action) {
 
     case NOTIFICATIONS.DELETE:
       return state.set('notificationsManagerRecord', state.get('notificationsManagerRecord').delete(parameters.idx));
+
+    default:
   }
 
   return state;

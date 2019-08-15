@@ -1,4 +1,4 @@
-import { colorNameToHex } from "../../../../../../../utils/color";
+import { colorNameToHex } from '../../../../../../../utils/color';
 
 const styles = {
   container: {
@@ -23,7 +23,7 @@ const styles = {
 
   reviewButton: {
     alignSelf: 'flex-end',
-  }
+  },
 };
 
 export default styles;

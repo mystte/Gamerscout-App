@@ -12,23 +12,23 @@ const ProfileInformation = ({
   const labels = Localization.Labels.settings.profile;
   const editLabel = (isEditMode) ? labels.close : labels.edit;
 
-  const getDataContainerStyle = () => {
-    return (isEditMode) ? {
+  const getDataContainerStyle = () => (
+    (isEditMode) ? {
       ...styles.dataContainer,
       ...styles.dataContainerEditMode,
     } : {
-        ...styles.dataContainer,
-      };
-  }
+      ...styles.dataContainer,
+    }
+  );
 
   const renderDataContent = () => {
-    let renderDataContent = null;
+    let renderDataContentView = null;
 
     if (isEditMode) {
-      renderDataContent = ("editcontent");
+      renderDataContentView = ('editcontent');
     }
-    return renderDataContent;
-  }
+    return renderDataContentView;
+  };
 
   return (
     <div onClick={() => onUpdate(NAV_SECTION.PROFILE, null)} style={styles.container}>
@@ -43,7 +43,7 @@ const ProfileInformation = ({
       </div>
     </div>
   );
-}
+};
 
 ProfileInformation.propTypes = {
   isEditMode: PropTypes.bool,

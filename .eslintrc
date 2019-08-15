@@ -1,7 +1,10 @@
 {
   "parser": "babel-eslint",
   "rules": {
-    "no-console": "off"
+    "no-console": "off",
+    "max-classes-per-file": "off",
+    "no-underscore-dangle": "off",
+    "class-methods-use-this": "off",
   },
   "env": {
     "browser": true,

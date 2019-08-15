@@ -28,3 +28,17 @@ export const getGamerDetailsUrl = (platform, region, game, gamertag) => {
 
   return gamerDetailsUrl;
 };
+
+export const getValidateAccountUrl = (token) => {
+  let validateAccountUrl = Localization.Urls.validateAccountUrl;
+
+  if (token) {
+    validateAccountUrl = Localization.Urls.formatString(validateAccountUrl, {
+      token: token,
+    });
+  } else {
+    validateAccountUrl = formatUrlForRouter(validateAccountUrl);
+  }
+
+  return validateAccountUrl;
+}

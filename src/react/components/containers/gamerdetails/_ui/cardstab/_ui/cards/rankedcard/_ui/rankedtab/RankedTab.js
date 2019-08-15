@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Localization from '../../../../../../../../../../config/localization/Localization';
 import RankedCardTabRecord from '../../../../../../../../../../datamanager/models/RankedCardTabRecord';
 import Unranked from './_ui/unranked/Unranked';
-import SVGIcon, {IMG_TYPE} from '../../../../../../../../../views/elements/svgicon/SVGIcon';
+import SVGIcon, { IMG_TYPE } from '../../../../../../../../../views/elements/svgicon/SVGIcon';
 import styles from './styles';
 
 const RankedTab = ({
@@ -14,8 +14,8 @@ const RankedTab = ({
 
   return (
     <div style={styles.container}>
-      {rankedData &&
-        <div style={styles.cardContent}>
+      {rankedData
+        && <div style={styles.cardContent}>
           <SVGIcon
             width={80}
             height={80}
@@ -37,8 +37,8 @@ const RankedTab = ({
           </div>
         </div>
       }
-      {!rankedData &&
-        <Unranked />
+      {!rankedData
+        && <Unranked />
       }
     </div>
   );

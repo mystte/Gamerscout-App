@@ -24,7 +24,7 @@ const SigninPopup = () => {
   const [errorMessage, setErrorMessage] = useState(null);
   const labels = Localization.Labels.signupPopup;
   const errorLabels = Localization.Errors.signup;
-  const apiError = useSelector(state => state.app.get('error'));
+  const apiError = useSelector((state) => state.app.get('error'));
   const dispatch = useDispatch();
   const enterPressed = UseKeyPress('Enter');
 
@@ -33,7 +33,7 @@ const SigninPopup = () => {
     setWrongEmail(false);
     setWrongPassword(false);
     setErrorMessage(null);
-  }
+  };
 
   const createAccount = () => {
     const valid = Validator.doSignupValidator(username, email, password);
@@ -47,20 +47,20 @@ const SigninPopup = () => {
       setWrongPassword(valid.indexOf('Password') !== -1);
       setErrorMessage(errorLabels[valid]);
     }
-  }
+  };
 
-  useEffect(() => {
-    return () => {
+  useEffect(() => (
+    () => {
       setWrongUsername(true);
       setWrongEmail(true);
     }
-  }, [apiError]);
+  ), [apiError]);
 
-  useEffect(() => {
-    return () => {
+  useEffect(() => (
+    () => {
       if (enterPressed) createAccount();
     }
-  }, [enterPressed]);
+  ), [enterPressed]);
 
   return (
     <div style={styles.container}>
@@ -105,15 +105,14 @@ const SigninPopup = () => {
       </div>
       <div style={styles.aggreementContainer}>
         {Localization.Labels.formatString(
-            labels.agreement,
+          labels.agreement,
             <span style={styles.agreementButton}>
               {labels.terms}
             </span>,
             <span style={styles.agreementButton}>
               {labels.policy}
-            </span>
-          )
-        }
+            </span>,
+        )}
       </div>
       <div style={styles.signinContainer}>
         {labels.haveAccount}
@@ -126,6 +125,6 @@ const SigninPopup = () => {
       </div>
     </div>
   );
-}
+};
 
 export default SigninPopup;

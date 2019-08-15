@@ -9,7 +9,7 @@ export const REVIEW_FILTER = {
   SHOW_DISAPPROVALS: 'REVIEW_FILTER_SHOW_DISAPPROVALS',
   NEWEST: 'REVIEW_FILTER_NEWEST',
   OLDEST: 'REVIEW_FILTER_OLDEST',
-}
+};
 
 const defaultProps = {
   reviews: List(ReviewRecord),
@@ -31,24 +31,25 @@ const ExtendsWith = (superclass) => class extends superclass {
     }
 
     updatedFilteredReviews = updatedFilteredReviews.sort((a, b) => {
-      if (filterBy === REVIEW_FILTER.NEWEST)
+      if (filterBy === REVIEW_FILTER.NEWEST) {
         return moment(b.date).valueOf() - moment(a.date).valueOf();
-      else
-        return moment(a.date).valueOf() - moment(b.date).valueOf();
+      }
+      return moment(a.date).valueOf() - moment(b.date).valueOf();
     });
 
     return this.set('filtered', updatedFilteredReviews);
   }
 
   static get defaultProps() { return defaultProps; }
+
   static get ExtendsWith() { return ExtendsWith; }
 };
 
 export default class ReviewsCardRecord extends ExtendsWith(Record(defaultProps, 'ReviewsCardRecord')) {
   static apiParser(data) {
-    const reviewsList = data.reviews ? data.reviews.map((reviewData) => {
-      return ReviewRecord.apiParser(reviewData);
-    }) : [];
+    const reviewsList = data.reviews
+      ? data.reviews.map((reviewData) => ReviewRecord.apiParser(reviewData))
+      : [];
 
     const parsedData = {
       reviews: reviewsList,

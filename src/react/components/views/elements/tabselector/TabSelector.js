@@ -27,8 +27,8 @@ class TabSelector extends PureComponent {
     }
   }
 
-  renderHeader = () => {
-    return this.props.headerList.map((header, idx) => {
+  renderHeader = () => (
+    this.props.headerList.map((header, idx) => {
       const tabStyle = (idx === this.state.selectedTab) ? {
         ...styles.headerTab,
         ...styles.selectedTab,
@@ -43,16 +43,14 @@ class TabSelector extends PureComponent {
           {header.name}
         </div>
       );
-    });
-  }
+    })
+  )
 
-  renderContent = () => {
-    return (
-      this.props.contentList.map((content, idx) => {
-        return (idx === this.state.selectedTab) ? content : null;
-      })
-    );
-  }
+  renderContent = () => (
+    this.props.contentList.map((content, idx) => ((idx === this.state.selectedTab)
+      ? content : null
+    ))
+  )
 
   render() {
     if (!this.props.headerList && !this.props.contentList) return null;

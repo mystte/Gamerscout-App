@@ -45,15 +45,19 @@ const defaultProps = {
 };
 
 const ExtendsWith = (superclass) => class extends superclass {
-
   static get defaultProps() { return defaultProps; }
+
   static get ExtendsWith() { return ExtendsWith; }
 };
 
 export default class AppRecord extends ExtendsWith(Record(defaultProps, 'AppRecord')) {
   static parseRegionsData(regionsData) {
     const parsedData = {
-      riot: (regionsData.riot) ? ConfigRegionRecord.apiParser({ ...regionsData.riot, platform: GAME_PLATFORM.RIOT}) : null,
+      riot: (regionsData.riot)
+        ? ConfigRegionRecord.apiParser({
+          ...regionsData.riot, platform: GAME_PLATFORM.RIOT,
+        })
+        : null,
     };
 
     return parsedData;
@@ -67,7 +71,7 @@ export default class AppRecord extends ExtendsWith(Record(defaultProps, 'AppReco
         iconUrl: platform['icon-url'],
       })) : [],
       regions: AppRecord.parseRegionsData(data.regions),
-      isAuthenticated: data.user ? true : false,
+      isAuthenticated: data.user !== null,
       showPopup: true,
       popupData: PopupRecord.apiParser(data.popupData ? data.popupData : {}),
       user: data.user ? UserRecord.apiParser(data.user) : null,

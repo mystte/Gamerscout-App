@@ -129,4 +129,8 @@ export default class Api {
   static doResendValidationEmail() {
     return doApiCall('/users/validation/email/resend', null, CALL_TYPE.POST);
   }
+
+  static doValidateAccount(params) {
+    return doApiCall('/account/validate', params, CALL_TYPE.POST);
+  }
 }

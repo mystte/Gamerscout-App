@@ -8,6 +8,12 @@
     },
     "validationEmailResent": {
       "title": "An email verification has been sent."
+    },
+    "accountValidated": {
+      "title": "Your email address has been verified."
+    },
+    "wrongValidationToken": {
+      "title": "Validation token has expired or is invalid."
     }
   },
   "settings": {

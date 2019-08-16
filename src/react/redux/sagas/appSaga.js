@@ -173,6 +173,29 @@ function* doResendValidationEmail() {
   }
 }
 
+function* doValidateAccount({ parameters }) {
+  const actionType = APP.DO_VALIDATE_ACCOUNT;
+
+  try {
+    yield fetchAsync(Api.doValidateAccount, parameters);
+    yield put({ type: success(actionType) });
+    yield put({
+      type: NOTIFICATIONS.PUSH,
+      parameters: {
+        record: NotificationRecord.getMockedNotif(MOCKED_NOTIFICATION.ACCOUNT_VALIDATED),
+      },
+    });
+  } catch (e) {
+    yield put({
+      type: NOTIFICATIONS.PUSH,
+      parameters: {
+        record: NotificationRecord.getMockedNotif(MOCKED_NOTIFICATION.WRONG_VALIDATION_TOKEN),
+      },
+    });
+    yield put({ type: error(actionType), error: e.message });
+  }
+}
+
 export function* appSaga() {
   yield takeEvery(loading(APP.LOAD), loadAppData);
   yield takeLatest(loading(APP.DO_LOGIN), doLogin);
@@ -185,6 +208,7 @@ export function* appSaga() {
   yield takeLatest(loading(APP.DO_CONFIRM_PASSWORD), doConfirmPassword);
   yield takeLatest(loading(APP.DO_UPDATE_PASSWORD), doUpdatePassword);
   yield takeLatest(loading(APP.DO_RESEND_VALIDATION_EMAIL), doResendValidationEmail);
+  yield takeLatest(loading(APP.DO_VALIDATE_ACCOUNT), doValidateAccount);
 }
 
 export default appSaga;

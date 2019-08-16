@@ -13,6 +13,8 @@ export const MOCKED_NOTIFICATION = {
   INVALID_ACCOUNT: 'MOCKED_NOTIF_INVALID_ACCOUNT',
   UPATED_PASSWORD: 'MOCKED_NOTIF_UPDATED_PASSWORD',
   VALIDATION_EMAIL_RESENT: 'MOCKED_NOTIF_VALIDATION_EMAIL_RESENT',
+  ACCOUNT_VALIDATED: 'MOCKED_NOTIF_ACCOUNT_VALIDATED',
+  WRONG_VALIDATION_TOKEN: 'MOCKED_NOTIF_WRONG_VALIDATION_TOKEN',
   TEST: 'MOCKED_NOTIF_TEST',
 };
 
@@ -76,6 +78,22 @@ export default class NotificationRecord extends ExtendsWith(Record(defaultProps,
           title: labels.validationEmailResent.title,
           display: true,
           type: NOTIFICATION_TYPE.DEFAULT,
+        };
+        break;
+
+      case MOCKED_NOTIFICATION.ACCOUNT_VALIDATED:
+        notificationData = {
+          title: labels.accountValidated.title,
+          display: true,
+          type: NOTIFICATION_TYPE.SUCCESS,
+        };
+        break;
+
+      case MOCKED_NOTIFICATION.WRONG_VALIDATION_TOKEN:
+        notificationData = {
+          title: labels.wrongValidationToken.title,
+          display: true,
+          type: NOTIFICATION_TYPE.ALERT,
         };
         break;
 

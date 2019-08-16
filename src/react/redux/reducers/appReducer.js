@@ -34,6 +34,7 @@ export default function reducer(state = initialState, action) {
     case loading(APP.DO_UPDATE_USER):
     case loading(APP.DO_CONFIRM_PASSWORD):
     case loading(APP.DO_UPDATE_PASSWORD):
+    case loading(APP.DO_VALIDATE_ACCOUNT):
       return state.withMutations((mutate) => {
         mutate.set('loading', true);
         mutate.set('error', null);
@@ -66,10 +67,18 @@ export default function reducer(state = initialState, action) {
       });
 
     case success(APP.DO_UPDATE_USER):
+      console.log(' user updated = ', state.getIn(['data', 'user']).updateUser(action.data), typeof (state.getIn(['data', 'user']).updateUser(action.data)));
       return state.withMutations((mutate) => {
         mutate.set('loading', false);
         mutate.setIn(['data', 'user'], state.getIn(['data', 'user']).updateUser(action.data));
         mutate.set('error', null);
+      });
+
+    case success(APP.DO_VALIDATE_ACCOUNT):
+      return state.withMutations((mutate) => {
+        mutate.set('loading', false);
+        mutate.set('error', null);
+        mutate.setIn(['data', 'user'], state.getIn(['data', 'user']).validateUserAccount(action.data));
       });
 
     case error(APP.LOAD):
@@ -79,6 +88,7 @@ export default function reducer(state = initialState, action) {
     case error(APP.DO_UPDATE_USER):
     case error(APP.DO_CONFIRM_PASSWORD):
     case error(APP.DO_UPDATE_PASSWORD):
+    case error(APP.DO_VALIDATE_ACCOUNT):
       console.log('ACTION ERROR = ', action);
       return state.withMutations((mutate) => {
         mutate.set('loading', false);

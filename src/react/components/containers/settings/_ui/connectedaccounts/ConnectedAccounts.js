@@ -49,23 +49,25 @@ const ConnectedAccounts = ({
           {connectedUser.facebookId
             && <div style={styles.emailContainer}>
               <Checkbox
-                label={connectedUser.email}
+                label={connectedUser.facebookEmail}
                 onChange={onAccountCheckboxClick}
               />
             </div>
           }
-          <div style={styles.addAccountContainer}>
-            <SVGIcon width={20} height={20} name={'add-box'} />
-            <span style={styles.addLabel}>{labels.add}</span>
-          </div>
-          <div style={styles.submitlButtonsContainer}>
-            <div style={styles.cancelButtonContainer}>
-              <Button
-                label={labels.cancel}
-                theme={BUTTON_THEME.GREY}
-                onClick={() => onCancelClick(NAV_SECTION.EMAIL)}
-              />
+          {!connectedUser.facebookId
+            && <div style={styles.addAccountContainer}>
+              <SVGIcon width={20} height={20} name={'add-box'} />
+              <span style={styles.addLabel}>{labels.add}</span>
             </div>
+          }
+          <div style={styles.submitlButtonsContainer}>
+              <div style={styles.cancelButtonContainer}>
+                <Button
+                  label={labels.cancel}
+                  theme={BUTTON_THEME.GREY}
+                  onClick={() => onCancelClick(NAV_SECTION.EMAIL)}
+                />
+              </div>
             <div style={styles.submitButtonContainer}>
               <Button
                 label={labels.disconnect}

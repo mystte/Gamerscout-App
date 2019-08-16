@@ -32,7 +32,7 @@ export function doFacebookLogin(token) {
   };
 }
 
-export function validateAccount(token) {
+export function doValidateAccount(token) {
   return {
     type: loading(APP.DO_VALIDATE_ACCOUNT),
     parameters: {

@@ -29,12 +29,11 @@ const Settings = () => {
         const params = {
           onValidAction: loading(APP.DO_UPDATE_USER),
           data: {
-            newEmail: data.email,
+            email: data.email,
             id: connectedUser.id,
           },
         };
         dispatch(togglePopup(POPUP_TYPE.CONFIRM_PWD, true, params));
-        // dispatch(doUpdateUser({ newEmail: data.email, id: connectedUser.id }));
       } else if (type === NAV_SECTION.PASSWORD) {
         dispatch(doUpdatePassword({
           userId: connectedUser.id,

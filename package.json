@@ -45,6 +45,8 @@
     "redux": "^4.0.4",
     "redux-saga": "^1.0.5",
     "typed-immutable": "^0.1.2",
+    "use-query-params": "^0.3.3",
+    "use-react-router": "^1.0.7",
     "validator": "^11.1.0"
   },
   "devDependencies": {

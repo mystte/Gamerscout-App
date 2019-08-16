@@ -2,7 +2,6 @@ import { colorNameToHex } from '../../../../../utils/color';
 
 const styles = {
   addAccountContainer: {
-    marginTop: 10,
     marginBottom: 20,
     flexDirection: 'row',
   },
@@ -70,6 +69,7 @@ const styles = {
   emailContainer: {
     alignItems: 'flex-start',
     paddingTop: 20,
+    marginBottom: 10,
   },
 
   submitlButtonsContainer: {

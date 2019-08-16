@@ -4,12 +4,14 @@ import React from 'react';
 import styles from './styles';
 
 const FunctionnalComponent = () => {
+  const name = 'FunctionnalComponent';
+
   return (
     <div style={styles.container}>
-      FunctionnalComponent
+      {name}
     </div>
   );
-}
+};
 
 FunctionnalComponent.propTypes = {
 };

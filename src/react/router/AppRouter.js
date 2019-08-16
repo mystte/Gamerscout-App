@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { QueryParamProvider } from 'use-query-params';
 import PropTypes from 'prop-types';
 
 import Loading from '../components/views/loading/Loading';
@@ -48,6 +49,7 @@ const AppRouter = ({ cookies }) => {
 
   return (
     <Router>
+      <QueryParamProvider ReactRouterRoute={Route}>
       <NavBar />
       <NotificationsManager />
       <Suspense fallback={<Loading />}>
@@ -56,6 +58,7 @@ const AppRouter = ({ cookies }) => {
           <Route component={FourOFour} />
         </Switch>
       </Suspense>
+      </QueryParamProvider>
     </Router>
   );
 };

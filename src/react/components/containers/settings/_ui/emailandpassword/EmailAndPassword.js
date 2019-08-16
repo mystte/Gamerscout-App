@@ -35,30 +35,6 @@ const EmailAndPassword = ({
     ? styles.emailStatusLabel : { ...styles.emailStatusLabel, ...styles.unverified };
   const maxInputLength = '150';
 
-  const onPasswordUpdateSubmit = () => {
-    const isValid = Validator.doNewPasswordValidator(newPassword, newPasswordConfirm);
-
-    if (isValid === true) {
-      onUpdate(NAV_SECTION.PASSWORD, { currentPassword, newPassword });
-    } else {
-      setpwdErrorMessage(errorLabels[isValid]);
-    }
-  };
-
-  const onEmailUpdateSubmit = () => {
-    if (isVerified) {
-      const isValid = Validator.doEmailValidator(newEmail);
-      if (isValid === true) {
-        onUpdate(NAV_SECTION.EMAIL, { email: newEmail });
-      } else {
-        setEmailErrorMessage(errorLabels[isValid]);
-        setWrongEmail(isValid !== true);
-      }
-    } else {
-      dispatch(doResendValidationEmail());
-    }
-  };
-
   const getErrorMessage = (localErrorMessage) => {
     let errorMessage = null;
 
@@ -88,6 +64,31 @@ const EmailAndPassword = ({
     clearEmailData();
     clearPwdData();
     dispatch(clearAppError());
+  };
+
+  const onPasswordUpdateSubmit = () => {
+    const isValid = Validator.doNewPasswordValidator(newPassword, newPasswordConfirm);
+
+    if (isValid === true) {
+      onUpdate(NAV_SECTION.PASSWORD, { currentPassword, newPassword });
+    } else {
+      setpwdErrorMessage(errorLabels[isValid]);
+    }
+  };
+
+  const onEmailUpdateSubmit = () => {
+    if (isVerified || newEmail) {
+      const isValid = Validator.doEmailValidator(newEmail);
+      if (isValid === true) {
+        onUpdate(NAV_SECTION.EMAIL, { email: newEmail });
+        clearEmailData();
+      } else {
+        setEmailErrorMessage(errorLabels[isValid]);
+        setWrongEmail(isValid !== true);
+      }
+    } else {
+      dispatch(doResendValidationEmail());
+    }
   };
 
   const getEMailDataContainerStyle = () => (

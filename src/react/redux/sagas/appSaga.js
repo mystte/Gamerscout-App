@@ -82,7 +82,18 @@ function* doConfirmPassword({ parameters }) {
     if (parameters.onSuccessData) {
       const action = parameters.onSuccessData.onValidAction;
       const actionParams = parameters.onSuccessData.data;
+      const successNotif = parameters.onSuccessData.onSuccessNotif;
+
+      console.log('successNotif = ', successNotif);
       yield put({ type: action, parameters: actionParams });
+      if (successNotif) {
+        yield put({
+          type: NOTIFICATIONS.PUSH,
+          parameters: {
+            record: NotificationRecord.getMockedNotif(successNotif),
+          },
+        });
+      }
     }
     yield put({ type: APP.TOGGLE_POPUP, parameters: {} });
   } catch (e) {

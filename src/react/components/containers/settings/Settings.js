@@ -11,6 +11,7 @@ import ConnectedAccounts from './_ui/connectedaccounts/ConnectedAccounts';
 import { clearAppError, doUpdatePassword, togglePopup } from '../../../redux/actions/app';
 import { POPUP_TYPE } from '../../../datamanager/models/PopupRecord';
 import { APP, loading } from '../../../redux/actions/actionTypes';
+import { MOCKED_NOTIFICATION } from '../../../datamanager/models/NotificationRecord';
 
 
 const Settings = () => {
@@ -28,6 +29,7 @@ const Settings = () => {
       if (type === NAV_SECTION.EMAIL) {
         const params = {
           onValidAction: loading(APP.DO_UPDATE_USER),
+          onSuccessNotif: MOCKED_NOTIFICATION.VALIDATION_EMAIL_RESENT,
           data: {
             email: data.email,
             id: connectedUser.id,

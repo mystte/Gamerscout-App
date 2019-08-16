@@ -67,7 +67,6 @@ export default function reducer(state = initialState, action) {
       });
 
     case success(APP.DO_UPDATE_USER):
-      console.log(' user updated = ', state.getIn(['data', 'user']).updateUser(action.data), typeof (state.getIn(['data', 'user']).updateUser(action.data)));
       return state.withMutations((mutate) => {
         mutate.set('loading', false);
         mutate.setIn(['data', 'user'], state.getIn(['data', 'user']).updateUser(action.data));

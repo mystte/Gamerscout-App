@@ -41,6 +41,15 @@ export function doValidateAccount(token) {
   };
 }
 
+export function doValidatePassword(token) {
+  return {
+    type: loading(APP.DO_VALIDATE_PASSWORD),
+    parameters: {
+      token,
+    },
+  };
+}
+
 export function doResendValidationEmail() {
   return {
     type: loading(APP.DO_RESEND_VALIDATION_EMAIL),
@@ -65,6 +74,19 @@ export function doSignup(
       username,
       email,
       password,
+    },
+  };
+}
+
+export function doCreatePassword({
+  userId,
+  newPassword,
+}) {
+  return {
+    type: loading(APP.DO_CREATE_PASSWORD),
+    parameters: {
+      userId,
+      newPassword,
     },
   };
 }

@@ -48,7 +48,16 @@ export default class Validator {
     return false;
   }
 
+  static doCreatePasswordDisabledValidator(password, passwordConfirm) {
+    if (!password || !passwordConfirm
+    || (password !== passwordConfirm)
+    || (password.length < 6)) return true;
+
+    return false;
+  }
+
   static doUpdatePasswordDisabledValidator(currentPassword, password, passwordConfirm) {
+    if (!currentPassword || !password || !passwordConfirm) return true;
     if (
       password !== passwordConfirm
       || password === null

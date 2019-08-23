@@ -23,6 +23,7 @@
     "errEmailExists": "Email already taken",
     "errShortPassword": "Password must be at least 6 characters long",
     "errSamePassword": "New password must be different from old one",
-    "errWrongPassword": "Incorrect password"
+    "errWrongPassword": "Incorrect password",
+    "errPasswordUpdateRequired": "You must update your password before disconnecting Facebook"
   }
 }

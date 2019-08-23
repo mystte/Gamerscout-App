@@ -11,7 +11,7 @@ import SVGIcon from '../../../../views/elements/svgicon/SVGIcon';
 import Button, { BUTTON_THEME } from '../../../../views/elements/button/Button';
 import { togglePopup } from '../../../../../redux/actions/app';
 import { POPUP_TYPE } from '../../../../../datamanager/models/PopupRecord';
-import { APP } from '../../../../../redux/actions/actionTypes';
+import { APP, loading } from '../../../../../redux/actions/actionTypes';
 
 const ConnectedAccounts = ({
   isEditMode,
@@ -76,7 +76,7 @@ const ConnectedAccounts = ({
                 onClick={() => dispatch(togglePopup(
                   POPUP_TYPE.CONFIRM_PWD,
                   true,
-                  { onValidAction: APP.DO_DISCONNECT_FACEBOOK },
+                  { onValidAction: loading(APP.DO_DISCONNECT_FACEBOOK) },
                 ))}
               />
             </div>

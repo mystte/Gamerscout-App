@@ -41,6 +41,19 @@ export default class NotificationRecord extends ExtendsWith(Record(defaultProps,
     return new NotificationRecord(parsedData);
   }
 
+  static createNotif({
+    type,
+    title,
+    isPersistent,
+  }) {
+    return new NotificationRecord({
+      type: (type || NOTIFICATION_TYPE.DEFAULT),
+      title,
+      isPersistent: (isPersistent || false),
+      show: true,
+    });
+  }
+
   static getMockedNotif(type) {
     const labels = Localization.Labels.notifications;
     let notificationData = null;

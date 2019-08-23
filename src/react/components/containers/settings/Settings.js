@@ -8,7 +8,12 @@ import { NAV_SECTION } from './enums';
 import ProfileInformation from './_ui/profileinformation/ProfileInformation';
 import EmailAndPassword from './_ui/emailandpassword/EmailAndPassword';
 import ConnectedAccounts from './_ui/connectedaccounts/ConnectedAccounts';
-import { clearAppError, doUpdatePassword, togglePopup } from '../../../redux/actions/app';
+import {
+  clearAppError,
+  doUpdatePassword,
+  togglePopup,
+  doCreatePassword,
+} from '../../../redux/actions/app';
 import { POPUP_TYPE } from '../../../datamanager/models/PopupRecord';
 import { APP, loading } from '../../../redux/actions/actionTypes';
 import { MOCKED_NOTIFICATION } from '../../../datamanager/models/NotificationRecord';
@@ -37,11 +42,18 @@ const Settings = () => {
         };
         dispatch(togglePopup(POPUP_TYPE.CONFIRM_PWD, true, params));
       } else if (type === NAV_SECTION.PASSWORD) {
-        dispatch(doUpdatePassword({
-          userId: connectedUser.id,
-          currentPassword: data.currentPassword,
-          newPassword: data.newPassword,
-        }));
+        if (connectedUser.hasAutomaticGeneratedPwd) {
+          dispatch(doCreatePassword({
+            userId: connectedUser.id,
+            newPassword: data.newPassword,
+          }));
+        } else {
+          dispatch(doUpdatePassword({
+            userId: connectedUser.id,
+            currentPassword: data.currentPassword,
+            newPassword: data.newPassword,
+          }));
+        }
       }
     } else if (editingSection === type) {
       dispatch(clearAppError());
@@ -72,6 +84,8 @@ const Settings = () => {
             isEditPasswordMode={editingSection === NAV_SECTION.PASSWORD}
             email={connectedUser.email}
             isVerified={connectedUser.validated}
+            noPassword={connectedUser.hasAutomaticGeneratedPwd}
+
         />
           <ConnectedAccounts
             onUpdate={onSettingsUpdate}

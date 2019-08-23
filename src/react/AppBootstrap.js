@@ -47,9 +47,9 @@ class AppBootstrap extends PureComponent {
 
   componentDidMount() {
     this.props.dispatch(loadAppData(this.props.cookies.cookies));
-    // this.props.dispatch(pushNotification(
-    //   NotificationRecord.getMockedNotif(MOCKED_NOTIFICATION.TEST),
-    // ));
+    // this.props.dispatch(pushNotification({
+    //   title: 'title',
+    // }));
     // Force app in English for now
     Localization.setLanguage('en');
   }
@@ -63,7 +63,9 @@ class AppBootstrap extends PureComponent {
       if (!this.props.user.validated && !this.props.cookies.get('gs-notif')) {
         this.props.cookies.set('gs-notif', 1, { maxAge: 3600 });
         this.props.dispatch(
-          pushNotification(NotificationRecord.getMockedNotif(MOCKED_NOTIFICATION.INVALID_ACCOUNT)),
+          pushNotification({
+            record: NotificationRecord.getMockedNotif(MOCKED_NOTIFICATION.INVALID_ACCOUNT),
+          }),
         );
       }
     }

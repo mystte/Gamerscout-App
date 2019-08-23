@@ -86,6 +86,12 @@ export default class Api {
     return doApiCall('/users/login', data, CALL_TYPE.POST);
   }
 
+  static createNewPasswordRequest({ newPassword }) {
+    const data = { password: md5(newPassword) };
+
+    return doApiCall('/users/newPasswordRequest', data, CALL_TYPE.POST);
+  }
+
   static doUpdateUser({ id, email, password }) {
     const data = { id };
 
@@ -132,5 +138,9 @@ export default class Api {
 
   static doValidateAccount(params) {
     return doApiCall('/account/validate', params, CALL_TYPE.POST);
+  }
+
+  static doValidatePassword(params) {
+    return doApiCall('/users/tokenPasswordValidation', params, CALL_TYPE.POST);
   }
 }

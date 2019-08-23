@@ -23,6 +23,7 @@
     "errEmailExists": "Ce courriel à déjà un compte existant",
     "errShortPassword": "Le mot de passe doit être d'au moins 6 caractères",
     "errSamePassword": "Le nouveau mot de passe doit être différent de l'ancien",
-    "errWrongPassword": "Mot de passe incorrect"
+    "errWrongPassword": "Mot de passe incorrect",
+    "errPasswordUpdateRequired": "Vous devez changer votre mot de passe avant d'effectuer cette action"
   }
 }

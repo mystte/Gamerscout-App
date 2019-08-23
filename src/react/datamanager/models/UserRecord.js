@@ -13,6 +13,7 @@ const defaultProps = {
   sessionId: String,
   facebookEmail: Maybe(String),
   facebookId: Maybe(Number),
+  hasAutomaticGeneratedPwd: Boolean,
 };
 
 const ExtendsWith = (superclass) => class extends superclass {
@@ -60,6 +61,7 @@ export default class UserRecord extends ExtendsWith(Record(defaultProps, 'UserRe
       validated: data.validated ? data.validated : false,
       sessionId: data['gamerscout-api-session'] ? data['gamerscout-api-session'] : null,
       facebookId: data.facebook_id ? data.facebook_id : null,
+      hasAutomaticGeneratedPwd: data.isAutomaticGeneratedPwd,
     };
 
     return new UserRecord(parsedData);

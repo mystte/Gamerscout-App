@@ -42,3 +42,17 @@ export const getValidateAccountUrl = (token) => {
 
   return validateAccountUrl;
 }
+
+export const getValidatePasswordUrl = (token) => {
+  let validatePasswordUrl = Localization.Urls.validatePasswordUrl;
+
+  if (token) {
+    validatePasswordUrl = Localization.Urls.formatString(validatePasswordUrl, {
+      token: token,
+    });
+  } else {
+    validatePasswordUrl = formatUrlForRouter(validatePasswordUrl);
+  }
+
+  return validatePasswordUrl;
+}

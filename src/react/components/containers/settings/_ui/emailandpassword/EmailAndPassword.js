@@ -16,6 +16,7 @@ const EmailAndPassword = ({
   onUpdate,
   email,
   isVerified,
+  noPassword,
 }) => {
   const dispatch = useDispatch();
   const labels = Localization.Labels.settings.emailPassword;
@@ -160,16 +161,18 @@ const EmailAndPassword = ({
     if (isEditPasswordMode) {
       renderdataContent = (<div style={styles.inputDataContainer}>
         <div style={styles.inputContainer}>
-          <Input
-            focus
-            type={INPUT_TYPE.PASSWORD}
-            placeholder={labels.currentPasswordPlaceholder}
-            length={maxInputLength}
-            onChange={(e) => {
-              setCurrentPassword(e.target.value);
-            }}
-            error={hasPwdError()}
-          />
+          {!noPassword
+            && <Input
+              focus
+              type={INPUT_TYPE.PASSWORD}
+              placeholder={labels.currentPasswordPlaceholder}
+              length={maxInputLength}
+              onChange={(e) => {
+                setCurrentPassword(e.target.value);
+              }}
+              error={hasPwdError()}
+            />
+          }
           <span style={styles.inputSeparator} />
           <Input
             type={INPUT_TYPE.PASSWORD}
@@ -205,11 +208,16 @@ const EmailAndPassword = ({
               label={labels.save}
               theme={BUTTON_THEME.BLUE}
               onClick={onPasswordUpdateSubmit}
-              disabled={Validator.doUpdatePasswordDisabledValidator(
-                currentPassword,
-                newPassword,
-                newPasswordConfirm,
-              )}
+              disabled={(noPassword)
+                ? Validator.doCreatePasswordDisabledValidator(
+                  newPassword,
+                  newPasswordConfirm,
+                )
+                : Validator.doUpdatePasswordDisabledValidator(
+                  currentPassword,
+                  newPassword,
+                  newPasswordConfirm,
+                )}
             />
           </div>
         </div>
@@ -267,12 +275,14 @@ EmailAndPassword.propTypes = {
   onUpdate: PropTypes.func.isRequired,
   isVerified: PropTypes.bool.isRequired,
   email: PropTypes.string,
+  noPassword: PropTypes.bool,
 };
 
 EmailAndPassword.defaultProps = {
   isEditEmailMode: false,
   isEditPasswordMode: false,
   email: null,
+  noPassword: false,
 };
 
 export default EmailAndPassword;

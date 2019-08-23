@@ -11,6 +11,12 @@
     },
     "wrongValidationToken": {
       "title": "Le token a éxpiré ou n'est pas valide."
+    },
+    "createPasswordRequest": {
+      "title": "Un courriel a été envoyé pour valider votre mot de passe."
+    },
+    "createdPasswordValidated": {
+      "title": "Votre mot de passe a bien été modifié."
     }
   },
   "settings": {

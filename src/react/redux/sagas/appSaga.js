@@ -6,7 +6,8 @@ import Api, { fetchAsync } from '../../datamanager/api/Api';
 import AppRecord from '../../datamanager/models/AppRecord';
 import UserRecord from '../../datamanager/models/UserRecord';
 import { isEmpty } from '../../utils/objects';
-import NotificationRecord, { MOCKED_NOTIFICATION } from '../../datamanager/models/NotificationRecord';
+import NotificationRecord, { MOCKED_NOTIFICATION, NOTIFICATION_TYPE } from '../../datamanager/models/NotificationRecord';
+import Localization from '../../config/localization/Localization';
 
 function* loadAppData({ parameters }) {
   const actionType = APP.LOAD;
@@ -52,6 +53,27 @@ function* doResetPassword({ parameters }) {
   }
 }
 
+function* doCreatePassword({ parameters }) {
+  const actionType = APP.DO_CREATE_PASSWORD;
+  const labels = Localization.Labels.notifications;
+
+  try {
+    yield fetchAsync(Api.createNewPasswordRequest, parameters);
+    yield put({ type: success(actionType) });
+    yield put({
+      type: NOTIFICATIONS.PUSH,
+      parameters: {
+        record: NotificationRecord.createNotif({
+          title: labels.createPasswordRequest.title,
+          type: NOTIFICATION_TYPE.SUCCESS,
+        }),
+      },
+    });
+  } catch (e) {
+    yield put({ type: error(actionType), error: e.message });
+  }
+}
+
 function* doUpdatePassword({ parameters }) {
   const actionType = APP.DO_UPDATE_PASSWORD;
 
@@ -84,7 +106,6 @@ function* doConfirmPassword({ parameters }) {
       const actionParams = parameters.onSuccessData.data;
       const successNotif = parameters.onSuccessData.onSuccessNotif;
 
-      console.log('successNotif = ', successNotif);
       yield put({ type: action, parameters: actionParams });
       if (successNotif) {
         yield put({
@@ -104,13 +125,10 @@ function* doConfirmPassword({ parameters }) {
 function* doUpdateUser({ parameters }) {
   const actionType = APP.DO_UPDATE_USER;
 
-  console.log('parameters = ', parameters);
   try {
     yield fetchAsync(Api.doUpdateUser, parameters);
-    console.log('success !!!');
     yield put({ type: success(actionType), data: parameters });
   } catch (e) {
-    console.log('e = ', e);
     yield put({ type: error(actionType), error: e.message });
   }
 }
@@ -150,6 +168,15 @@ function* doDisconnectFacebook() {
     yield fetchAsync(Api.doDisconnectFacebook);
     yield put({ type: success(actionType) });
   } catch (e) {
+    yield put({
+      type: NOTIFICATIONS.PUSH,
+      parameters: {
+        record: NotificationRecord.createNotif({
+          title: Localization.Errors.userUpdate[e.message],
+          type: NOTIFICATION_TYPE.ALERT,
+        }),
+      },
+    });
     yield put({ type: error(actionType), error: e.message });
   }
 }
@@ -207,6 +234,33 @@ function* doValidateAccount({ parameters }) {
   }
 }
 
+function* doValidatePassword({ parameters }) {
+  const actionType = APP.DO_VALIDATE_PASSWORD;
+  const labels = Localization.Labels.notifications;
+
+  try {
+    yield fetchAsync(Api.doValidatePassword, parameters);
+    yield put({ type: success(actionType) });
+    yield put({
+      type: NOTIFICATIONS.PUSH,
+      parameters: {
+        record: NotificationRecord.createNotif({
+          title: labels.createdPasswordValidated.title,
+          type: NOTIFICATION_TYPE.SUCCESS,
+        }),
+      },
+    });
+  } catch (e) {
+    yield put({
+      type: NOTIFICATIONS.PUSH,
+      parameters: {
+        record: NotificationRecord.getMockedNotif(MOCKED_NOTIFICATION.WRONG_VALIDATION_TOKEN),
+      },
+    });
+    yield put({ type: error(actionType), error: e.message });
+  }
+}
+
 export function* appSaga() {
   yield takeEvery(loading(APP.LOAD), loadAppData);
   yield takeLatest(loading(APP.DO_LOGIN), doLogin);
@@ -217,9 +271,11 @@ export function* appSaga() {
   yield takeLatest(loading(APP.DO_RESET_PWD), doResetPassword);
   yield takeLatest(loading(APP.DO_UPDATE_USER), doUpdateUser);
   yield takeLatest(loading(APP.DO_CONFIRM_PASSWORD), doConfirmPassword);
+  yield takeLatest(loading(APP.DO_CREATE_PASSWORD), doCreatePassword);
   yield takeLatest(loading(APP.DO_UPDATE_PASSWORD), doUpdatePassword);
   yield takeLatest(loading(APP.DO_RESEND_VALIDATION_EMAIL), doResendValidationEmail);
   yield takeLatest(loading(APP.DO_VALIDATE_ACCOUNT), doValidateAccount);
+  yield takeLatest(loading(APP.DO_VALIDATE_PASSWORD), doValidatePassword);
 }
 
 export default appSaga;

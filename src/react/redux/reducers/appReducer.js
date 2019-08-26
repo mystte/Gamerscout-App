@@ -36,9 +36,17 @@ export default function reducer(state = initialState, action) {
     case loading(APP.DO_UPDATE_PASSWORD):
     case loading(APP.DO_VALIDATE_ACCOUNT):
     case loading(APP.DO_DISCONNECT_FACEBOOK):
+    case loading(APP.DO_ADD_FACEBOOK_ACCOUNT):
       return state.withMutations((mutate) => {
         mutate.set('loading', true);
         mutate.set('error', null);
+      });
+
+    case success(APP.DO_ADD_FACEBOOK_ACCOUNT):
+      return state.withMutations((mutate) => {
+        mutate.set('loading', false);
+        mutate.set('error', null);
+        mutate.setIn(['data', 'user'], state.getIn(['data', 'user']).updateUser(action.data));
       });
 
     case success(APP.LOAD):
@@ -59,7 +67,7 @@ export default function reducer(state = initialState, action) {
     case success(APP.DO_DISCONNECT_FACEBOOK):
       return state.withMutations((mutate) => {
         mutate.set('loading', false);
-        mutate.setIn(['data', 'user', 'facebookId'], null);
+        mutate.setIn(['data', 'user'], state.getIn(['data', 'user']).removeFacebook());
         mutate.set('error', null);
       });
 
@@ -94,6 +102,7 @@ export default function reducer(state = initialState, action) {
     case error(APP.DO_UPDATE_PASSWORD):
     case error(APP.DO_VALIDATE_ACCOUNT):
     case error(APP.DO_DISCONNECT_FACEBOOK):
+    case error(APP.DO_ADD_FACEBOOK_ACCOUNT):
       console.log('ACTION ERROR = ', action);
       return state.withMutations((mutate) => {
         mutate.set('loading', false);

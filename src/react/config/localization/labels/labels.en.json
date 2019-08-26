@@ -20,6 +20,15 @@
     },
     "createdPasswordValidated": {
       "title": "Your password has successfully been updated."
+    },
+    "updatePasswordRequired": {
+      "title": "You must update your password before performing this action."
+    },
+    "facebookAddAccountSuccess": {
+      "title": "Your facebook account has been successfully added."
+    },
+    "facebookRemoveAccountSuccess": {
+      "title": "Your facebook account has been successfully removed."
     }
   },
   "settings": {

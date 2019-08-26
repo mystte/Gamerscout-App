@@ -16,11 +16,13 @@ import {
 } from '../../../redux/actions/app';
 import { POPUP_TYPE } from '../../../datamanager/models/PopupRecord';
 import { APP, loading } from '../../../redux/actions/actionTypes';
-import { MOCKED_NOTIFICATION } from '../../../datamanager/models/NotificationRecord';
+import { MOCKED_NOTIFICATION, NOTIFICATION_TYPE } from '../../../datamanager/models/NotificationRecord';
+import { pushNotification } from '../../../redux/actions/notifications';
 
 
 const Settings = () => {
   const labels = Localization.Labels.settings;
+  const notifLabels = Localization.Labels.notifications;
   const [selectedNav, setSelectedNav] = useState(NAV_SECTION.PROFILE);
   const [editingSection, setEditingSection] = useState(null);
   const connectedUser = useSelector((state) => state.app.getIn(['data', 'user']));
@@ -28,8 +30,14 @@ const Settings = () => {
 
   if (!connectedUser) return null;
 
+  const sendPasswordUpdateNotification = () => {
+    dispatch(pushNotification({
+      title: notifLabels.updatePasswordRequired.title,
+      type: NOTIFICATION_TYPE.ALERT,
+    }));
+  };
+
   const onSettingsUpdate = (type, data) => {
-    console.log('##### On Settings update click', type, data);
     if (data) {
       if (type === NAV_SECTION.EMAIL) {
         const params = {
@@ -40,7 +48,11 @@ const Settings = () => {
             id: connectedUser.id,
           },
         };
-        dispatch(togglePopup(POPUP_TYPE.CONFIRM_PWD, true, params));
+        if (connectedUser.hasAutomaticGeneratedPwd) {
+          sendPasswordUpdateNotification();
+        } else {
+          dispatch(togglePopup(POPUP_TYPE.CONFIRM_PWD, true, params));
+        }
       } else if (type === NAV_SECTION.PASSWORD) {
         if (connectedUser.hasAutomaticGeneratedPwd) {
           dispatch(doCreatePassword({
@@ -53,6 +65,15 @@ const Settings = () => {
             currentPassword: data.currentPassword,
             newPassword: data.newPassword,
           }));
+        }
+      } else if (type === NAV_SECTION.ACCOUNTS) {
+        if (connectedUser.hasAutomaticGeneratedPwd) sendPasswordUpdateNotification();
+        else {
+          dispatch(togglePopup(
+            POPUP_TYPE.CONFIRM_PWD,
+            true,
+            { onValidAction: loading(APP.DO_DISCONNECT_FACEBOOK) },
+          ));
         }
       }
     } else if (editingSection === type) {
@@ -87,10 +108,10 @@ const Settings = () => {
             noPassword={connectedUser.hasAutomaticGeneratedPwd}
 
         />
-          <ConnectedAccounts
-            onUpdate={onSettingsUpdate}
-            isEditMode={editingSection === NAV_SECTION.ACCOUNTS}
-          />
+        <ConnectedAccounts
+          onUpdate={onSettingsUpdate}
+          isEditMode={editingSection === NAV_SECTION.ACCOUNTS}
+        />
         </div>
       </div>
     </div>

@@ -2,8 +2,10 @@ import { colorNameToHex } from '../../../../../utils/color';
 
 const styles = {
   addAccountContainer: {
+    marginTop: 10,
     marginBottom: 20,
     flexDirection: 'row',
+    cursor: 'pointer',
   },
 
   addLabel: {

@@ -17,6 +17,15 @@
     },
     "createdPasswordValidated": {
       "title": "Votre mot de passe a bien été modifié."
+    },
+    "updatePasswordRequired": {
+      "title": "Vous devez changer votre mot de passe avant d'effectuer cette action."
+    },
+    "facebookAddAccountSuccess": {
+      "title": "Votre compte facebook a été ajouté."
+    },
+    "facebookRemoveAccountSuccess": {
+      "title": "Votre compte facebook a été supprimé."
     }
   },
   "settings": {

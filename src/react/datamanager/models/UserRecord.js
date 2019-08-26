@@ -22,10 +22,19 @@ const ExtendsWith = (superclass) => class extends superclass {
       mutate.set('email', data.email);
       mutate.set('validated', false);
     }
+
     if (data.firstName) mutate.set('firstName', data.firstName);
     if (data.lastName) mutate.set('lastName', data.lastName);
     if (data.gender) mutate.set('gender', data.gender);
     if (data.username) mutate.set('username', data.username);
+    if (data.facebookId) mutate.set('facebookId', +data.facebookId);
+    if (data.facebookEmail) mutate.set('facebookEmail', data.facebookEmail);
+    if (data.hasAutomaticGeneratedPwd) mutate.set('hasAutomaticGeneratedPwd', data.hasAutomaticGeneratedPwd);
+  }));
+
+  removeFacebook = () => new UserRecord(this.withMutations((mutate) => {
+    mutate.set('facebookId', null);
+    mutate.set('facebookEmail', null);
   }));
 
   validateUserAccount = () => new UserRecord(this.withMutations((mutate) => {
@@ -60,7 +69,7 @@ export default class UserRecord extends ExtendsWith(Record(defaultProps, 'UserRe
       username: data.username ? data.username : null,
       validated: data.validated ? data.validated : false,
       sessionId: data['gamerscout-api-session'] ? data['gamerscout-api-session'] : null,
-      facebookId: data.facebook_id ? data.facebook_id : null,
+      facebookId: data.facebook_id ? +data.facebook_id : null,
       hasAutomaticGeneratedPwd: data.isAutomaticGeneratedPwd,
     };
 

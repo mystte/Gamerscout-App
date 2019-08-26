@@ -161,12 +161,43 @@ function* doFacebookLogin({ parameters }) {
   }
 }
 
+function* doAddFacebookAccount({ parameters }) {
+  const actionType = APP.DO_ADD_FACEBOOK_ACCOUNT;
+  const labels = Localization.Labels.notifications;
+
+  try {
+    const facebookData = yield fetchAsync(Api.doAddFacebookAccount, parameters);
+    yield put({ type: success(actionType), data: facebookData.data });
+    yield put({
+      type: NOTIFICATIONS.PUSH,
+      parameters: {
+        record: NotificationRecord.createNotif({
+          title: labels.facebookAddAccountSuccess.title,
+          type: NOTIFICATION_TYPE.SUCCESS,
+        }),
+      },
+    });
+  } catch (e) {
+    yield put({ type: error(actionType), error: e.message });
+  }
+}
+
 function* doDisconnectFacebook() {
   const actionType = APP.DO_DISCONNECT_FACEBOOK;
+  const labels = Localization.Labels.notifications;
 
   try {
     yield fetchAsync(Api.doDisconnectFacebook);
     yield put({ type: success(actionType) });
+    yield put({
+      type: NOTIFICATIONS.PUSH,
+      parameters: {
+        record: NotificationRecord.createNotif({
+          title: labels.facebookRemoveAccountSuccess.title,
+          type: NOTIFICATION_TYPE.SUCCESS,
+        }),
+      },
+    });
   } catch (e) {
     yield put({
       type: NOTIFICATIONS.PUSH,
@@ -265,6 +296,7 @@ export function* appSaga() {
   yield takeEvery(loading(APP.LOAD), loadAppData);
   yield takeLatest(loading(APP.DO_LOGIN), doLogin);
   yield takeLatest(loading(APP.DO_FACEBOOK_LOGIN), doFacebookLogin);
+  yield takeLatest(loading(APP.DO_ADD_FACEBOOK_ACCOUNT), doAddFacebookAccount);
   yield takeLatest(loading(APP.DO_DISCONNECT_FACEBOOK), doDisconnectFacebook);
   yield takeLatest(loading(APP.DO_SIGNUP), doSignup);
   yield takeLatest(loading(APP.DO_LOGOUT), doLogout);

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { FacebookProvider } from 'react-facebook';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Localization from '../../../../../config/localization/Localization';
@@ -11,13 +12,14 @@ import SVGIcon from '../../../../views/elements/svgicon/SVGIcon';
 import Button, { BUTTON_THEME } from '../../../../views/elements/button/Button';
 import { togglePopup } from '../../../../../redux/actions/app';
 import { POPUP_TYPE } from '../../../../../datamanager/models/PopupRecord';
-import { APP, loading } from '../../../../../redux/actions/actionTypes';
+import { loading, APP } from '../../../../../redux/actions/actionTypes';
 
 const ConnectedAccounts = ({
   isEditMode,
   onUpdate,
 }) => {
   const dispatch = useDispatch();
+  const fbAppId = useSelector((state) => state.app.getIn(['data', 'facebookAppId']));
   const [accountSelected, setAccountSelected] = useState(false);
   const labels = Localization.Labels.settings.accounts;
   const editLabel = (isEditMode) ? labels.close : labels.edit;
@@ -32,12 +34,39 @@ const ConnectedAccounts = ({
     }
   );
 
+  const doAddAccountAction = (token) => {
+    const params = {
+      onValidAction: loading(APP.DO_ADD_FACEBOOK_ACCOUNT),
+      data: {
+        token,
+      },
+    };
+    dispatch(togglePopup(POPUP_TYPE.CONFIRM_PWD, true, params));
+  };
+
+  const onAddAccountClick = () => {
+    window.FB.getLoginStatus((response) => {
+      if (response.status === 'connected') {
+        doAddAccountAction(response.authResponse.accessToken);
+      } else {
+        window.FB.login((wResponse) => {
+          doAddAccountAction(wResponse.authResponse.accessToken);
+        }, { scope: 'email,public_profile' });
+      }
+    });
+  };
+
   const onAccountCheckboxClick = (value) => {
     setAccountSelected(value);
   };
 
   const onCancelClick = (section) => {
     onUpdate(section, null);
+  };
+
+  const onDisconnectClick = () => {
+    setAccountSelected(false);
+    onUpdate(NAV_SECTION.ACCOUNTS, true);
   };
 
   const renderDataContent = () => {
@@ -55,10 +84,12 @@ const ConnectedAccounts = ({
             </div>
           }
           {!connectedUser.facebookId
-            && <div style={styles.addAccountContainer}>
-              <SVGIcon width={20} height={20} name={'add-box'} />
-              <span style={styles.addLabel}>{labels.add}</span>
-            </div>
+            && <FacebookProvider appId={fbAppId}>
+              <div onClick={onAddAccountClick} style={styles.addAccountContainer}>
+                <SVGIcon width={20} height={20} name={'add-box'} />
+                <span style={styles.addLabel}>{labels.add}</span>
+              </div>
+            </FacebookProvider>
           }
           <div style={styles.submitlButtonsContainer}>
               <div style={styles.cancelButtonContainer}>
@@ -73,11 +104,7 @@ const ConnectedAccounts = ({
                 label={labels.disconnect}
                 theme={BUTTON_THEME.BLUE}
                 disabled={accountSelected === false}
-                onClick={() => dispatch(togglePopup(
-                  POPUP_TYPE.CONFIRM_PWD,
-                  true,
-                  { onValidAction: loading(APP.DO_DISCONNECT_FACEBOOK) },
-                ))}
+                onClick={onDisconnectClick}
               />
             </div>
           </div>

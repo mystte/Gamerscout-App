@@ -124,6 +124,14 @@ export default class Api {
     return doApiCall('/users/facebook_auth', data, CALL_TYPE.POST);
   }
 
+  static doAddFacebookAccount({ token }) {
+    const data = {
+      token,
+    };
+
+    return doApiCall('/users/add_facebook', data, CALL_TYPE.POST);
+  }
+
   static doDisconnectFacebook() {
     return doApiCall('/users/facebook_disconnect', null, CALL_TYPE.POST);
   }

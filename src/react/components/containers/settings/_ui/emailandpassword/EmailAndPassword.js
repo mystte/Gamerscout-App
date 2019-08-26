@@ -135,7 +135,7 @@ const EmailAndPassword = ({
               length={maxInputLength}
               onChange={(e) => setNewEmail(e.target.value)}
               message={getErrorMessage(emailErrorMessage)}
-              error={wrongEmail || apiError}
+              error={wrongEmail || apiError !== null}
             />
           </div>
           <div style={styles.submitlButtonsContainer}>

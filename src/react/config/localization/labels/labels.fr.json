@@ -26,6 +26,9 @@
     },
     "facebookRemoveAccountSuccess": {
       "title": "Votre compte facebook a été supprimé."
+    },
+    "updateProfilSuccess": {
+      "title": "Votre profil a été mis à jour."
     }
   },
   "settings": {
@@ -40,7 +43,10 @@
       "info": "Informations du profil",
       "desc": "Modifier les informations de profil",
       "edit": "Mofifier le profil",
-      "close": "Fermer"
+      "close": "Fermer",
+      "cancel": "Annuler",
+      "gsId": "Gamerscout-id",
+      "submit": "Envoyer"
     },
     "emailPassword": {
       "title": "Courriel & mot de passe",

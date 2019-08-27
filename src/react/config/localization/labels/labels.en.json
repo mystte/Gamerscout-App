@@ -29,6 +29,9 @@
     },
     "facebookRemoveAccountSuccess": {
       "title": "Your facebook account has been successfully removed."
+    },
+    "updateProfilSuccess": {
+      "title": "Your profile has been updated."
     }
   },
   "settings": {
@@ -43,7 +46,10 @@
       "info": "Profile information",
       "desc": "Change profile information, such as display name",
       "edit": "Edit profile",
-      "close": "Close"
+      "close": "Close",
+      "cancel": "Cancel",
+      "gsId": "Gamerscout-id",
+      "submit": "Submit"
     },
     "emailPassword": {
       "unverified": "Unverified",

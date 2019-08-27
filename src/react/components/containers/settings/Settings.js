@@ -40,19 +40,35 @@ const Settings = () => {
   const onSettingsUpdate = (type, data) => {
     if (data) {
       if (type === NAV_SECTION.EMAIL) {
-        const params = {
-          onValidAction: loading(APP.DO_UPDATE_USER),
-          onSuccessNotif: MOCKED_NOTIFICATION.VALIDATION_EMAIL_RESENT,
-          data: {
-            email: data.email,
-            id: connectedUser.id,
-          },
-        };
-        if (connectedUser.hasAutomaticGeneratedPwd) {
-          sendPasswordUpdateNotification();
-        } else {
-          dispatch(togglePopup(POPUP_TYPE.CONFIRM_PWD, true, params));
+        if (connectedUser.hasAutomaticGeneratedPwd) sendPasswordUpdateNotification();
+        else {
+          const params = {
+            onValidAction: loading(APP.DO_UPDATE_USER),
+            onSuccessNotif: MOCKED_NOTIFICATION.VALIDATION_EMAIL_RESENT,
+            data: {
+              email: data.email,
+              id: connectedUser.id,
+            },
+          };
+          if (connectedUser.hasAutomaticGeneratedPwd) {
+            sendPasswordUpdateNotification();
+          } else {
+            dispatch(togglePopup(POPUP_TYPE.CONFIRM_PWD, true, params));
+          }
         }
+      } else if (type === NAV_SECTION.PROFILE) {
+        dispatch(togglePopup(
+          POPUP_TYPE.CONFIRM_PWD,
+          true,
+          {
+            onSuccessNotif: MOCKED_NOTIFICATION.UPATED_PROFILE,
+            onValidAction: loading(APP.DO_UPDATE_USER),
+            data: {
+              id: connectedUser.id,
+              username: data.username,
+            },
+          },
+        ));
       } else if (type === NAV_SECTION.PASSWORD) {
         if (connectedUser.hasAutomaticGeneratedPwd) {
           dispatch(doCreatePassword({
@@ -97,6 +113,7 @@ const Settings = () => {
         <div style={styles.settingsDataContainer}>
           <ProfileInformation
             onUpdate={onSettingsUpdate}
+            username={connectedUser.username}
             isEditMode={editingSection === NAV_SECTION.PROFILE}
           />
           <EmailAndPassword

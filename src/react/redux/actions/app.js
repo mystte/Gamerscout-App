@@ -119,6 +119,7 @@ export function doUpdateUser({
   id,
   newEmail = null,
   newPassword = null,
+  username = null,
 }) {
   return {
     type: loading(APP.DO_UPDATE_USER),
@@ -126,6 +127,7 @@ export function doUpdateUser({
       id,
       email: newEmail,
       password: newPassword,
+      username,
     },
   };
 }

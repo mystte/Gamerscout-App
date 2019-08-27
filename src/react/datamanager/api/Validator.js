@@ -56,6 +56,12 @@ export default class Validator {
     return false;
   }
 
+  static doUpdateGamerscoutIdDisableValidator(gsId) {
+    if (!gsId) return true;
+    if (gsId.length < 4) return true;
+    return false;
+  }
+
   static doUpdatePasswordDisabledValidator(currentPassword, password, passwordConfirm) {
     if (!currentPassword || !password || !passwordConfirm) return true;
     if (

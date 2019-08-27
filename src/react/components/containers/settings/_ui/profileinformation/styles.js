@@ -3,7 +3,6 @@ import { colorNameToHex } from '../../../../../utils/color';
 const styles = {
   container: {
     marginBottom: 30,
-    cursor: 'pointer',
   },
 
   title: {
@@ -25,8 +24,13 @@ const styles = {
     position: 'relative',
   },
 
+  inputDataContainer: {
+    overflow: 'hidden',
+  },
+
   dataContainerEditMode: {
     borderColor: colorNameToHex('dodgerblue'),
+    height: 215,
   },
 
   infoTitle: {
@@ -48,6 +52,25 @@ const styles = {
     color: colorNameToHex('dodgerblue'),
     fontSize: 14,
     fontWeight: 600,
+  },
+
+  inputContainer: {
+    width: 245,
+    marginBottom: 20,
+    marginTop: 20,
+  },
+
+  cancelButtonContainer: {
+    width: 100,
+    marginRight: 10,
+  },
+
+  topContainer: {
+    cursor: 'pointer',
+  },
+
+  submitlButtonsContainer: {
+    flexDirection: 'row',
   },
 };
 

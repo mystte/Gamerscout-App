@@ -92,11 +92,17 @@ export default class Api {
     return doApiCall('/users/newPasswordRequest', data, CALL_TYPE.POST);
   }
 
-  static doUpdateUser({ id, email, password }) {
+  static doUpdateUser({
+    id,
+    email,
+    password,
+    username,
+  }) {
     const data = { id };
 
     if (email) data.email = email;
     if (password) data.password = md5(password);
+    if (username) data.username = username;
     return doApiCall(`/users/${id}`, data, CALL_TYPE.PUT);
   }
 

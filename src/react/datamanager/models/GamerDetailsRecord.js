@@ -56,7 +56,6 @@ export default class GamerDetailsRecord extends ExtendsWith(Record(defaultProps,
 
   static apiParser(data) {
     const apiData = data;
-
     const parsedData = {
       accountId: apiData.account_id,
       game: apiData.game,

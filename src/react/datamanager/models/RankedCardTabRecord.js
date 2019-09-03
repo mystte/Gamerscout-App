@@ -1,4 +1,5 @@
 import { Record, Maybe } from 'typed-immutable';
+import { romanToNumber, computeWinRate } from '../../utils/strings';
 
 const defaultProps = {
   leagueId: String,
@@ -9,7 +10,6 @@ const defaultProps = {
   wins: Number,
   losses: Number,
   winrate: Number,
-  leagueName: Maybe(String),
   leagueImgUrl: Maybe(String),
   tier: String,
 };
@@ -22,17 +22,17 @@ const ExtendsWith = (superclass) => class extends superclass {
 
 export default class RankedCardTabRecord extends ExtendsWith(Record(defaultProps, 'RankedCardTabRecord')) {
   static apiParser(data) {
+    const rankedLeagueImg = `lol/rankingIcons/${data.tier.toLowerCase()}_${romanToNumber(data.rank)}`;
     const parsedData = {
-      title: data.type,
+      title: data.queueType,
       rank: data.rank,
-      rankInNumber: data.rank_in_number,
-      leagueName: data.league_name,
-      leagueId: data.league_id,
-      leagueImgUrl: data.league_img_url,
-      points: data.points,
+      rankInNumber: romanToNumber(data.rank),
+      leagueId: data.leagueId,
+      leagueImgUrl: rankedLeagueImg,
+      points: data.leaguePoints,
       wins: data.wins,
-      losses: data.lost,
-      winrate: data.winrate,
+      losses: data.losses,
+      winrate: computeWinRate(data.wins, data.losses),
       tier: data.tier,
     };
 

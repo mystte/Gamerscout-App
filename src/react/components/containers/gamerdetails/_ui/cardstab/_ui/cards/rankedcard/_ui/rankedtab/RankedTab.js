@@ -19,7 +19,7 @@ const RankedTab = ({
           <SVGIcon
             width={80}
             height={80}
-            name={`lol/rankingIcons/${rankedData.leagueImgUrl}`}
+            name={rankedData.leagueImgUrl}
             type={IMG_TYPE.PNG}
           />
           <div style={styles.dataContainer}>

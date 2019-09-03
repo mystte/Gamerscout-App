@@ -24,6 +24,8 @@
     "errShortPassword": "Password must be at least 6 characters long",
     "errSamePassword": "New password must be different from old one",
     "errWrongPassword": "Incorrect password",
-    "errPasswordUpdateRequired": "You must update your password before disconnecting Facebook"
+    "errPasswordUpdateRequired": "You must update your password before disconnecting Facebook",
+    "errUserNameExists": "Username already taken",
+    "errUsernameContainsSpace": "Gamerscout Id cannot contains spaces"
   }
 }

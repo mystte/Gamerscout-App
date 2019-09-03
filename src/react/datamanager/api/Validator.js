@@ -28,6 +28,13 @@ export default class Validator {
     return true;
   }
 
+  static doUsernameValidator(username) {
+    if (!username) return ERROR_TYPES.ERR_USERNAME_REQUIRED;
+    if (validator.contains(username, ' ')) return ERROR_TYPES.ERR_USERNAME_CONTAINS_SPACE;
+
+    return true;
+  }
+
   static doEmailValidator(email) {
     if (!validator.isEmail(email)) return ERROR_TYPES.ERR_WRONG_EMAIL;
 

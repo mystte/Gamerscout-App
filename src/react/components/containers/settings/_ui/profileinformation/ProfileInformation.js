@@ -14,9 +14,15 @@ const ProfileInformation = ({
   onUpdate,
 }) => {
   const labels = Localization.Labels.settings.profile;
+  const errors = Localization.Errors.userUpdate;
   const editLabel = (isEditMode) ? labels.close : labels.edit;
+  const [usernameError, setUsernameError] = useState(null);
   const [gsId, setGsId] = useState(null);
   const maxInputLength = '50';
+
+  const clearErrors = () => {
+    setUsernameError(null);
+  };
 
   const getDataContainerStyle = () => (
     (isEditMode) ? {
@@ -28,12 +34,22 @@ const ProfileInformation = ({
   );
 
   const onProfileSubmit = () => {
+    const valid = Validator.doUsernameValidator(gsId);
+    clearErrors();
     setGsId(null);
-    onUpdate(NAV_SECTION.PROFILE, { username: gsId });
+
+    if (valid === true) {
+      onUpdate(NAV_SECTION.PROFILE, { username: gsId });
+    } else setUsernameError(valid);
   };
 
   const onCancelClick = (section) => {
     onUpdate(section, null);
+  };
+
+  const updateGsId = (newId) => {
+    clearErrors();
+    setGsId(newId);
   };
 
   const renderDataContent = () => {
@@ -47,7 +63,9 @@ const ProfileInformation = ({
             placeholder={username}
             length={maxInputLength}
             value={gsId}
-            onChange={(e) => setGsId(e.target.value)}
+            onChange={(e) => updateGsId(e.target.value)}
+            error={usernameError !== true && usernameError !== null}
+            message={errors[usernameError]}
           />
         </div>
         <div style={styles.submitlButtonsContainer}>

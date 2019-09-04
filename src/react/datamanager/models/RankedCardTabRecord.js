@@ -33,7 +33,7 @@ export default class RankedCardTabRecord extends ExtendsWith(Record(defaultProps
       wins: data.wins,
       losses: data.losses,
       winrate: computeWinRate(data.wins, data.losses),
-      tier: data.tier,
+      tier: data.tier.toLowerCase(),
     };
 
     return new RankedCardTabRecord(parsedData);

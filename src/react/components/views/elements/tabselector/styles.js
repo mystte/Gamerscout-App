@@ -16,6 +16,7 @@ const styles = {
     paddingBottom: 5,
     textTransform: 'uppercase',
     height: 21,
+    fontWeight: 600,
   },
 
   selectedTab: {

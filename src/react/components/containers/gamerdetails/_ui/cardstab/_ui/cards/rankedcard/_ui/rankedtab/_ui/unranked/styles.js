@@ -8,6 +8,7 @@ const styles = {
   title: {
     marginLeft: 8,
     fontSize: 16,
+    fontWeight: 600,
   },
 };
 

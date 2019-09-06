@@ -3,7 +3,7 @@ export const romanToNumber = (romanNumber) => {
   if (romanNumber === 'I') result = 1;
   else if (romanNumber === 'II') result = 2;
   else if (romanNumber === 'III') result = 3;
-  else if (romanNumber === 'VI') result = 4;
+  else if (romanNumber === 'IV') result = 4;
   else if (romanNumber === 'V') result = 5;
   else if (romanNumber === 'VI') result = 6;
   else if (romanNumber === 'VII') result = 7;

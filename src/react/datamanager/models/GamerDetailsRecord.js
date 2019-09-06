@@ -3,12 +3,12 @@ import { Record, Maybe, List } from 'typed-immutable';
 
 import ApprovalsCardRecord from './ApprovalsCardRecord';
 import DisapprovalsCardRecord from './DisapprovalsCardRecord';
-import HistoryCardRecord from './HistoryCardRecord';
 import ReviewsCardRecord from './ReviewsCardRecord';
 import ChampionsCardRecord from './ChampionsCardRecord';
 import RankedCardRecord from './RankedCardRecord';
 import TrendsCardRecord from './TrendsCardRecord';
 import AttributeRecord from './AttributeRecord';
+import HistoryListRecord from './HistoryListRecord';
 
 const defaultProps = {
   accountId: String,
@@ -24,7 +24,7 @@ const defaultProps = {
   approvalsCardRecord: Maybe(ApprovalsCardRecord),
   championsCardRecord: Maybe(ChampionsCardRecord),
   disapprovalsCardRecord: Maybe(DisapprovalsCardRecord),
-  gameHistoryList: Maybe(List(HistoryCardRecord)),
+  gameHistoryList: Maybe(HistoryListRecord),
   reviewsCardRecord: Maybe(ReviewsCardRecord),
   trendsCardRecord: Maybe(TrendsCardRecord),
   attributesList: Maybe(List(AttributeRecord)),
@@ -75,6 +75,7 @@ export default class GamerDetailsRecord extends ExtendsWith(Record(defaultProps,
       disapprovalsCardRecord: !isNaN(apiData.flame_review_count)
         ? DisapprovalsCardRecord.apiParser(apiData)
         : null,
+      gameHistoryList: HistoryListRecord.apiParser(apiData.stats.recent),
       championsCardRecord: ChampionsCardRecord.apiParser(apiData),
       reviewsCardRecord: apiData.reviews ? ReviewsCardRecord.apiParser(apiData) : null,
       attributesList: GamerDetailsRecord.parseAttributesData(apiData),

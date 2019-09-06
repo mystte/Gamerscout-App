@@ -12,6 +12,8 @@ import RankedCardRecord from '../../../../../datamanager/models/RankedCardRecord
 import ApprovalsCardRecord, { APPROVAL_TYPE } from '../../../../../datamanager/models/ApprovalsCardRecord';
 import DisapprovalsCardRecord from '../../../../../datamanager/models/DisapprovalsCardRecord';
 import ReviewsCardRecord from '../../../../../datamanager/models/ReviewsCardRecord';
+import MathHistoryCardsList from './_ui/cards/matchhistorycardslist/MatchHistoryCardsList';
+import HistoryListRecord from '../../../../../datamanager/models/HistoryListRecord';
 
 import styles from './styles';
 
@@ -23,6 +25,7 @@ class CardsTab extends PureComponent {
     approvalsCardRecord: PropTypes.instanceOf(ApprovalsCardRecord),
     disapprovalsCardRecord: PropTypes.instanceOf(DisapprovalsCardRecord),
     reviewsCardRecord: PropTypes.instanceOf(ReviewsCardRecord),
+    historyCardList: PropTypes.instanceOf(HistoryListRecord),
     onApprovalButtonClick: PropTypes.func,
     onReviewButtonClick: PropTypes.func,
   };
@@ -32,6 +35,7 @@ class CardsTab extends PureComponent {
     gameCode: null,
     rankedCardRecord: null,
     approvalsCardRecord: null,
+    historyCardList: null,
     reviewsCardRecord: null,
     onApprovalButtonClick: null,
   };
@@ -44,6 +48,7 @@ class CardsTab extends PureComponent {
   }
 
   render() {
+    console.log('historyCardList', this.props.historyCardList);
     if (!this.props.rankedCardRecord
         || !this.props.approvalsCardRecord
         || !this.props.reviewsCardRecord) return null;
@@ -80,7 +85,9 @@ class CardsTab extends PureComponent {
             />
           </div>
           <div style={styles.historyColumn}>
-
+            <MathHistoryCardsList
+              historyCardList={this.props.historyCardList}
+            />
           </div>
         </div>
       </div>

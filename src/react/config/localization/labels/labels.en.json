@@ -177,6 +177,11 @@
       }
     },
 
+    "historyCard": {
+      "kda": "KDA",
+      "cs": "CS"
+    },
+
     "attributesCard": {
       "title": "Attributes",
       "showAll": "Show all",

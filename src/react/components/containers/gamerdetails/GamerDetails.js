@@ -105,6 +105,7 @@ class GamerDetails extends PureComponent {
         reviewsCardRecord={this.props.gamerData.reviewsCardRecord}
         onApprovalButtonClick={this.onApprovalButtonClick}
         onReviewButtonClick={this.onReviewButtonClick}
+        historyCardList={this.props.gamerData.gameHistoryList}
       />);
     } else if (this.state.selectedTab === BUTTON_TYPE.REVIEWS) {
       content = (<ReviewsTab

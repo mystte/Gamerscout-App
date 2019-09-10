@@ -23,7 +23,14 @@ const styles = {
     borderRadius: '50%',
     borderStyle: 'solid',
     borderWidth: 2,
+  },
+
+  champIconWin: {
     borderColor: colorNameToHex('curiousblue'),
+  },
+
+  champIconloss: {
+    borderColor: colorNameToHex('nightshadz'),
   },
 
   championLevel: {
@@ -45,6 +52,7 @@ const styles = {
     width: 20,
     height: 20,
     marginRight: 2,
+    marginBottom: 2,
   },
 };
 

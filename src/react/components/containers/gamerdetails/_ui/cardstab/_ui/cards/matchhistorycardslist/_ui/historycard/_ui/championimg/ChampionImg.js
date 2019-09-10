@@ -8,27 +8,50 @@ const ChampionImg = ({
   championId,
   championName,
   championLevel,
+  win,
 }) => {
+  const championBorder = (win) ? {
+    ...styles.champIcon,
+    ...styles.champIconWin,
+  } : {
+    ...styles.champIcon,
+    ...styles.champIconloss,
+  };
+
   const renderChampionAvatar = () => (
     <div style={styles.innerContentContainer}>
       <div style={styles.championImgContainer}>
         <img
-          style={styles.champIcon}
+          style={championBorder}
           alt={`champion ${championId} icon`}
           src={getLolChampionImgUrl(championName)}
         ></img>
         <span style={styles.championLevel}>{championLevel}</span>
       </div>
-      <img
-        style={styles.spell}
-        alt={'spell 1 icon'}
-        src={getLolSpellImgUrl()}
-      ></img>
-      <img
-        style={styles.spell}
-        alt={'spell 2 icon'}
-        src={getLolSpellImgUrl()}
-      ></img>
+      <div style={styles.spellsContainer}>
+        <img
+          style={styles.spell}
+          alt={'spell 1 icon'}
+          src={getLolSpellImgUrl(1)}
+        ></img>
+        <img
+          style={styles.spell}
+          alt={'spell 2 icon'}
+          src={getLolSpellImgUrl(2)}
+        ></img>
+      </div>
+      <div style={styles.perksContainer}>
+        <img
+          style={styles.spell}
+          alt={'spell 1 icon'}
+          src={getLolSpellImgUrl()}
+        ></img>
+        <img
+          style={styles.spell}
+          alt={'spell 2 icon'}
+          src={getLolSpellImgUrl(2)}
+        ></img>
+      </div>
     </div>
   );
 
@@ -43,6 +66,7 @@ ChampionImg.propTypes = {
   championId: PropTypes.number.isRequired,
   championName: PropTypes.string.isRequired,
   championLevel: PropTypes.number.isRequired,
+  win: PropTypes.bool.isRequired,
 };
 
 ChampionImg.defaultProps = {

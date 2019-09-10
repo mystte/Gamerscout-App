@@ -1,4 +1,5 @@
-import { Record, Maybe } from 'typed-immutable';
+import { Record, Maybe, List } from 'typed-immutable';
+import HistoryPlayerRecord from './HistoryPlayerRecord';
 
 const defaultProps = {
   gameType: String,
@@ -17,6 +18,9 @@ const defaultProps = {
   spell1Id: Maybe(Number),
   spell2Id: Maybe(Number),
   teamId: Maybe(Number),
+  items: Maybe(List(Number)),
+  opponents: Maybe(List(HistoryPlayerRecord)),
+  teammates: Maybe(List(HistoryPlayerRecord)),
 };
 
 const ExtendsWith = (superclass) => class extends superclass {
@@ -44,6 +48,9 @@ export default class HistoryCardRecord extends ExtendsWith(Record(defaultProps, 
       spell1Id: data.spell1Id || null,
       spell2Id: data.spell2Id || null,
       teamId: data.teamId || null,
+      items: data.items || null,
+      opponents: data.opponents.map((playerData) => HistoryPlayerRecord.apiParser(playerData)),
+      teammates: data.teammates.map((playerData) => HistoryPlayerRecord.apiParser(playerData)),
     };
 
     return new HistoryCardRecord(parsedData);

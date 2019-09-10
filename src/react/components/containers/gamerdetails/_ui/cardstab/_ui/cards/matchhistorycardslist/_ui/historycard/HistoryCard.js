@@ -6,6 +6,7 @@ import Localization from '../../../../../../../../../../config/localization/Loca
 import HistoryCardRecord from '../../../../../../../../../../datamanager/models/HistoryCardRecord';
 import ChampionImg from './_ui/championimg/ChampionImg';
 import styles from './styles';
+import UsedItems from './_ui/useditems/UsedItems';
 
 const HistoryCard = ({
   historyCardRecord,
@@ -34,6 +35,7 @@ const HistoryCard = ({
           championId={historyCardRecord.championId}
           championName={historyCardRecord.champion}
           championLevel={historyCardRecord.championLevel}
+          win={historyCardRecord.win}
         />
         <div style={styles.killsContainer}>
           <div style={styles.kills}>
@@ -51,6 +53,11 @@ const HistoryCard = ({
         <div style={styles.csContainer}>
           <span style={styles.csTitle}>{historyCardRecord.cs}</span>
           <span style={styles.csLabel}>{labels.cs}</span>
+        </div>
+        <div style={styles.usedItemsContainer}>
+          <UsedItems
+            items={historyCardRecord.items}
+          />
         </div>
       </div>
     </div>

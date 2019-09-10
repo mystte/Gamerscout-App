@@ -24,7 +24,10 @@ export async function fetchAsync(func, parameters) {
 }
 
 async function doApiCall(url, params, callType = CALL_TYPE.GET) {
-  const serverUrl = process.env.API_URL;
+  const apiUrl = process.env.API_URL;
+  const apiVersion = process.env.API_VERSION;
+  const serverFullUrl = `${apiUrl}/api/${apiVersion}`;
+
 
   let result = null;
   const axiosOptions = {
@@ -33,11 +36,11 @@ async function doApiCall(url, params, callType = CALL_TYPE.GET) {
   };
 
   if (callType === CALL_TYPE.GET) {
-    result = await axios.get(`${serverUrl}${url}`, axiosOptions);
+    result = await axios.get(`${serverFullUrl}${url}`, axiosOptions);
   } else if (callType === CALL_TYPE.POST) {
-    result = await axios.post(`${serverUrl}${url}`, params, axiosOptions);
+    result = await axios.post(`${serverFullUrl}${url}`, params, axiosOptions);
   } else if (callType === CALL_TYPE.PUT) {
-    result = await axios.put(`${serverUrl}${url}`, params, axiosOptions);
+    result = await axios.put(`${serverFullUrl}${url}`, params, axiosOptions);
   }
   return result;
 }

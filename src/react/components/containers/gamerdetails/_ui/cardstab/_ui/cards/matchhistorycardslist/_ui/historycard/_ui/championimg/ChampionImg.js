@@ -9,6 +9,7 @@ const ChampionImg = ({
   championName,
   championLevel,
   win,
+  staticDataUrl,
 }) => {
   const championBorder = (win) ? {
     ...styles.champIcon,
@@ -24,7 +25,7 @@ const ChampionImg = ({
         <img
           style={championBorder}
           alt={`champion ${championId} icon`}
-          src={getLolChampionImgUrl(championName)}
+          src={getLolChampionImgUrl(staticDataUrl, championName)}
         ></img>
         <span style={styles.championLevel}>{championLevel}</span>
       </div>
@@ -32,24 +33,24 @@ const ChampionImg = ({
         <img
           style={styles.spell}
           alt={'spell 1 icon'}
-          src={getLolSpellImgUrl(1)}
+          src={getLolSpellImgUrl(staticDataUrl, 1)}
         ></img>
         <img
           style={styles.spell}
           alt={'spell 2 icon'}
-          src={getLolSpellImgUrl(2)}
+          src={getLolSpellImgUrl(staticDataUrl, 2)}
         ></img>
       </div>
       <div style={styles.perksContainer}>
         <img
           style={styles.spell}
           alt={'spell 1 icon'}
-          src={getLolSpellImgUrl()}
+          src={getLolSpellImgUrl(staticDataUrl, 1)}
         ></img>
         <img
           style={styles.spell}
           alt={'spell 2 icon'}
-          src={getLolSpellImgUrl(2)}
+          src={getLolSpellImgUrl(staticDataUrl, 2)}
         ></img>
       </div>
     </div>
@@ -67,9 +68,11 @@ ChampionImg.propTypes = {
   championName: PropTypes.string.isRequired,
   championLevel: PropTypes.number.isRequired,
   win: PropTypes.bool.isRequired,
+  staticDataUrl: PropTypes.string,
 };
 
 ChampionImg.defaultProps = {
+  staticDataUrl: null,
 };
 
 export default ChampionImg;

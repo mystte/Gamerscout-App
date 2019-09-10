@@ -27,7 +27,8 @@ const productionConfiguration = function () {
       }),
       new webpack.EnvironmentPlugin({
         'NODE_ENV': 'production',
-        'API_URL': 'https://api.gamerscout.com/api/1',
+        'API_URL': 'https://api.gamerscout.com',
+        'API_VERSION': 1,
         'DEBUG': false,
       }),
     ]

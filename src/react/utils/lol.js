@@ -1,6 +1,6 @@
-export const getLolChampionImgUrl = (name) => `https://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/${name.replace("'", '')}.png`;
+export const getLolChampionImgUrl = (url, name) => `${url}/img/champion/${name.replace("'", '')}.png`;
 
-export const getLolSpellImgUrl = (id = 1) => {
+export const getLolSpellImgUrl = (url, id = 1) => {
   let name = null;
 
   if (id === 1) {
@@ -8,10 +8,10 @@ export const getLolSpellImgUrl = (id = 1) => {
   } else if (id === 2) {
     name = 'SummonerDot';
   }
-  return `https://ddragon.leagueoflegends.com/cdn/6.24.1/img/spell/${name}.png`;
+  return `${url}/img/spell/${name}.png`;
 };
 
-export const getLolPerksImgUrl = (id = 1) => {
+export const getLolPerksImgUrl = (url, id = 1) => {
   let name = null;
 
   if (id === 1) {
@@ -19,11 +19,11 @@ export const getLolPerksImgUrl = (id = 1) => {
   } else if (id === 2) {
     name = 'SummonerDot';
   }
-  return `https://ddragon.leagueoflegends.com/cdn/6.24.1/img/spell/${name}.png`;
+  return `${url}/img/spell/${name}.png`;
 };
 
-export const getLolItemImgUrl = (id) => (
-  `https://ddragon.leagueoflegends.com/cdn/6.24.1/img/item/${id}.png`
+export const getLolItemImgUrl = (url, id) => (
+  `${url}/img/item/${id}.png`
 );
 
 export default null;

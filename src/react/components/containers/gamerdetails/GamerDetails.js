@@ -32,11 +32,13 @@ class GamerDetails extends PureComponent {
     match: PropTypes.object.isRequired,
     gamerData: PropTypes.object,
     loading: PropTypes.bool.isRequired,
+    staticDataUrl: PropTypes.string,
   };
 
   static defaultProps = {
     config: null,
     gamerData: null,
+    staticDataUrl: null,
   };
 
   constructor(props) {
@@ -44,7 +46,6 @@ class GamerDetails extends PureComponent {
 
     this.state = {
       selectedTab: BUTTON_TYPE.OVERVIEW,
-      // selectedTab: BUTTON_TYPE.LEAGUES,
       preselect: null,
     };
   }
@@ -78,6 +79,12 @@ class GamerDetails extends PureComponent {
     console.log('On review submit click');
   }
 
+  getStaticDataUrlForPlatform = () => (
+    this.props.config
+      ? this.props.config.getStaticDataUrlForPlatform(this.props.match.params.platform)
+      : null
+  )
+
   onReviewFilterChange = (show, filterBy) => {
     this.props.dispatch(applyReviewFilters(
       this.props.gamerData.reviewsCardRecord.applyReviewsFilter(show, filterBy),
@@ -106,6 +113,7 @@ class GamerDetails extends PureComponent {
         onApprovalButtonClick={this.onApprovalButtonClick}
         onReviewButtonClick={this.onReviewButtonClick}
         historyCardList={this.props.gamerData.gameHistoryList}
+        staticDataUrl={this.getStaticDataUrlForPlatform()}
       />);
     } else if (this.state.selectedTab === BUTTON_TYPE.REVIEWS) {
       content = (<ReviewsTab

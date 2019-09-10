@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { getLolItemImgUrl } from '../../../../../../../../../../../../utils/lol';
 import styles from './styles';
 
-const UsedItems = ({ items }) => {
+const UsedItems = ({ items, staticDataUrl }) => {
   const renderItemPlaceholder = (key) => (
     <div
       style={{
@@ -21,7 +21,7 @@ const UsedItems = ({ items }) => {
         key={`itemLine1${item}${idx}Icon`}
         style={styles.itemImg}
         alt={`item ${item} icon`}
-        src={getLolItemImgUrl(item)}
+        src={getLolItemImgUrl(staticDataUrl, item)}
       ></img> : renderItemPlaceholder(`itemLine1${item}${idx}Icon`)
     )));
 
@@ -31,7 +31,7 @@ const UsedItems = ({ items }) => {
         key={`itemLine2${item}${idx}Icon`}
         style={styles.itemImg}
         alt={`item ${item} icon`}
-        src={getLolItemImgUrl(item)}
+        src={getLolItemImgUrl(staticDataUrl, item)}
       ></img> : renderItemPlaceholder(`itemLine1${item}${idx}Icon`)
     )));
 
@@ -39,7 +39,7 @@ const UsedItems = ({ items }) => {
     (items.get(6)) ? <img
       style={styles.itemImg}
       alt={'item ward icon'}
-      src={getLolItemImgUrl(items.get(6))}
+      src={getLolItemImgUrl(staticDataUrl, items.get(6))}
     ></img> : renderItemPlaceholder()
   );
 
@@ -62,9 +62,11 @@ const UsedItems = ({ items }) => {
 
 UsedItems.propTypes = {
   items: PropTypes.object.isRequired,
+  staticDataUrl: PropTypes.string,
 };
 
 UsedItems.defaultProps = {
+  staticDataUrl: null,
 };
 
 export default UsedItems;

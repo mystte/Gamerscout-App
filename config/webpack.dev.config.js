@@ -19,7 +19,8 @@ const devConfiguration = function () {
     plugins: [
       new webpack.EnvironmentPlugin({
         'NODE_ENV': 'development',
-        'API_URL': 'https://api.local.gamerscout.dev:8080/api/1',
+        'API_URL': 'https://api.local.gamerscout.dev:8080',
+        'API_VERSION': 1,
         'DEBUG': true,
       }),
     ]

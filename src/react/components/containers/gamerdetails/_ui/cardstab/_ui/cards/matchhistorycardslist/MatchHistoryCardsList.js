@@ -7,6 +7,7 @@ import HistoryCard from './_ui/historycard/HistoryCard';
 
 const MathHistoryCardsList = ({
   historyCardList,
+  staticDataUrl,
 }) => {
   const renderCards = () => {
     let renderedView = null;
@@ -15,6 +16,7 @@ const MathHistoryCardsList = ({
         <div style={styles.historyCardContainer} key={`historyCard$${idx}`}>
           <HistoryCard
             historyCardRecord={record}
+            staticDataUrl={staticDataUrl}
           />
         </div>
       ));
@@ -32,10 +34,12 @@ const MathHistoryCardsList = ({
 
 MathHistoryCardsList.propTypes = {
   historyCardList: PropTypes.instanceOf(HistoryListRecord),
+  staticDataUrl: PropTypes.string,
 };
 
 MathHistoryCardsList.defaultProps = {
   historyCardList: null,
+  staticDataUrl: null,
 };
 
 export default MathHistoryCardsList;

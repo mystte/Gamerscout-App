@@ -25,7 +25,7 @@ export const GAME_PLATFORM = {
 
 export const GAME_CODE = {
   LEAGUE_OF_LEGENDS: 'lol',
-  ROCKET_LEAGUE: 'rocket_league',
+  ROCKET_LEAGUE: 'rocketLeague',
 };
 
 const defaultProps = {
@@ -33,6 +33,7 @@ const defaultProps = {
     name: String,
     enabled: Boolean,
     iconUrl: Maybe(String),
+    staticPath: Maybe(String),
   })),
   regions: Record({
     riot: Object,
@@ -48,6 +49,12 @@ const ExtendsWith = (superclass) => class extends superclass {
   static get defaultProps() { return defaultProps; }
 
   static get ExtendsWith() { return ExtendsWith; }
+
+  getStaticDataUrlForPlatform = (platformName) => {
+    const result = this.platforms.filter((platform) => platform.name === platformName);
+    if (result.size > 0) return `${process.env.API_URL}${result.getIn([0, 'staticPath'])}`;
+    return null;
+  }
 };
 
 export default class AppRecord extends ExtendsWith(Record(defaultProps, 'AppRecord')) {
@@ -69,10 +76,11 @@ export default class AppRecord extends ExtendsWith(Record(defaultProps, 'AppReco
         name: platform.name,
         enabled: platform.enabled,
         iconUrl: platform['icon-url'],
+        staticPath: platform.staticPath || null,
       })) : [],
       regions: AppRecord.parseRegionsData(data.regions),
       isAuthenticated: data.user !== null,
-      showPopup: true,
+      showPopup: false,
       popupData: PopupRecord.apiParser(data.popupData ? data.popupData : {}),
       user: data.user ? UserRecord.apiParser(data.user) : null,
       facebookAppId: data.facebookAppId ? data.facebookAppId : null,

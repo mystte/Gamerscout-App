@@ -27,7 +27,8 @@ const stagingConfiguration = function () {
       }),
       new webpack.EnvironmentPlugin({
         'NODE_ENV': 'staging',
-        'API_URL': 'https://api.dev.gamerscout.com/api/1',
+        'API_URL': 'https://api.dev.gamerscout.com',
+        'API_VERSION': 1,
         'DEBUG': true,
       }),
     ]

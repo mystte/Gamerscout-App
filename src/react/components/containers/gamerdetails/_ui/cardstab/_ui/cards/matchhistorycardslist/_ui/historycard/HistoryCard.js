@@ -10,6 +10,7 @@ import UsedItems from './_ui/useditems/UsedItems';
 
 const HistoryCard = ({
   historyCardRecord,
+  staticDataUrl,
 }) => {
   const labels = Localization.Labels.gamerDetails.historyCard;
   console.log('historyCardRecord,', historyCardRecord);
@@ -36,6 +37,7 @@ const HistoryCard = ({
           championName={historyCardRecord.champion}
           championLevel={historyCardRecord.championLevel}
           win={historyCardRecord.win}
+          staticDataUrl={staticDataUrl}
         />
         <div style={styles.killsContainer}>
           <div style={styles.kills}>
@@ -56,6 +58,7 @@ const HistoryCard = ({
         </div>
         <div style={styles.usedItemsContainer}>
           <UsedItems
+            staticDataUrl={staticDataUrl}
             items={historyCardRecord.items}
           />
         </div>
@@ -66,10 +69,12 @@ const HistoryCard = ({
 
 HistoryCard.propTypes = {
   historyCardRecord: PropTypes.instanceOf(HistoryCardRecord),
+  staticDataUrl: PropTypes.string,
 };
 
 HistoryCard.defaultProps = {
   historyCardRecord: null,
+  staticDataUrl: null,
 };
 
 export default HistoryCard;

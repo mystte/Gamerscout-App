@@ -28,6 +28,7 @@ class CardsTab extends PureComponent {
     historyCardList: PropTypes.instanceOf(HistoryListRecord),
     onApprovalButtonClick: PropTypes.func,
     onReviewButtonClick: PropTypes.func,
+    staticDataUrl: PropTypes.string,
   };
 
   static defaultProps = {
@@ -38,6 +39,7 @@ class CardsTab extends PureComponent {
     historyCardList: null,
     reviewsCardRecord: null,
     onApprovalButtonClick: null,
+    staticDataUrl: null,
   };
 
   constructor(props) {
@@ -48,7 +50,6 @@ class CardsTab extends PureComponent {
   }
 
   render() {
-    console.log('historyCardList', this.props.historyCardList);
     if (!this.props.rankedCardRecord
         || !this.props.approvalsCardRecord
         || !this.props.reviewsCardRecord) return null;
@@ -87,6 +88,7 @@ class CardsTab extends PureComponent {
           <div style={styles.historyColumn}>
             <MathHistoryCardsList
               historyCardList={this.props.historyCardList}
+              staticDataUrl={this.props.staticDataUrl}
             />
           </div>
         </div>

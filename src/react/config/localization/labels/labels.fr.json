@@ -174,7 +174,8 @@
 
     "historyCard": {
       "kda": "KDA",
-      "cs": "CS"
+      "cs": "CS",
+      "showMore": "Voir plus"
     },
 
     "attributesCard": {

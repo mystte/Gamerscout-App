@@ -4,12 +4,23 @@ import PropTypes from 'prop-types';
 import HistoryListRecord from '../../../../../../../../datamanager/models/HistoryListRecord';
 import styles from './styles';
 import HistoryCard from './_ui/historycard/HistoryCard';
+import Localization from '../../../../../../../../config/localization/Localization';
 
 const MathHistoryCardsList = ({
   historyCardList,
   staticDataUrl,
   doSearchPlayer,
 }) => {
+  const labels = Localization.Labels.gamerDetails.historyCard;
+
+  const renderShowMoreAction = () => (
+    <div style={styles.showMoreContainer}>
+      <div style={styles.separator}></div>
+      <div style={styles.showMoreLabel}>{labels.showMore}</div>
+      <div style={styles.separator}></div>
+    </div>
+  );
+
   const renderCards = () => {
     let renderedView = null;
     if (historyCardList.historyCards) {
@@ -30,6 +41,7 @@ const MathHistoryCardsList = ({
   return (
     <div style={styles.container}>
       {renderCards()}
+      {renderShowMoreAction()}
     </div>
   );
 };

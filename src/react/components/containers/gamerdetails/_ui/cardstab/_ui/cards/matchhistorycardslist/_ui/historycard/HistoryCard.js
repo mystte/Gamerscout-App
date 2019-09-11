@@ -15,7 +15,6 @@ const HistoryCard = ({
   doSearchPlayer,
 }) => {
   const labels = Localization.Labels.gamerDetails.historyCard;
-  console.log('historyCardRecord,', historyCardRecord);
 
   const containerStyle = historyCardRecord.win ? {
     ...styles.container,
@@ -35,6 +34,8 @@ const HistoryCard = ({
       </div>
       <div style={styles.bottomContainer}>
         <ChampionImg
+          spell1Id={historyCardRecord.spell1Id}
+          spell2Id={historyCardRecord.spell2Id}
           championId={historyCardRecord.championId}
           championName={historyCardRecord.champion}
           championLevel={historyCardRecord.championLevel}

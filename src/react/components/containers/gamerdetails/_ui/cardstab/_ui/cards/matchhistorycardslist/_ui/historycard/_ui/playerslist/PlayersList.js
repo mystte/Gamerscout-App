@@ -10,8 +10,6 @@ const PlayersList = ({
   teammates,
   doSearchPlayer,
 }) => {
-  console.log(opponents);
-
   const renderChampionImg = (championName) => ((championName)
     ? <img
       style={styles.championImg}

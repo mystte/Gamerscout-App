@@ -14,7 +14,6 @@ const ExtendsWith = (superclass) => class extends superclass {
 
 export default class HistoryListRecord extends ExtendsWith(Record(defaultProps, 'HistoryListRecord')) {
   static apiParser(data) {
-    console.log('historyRecordData = ', data);
     const parsedData = {
       historyCards: data.map((recentGameData) => HistoryCardRecord.apiParser(recentGameData)),
     };

@@ -37,7 +37,6 @@ const MathHistoryCardsList = ({
     return renderedView;
   };
 
-  console.log('historyCardList = ', historyCardList);
   return (
     <div style={styles.container}>
       {renderCards()}

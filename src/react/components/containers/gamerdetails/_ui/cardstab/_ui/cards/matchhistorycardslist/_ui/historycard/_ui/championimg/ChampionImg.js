@@ -8,6 +8,8 @@ const ChampionImg = ({
   championId,
   championName,
   championLevel,
+  spell1Id,
+  spell2Id,
   win,
   staticDataUrl,
 }) => {
@@ -32,25 +34,25 @@ const ChampionImg = ({
       <div style={styles.spellsContainer}>
         <img
           style={styles.spell}
-          alt={'spell 1 icon'}
-          src={getLolSpellImgUrl(staticDataUrl, 1)}
+          alt={'spell1Icon'}
+          src={getLolSpellImgUrl(staticDataUrl, spell1Id)}
         ></img>
         <img
           style={styles.spell}
-          alt={'spell 2 icon'}
-          src={getLolSpellImgUrl(staticDataUrl, 2)}
+          alt={'spell2Icon'}
+          src={getLolSpellImgUrl(staticDataUrl, spell2Id)}
         ></img>
       </div>
       <div style={styles.perksContainer}>
         <img
           style={styles.spell}
-          alt={'spell 1 icon'}
-          src={getLolSpellImgUrl(staticDataUrl, 1)}
+          alt={'perk1Icon'}
+          src={getLolSpellImgUrl(staticDataUrl, 22)}
         ></img>
         <img
           style={styles.spell}
-          alt={'spell 2 icon'}
-          src={getLolSpellImgUrl(staticDataUrl, 2)}
+          alt={'perk2Icon'}
+          src={getLolSpellImgUrl(staticDataUrl, 22)}
         ></img>
       </div>
     </div>
@@ -69,6 +71,8 @@ ChampionImg.propTypes = {
   championLevel: PropTypes.number.isRequired,
   win: PropTypes.bool.isRequired,
   staticDataUrl: PropTypes.string,
+  spell1Id: PropTypes.number,
+  spell2Id: PropTypes.number,
 };
 
 ChampionImg.defaultProps = {

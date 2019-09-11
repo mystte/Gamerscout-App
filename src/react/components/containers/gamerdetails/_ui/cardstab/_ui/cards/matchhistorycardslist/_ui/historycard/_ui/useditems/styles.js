@@ -4,7 +4,6 @@ const styles = {
   container: {
     width: 106,
     height: 53,
-    marginLeft: 60,
     flexDirection: 'row',
   },
 

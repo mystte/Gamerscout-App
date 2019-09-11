@@ -29,6 +29,7 @@ class CardsTab extends PureComponent {
     onApprovalButtonClick: PropTypes.func,
     onReviewButtonClick: PropTypes.func,
     staticDataUrl: PropTypes.string,
+    doSearchPlayer: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -87,6 +88,7 @@ class CardsTab extends PureComponent {
           </div>
           <div style={styles.historyColumn}>
             <MathHistoryCardsList
+              doSearchPlayer={this.props.doSearchPlayer}
               historyCardList={this.props.historyCardList}
               staticDataUrl={this.props.staticDataUrl}
             />

@@ -18,6 +18,7 @@ import ChampionsTab from './_ui/championstab/ChampionsTab';
 import GamerNotFound from './_ui/gamernotfound/GamerNotFound';
 import GamerSkeleton from './_ui/gamerskeleton/GamerSkeleton';
 import styles from './styles';
+import { getGamerDetailsUrl } from '../../../config/routes';
 
 const mapStateToProps = (state) => ({
   config: state.app.get('data'),
@@ -33,6 +34,7 @@ class GamerDetails extends PureComponent {
     gamerData: PropTypes.object,
     loading: PropTypes.bool.isRequired,
     staticDataUrl: PropTypes.string,
+    history: PropTypes.object.isRequired,
   };
 
   static defaultProps = {
@@ -100,6 +102,21 @@ class GamerDetails extends PureComponent {
     }
   }
 
+  doSearchPlayer = (gamer) => {
+    this.props.history.push(getGamerDetailsUrl(
+      this.props.gamerData.platform,
+      this.props.gamerData.region,
+      this.props.gamerData.gameCode,
+      gamer,
+    ));
+    this.props.dispatch(loadGamerDetails(
+      this.props.gamerData.platform,
+      this.props.gamerData.region,
+      this.props.gamerData.gameCode,
+      gamer,
+    ));
+  }
+
   renderGamerDetailsContent = () => {
     let content = null;
     if (this.state.selectedTab === BUTTON_TYPE.OVERVIEW) {
@@ -114,6 +131,7 @@ class GamerDetails extends PureComponent {
         onReviewButtonClick={this.onReviewButtonClick}
         historyCardList={this.props.gamerData.gameHistoryList}
         staticDataUrl={this.getStaticDataUrlForPlatform()}
+        doSearchPlayer={this.doSearchPlayer}
       />);
     } else if (this.state.selectedTab === BUTTON_TYPE.REVIEWS) {
       content = (<ReviewsTab

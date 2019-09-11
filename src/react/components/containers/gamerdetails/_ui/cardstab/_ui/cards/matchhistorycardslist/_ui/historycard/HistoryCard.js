@@ -7,10 +7,12 @@ import HistoryCardRecord from '../../../../../../../../../../datamanager/models/
 import ChampionImg from './_ui/championimg/ChampionImg';
 import styles from './styles';
 import UsedItems from './_ui/useditems/UsedItems';
+import PlayersList from './_ui/playerslist/PlayersList';
 
 const HistoryCard = ({
   historyCardRecord,
   staticDataUrl,
+  doSearchPlayer,
 }) => {
   const labels = Localization.Labels.gamerDetails.historyCard;
   console.log('historyCardRecord,', historyCardRecord);
@@ -62,6 +64,14 @@ const HistoryCard = ({
             items={historyCardRecord.items}
           />
         </div>
+        <div style={styles.playersListContainer}>
+          <PlayersList
+            staticDataUrl={staticDataUrl}
+            opponents={historyCardRecord.opponents}
+            teammates={historyCardRecord.teammates}
+            doSearchPlayer={doSearchPlayer}
+          />
+        </div>
       </div>
     </div>
   );
@@ -70,6 +80,7 @@ const HistoryCard = ({
 HistoryCard.propTypes = {
   historyCardRecord: PropTypes.instanceOf(HistoryCardRecord),
   staticDataUrl: PropTypes.string,
+  doSearchPlayer: PropTypes.func.isRequired,
 };
 
 HistoryCard.defaultProps = {

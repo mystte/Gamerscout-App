@@ -26,7 +26,9 @@ const styles = {
 
   bottomContainer: {
     flexDirection: 'row',
-    marginTop: 15,
+    justifyCcontent: 'center',
+    alignItems: 'center',
+    height: 79,
   },
 
   gameType: {
@@ -52,7 +54,9 @@ const styles = {
   },
 
   killsContainer: {
-    marginLeft: 60,
+    minWidth: 75,
+    width: 75,
+    marginLeft: '6%',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -67,11 +71,19 @@ const styles = {
     alignItems: 'center',
   },
 
+  usedItemsContainer: {
+    marginLeft: '6%',
+  },
+
   csContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginLeft: 60,
+    marginLeft: '6%',
+  },
+
+  playersListContainer: {
+    marginLeft: '6%',
   },
 
   kdaTitle: {

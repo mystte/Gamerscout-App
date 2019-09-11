@@ -1,4 +1,8 @@
-export const getLolChampionImgUrl = (url, name) => `${url}/img/champion/${name.replace("'", '')}.png`;
+export const getLolChampionImgUrl = (url, name) => ((name)
+  ? `${url}/img/champion/${name.replace("'", '')
+    .replace(' ', '')
+    .replace('.', '')}.png`
+  : null);
 
 export const getLolSpellImgUrl = (url, id = 1) => {
   let name = null;

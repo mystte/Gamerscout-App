@@ -1,3 +1,5 @@
+import { capitalize } from './strings';
+
 export const spellMap = {
   1: 'SummonerBoost',
   2: '',
@@ -14,9 +16,9 @@ export const spellMap = {
 };
 
 export const getLolChampionImgUrl = (url, name) => ((name)
-  ? `${url}/img/champion/${name.replace("'", '')
+  ? `${url}/img/champion/${capitalize(name.replace("'", '')
     .replace(' ', '')
-    .replace('.', '')}.png`
+    .replace('.', ''))}.png`
   : null);
 
 export const getLolSpellImgUrl = (url, id = 1) => (

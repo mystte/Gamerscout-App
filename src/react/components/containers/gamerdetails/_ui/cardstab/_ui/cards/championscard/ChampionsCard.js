@@ -29,8 +29,6 @@ const ChampionsCard = ({
     )) : []
   );
 
-  console.log(getHeaderList(), championsCardRecord);
-
   return (
     <div style={styles.container}>
       <TabSelector

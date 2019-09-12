@@ -144,7 +144,9 @@
     "championsCard": {
       "champions": "Champions",
       "positions": "Positions",
-      "kda": "Kda"
+      "kda": "Kda",
+      "wins": "V",
+      "losses": "D"
     },
 
     "recentPerformanceCard": {

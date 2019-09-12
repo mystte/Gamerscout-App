@@ -31,7 +31,7 @@ const ChampionStats = ({
         </span>
         <span style={styles.percentage}>{champion.getWinRatio()}%</span>
         <div style={styles.winLossesContainer}>
-          {champion.wins}W / {champion.losses}L
+          {champion.wins}{labels.wins} / {champion.losses}{labels.losses}
         </div>
       </div>);
     })

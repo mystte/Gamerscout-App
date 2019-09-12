@@ -14,6 +14,7 @@ import DisapprovalsCardRecord from '../../../../../datamanager/models/Disapprova
 import ReviewsCardRecord from '../../../../../datamanager/models/ReviewsCardRecord';
 import MathHistoryCardsList from './_ui/cards/matchhistorycardslist/MatchHistoryCardsList';
 import HistoryListRecord from '../../../../../datamanager/models/HistoryListRecord';
+import ChampionsCardRecord from '../../../../../datamanager/models/ChampionsCardRecord';
 
 import styles from './styles';
 
@@ -22,6 +23,7 @@ class CardsTab extends PureComponent {
     gameCode: PropTypes.string,
     platform: PropTypes.string,
     rankedCardRecord: PropTypes.instanceOf(RankedCardRecord),
+    championsCardRecord: PropTypes.instanceOf(ChampionsCardRecord),
     approvalsCardRecord: PropTypes.instanceOf(ApprovalsCardRecord),
     disapprovalsCardRecord: PropTypes.instanceOf(DisapprovalsCardRecord),
     reviewsCardRecord: PropTypes.instanceOf(ReviewsCardRecord),
@@ -40,6 +42,7 @@ class CardsTab extends PureComponent {
     historyCardList: null,
     reviewsCardRecord: null,
     onApprovalButtonClick: null,
+    championsCardRecord: null,
     staticDataUrl: null,
   };
 
@@ -68,7 +71,10 @@ class CardsTab extends PureComponent {
         </div>
         <div style={styles.secondRow}>
           <div style={styles.leftColumn}>
-            <ChampionsCard />
+            <ChampionsCard
+              staticDataUrl={this.props.staticDataUrl}
+              championsCardRecord={this.props.championsCardRecord}
+            />
             <div style={styles.rateContainer}>
               <ApprovalsCard
                 approvalsCardRecord={this.props.approvalsCardRecord}

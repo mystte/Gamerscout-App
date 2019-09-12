@@ -5,6 +5,7 @@ import {
   success,
   error,
 } from '../actions/actionTypes';
+import AppRecord from '../../datamanager/models/AppRecord';
 
 // Default state
 export const initialState = Immutable.fromJS({
@@ -25,8 +26,8 @@ export default function reducer(state = initialState, action) {
         mutate.setIn(['data', 'popupData', 'type'], action.parameters.type);
         if (action.parameters.params) mutate.setIn(['data', 'popupData', 'params'], action.parameters.params);
         mutate.set('error', null);
+        mutate.set('data', new AppRecord(mutate.get('data')));
       });
-
     case loading(APP.LOAD):
     case loading(APP.DO_LOGIN):
     case loading(APP.DO_LOGOUT):

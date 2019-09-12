@@ -141,6 +141,12 @@
       "unranked": "Non classé"
     },
 
+    "championsCard": {
+      "champions": "Champions",
+      "positions": "Positions",
+      "kda": "Kda"
+    },
+
     "recentPerformanceCard": {
       "title": "Performances Recentes"
     },

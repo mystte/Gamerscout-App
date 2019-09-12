@@ -124,6 +124,7 @@ class GamerDetails extends PureComponent {
         gameCode={this.props.gamerData.gameCode}
         platform={this.props.gamerData.platform}
         rankedCardRecord={this.props.gamerData.rankedCardRecord}
+        championsCardRecord={this.props.gamerData.championsCardRecord}
         approvalsCardRecord={this.props.gamerData.approvalsCardRecord}
         disapprovalsCardRecord={this.props.gamerData.disapprovalsCardRecord}
         reviewsCardRecord={this.props.gamerData.reviewsCardRecord}

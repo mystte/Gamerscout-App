@@ -1,10 +1,9 @@
-import { Record } from 'typed-immutable';
+import { Record, Maybe } from 'typed-immutable';
 
 const defaultProps = {
-  championId: String,
   championName: String,
   kda: Number,
-  ratio: String,
+  ratio: Maybe(Number),
   wins: Number,
   losses: Number,
 };
@@ -13,15 +12,18 @@ const ExtendsWith = (superclass) => class extends superclass {
   static get defaultProps() { return defaultProps; }
 
   static get ExtendsWith() { return ExtendsWith; }
+
+  getWinRatio = () => (
+    Math.round(((this.wins * 100) / (this.wins + this.losses)))
+  )
 };
 
 export default class ChampionsRankRecord extends ExtendsWith(Record(defaultProps, 'ChampionsRankRecord')) {
   static apiParser(data) {
     const parsedData = {
-      championsId: data.championId,
-      championName: data.championName,
-      kda: data.kda,
-      ration: data.ratio,
+      championName: data.champion,
+      kda: Math.round(data.kda * 10) / 10,
+      ratio: data.ratio,
       wins: data.wins,
       losses: data.losses,
     };

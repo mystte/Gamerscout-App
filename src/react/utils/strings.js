@@ -18,9 +18,8 @@ export const computeWinRate = (wins, losses) => (
   Math.round((wins * 100) / (wins + losses))
 );
 
-export const capitalize = (str) => {
-  const tmp = str.toLowerCase();
-  return `${(tmp.charAt(0)).toUpperCase()}${tmp.slice(1)}`;
-};
+export const capitalize = (str) => (
+  `${(str.charAt(0)).toUpperCase()}${str.slice(1)}`
+);
 
 export default null;

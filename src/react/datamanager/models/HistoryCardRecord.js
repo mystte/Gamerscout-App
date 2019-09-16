@@ -33,7 +33,7 @@ export default class HistoryCardRecord extends ExtendsWith(Record(defaultProps, 
   static apiParser(data) {
     const parsedData = {
       gameType: 'nesaispas',
-      kda: +data.kda.toFixed(1) || 0,
+      kda: data.kda ? +data.kda.toFixed(1) : 0,
       gameDuration: 0,
       startDate: data.gameCreation,
       win: data.win,

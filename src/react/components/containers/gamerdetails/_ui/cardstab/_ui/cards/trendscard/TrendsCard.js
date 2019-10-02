@@ -1,41 +1,36 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-import styles from './styles';
 import TrendsCardRecord from '../../../../../../../../datamanager/models/TrendsCardRecord';
 import Localization from '../../../../../../../../config/localization/Localization';
 
-class TrendsCard extends PureComponent {
-  static propTypes = {
-    gameCode: PropTypes.string,
-    platform: PropTypes.string,
-    trendsCardRecord: PropTypes.instanceOf(TrendsCardRecord),
-  };
+import styles from './styles';
 
-  static defaultProps = {
-    trendsCardRecord: null,
-    platform: null,
-    gameCode: null,
-  };
+const TrendsCard = () => {
+  const labels = Localization.Labels.gamerDetails.trendsCard;
 
-  constructor(props) {
-    super(props);
+  // const data = {
+  //   columns: [
+  //     ['data1', 30, 200, 100, 400, 150, 250],
+  //     ['data2', 50, 20, 10, 40, 15, 25],
+  //   ],
+  // };
 
-    this.state = {
-    };
-  }
-
-  render() {
-    const labels = Localization.Labels.gamerDetails.trendsCard;
-
-    return (
-      <div style={styles.container}>
-        <div style={styles.header}>
-          <div style={styles.title}>{labels.title}</div>
-        </div>
+  return (
+    <div style={styles.container}>
+      <div style={styles.header}>
+        <div style={styles.title}>{labels.title}</div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
+
+TrendsCard.propTypes = {
+  trendsCardRecord: PropTypes.instanceOf(TrendsCardRecord),
+};
+
+TrendsCard.defaultProps = {
+  trendsCardRecord: null,
+};
 
 export default TrendsCard;

@@ -76,6 +76,7 @@ export default class GamerDetailsRecord extends ExtendsWith(Record(defaultProps,
         ? DisapprovalsCardRecord.apiParser(apiData)
         : null,
       gameHistoryList: HistoryListRecord.apiParser(apiData.stats.recent),
+      trendsCardRecord: TrendsCardRecord.apiParser(apiData.stats.trends),
       championsCardRecord: ChampionsCardRecord.apiParser(apiData.stats),
       reviewsCardRecord: apiData.reviews ? ReviewsCardRecord.apiParser(apiData) : null,
       attributesList: GamerDetailsRecord.parseAttributesData(apiData),

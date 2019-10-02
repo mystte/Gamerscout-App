@@ -130,6 +130,7 @@ class GamerDetails extends PureComponent {
         reviewsCardRecord={this.props.gamerData.reviewsCardRecord}
         onApprovalButtonClick={this.onApprovalButtonClick}
         onReviewButtonClick={this.onReviewButtonClick}
+        trendsCardRecord={this.props.gamerData.trendsCardRecord}
         historyCardList={this.props.gamerData.gameHistoryList}
         staticDataUrl={this.getStaticDataUrlForPlatform()}
         doSearchPlayer={this.doSearchPlayer}

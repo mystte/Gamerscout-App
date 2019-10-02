@@ -16,6 +16,11 @@ const styles = {
     borderRadius: 1,
   },
 
+  chart: {
+    width: '100%',
+    height: '100%',
+  },
+
   header: {
     width: '100%',
     margin: 15,

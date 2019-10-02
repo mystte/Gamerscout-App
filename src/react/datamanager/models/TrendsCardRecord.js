@@ -1,8 +1,8 @@
-import { Record, Maybe } from 'typed-immutable';
-import { List } from 'immutable';
+import { Record, List } from 'typed-immutable';
+import TrendDataRecord from './TrendDataRecord';
 
 const defaultProps = {
-  data: Maybe(List),
+  data: List(TrendDataRecord),
 };
 
 const ExtendsWith = (superclass) => class extends superclass {
@@ -12,5 +12,13 @@ const ExtendsWith = (superclass) => class extends superclass {
 };
 
 export default class TrendsCardRecord extends ExtendsWith(Record(defaultProps, 'TrendsCardRecord')) {
+  static apiParser(apiData) {
+    const parsedData = {
+      data: apiData
+        .filter((dataToFilter) => dataToFilter !== null)
+        .map((apiTrendData) => (TrendDataRecord.apiParser(apiTrendData))),
+    };
 
+    return new TrendsCardRecord(parsedData);
+  }
 }

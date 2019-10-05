@@ -15,6 +15,7 @@ const HistoryCard = ({
   doSearchPlayer,
 }) => {
   const labels = Localization.Labels.gamerDetails.historyCard;
+  const gameDuration = moment.utc(historyCardRecord.gameDuration * 1000).format('mm[m] s[s]');
 
   const containerStyle = historyCardRecord.win ? {
     ...styles.container,
@@ -27,10 +28,10 @@ const HistoryCard = ({
   return (
     <div style={containerStyle}>
       <div style={styles.topContainer}>
-        <span style={styles.gameType}>RANKED SOLO</span>
+        <span style={styles.gameType}>{historyCardRecord.gameMode}</span>
         <span style={styles.time}>{moment(historyCardRecord.startDate).fromNow()}</span>
         <span style={styles.dotSeparator}>.</span>
-        <span style={styles.time}>32m 45s</span>
+        <span style={styles.time}>{gameDuration}</span>
       </div>
       <div style={styles.bottomContainer}>
         <ChampionImg

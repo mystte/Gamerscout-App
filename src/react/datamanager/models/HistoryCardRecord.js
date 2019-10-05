@@ -2,9 +2,10 @@ import { Record, Maybe, List } from 'typed-immutable';
 import HistoryPlayerRecord from './HistoryPlayerRecord';
 
 const defaultProps = {
-  gameType: String,
   kda: Number,
   gameDuration: Number,
+  gameMode: Maybe(String),
+  gameType: Maybe(String),
   startDate: Number,
   win: Boolean,
   cs: Number,
@@ -32,9 +33,10 @@ const ExtendsWith = (superclass) => class extends superclass {
 export default class HistoryCardRecord extends ExtendsWith(Record(defaultProps, 'HistoryCardRecord')) {
   static apiParser(data) {
     const parsedData = {
-      gameType: 'nesaispas',
+      gameType: data.gameType,
+      gameMode: data.gameMode,
       kda: data.kda ? +data.kda.toFixed(1) : 0,
-      gameDuration: 0,
+      gameDuration: data.gameDuration,
       startDate: data.gameCreation,
       win: data.win,
       cs: data.totalMinionsKilled,

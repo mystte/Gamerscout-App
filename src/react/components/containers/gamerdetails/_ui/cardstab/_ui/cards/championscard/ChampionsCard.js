@@ -24,7 +24,9 @@ const ChampionsCard = ({
             championsStatsList={championsCardRecord.championsStatsList}
           />}
         {header.title === CHAMPIONS_CARD_TAB.POSITIONS
-          && <PositionStats />}
+          && <PositionStats
+            positionsStatsList={championsCardRecord.positionsStatsList}
+          />}
       </div>
     )) : []
   );

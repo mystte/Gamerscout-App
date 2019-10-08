@@ -1,5 +1,6 @@
 import { Record, Maybe } from 'typed-immutable';
-import { romanToNumber, computeWinRate } from '../../utils/strings';
+import { romanToNumber } from '../../utils/strings';
+import { computeWinRate } from '../../utils/maths';
 
 const defaultProps = {
   leagueId: String,

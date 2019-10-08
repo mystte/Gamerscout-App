@@ -42,8 +42,15 @@ export default class ChampionsCardRecord extends ExtendsWith(Record(defaultProps
       championsStatsList: apiData.frequent_champions.map((championData) => (
         ChampionsRankRecord.apiParser(championData)
       )),
+      positionsStatsList: [],
     };
 
+    Object.keys(apiData.roles).forEach((key) => (
+      parsedData.positionsStatsList.push(PositionsRankRecord.apiParser({
+        positionType: key,
+        ...apiData.roles[key],
+      }))
+    ));
     return new ChampionsCardRecord(parsedData);
   }
 }

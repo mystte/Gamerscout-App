@@ -1,4 +1,5 @@
-import { Record } from 'typed-immutable';
+import { Record, Maybe } from 'typed-immutable';
+import { computeWinRate, computeKda } from '../../utils/maths';
 
 export const POSITION_TYPE = {
   TOP: 'TOP',
@@ -10,9 +11,8 @@ export const POSITION_TYPE = {
 
 const defaultProps = {
   positionType: String,
-  positionName: String,
-  kda: Number,
-  ratio: String,
+  kda: Maybe(Number),
+  ratio: Maybe(Number),
   wins: Number,
   losses: Number,
 };
@@ -27,11 +27,10 @@ export default class PositionsRankRecord extends ExtendsWith(Record(defaultProps
   static apiParser(data) {
     const parsedData = {
       positionType: data.positionType,
-      positionName: data.positionName,
-      kda: data.kda,
-      ration: data.ratio,
-      wins: data.wins,
-      losses: data.losses,
+      wins: data.win,
+      losses: data.loss,
+      ratio: computeWinRate(data.win, data.loss),
+      kda: computeKda(data.kills, data.assists, data.deaths),
     };
 
     return new PositionsRankRecord(parsedData);

@@ -151,7 +151,15 @@
       "positions": "Positions",
       "kda": "Kda",
       "wins": "W",
-      "losses": "L"
+      "losses": "L",
+      "roles": {
+        "top": "Top",
+        "jungle": "Jungle",
+        "middle": "Middle",
+        "none": "Fill",
+        "bottom": "Bottom",
+        "support": "Support"
+      }
     },
 
     "recentPerformanceCard": {

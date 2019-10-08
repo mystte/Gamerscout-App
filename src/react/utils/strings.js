@@ -14,10 +14,6 @@ export const romanToNumber = (romanNumber) => {
   return result;
 };
 
-export const computeWinRate = (wins, losses) => (
-  Math.round((wins * 100) / (wins + losses))
-);
-
 export const capitalize = (str) => (
   `${(str.charAt(0)).toUpperCase()}${str.slice(1)}`
 );

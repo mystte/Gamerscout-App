@@ -57,9 +57,11 @@ class CardsTab extends PureComponent {
 
   render() {
     if (!this.props.rankedCardRecord
+        || !this.props.trendsCardRecord
         || !this.props.approvalsCardRecord
         || !this.props.reviewsCardRecord) return null;
 
+    console.log('trnds = ', this.props.trendsCardRecord);
     return (
       <div style={styles.container}>
         <div style={styles.firstRow}>

@@ -101,6 +101,19 @@ input::-ms-input-placeholder { /* Microsoft Edge */
 	}
 }
 
+.c3-line {
+  stroke-width: 2px!important;
+  background: red!important;
+}
+
+.c3-circles {
+  display: none!important;
+}
+
+.c3-lines-TRENDS_LINE_TEAM_KDA {
+  stroke-dasharray: 2,2!important;
+}
+
 textarea {
   outline: none;
   &:active {

@@ -162,7 +162,9 @@
     },
 
     "trendsCard": {
-      "title": "Tendances"
+      "title": "Tendances",
+      "kda": "Kda",
+      "teamKda": "Équipe"
     },
 
     "approvalsCard": {

@@ -14,6 +14,13 @@ const styles = {
     borderColor: colorNameToHex('dimgrey'),
     borderStyle: 'solid',
     borderRadius: 1,
+    position: 'relative',
+  },
+
+  chartContainer: {
+    position: 'absolute',
+    left: 0,
+    bottom: 0,
   },
 
   chart: {

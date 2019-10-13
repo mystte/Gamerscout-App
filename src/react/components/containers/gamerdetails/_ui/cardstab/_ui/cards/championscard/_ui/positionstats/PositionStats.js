@@ -16,7 +16,6 @@ const PositionStats = ({ positionsStatsList }) => {
           ...styles.withSeparator,
         };
 
-      console.log('idx ', idx, ' size ', positionsStatsList.size);
       return (<div
         style={rowContainerStyle}
         key={`${position.positionType}Position`}

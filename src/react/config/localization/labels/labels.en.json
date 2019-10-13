@@ -167,7 +167,9 @@
     },
 
     "trendsCard": {
-      "title": "Trends"
+      "title": "Trends",
+      "kda": "Kda",
+      "teamKda": "Teamates"
     },
 
     "approvalsCard": {

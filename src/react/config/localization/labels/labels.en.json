@@ -169,7 +169,8 @@
     "trendsCard": {
       "title": "Trends",
       "kda": "Kda",
-      "teamKda": "Teamates"
+      "teamKda": "Teamates",
+      "teamAvg": "Team Avg"
     },
 
     "approvalsCard": {

@@ -1,5 +1,6 @@
 const namedColors = {
   aliceblue: '#f0f8ff',
+  abbey: '#414345',
   antiquewhite: '#faebd7',
   apple: '#34aa44',
   aqua: '#00ffff',

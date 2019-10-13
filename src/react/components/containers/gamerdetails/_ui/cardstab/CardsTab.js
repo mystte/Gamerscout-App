@@ -22,6 +22,7 @@ import styles from './styles';
 class CardsTab extends PureComponent {
   static propTypes = {
     gameCode: PropTypes.string,
+    gamertag: PropTypes.string,
     platform: PropTypes.string,
     rankedCardRecord: PropTypes.instanceOf(RankedCardRecord),
     championsCardRecord: PropTypes.instanceOf(ChampionsCardRecord),
@@ -39,6 +40,7 @@ class CardsTab extends PureComponent {
   static defaultProps = {
     platform: null,
     gameCode: null,
+    gamertag: null,
     rankedCardRecord: null,
     approvalsCardRecord: null,
     historyCardList: null,
@@ -73,6 +75,7 @@ class CardsTab extends PureComponent {
           <RecentPerformanceCard />
           <TrendsCard
             trendsCardRecord={this.props.trendsCardRecord}
+            gamertag={this.props.gamertag}
           />
         </div>
         <div style={styles.secondRow}>

@@ -8,7 +8,6 @@ import {
   applyReviewFilters,
 } from '../../../redux/actions/gamerDetails';
 import { BUTTON_TYPE } from './_ui/navheader/_ui/actionbuttons/_ui/actionbutton/ActionButton';
-// import { APPROVAL_TYPE } from '../../../datamanager/models/ApprovalsCardRecord';
 import NavHeader from './_ui/navheader/NavHeader';
 import CardsTab from './_ui/cardstab/CardsTab';
 import ReviewsTab from './_ui/reviewstab/ReviewsTab';
@@ -121,6 +120,7 @@ class GamerDetails extends PureComponent {
     let content = null;
     if (this.state.selectedTab === BUTTON_TYPE.OVERVIEW) {
       content = (<CardsTab
+        gamertag={this.props.gamerData.gamertag}
         gameCode={this.props.gamerData.gameCode}
         platform={this.props.gamerData.platform}
         rankedCardRecord={this.props.gamerData.rankedCardRecord}

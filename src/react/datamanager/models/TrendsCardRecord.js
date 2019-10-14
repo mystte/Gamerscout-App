@@ -30,7 +30,7 @@ const ExtendsWith = (superclass) => class extends superclass {
     const kdaPoints = [TRENDS_LINE_TYPE.KDA];
     const teamKdaPoints = [TRENDS_LINE_TYPE.TEAM_KDA];
     this.data.forEach((pointData, idx) => {
-      if (idx >= 39) {
+      if (idx <= 12) {
         if (hasKda) kdaPoints.push(pointData.kda);
         if (hasTeamKda) teamKdaPoints.push(pointData.teamKda);
       }

@@ -22,6 +22,7 @@ const DropDown = ({
   selectType,
   selectContent,
   noSelectFeedback,
+  uppercase,
 }) => {
   if (options.length === 0) return null;
   const [select, setSelect] = useState(1);
@@ -35,11 +36,20 @@ const DropDown = ({
     if (onChange) onChange(options[selectedItemNumber - 1]);
   };
 
+  const getTextTransform = () => ({ textTransform: (uppercase) ? 'uppercase' : 'capitalize' });
+
   const renderSelectContent = () => {
-    let result = <span style={styles.selectedLabel}>{selectedLabel}</span>;
+    let result = <span
+      style={{
+        ...styles.selectedLabel,
+        ...getTextTransform(),
+      }}>{selectedLabel}</span>;
 
     if (selectType === SELECT_TYPE.CUSTOM_CONTENT) {
-      result = <div style={styles.customSelect}>{selectContent}</div>;
+      result = <div style={{
+        ...styles.customSelect,
+        ...getTextTransform(),
+      }}>{selectContent}</div>;
     }
 
     return result;
@@ -50,8 +60,10 @@ const DropDown = ({
       const elemLabelStyle = (idx === select - 1 && !noSelectFeedback) ? {
         ...styles.elemLabel,
         ...styles.elemLabelSelect,
+        ...getTextTransform(),
       } : {
         ...styles.elemLabel,
+        ...getTextTransform(),
       };
 
       const elemLabel = (elem.label) ? elem.label : elem.name;
@@ -119,6 +131,7 @@ DropDown.propTypes = {
   onChange: PropTypes.func,
   selectContent: PropTypes.object,
   noSelectFeedback: PropTypes.bool,
+  uppercase: PropTypes.bool,
 };
 
 DropDown.defaultProps = {
@@ -127,6 +140,7 @@ DropDown.defaultProps = {
   onChange: null,
   selectContent: null,
   noSelectFeedback: false,
+  uppercase: false,
 };
 
 export default DropDown;

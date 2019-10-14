@@ -29,12 +29,23 @@ const TrendsCard = ({
     setSelectedFilter(filter.name);
   };
 
+  const getChartLinesColors = () => {
+    let result = [colorNameToHex('curiousblue'), colorNameToHex('melrose')];
+    if (selectedFilter === TRENDS_OPTIONS.KDA) {
+      result = [colorNameToHex('curiousblue')];
+    } else if (selectedFilter === TRENDS_OPTIONS.TEAM_KDA) {
+      result = [colorNameToHex('melrose')];
+    }
+    return result;
+  };
+
   return (
     <div ref={targetRef} style={styles.container}>
       <div style={styles.header}>
         <div style={styles.title}>{labels.title}</div>
         <div style={styles.optionsContainer}>
           <DropDown
+            uppercase
             selectType={SELECT_TYPE.SIMPLE}
             onChange={onFilterChange}
             options={[
@@ -63,7 +74,7 @@ const TrendsCard = ({
                 show: false,
               },
               color: {
-                pattern: [colorNameToHex('curiousblue'), colorNameToHex('melrose')],
+                pattern: getChartLinesColors(),
               },
               tooltip: {
                 contents: (d, defaultTitleFormat, defaultValueFormat, color) => (

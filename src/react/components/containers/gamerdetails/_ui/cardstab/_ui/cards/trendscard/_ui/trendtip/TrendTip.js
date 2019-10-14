@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Localization from '../../../../../../../../../../config/localization/Localization';
 
 import styles from './styles';
+import { TRENDS_LINE_TYPE } from '../../../../../../../../../../datamanager/models/TrendsCardRecord';
 
 const TrendTip = ({
   gamertag,
@@ -20,20 +21,23 @@ const TrendTip = ({
     return (<span style={circleLegendStyle}></span>);
   };
 
+  const renderKdaRow = (id, value) => (
+    <div style={styles.kdaRow}>
+      {renderCircleLegend(id)}
+      {id === TRENDS_LINE_TYPE.KDA
+        && <span>{gamertag}:</span>}
+      {id === TRENDS_LINE_TYPE.TEAM_KDA
+        && <span>{labels.teamAvg}:</span>}
+      <span style={styles.avgValue}>{value}</span>
+    </div>
+  );
+
   return (
     <div style={styles.container}>
-      <div style={styles.kdaRow}>
-        {renderCircleLegend(data[0].id)}
-        <span>{gamertag}:</span>
-        <span style={styles.avgValue}>{data[0].value}</span>
-      </div>
+      {renderKdaRow(data[0].id, data[0].value)}
       {data[1]
-        && <div style={styles.kdaRow}>
-            {renderCircleLegend(data[1].id)}
-            <span>{labels.teamAvg}:</span>
-            <span style={styles.avgValue}>{data[1].value}</span>
-          </div>
-      }
+        && renderKdaRow(data[1].id, data[1].value)
+    }
     </div>
   );
 };

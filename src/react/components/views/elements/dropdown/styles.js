@@ -54,7 +54,6 @@ const styles = {
     marginLeft: 15,
     marginRight: 15,
     marginTop: 9,
-    textTransform: 'capitalize',
   },
 
   elemLabelSelect: {

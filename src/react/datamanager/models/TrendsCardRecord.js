@@ -22,7 +22,6 @@ const ExtendsWith = (superclass) => class extends superclass {
   static get ExtendsWith() { return ExtendsWith; }
 
   getChartData = (filter) => {
-    console.log('filter === ', filter);
     const result = [];
     const hasKda = (filter === TRENDS_OPTIONS.TEAM_KDA_VS_KDA)
       || (filter === TRENDS_OPTIONS.KDA);

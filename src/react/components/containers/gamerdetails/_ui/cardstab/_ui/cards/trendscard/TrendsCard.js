@@ -12,6 +12,7 @@ import Localization from '../../../../../../../../config/localization/Localizati
 import styles from './styles';
 import { colorNameToHex } from '../../../../../../../../utils/color';
 import DropDown, { SELECT_TYPE } from '../../../../../../../views/elements/dropdown/DropDown';
+import useResize from '../../../../../../../views/hooks/UseResize';
 
 const TrendsCard = ({
   trendsCardRecord,
@@ -19,6 +20,7 @@ const TrendsCard = ({
 }) => {
   const labels = Localization.Labels.gamerDetails.trendsCard;
   const [selectedFilter, setSelectedFilter] = useState(TRENDS_OPTIONS.TEAM_KDA_VS_KDA);
+  const { dimensions, targetRef } = useResize();
   const data = {
     columns: trendsCardRecord.getChartData(selectedFilter),
   };
@@ -28,7 +30,7 @@ const TrendsCard = ({
   };
 
   return (
-    <div style={styles.container}>
+    <div ref={targetRef} style={styles.container}>
       <div style={styles.header}>
         <div style={styles.title}>{labels.title}</div>
         <div style={styles.optionsContainer}>
@@ -46,7 +48,7 @@ const TrendsCard = ({
             config={{
               data,
               size: {
-                width: 350,
+                width: dimensions.width,
                 height: 90,
               },
               axis: {

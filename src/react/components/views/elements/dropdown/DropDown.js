@@ -13,6 +13,7 @@ export const SELECT_TYPE = {
 
 export const DROPDOWN_TYPE = {
   DEFAULT: 'DROPDOWN_DEFAULT',
+  SIMPLE: 'DROPDOWN_SIMPLE',
 };
 
 const DropDown = ({

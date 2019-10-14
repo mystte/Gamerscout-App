@@ -1,31 +1,46 @@
 /* eslint-disable react/display-name */
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOMServer from 'react-dom/server';
 import PropTypes from 'prop-types';
 import Chart from 'react-c3-component';
 import 'c3/c3.css';
 
 import TrendTip from './_ui/trendtip/TrendTip';
-import TrendsCardRecord from '../../../../../../../../datamanager/models/TrendsCardRecord';
+import TrendsCardRecord, { TRENDS_OPTIONS } from '../../../../../../../../datamanager/models/TrendsCardRecord';
 import Localization from '../../../../../../../../config/localization/Localization';
 
 import styles from './styles';
 import { colorNameToHex } from '../../../../../../../../utils/color';
+import DropDown, { SELECT_TYPE } from '../../../../../../../views/elements/dropdown/DropDown';
 
 const TrendsCard = ({
   trendsCardRecord,
   gamertag,
 }) => {
   const labels = Localization.Labels.gamerDetails.trendsCard;
+  const [selectedFilter, setSelectedFilter] = useState(TRENDS_OPTIONS.TEAM_KDA_VS_KDA);
   const data = {
-    columns: trendsCardRecord.getChartData(),
+    columns: trendsCardRecord.getChartData(selectedFilter),
   };
 
-  console.log(data);
+  const onFilterChange = (filter) => {
+    setSelectedFilter(filter.name);
+  };
+
   return (
     <div style={styles.container}>
       <div style={styles.header}>
         <div style={styles.title}>{labels.title}</div>
+        <div style={styles.optionsContainer}>
+          <DropDown
+            selectType={SELECT_TYPE.SIMPLE}
+            onChange={onFilterChange}
+            options={[
+              { name: TRENDS_OPTIONS.TEAM_KDA_VS_KDA, label: labels.teamKdaVsKda },
+              { name: TRENDS_OPTIONS.KDA, label: labels.kda },
+              { name: TRENDS_OPTIONS.TEAM_KDA, label: labels.teamKda },
+            ]} />
+        </div>
         <div style={styles.chartContainer}>
           <Chart
             config={{

@@ -165,6 +165,7 @@
       "title": "Tendances",
       "kda": "Kda",
       "teamKda": "Équipe",
+      "teamKdaVsKda": "Kda vs. Équipe",
       "teamAvg": "Moyenne d'équipe"
     },
 

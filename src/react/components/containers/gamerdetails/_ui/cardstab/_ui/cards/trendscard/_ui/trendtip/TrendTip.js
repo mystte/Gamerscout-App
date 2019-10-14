@@ -9,7 +9,6 @@ const TrendTip = ({
   data,
   getColor,
 }) => {
-  console.log('gamertag, data', gamertag, data);
   const labels = Localization.Labels.gamerDetails.trendsCard;
 
   const renderCircleLegend = (id) => {
@@ -28,11 +27,13 @@ const TrendTip = ({
         <span>{gamertag}:</span>
         <span style={styles.avgValue}>{data[0].value}</span>
       </div>
-      <div style={styles.kdaRow}>
-        {renderCircleLegend(data[1].id)}
-        <span>{labels.teamAvg}:</span>
-        <span style={styles.avgValue}>{data[1].value}</span>
-      </div>
+      {data[1]
+        && <div style={styles.kdaRow}>
+            {renderCircleLegend(data[1].id)}
+            <span>{labels.teamAvg}:</span>
+            <span style={styles.avgValue}>{data[1].value}</span>
+          </div>
+      }
     </div>
   );
 };
@@ -40,7 +41,7 @@ const TrendTip = ({
 TrendTip.propTypes = {
   gamertag: PropTypes.string,
   getColor: PropTypes.func,
-  data: PropTypes.object,
+  data: PropTypes.array,
 };
 
 TrendTip.defaultProps = {

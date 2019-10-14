@@ -30,6 +30,7 @@ const styles = {
 
   listViewContainer: {
     top: 34,
+    zIndex: 2,
     left: -1,
     position: 'absolute',
     borderWidth: 1,
@@ -46,6 +47,7 @@ const styles = {
   },
 
   elemLabel: {
+    whiteSpace: 'nowrap',
     fontSize: 14,
     fontWeight: 600,
     color: colorNameToHex('white'),

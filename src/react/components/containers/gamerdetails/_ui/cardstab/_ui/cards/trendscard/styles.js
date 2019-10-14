@@ -17,6 +17,13 @@ const styles = {
     position: 'relative',
   },
 
+  optionsContainer: {
+    position: 'absolute',
+    top: 7,
+    right: 15,
+    zIndex: 1,
+  },
+
   chartContainer: {
     position: 'absolute',
     left: 0,

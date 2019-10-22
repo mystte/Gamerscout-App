@@ -20,7 +20,7 @@ const ExtendsWith = (superclass) => class extends superclass {
 
 export default class RecentPerformanceCardRecord extends ExtendsWith(Record(defaultProps, 'RecentPerformanceCardRecord')) {
   static apiParser(data) {
-
+    console.log(data);
     const parsedData = {
       positionFilter: RECENT_PERFORMANCE_FILTERS.ALL_POSITIONS,
       championFilter: RECENT_PERFORMANCE_FILTERS.ALL_CHAMPIONS,

@@ -51,7 +51,7 @@ const TrendsCard = ({
             options={[
               { name: TRENDS_OPTIONS.TEAM_KDA_VS_KDA, label: labels.teamKdaVsKda },
               { name: TRENDS_OPTIONS.KDA, label: labels.kda },
-              { name: TRENDS_OPTIONS.TEAM_KDA, label: labels.teamKda },
+              // { name: TRENDS_OPTIONS.TEAM_KDA, label: labels.teamKda },
             ]} />
         </div>
         <div style={styles.chartContainer}>
@@ -75,6 +75,9 @@ const TrendsCard = ({
               },
               color: {
                 pattern: getChartLinesColors(),
+              },
+              point: {
+                r: 1,
               },
               tooltip: {
                 contents: (d, defaultTitleFormat, defaultValueFormat, color) => (

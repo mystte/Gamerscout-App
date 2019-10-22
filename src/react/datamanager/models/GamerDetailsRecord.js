@@ -9,6 +9,7 @@ import RankedCardRecord from './RankedCardRecord';
 import TrendsCardRecord from './TrendsCardRecord';
 import AttributeRecord from './AttributeRecord';
 import HistoryListRecord from './HistoryListRecord';
+import RecentPerformanceCardRecord from './RecentPerformanceCardRecord';
 
 const defaultProps = {
   accountId: String,
@@ -24,6 +25,7 @@ const defaultProps = {
   approvalsCardRecord: Maybe(ApprovalsCardRecord),
   championsCardRecord: Maybe(ChampionsCardRecord),
   disapprovalsCardRecord: Maybe(DisapprovalsCardRecord),
+  recentPerformanceCardRecord: Maybe(RecentPerformanceCardRecord),
   gameHistoryList: Maybe(HistoryListRecord),
   reviewsCardRecord: Maybe(ReviewsCardRecord),
   trendsCardRecord: Maybe(TrendsCardRecord),

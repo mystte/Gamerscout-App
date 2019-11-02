@@ -158,7 +158,11 @@
     },
 
     "recentPerformanceCard": {
-      "title": "Performances Recentes"
+      "title": "Performances Recentes",
+      "kda": "kda",
+      "cs": "cs",
+      "wins": "G",
+      "losses": "P"
     },
 
     "trendsCard": {

@@ -105,8 +105,8 @@ input::-ms-input-placeholder { /* Microsoft Edge */
   stroke-width: 2px!important;
 }
 
-.c3-circles {
-  // display: none!important;
+.c3-chart-arc path {
+  stroke: rgba(255, 0, 0, 0) !important;
 }
 
 .c3-lines-TRENDS_LINE_TEAM_KDA {

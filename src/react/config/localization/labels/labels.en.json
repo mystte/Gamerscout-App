@@ -163,7 +163,11 @@
     },
 
     "recentPerformanceCard": {
-      "title": "Recent Performance"
+      "title": "Recent Performance",
+      "kda": "kda",
+      "cs": "cs",
+      "wins": "W",
+      "losses": "L"
     },
 
     "trendsCard": {

@@ -1,8 +1,13 @@
-import { Record } from 'typed-immutable';
+import { Record, Maybe } from 'typed-immutable';
 
 const defaultProps = {
-  positionFilter: String,
-  championFilter: String,
+  championId: Maybe(Number),
+  champion: Maybe(String),
+  kills: Maybe(Number),
+  deaths: Maybe(Number),
+  assists: Maybe(Number),
+  kda: Maybe(Number),
+  lane: Maybe(String),
 };
 
 const ExtendsWith = (superclass) => class extends superclass {
@@ -16,6 +21,13 @@ export default class RecentPerformanceDataRecord extends ExtendsWith(Record(defa
     console.log(data);
 
     const parsedData = {
+      championId: data.championId ? data.championId : null,
+      champion: data.champion ? data.champion : null,
+      kills: data.kills ? data.kills : null,
+      deaths: data.deaths ? data.deaths : null,
+      assists: data.assists ? data.assists : null,
+      lane: data.lane ? data.lane : null,
+      kda: data.kda ? data.kda : null,
     };
 
     return new RecentPerformanceDataRecord(parsedData);

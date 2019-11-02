@@ -1,4 +1,5 @@
 import { Record, List, Maybe } from 'typed-immutable';
+
 import RecentPerformanceDataRecord from './RecentPerformanceDataRecord';
 
 export const RECENT_PERFORMANCE_FILTERS = {
@@ -20,11 +21,15 @@ const ExtendsWith = (superclass) => class extends superclass {
 
 export default class RecentPerformanceCardRecord extends ExtendsWith(Record(defaultProps, 'RecentPerformanceCardRecord')) {
   static apiParser(data) {
-    console.log(data);
+    console.log('RecentPerformances data = ', data);
     const parsedData = {
       positionFilter: RECENT_PERFORMANCE_FILTERS.ALL_POSITIONS,
       championFilter: RECENT_PERFORMANCE_FILTERS.ALL_CHAMPIONS,
+      recentPerformanceList: data.map(
+        (matchData) => RecentPerformanceDataRecord.apiParser(matchData),
+      ),
     };
+    console.log('######', parsedData);
 
     return new RecentPerformanceCardRecord(parsedData);
   }

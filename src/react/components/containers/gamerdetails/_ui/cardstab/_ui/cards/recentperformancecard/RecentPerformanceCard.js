@@ -1,4 +1,5 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import Chart from 'react-c3-component';
 import 'c3/c3.css';
 
@@ -7,25 +8,14 @@ import DropDown from '../../../../../../../views/elements/dropdown/DropDown';
 import styles from './styles';
 import { colorNameToHex } from '../../../../../../../../utils/color';
 
-class RecentPerformanceCard extends PureComponent {
-  static propTypes = {
-  };
+const RecentPerformanceCard = () => {
+  const labels = Localization.Labels.gamerDetails.recentPerformanceCard;
+  const recentPerformanceRecord = useSelector((state) => state.gamerDetails.getIn(['data', 'recentPerformanceCardRecord']));
+  const filteredData = recentPerformanceRecord.getFilteredData();
+  console.log('filteredData = ', filteredData);
 
-  static defaultProps = {
-  };
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-    };
-  }
-
-  render() {
-    const labels = Localization.Labels.gamerDetails.recentPerformanceCard;
-
-    return (
-      <div style={styles.container}>
+  return (
+    <div style={styles.container}>
         <div style={styles.header}>
           <div style={styles.positionsFilter}>
             <DropDown options={[
@@ -42,13 +32,13 @@ class RecentPerformanceCard extends PureComponent {
           <div style={styles.title}>{labels.title}</div>
           <div style={styles.dataContainer}>
             <div style={styles.donutContainer}>
-              <div style={styles.winsPercentage}>70%</div>
+              <div style={styles.winsPercentage}>{filteredData.winsPercentage}%</div>
               <Chart
                 config={{
                   data: {
                     columns: [
-                      ['wins', 70],
-                      ['losses', 30],
+                      ['wins', filteredData.winsPercentage],
+                      ['losses', filteredData.lossesPercentage],
                     ],
                     type: 'donut',
                   },
@@ -84,30 +74,31 @@ class RecentPerformanceCard extends PureComponent {
                   },
                 }}
               />
-              <span style={styles.winsLabel}>20{labels.wins}/5{labels.losses}</span>
+            <span style={styles.winsLabel}>
+              {filteredData.wins}{labels.wins}/{filteredData.losses}{labels.losses}
+            </span>
             </div>
             <div style={styles.kdaContainer}>
               <div style={styles.numbers}>
-                <span style={styles.kdaNum}>5</span>
+                <span style={styles.kdaNum}>{filteredData.kills}</span>
                 <span style={styles.slash}>/</span>
-                <span style={styles.kdaNum}>9</span>
+              <span style={styles.kdaNum}>{filteredData.deaths}</span>
                 <span style={styles.slash}>/</span>
-                <span style={styles.kdaNum}>10</span>
+                <span style={styles.kdaNum}>{filteredData.assists}</span>
               </div>
               <div style={styles.kdaLblContainer}>
-                <div style={styles.kda}>0.9</div>
+                <div style={styles.kda}>{filteredData.kda}</div>
                 <div style={styles.kdaLbl}>{labels.kda}</div>
               </div>
             </div>
             <div style={styles.csContainer}>
-              <div style={styles.cs}>0.9</div>
+            <div style={styles.cs}>{filteredData.cs}</div>
               <div style={styles.csLbl}>{labels.cs}</div>
             </div>
           </div>
         </div>
       </div>
-    );
-  }
-}
+  );
+};
 
 export default RecentPerformanceCard;

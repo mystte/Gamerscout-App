@@ -8,6 +8,8 @@ const defaultProps = {
   assists: Maybe(Number),
   kda: Maybe(Number),
   lane: Maybe(String),
+  win: Maybe(Boolean),
+  cs: Number,
 };
 
 const ExtendsWith = (superclass) => class extends superclass {
@@ -28,6 +30,8 @@ export default class RecentPerformanceDataRecord extends ExtendsWith(Record(defa
       assists: data.assists ? data.assists : null,
       lane: data.lane ? data.lane : null,
       kda: data.kda ? data.kda : null,
+      win: data.win ? data.win : null,
+      cs: data.totalMinionsKilled ? data.totalMinionsKilled : 0,
     };
 
     return new RecentPerformanceDataRecord(parsedData);

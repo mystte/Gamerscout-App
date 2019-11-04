@@ -57,7 +57,6 @@ export default class GamerDetailsRecord extends ExtendsWith(Record(defaultProps,
   }
 
   static apiParser(data) {
-    console.log('data = ', data);
     const apiData = data;
     const parsedData = {
       accountId: apiData.account_id,
@@ -79,7 +78,7 @@ export default class GamerDetailsRecord extends ExtendsWith(Record(defaultProps,
         ? DisapprovalsCardRecord.apiParser(apiData)
         : null,
       gameHistoryList: HistoryListRecord.apiParser(apiData.stats.recent),
-      recentPerfomanceCardRecord: RecentPerformanceCardRecord.apiParser(apiData.stats.recent),
+      recentPerformanceCardRecord: RecentPerformanceCardRecord.apiParser(apiData.stats.recent),
       trendsCardRecord: TrendsCardRecord.apiParser(apiData.stats.trends),
       championsCardRecord: ChampionsCardRecord.apiParser(apiData.stats),
       reviewsCardRecord: apiData.reviews ? ReviewsCardRecord.apiParser(apiData) : null,

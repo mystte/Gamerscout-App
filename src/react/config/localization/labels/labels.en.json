@@ -167,7 +167,9 @@
       "kda": "kda",
       "cs": "cs",
       "wins": "W",
-      "losses": "L"
+      "losses": "L",
+      "allPositions": "All positions",
+      "allChampions": "All champions"
     },
 
     "trendsCard": {

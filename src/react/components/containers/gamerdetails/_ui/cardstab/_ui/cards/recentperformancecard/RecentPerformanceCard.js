@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import Chart from 'react-c3-component';
 import 'c3/c3.css';
@@ -7,12 +7,28 @@ import Localization from '../../../../../../../../config/localization/Localizati
 import DropDown from '../../../../../../../views/elements/dropdown/DropDown';
 import styles from './styles';
 import { colorNameToHex } from '../../../../../../../../utils/color';
+import { RECENT_PERFORMANCE_FILTERS } from '../../../../../../../../datamanager/models/RecentPerformanceCardRecord';
 
 const RecentPerformanceCard = () => {
   const labels = Localization.Labels.gamerDetails.recentPerformanceCard;
   const recentPerformanceRecord = useSelector((state) => state.gamerDetails.getIn(['data', 'recentPerformanceCardRecord']));
-  const filteredData = recentPerformanceRecord.getFilteredData();
+  const [positionFilter] = useState({
+    name: RECENT_PERFORMANCE_FILTERS.ALL_POSITIONS,
+    label: labels.allPositions,
+  });
+  const [championFilter, setChampionFilter] = useState({
+    name: RECENT_PERFORMANCE_FILTERS.ALL_CHAMPIONS,
+    label: labels.allChampions,
+  });
+  const filteredData = recentPerformanceRecord.getFilteredData(positionFilter, championFilter);
+
   console.log('filteredData = ', filteredData);
+
+  const onChampionChange = (champion = null) => {
+    if (champion && champion !== championFilter) {
+      setChampionFilter(champion);
+    }
+  };
 
   return (
     <div style={styles.container}>
@@ -23,9 +39,10 @@ const RecentPerformanceCard = () => {
             ]} />
           </div>
           <div style={styles.championsFilter}>
-            <DropDown options={[
-              { name: 'All Champions' },
-            ]} />
+            <DropDown
+              options={filteredData.champions}
+              onChange={onChampionChange}
+            />
           </div>
         </div>
         <div style={styles.content}>

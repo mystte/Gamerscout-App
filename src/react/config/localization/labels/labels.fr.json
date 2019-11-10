@@ -162,7 +162,9 @@
       "kda": "kda",
       "cs": "cs",
       "wins": "G",
-      "losses": "P"
+      "losses": "P",
+      "allPositions": "Toutes les positions",
+      "allChampions": "Tous les champions"
     },
 
     "trendsCard": {

@@ -20,8 +20,6 @@ const ExtendsWith = (superclass) => class extends superclass {
 
 export default class RecentPerformanceDataRecord extends ExtendsWith(Record(defaultProps, 'RecentPerformanceDataRecord')) {
   static apiParser(data) {
-    console.log(data);
-
     const parsedData = {
       championId: data.championId ? data.championId : null,
       champion: data.champion ? data.champion : null,

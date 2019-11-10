@@ -75,6 +75,7 @@ const styles = {
   },
 
   kdaContainer: {
+    width: 85,
     flexDirection: 'column',
     marginLeft: 60,
     alignItems: 'center',
@@ -120,6 +121,7 @@ const styles = {
   csContainer: {
     flexDirection: 'row',
     marginLeft: 46,
+    width: 60,
   },
 
   cs: {

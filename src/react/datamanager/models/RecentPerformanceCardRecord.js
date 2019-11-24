@@ -9,6 +9,14 @@ export const RECENT_PERFORMANCE_FILTERS = {
   ALL_CHAMPIONS: 'RECENT_PERFORMANCES_ALL_CHAMPIONS',
 };
 
+export const POSITIONS = {
+  TOP: 'TOP',
+  MID: 'MIDDLE',
+  JUNGlE: 'JUNGLE',
+  BOTTOM: 'BOTTOM',
+  NONE: 'NONE',
+};
+
 const defaultProps = {
   recentPerformanceList: Maybe(List(RecentPerformanceDataRecord)),
 };
@@ -19,7 +27,6 @@ const ExtendsWith = (superclass) => class extends superclass {
   static get ExtendsWith() { return ExtendsWith; }
 
   getFilteredData(positionFilter, championFilter) {
-    console.log('positionFilter', positionFilter, 'championFilter', championFilter);
     const labels = Localization.Labels.gamerDetails.recentPerformanceCard;
 
     let winsCount = 0;
@@ -37,11 +44,23 @@ const ExtendsWith = (superclass) => class extends superclass {
       label: labels.allPositions,
     }];
 
-    console.log('positions = ', positions);
+    Object.entries(POSITIONS).forEach(([key, value]) => {
+      positions.push({
+        label: value.toLowerCase(),
+        name: value,
+        key,
+      });
+    });
 
     this.recentPerformanceList.forEach((recentPerfData) => {
-      if (championFilter.name === recentPerfData.champion
-        || championFilter.name === RECENT_PERFORMANCE_FILTERS.ALL_CHAMPIONS) {
+      if ((championFilter.name === recentPerfData.champion
+          && positionFilter.name === recentPerfData.lane)
+        || (championFilter.name === RECENT_PERFORMANCE_FILTERS.ALL_CHAMPIONS
+          && positionFilter.name === RECENT_PERFORMANCE_FILTERS.ALL_POSITIONS)
+        || (championFilter.name === recentPerfData.champion
+          && positionFilter.name === RECENT_PERFORMANCE_FILTERS.ALL_POSITIONS)
+        || (championFilter.name === RECENT_PERFORMANCE_FILTERS.ALL_CHAMPIONS
+          && positionFilter.name === recentPerfData.lane)) {
         if (recentPerfData.win) winsCount += 1;
         else lossesCount += 1;
         cs += recentPerfData.cs;
@@ -60,9 +79,12 @@ const ExtendsWith = (superclass) => class extends superclass {
       }
     });
 
+    const winsPercentage = Math.round((winsCount * 100) / (winsCount + lossesCount));
+    const lossesPercentage = Math.round((lossesCount * 100) / (winsCount + lossesCount));
+
     return {
-      winsPercentage: Math.round((winsCount * 100) / (winsCount + lossesCount)),
-      lossesPercentage: Math.round((lossesCount * 100) / (winsCount + lossesCount)),
+      winsPercentage: winsPercentage || 0,
+      lossesPercentage: lossesPercentage || 0,
       wins: winsCount,
       losses: lossesCount,
       cs,
@@ -71,6 +93,7 @@ const ExtendsWith = (superclass) => class extends superclass {
       assists,
       kda: computeKda(kills, assists, deaths),
       champions: champions.sort((a, b) => a.name - b.name),
+      positions,
     };
   }
 };

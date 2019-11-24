@@ -12,7 +12,7 @@ import { RECENT_PERFORMANCE_FILTERS } from '../../../../../../../../datamanager/
 const RecentPerformanceCard = () => {
   const labels = Localization.Labels.gamerDetails.recentPerformanceCard;
   const recentPerformanceRecord = useSelector((state) => state.gamerDetails.getIn(['data', 'recentPerformanceCardRecord']));
-  const [positionFilter] = useState({
+  const [positionFilter, setPositionFilter] = useState({
     name: RECENT_PERFORMANCE_FILTERS.ALL_POSITIONS,
     label: labels.allPositions,
   });
@@ -24,6 +24,12 @@ const RecentPerformanceCard = () => {
 
   console.log('filteredData = ', filteredData);
 
+  const onPositionChange = (position = null) => {
+    if (position && position !== positionFilter) {
+      setPositionFilter(position);
+    }
+  };
+
   const onChampionChange = (champion = null) => {
     if (champion && champion !== championFilter) {
       setChampionFilter(champion);
@@ -34,9 +40,10 @@ const RecentPerformanceCard = () => {
     <div style={styles.container}>
         <div style={styles.header}>
           <div style={styles.positionsFilter}>
-            <DropDown options={[
-              { name: 'All Positions' },
-            ]} />
+            <DropDown
+              options={filteredData.positions}
+              onChange={onPositionChange}
+            />
           </div>
           <div style={styles.championsFilter}>
             <DropDown

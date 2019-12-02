@@ -1,4 +1,12 @@
 {
+  "home": {
+    "title": "Gamer Stats. Reviews.",
+    "title2": "All in one place.",
+    "desc": "Find a gamer by entering their ID exactly as it appears in-game.",
+    "ratings": "Ratings",
+    "reviews": "Reviews",
+    "stats": "Stats"
+  },
   "notifications": {
     "invalidAccount": {
       "title": "Your email has not been validated yet."

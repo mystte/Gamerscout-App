@@ -1,4 +1,12 @@
 {
+  "home": {
+    "title": "Gamer Stats. Reviews.",
+    "title2": "Tout au même endroit.",
+    "desc": "Trouver un joueur en entrant son gamertag exact.",
+    "ratings": "Ratings",
+    "reviews": "Reviews",
+    "stats": "Stats"
+  },
   "notifications": {
     "invalidAccount": {
       "title": "Votre courriel n'a pas encore été validé."

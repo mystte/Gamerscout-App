@@ -38,10 +38,31 @@ const styles = {
     position: 'relative',
     width: '100%',
     height: 200,
-    backgroundColor: colorNameToHex('mirage2'),
+    backgroundColor: colorNameToHex('mirage'),
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+
+  createAccountContainer: {
+    backgroundColor: colorNameToHex('mirage2'),
+    width: '100%',
+    height: 298,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  createAccountLabel: {
+    marginBottom: 50,
+    fontSize: 30,
+    fontWeight: 600,
+    width: 379,
+    textAlign: 'center',
+    lineHeight: 1.2,
+  },
+
+  createAccountBtn: {
+    width: 200,
   },
 
   statTitle: {
@@ -65,6 +86,20 @@ const styles = {
 
   separator: {
     width: 10,
+  },
+
+  featuredGamersContainers: {
+    width: '100%',
+    height: 500,
+    backgroundColor: colorNameToHex('mirage'),
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+  },
+
+  ftTitle: {
+    fontWeight: 600,
+    fontSize: 24,
+    marginTop: 50,
   },
 };
 

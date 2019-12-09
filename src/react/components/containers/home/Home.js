@@ -12,6 +12,10 @@ import { GAME_PLATFORM, GAME_CODE, GAME_REGIONS } from '../../../datamanager/mod
 import { getGamerDetailsUrl } from '../../../config/routes';
 import { loadGamerDetails } from '../../../redux/actions/gamerDetails';
 import UseKeyPress from '../../views/hooks/UseKeyPress';
+import Button, { BUTTON_THEME } from '../../views/elements/button/Button';
+import { togglePopup } from '../../../redux/actions/app';
+import { POPUP_TYPE } from '../../../datamanager/models/PopupRecord';
+import Footer from '../footer/Footer';
 
 const mapStateToProps = (state) => ({
   config: state.app.get('data'),
@@ -55,6 +59,10 @@ const Home = ({
 
   const onRegionChanged = (newRegion) => {
     setSearchRegion(newRegion.name);
+  };
+
+  const onCreateAccountClick = () => {
+    dispatch(togglePopup(POPUP_TYPE.SIGNUP));
   };
 
   return (
@@ -122,7 +130,19 @@ const Home = ({
           </span>
         </div>
       </div>
-      <div></div>
+      <div style={styles.createAccountContainer}>
+        <h2 style={styles.createAccountLabel}>{labels.createAccountDesc}</h2>
+        <Button
+          label={labels.createAccount}
+          buttonStyle={styles.createAccountBtn}
+          theme={BUTTON_THEME.BLUE}
+          onClick={onCreateAccountClick}
+        />
+      </div>
+      <div style={styles.featuredGamersContainers}>
+        <h2 style={styles.ftTitle}>{labels.featuredGamers}</h2>
+      </div>
+      <Footer />
     </div>
   );
 };

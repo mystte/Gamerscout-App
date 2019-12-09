@@ -5,7 +5,15 @@
     "desc": "Trouver un joueur en entrant son gamertag exact.",
     "ratings": "Ratings",
     "reviews": "Reviews",
-    "stats": "Stats"
+    "stats": "Stats",
+    "createAccountDesc": "Decouvrez ce qu'ils disent sur vous.",
+    "createAccount": "Creer un compte",
+    "featuredGamers": "Featured Gamers"
+  },
+  "footer": {
+    "contact": "Contact",
+    "privacyPolicy": "Politique de confidentialité",
+    "Terms": "Termes"
   },
   "notifications": {
     "invalidAccount": {

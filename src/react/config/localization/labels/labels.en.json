@@ -5,7 +5,15 @@
     "desc": "Find a gamer by entering their ID exactly as it appears in-game.",
     "ratings": "Ratings",
     "reviews": "Reviews",
-    "stats": "Stats"
+    "stats": "Stats",
+    "createAccountDesc": "Find out what they’re saying about you.",
+    "createAccount": "Create Account",
+    "featuredGamers": "Featured Gamers"
+  },
+  "footer": {
+    "contact": "Contact",
+    "privacyPolicy": "Provacy Policy",
+    "terms": "Terms"
   },
   "notifications": {
     "invalidAccount": {

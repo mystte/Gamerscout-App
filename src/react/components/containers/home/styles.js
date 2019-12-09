@@ -7,7 +7,6 @@ const styles = {
 
   headerContainer: {
     width: '100%',
-    height: '100vh',
     minHeight: 500,
     justifyContent: 'center',
     alignItems: 'center',

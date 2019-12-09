@@ -22,6 +22,7 @@ const DropDown = ({
   selectType,
   selectContent,
   noSelectFeedback,
+  height,
   uppercase,
 }) => {
   if (options.length === 0) return null;
@@ -86,7 +87,10 @@ const DropDown = ({
   );
 
   const getSelectContainerStyle = () => {
-    let containerStyle = styles.selectContainer;
+    let containerStyle = {
+      ...styles.selectContainer,
+      height,
+    };
     if (selectType === SELECT_TYPE.SIMPLE
       || selectType === SELECT_TYPE.CUSTOM_CONTENT) {
       containerStyle = {
@@ -99,6 +103,10 @@ const DropDown = ({
   };
 
   const containerStyle = getSelectContainerStyle();
+  const listViewContainerStyle = {
+    ...styles.listViewContainer,
+    top: height - 2,
+  };
 
   return (
     <div
@@ -115,7 +123,7 @@ const DropDown = ({
       {isOpen
         && <div
           className="listContainer shadow"
-          style={styles.listViewContainer}
+          style={listViewContainerStyle}
         >
           {renderListView()}
         </div>
@@ -132,6 +140,7 @@ DropDown.propTypes = {
   selectContent: PropTypes.object,
   noSelectFeedback: PropTypes.bool,
   uppercase: PropTypes.bool,
+  height: PropTypes.number,
 };
 
 DropDown.defaultProps = {
@@ -141,6 +150,7 @@ DropDown.defaultProps = {
   selectContent: null,
   noSelectFeedback: false,
   uppercase: false,
+  height: 36,
 };
 
 export default DropDown;

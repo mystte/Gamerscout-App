@@ -6,7 +6,6 @@ import Localization from '../../../config/localization/Localization';
 import styles from './styles';
 
 const Footer = () => {
-  const name = 'FunctionnalComponent';
   const labels = Localization.Labels.footer;
 
   return (

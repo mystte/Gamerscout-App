@@ -153,6 +153,18 @@ export default class Api {
     return doApiCall('/users/validation/email/resend', null, CALL_TYPE.POST);
   }
 
+  static doGetMostReviewedPlayers() {
+    return doApiCall('/getMostReviewed');
+  }
+
+  static doGetHighestRatedPlayers() {
+    return doApiCall('/getHighestRated');
+  }
+
+  static doGetRecentReviewsPlayers() {
+    return doApiCall('/getRecentReviews');
+  }
+
   static doValidateAccount(params) {
     return doApiCall('/account/validate', params, CALL_TYPE.POST);
   }

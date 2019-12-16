@@ -16,20 +16,24 @@ import Button, { BUTTON_THEME } from '../../views/elements/button/Button';
 import { togglePopup } from '../../../redux/actions/app';
 import { POPUP_TYPE } from '../../../datamanager/models/PopupRecord';
 import Footer from '../footer/Footer';
+import { loadHome } from '../../../redux/actions/home';
+import Playerlist from '../../views/playerlist/Playerlist';
 
 const mapStateToProps = (state) => ({
   config: state.app.get('data'),
+  homeRecord: state.home.getIn(['data', 'homeRecord']),
   loading: state.app.get('loading'),
   error: state.app.get('error'),
 });
 
 const Home = ({
   config,
+  homeRecord,
   history,
 }) => {
   if (!config) return null;
-  const dispatch = useDispatch();
   const labels = Localization.Labels.home;
+  const dispatch = useDispatch();
   const [searchPlatform] = useState(GAME_PLATFORM.RIOT);
   const [searchGame] = useState(GAME_CODE.LEAGUE_OF_LEGENDS);
   const [searchValue, setSearchValue] = useState(null);
@@ -53,7 +57,30 @@ const Home = ({
     }
   };
 
-  useEffect(() => () => {
+  const setAndGoToPlayer = (player) => {
+    const newSearchValue = player.gamertag;
+    const playerRegion = player.region;
+    setSearchValue(newSearchValue);
+    setSearchRegion(playerRegion);
+    history.push(getGamerDetailsUrl(
+      searchPlatform,
+      playerRegion,
+      searchGame,
+      newSearchValue,
+    ));
+    dispatch(loadGamerDetails(
+      searchPlatform,
+      playerRegion,
+      searchGame,
+      newSearchValue,
+    ));
+  };
+
+  useEffect(() => {
+    dispatch(loadHome());
+  }, []);
+
+  useEffect(() => {
     if (enterPressed) onSearchClick();
   }, [enterPressed]);
 
@@ -141,6 +168,13 @@ const Home = ({
       </div>
       <div style={styles.featuredGamersContainers}>
         <h2 style={styles.ftTitle}>{labels.featuredGamers}</h2>
+        {homeRecord
+        && <div style={styles.playersListContainer}>
+          <Playerlist goToPlayer={setAndGoToPlayer} players={homeRecord.recentReviewedPlayers} />
+          <Playerlist goToPlayer={setAndGoToPlayer} players={homeRecord.highestRatedPlayers} />
+          <Playerlist goToPlayer={setAndGoToPlayer} players={homeRecord.mostReviewedPlayers} />
+          </div>
+        }
       </div>
       <Footer />
     </div>
@@ -149,11 +183,14 @@ const Home = ({
 
 Home.propTypes = {
   config: PropTypes.object,
+  homeRecord: PropTypes.object,
   loading: PropTypes.bool.isRequired,
   history: PropTypes.object.isRequired,
 };
 
 Home.defaultProps = {
+  config: null,
+  homeRecord: null,
 };
 
 export default withRouter(

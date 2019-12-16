@@ -11,9 +11,9 @@ const Footer = () => {
   return (
     <div style={styles.container}>
       <div style={styles.menuContainer}>
-        <Link style={styles.link}>{labels.contact}</Link>
-        <Link style={styles.link}>{labels.privacyPolicy}</Link>
-        <Link style={styles.link}>{labels.terms}</Link>
+        <Link to="#" style={styles.link}>{labels.contact}</Link>
+        <Link to="#" style={styles.link}>{labels.privacyPolicy}</Link>
+        <Link to="#" style={styles.link}>{labels.terms}</Link>
       </div>
       <div style={styles.socialsContainer}>
         ada

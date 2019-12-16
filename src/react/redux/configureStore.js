@@ -3,6 +3,7 @@ import createSagaMiddleware from 'redux-saga';
 import rootReducer from './reducers/rootReducer';
 import appSagas from './sagas/appSaga';
 import gamerDetailsSaga from './sagas/gamerDetailsSaga';
+import homeSaga from './sagas/homeSaga';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -17,6 +18,7 @@ export function configureStore(initialState) {
   );
 
   sagaMiddleware.run(appSagas);
+  sagaMiddleware.run(homeSaga);
   sagaMiddleware.run(gamerDetailsSaga);
 
   return store;

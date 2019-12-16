@@ -22,6 +22,10 @@ export const APP = {
   CLEAR_ERROR: 'APP_CLEAR_ERROR',
 };
 
+export const HOME = {
+  LOAD: 'HOME_LOAD',
+};
+
 export const GAMER_DETAILS = {
   LOAD: 'GAMER_DETAILS_LOAD',
   APPLY_REVIEW_FILTERS: 'GAMER_DETAILS_APPLY_REVIEW_FILTERS',

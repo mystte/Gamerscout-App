@@ -95,6 +95,10 @@ const styles = {
     alignItems: 'center',
   },
 
+  playersListContainer: {
+    flexDirection: 'row',
+  },
+
   ftTitle: {
     fontWeight: 600,
     fontSize: 24,

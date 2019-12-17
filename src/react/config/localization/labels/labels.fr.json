@@ -8,7 +8,10 @@
     "stats": "Stats",
     "createAccountDesc": "Decouvrez ce qu'ils disent sur vous.",
     "createAccount": "Creer un compte",
-    "featuredGamers": "Featured Gamers"
+    "featuredGamers": "Featured Gamers",
+    "recent": "Noté récemment",
+    "highestRated": "Meilleur joueur",
+    "mostReviewed": "Le plus noté"
   },
   "footer": {
     "contact": "Contact",

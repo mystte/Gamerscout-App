@@ -30,6 +30,16 @@ const styles = {
     textTransform: 'uppercase',
     color: colorNameToHex('regentgray'),
   },
+
+  playerList: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 100,
+  },
+
+  playerListTitle: {
+    marginBottom: 20,
+  },
 };
 
 export default styles;

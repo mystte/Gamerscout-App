@@ -97,12 +97,29 @@ const styles = {
 
   playersListContainer: {
     flexDirection: 'row',
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 
   ftTitle: {
     fontWeight: 600,
     fontSize: 24,
     marginTop: 50,
+  },
+
+  playerList: {
+    marginRight: '3%',
+    marginLeft: '3%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  playerListTitle: {
+    fontSize: 12,
+    color: colorNameToHex('regentgray'),
+    fontWeight: 600,
+    marginBottom: 20,
   },
 };
 

@@ -170,9 +170,18 @@ const Home = ({
         <h2 style={styles.ftTitle}>{labels.featuredGamers}</h2>
         {homeRecord
         && <div style={styles.playersListContainer}>
-          <Playerlist goToPlayer={setAndGoToPlayer} players={homeRecord.recentReviewedPlayers} />
-          <Playerlist goToPlayer={setAndGoToPlayer} players={homeRecord.highestRatedPlayers} />
-          <Playerlist goToPlayer={setAndGoToPlayer} players={homeRecord.mostReviewedPlayers} />
+          <div style={styles.playerList}>
+            <span style={styles.playerListTitle}>{labels.recent.toUpperCase()}</span>
+            <Playerlist goToPlayer={setAndGoToPlayer} players={homeRecord.recentReviewedPlayers} />
+          </div>
+          <div style={styles.playerList}>
+            <span style={styles.playerListTitle}>{labels.highestRated.toUpperCase()}</span>
+            <Playerlist goToPlayer={setAndGoToPlayer} players={homeRecord.highestRatedPlayers} />
+          </div>
+          <div style={styles.playerList}>
+            <span style={styles.playerListTitle}>{labels.mostReviewed.toUpperCase()}</span>
+            <Playerlist goToPlayer={setAndGoToPlayer} players={homeRecord.mostReviewedPlayers} />
+          </div>
           </div>
         }
       </div>

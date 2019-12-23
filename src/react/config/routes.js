@@ -12,6 +12,10 @@ export const getHomeUrl = () => APP_URL_BASE;
 
 export const getSettingsUrl = () => Localization.Urls.settingsUrl;
 
+export const getPrivacyPolicyUrl = () => Localization.Urls.privacyPolicy;
+
+export const getTermsAndConditionsUrl = () => Localization.Urls.termsAndConditions;
+
 export const getGamerDetailsUrl = (platform, region, game, gamertag) => {
   let gamerDetailsUrl = Localization.Urls.gamerDetailsUrl;
 

@@ -12,9 +12,14 @@ import {
   getSettingsUrl,
   getValidateAccountUrl,
   getValidatePasswordUrl,
+  getPrivacyPolicyUrl,
+  getTermsAndConditionsUrl,
 } from '../config/routes';
 import NotificationsManager from '../components/containers/notifiationsmanager/NotificationsManager';
 import ValidatePassword from '../components/containers/validatepassword/ValidatePassword';
+import TermsAndConditions from '../components/containers/termsandconditions/TermsAndConditions';
+import PrivacyPolicy from '../components/containers/privacypolicy/PrivacyPolicy';
+
 
 const Home = React.lazy(() => import('../components/containers/home/Home'));
 const GamerDetails = React.lazy(() => import('../components/containers/gamerdetails/GamerDetails'));
@@ -42,6 +47,14 @@ const AppRouter = ({ cookies }) => {
     {
       path: getValidatePasswordUrl(),
       component: ValidatePassword,
+    },
+    {
+      path: getPrivacyPolicyUrl(),
+      component: PrivacyPolicy,
+    },
+    {
+      path: getTermsAndConditionsUrl(),
+      component: TermsAndConditions,
     },
   ];
 

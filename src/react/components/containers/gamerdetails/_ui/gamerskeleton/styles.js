@@ -5,6 +5,7 @@ const styles = {
     justifyContent: 'flex-start',
     alignItems: 'center',
     position: 'relative',
+    paddingBottom: 20,
   },
 
   navHeader: {

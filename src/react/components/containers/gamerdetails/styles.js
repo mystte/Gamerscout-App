@@ -1,6 +1,7 @@
 const styles = {
   container: {
     alignItems: 'center',
+    paddingBottom: 50,
   },
 };
 

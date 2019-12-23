@@ -18,6 +18,7 @@ import GamerNotFound from './_ui/gamernotfound/GamerNotFound';
 import GamerSkeleton from './_ui/gamerskeleton/GamerSkeleton';
 import styles from './styles';
 import { getGamerDetailsUrl } from '../../../config/routes';
+import Footer from '../footer/Footer';
 
 const mapStateToProps = (state) => ({
   config: state.app.get('data'),
@@ -178,6 +179,7 @@ class GamerDetails extends PureComponent {
         {(!this.props.loading && !this.props.gamerData)
           && <GamerNotFound />
         }
+        <Footer />
       </React.Fragment>
     );
   }

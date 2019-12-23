@@ -2,5 +2,7 @@
   "validateAccountUrl": "/v/{token}",
   "validatePasswordUrl": "/p/{token}",
   "gamerDetailsUrl": "/gamer/{platform}/{region}/{game}/{gamertag}",
-  "settingsUrl": "/settings"
+  "settingsUrl": "/settings",
+  "privacyPolicy": "/privacyPolicy",
+  "termsAndConditions": "/termsAndConditions"
 }

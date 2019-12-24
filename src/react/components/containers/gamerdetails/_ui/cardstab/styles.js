@@ -21,7 +21,7 @@ const styles = {
     minWidth: 590,
     width: '70vw',
     maxWidth: 730,
-    height: 720,
+    height: 'auto',
     marginRight: 15,
     marginLeft: 15,
     marginTop: 30,

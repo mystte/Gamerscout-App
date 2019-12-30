@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import Localization from '../../../../../../../config/localization/Localization';
@@ -6,42 +6,46 @@ import Button, { BUTTON_THEME } from '../../../../../../views/elements/button/Bu
 import CommentArea from './_ui/commentarea/CommentArea';
 import styles from './styles';
 
-class ReviewSection extends PureComponent {
-  static propTypes = {
-    onReviewSubmitClick: PropTypes.func.isRequired,
-    preselect: PropTypes.string,
+const ReviewSection = ({ preselect, onReviewSubmitClick }) => {
+  const labels = Localization.Labels.gamerDetails.attributesCard.reviewSection;
+  const [selectedAttributes, setSelectedAttributes] = useState([]);
+
+  const onSelectAttribute = (attr) => {
+    setSelectedAttributes([...selectedAttributes, attr]);
   };
 
-  static defaultProps = {
-    preselect: null,
+  const onSubmit = () => {
+    setSelectedAttributes([]);
+    onReviewSubmitClick({ selectedAttributes });
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-    };
-  }
-
-  render() {
-    const labels = Localization.Labels.gamerDetails.attributesCard.reviewSection;
-
-    return (
-      <div style={styles.container}>
-        <div style={styles.title}>{labels.title}</div>
-        <CommentArea
-          preselect={this.props.preselect}
+  return (
+    <div style={styles.container}>
+      <div style={styles.title}>{labels.title}</div>
+      <CommentArea
+        preselect={preselect}
+        onReviewSubmitClick={onSubmit}
+        selectedAttributes={selectedAttributes}
+        onSelectAttribute={onSelectAttribute}
+      />
+      <div style={styles.reviewButton}>
+        <Button
+          label={labels.review}
+          onClick={onSubmit}
+          theme={BUTTON_THEME.GREY}
         />
-        <div style={styles.reviewButton}>
-          <Button
-            label={labels.review}
-            onClick={this.props.onReviewSubmitClick}
-            theme={BUTTON_THEME.GREY}
-          />
-        </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
+
+ReviewSection.propTypes = {
+  onReviewSubmitClick: PropTypes.func.isRequired,
+  preselect: PropTypes.string,
+};
+
+ReviewSection.defaultProps = {
+
+};
 
 export default ReviewSection;

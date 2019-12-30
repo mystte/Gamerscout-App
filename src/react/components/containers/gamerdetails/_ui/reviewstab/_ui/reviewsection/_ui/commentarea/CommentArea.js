@@ -1,13 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import Localization from '../../../../../../../../../config/localization/Localization';
 import styles from './styles';
 import ApprovalsToggle from './_ui/approvalstoggle/ApprovalsToggle';
 import AddButton from '../../../../../../../../views/addbutton/AddButton';
+import AttributesModal from '../attributesmodal/AttributesModal';
+import AttrIcon from '../attricon/AttrIcon';
 
-const CommentArea = ({ preselect }) => {
+const CommentArea = ({ preselect, selectedAttributes, onSelectAttribute }) => {
   const labels = Localization.Labels.gamerDetails.attributesCard.reviewSection;
+  const [showAttributes, setShowAttributes] = useState(false);
+
+  const renderSelectedAttributes = () => {
+    console.log('selectedAttributes = ', selectedAttributes);
+
+    return selectedAttributes.map((attr) => {
+      console.log(attr);
+      return (<span style={styles.attributeIconContainer} key={attr.id}>
+        <AttrIcon attribute={attr} />
+      </span>);
+    });
+  };
 
   return (
     <div style={styles.container}>
@@ -22,9 +36,15 @@ const CommentArea = ({ preselect }) => {
           preselect={preselect}
         />
         <div style={styles.attributesContainer}>
+          {renderSelectedAttributes()}
           <AddButton
-            onClick={() => {}}
+            onClick={() => {
+              setShowAttributes(!showAttributes);
+            }}
           />
+          {showAttributes && <AttributesModal
+            onSelectAttribute={onSelectAttribute}
+          />}
           <span style={styles.attributesLabel}>{labels.attributes}</span>
         </div>
       </div>
@@ -34,10 +54,13 @@ const CommentArea = ({ preselect }) => {
 
 CommentArea.propTypes = {
   preselect: PropTypes.string,
+  selectedAttributes: PropTypes.array,
+  onSelectAttribute: PropTypes.func.isRequired,
 };
 
 CommentArea.defaultProps = {
   preselect: null,
+  selectedAttributes: [],
 };
 
 export default CommentArea;

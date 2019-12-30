@@ -58,6 +58,7 @@ const styles = {
   },
 
   attributesContainer: {
+    position: 'relative',
     paddingLeft: 15,
     borderLeftWidth: 1,
     borderLeftColor: colorNameToHex('dimgrey'),
@@ -67,6 +68,12 @@ const styles = {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+
+  attributeIconContainer: {
+    marginRight: -13,
+    backgroundColor: colorNameToHex('darkgrey'),
+    borderRadius: '50%',
   },
 
   attributeButton: {

@@ -7,20 +7,24 @@ import ApprovalsToggle from './_ui/approvalstoggle/ApprovalsToggle';
 import AddButton from '../../../../../../../../views/addbutton/AddButton';
 import AttributesModal from '../attributesmodal/AttributesModal';
 import AttrIcon from '../attricon/AttrIcon';
+import Button from '../../../../../../../../views/elements/button/Button';
 
 const CommentArea = ({ preselect, selectedAttributes, onSelectAttribute }) => {
   const labels = Localization.Labels.gamerDetails.attributesCard.reviewSection;
   const [showAttributes, setShowAttributes] = useState(false);
 
   const renderSelectedAttributes = () => {
-    console.log('selectedAttributes = ', selectedAttributes);
+    const containerStyle = selectedAttributes.length > 0 ? styles.attributesWrapper : null;
 
-    return selectedAttributes.map((attr) => {
-      console.log(attr);
-      return (<span style={styles.attributeIconContainer} key={attr.id}>
+    const renderedAttributes = selectedAttributes.map((attr) => (
+      <div style={styles.attributeIconContainer} key={attr.id}>
         <AttrIcon attribute={attr} />
-      </span>);
-    });
+      </div>));
+
+    return <div style={containerStyle}>
+      <Button />
+      {renderedAttributes}
+    </div>;
   };
 
   return (

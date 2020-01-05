@@ -11,7 +11,12 @@ const ReviewSection = ({ preselect, onReviewSubmitClick }) => {
   const [selectedAttributes, setSelectedAttributes] = useState([]);
 
   const onSelectAttribute = (attr) => {
-    setSelectedAttributes([...selectedAttributes, attr]);
+    let isAttrValidated = true;
+
+    if (selectedAttributes.length >= 2
+        || selectedAttributes.find((el) => el.id === attr.id)) isAttrValidated = false;
+
+    if (isAttrValidated) setSelectedAttributes([...selectedAttributes, attr]);
   };
 
   const onSubmit = () => {

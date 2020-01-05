@@ -9,7 +9,6 @@ import SignupPopup from '../../../containers/navbar/_ui/signuppopup/SignupPopup'
 import ForgetPasswordPopup from '../../../containers/navbar/_ui/forgetpasswordpopup/ForgetPasswordPopup';
 import { POPUP_TYPE } from '../../../../datamanager/models/PopupRecord';
 import ConfirmPassword from './_ui/confirmpassword/ConfirmPassword';
-import AttributesPopup from '../../../containers/gamerdetails/_ui/reviewstab/_ui/reviewsection/_ui/attributespopup/AttributesPopup';
 
 const Popup = ({
   togglePopup,
@@ -28,8 +27,6 @@ const Popup = ({
       result = <ForgetPasswordPopup />;
     } else if (type === POPUP_TYPE.CONFIRM_PWD) {
       result = <ConfirmPassword />;
-    } else if (type === POPUP_TYPE.ATTRIBUTES_LIST) {
-      result = <AttributesPopup />;
     }
     return result;
   };

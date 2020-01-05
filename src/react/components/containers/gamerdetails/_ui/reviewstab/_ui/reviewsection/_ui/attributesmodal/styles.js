@@ -5,7 +5,7 @@ const styles = {
     width: 245,
     height: 233,
     position: 'absolute',
-    top: '100%',
+    top: 37,
     left: 10,
     backgroundColor: colorNameToHex('ebonyclay'),
     overflowY: 'auto',

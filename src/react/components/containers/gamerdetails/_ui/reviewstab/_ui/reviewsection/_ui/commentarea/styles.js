@@ -57,6 +57,11 @@ const styles = {
     bottom: 46,
   },
 
+  attributesWrapper: {
+    marginRight: 26,
+    flexDirection: 'row',
+  },
+
   attributesContainer: {
     position: 'relative',
     paddingLeft: 15,

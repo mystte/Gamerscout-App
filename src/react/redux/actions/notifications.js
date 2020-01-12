@@ -1,13 +1,7 @@
-
 import { NOTIFICATIONS } from './actionTypes';
 import NotificationRecord from '../../datamanager/models/NotificationRecord';
 
-export function pushNotification({
-  record,
-  title,
-  type,
-  isPersistent,
-}) {
+export function pushNotification({ record, title, type, isPersistent }) {
   let notifRecord = record;
 
   if (!notifRecord) {

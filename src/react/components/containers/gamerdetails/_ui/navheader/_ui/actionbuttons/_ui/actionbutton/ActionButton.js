@@ -13,29 +13,24 @@ export const BUTTON_TYPE = {
   LIVE_MATCH: 'liveMatch',
 };
 
-const ActionButton = ({
-  selected,
-  type,
-  onClick,
-}) => {
+const ActionButton = ({ selected, type, onClick }) => {
   let buttonStyle = { ...styles.button };
-  if (type === BUTTON_TYPE.LIVE_MATCH) buttonStyle = { ...buttonStyle, ...styles.lastButton };
+  if (type === BUTTON_TYPE.LIVE_MATCH)
+    buttonStyle = { ...buttonStyle, ...styles.lastButton };
   if (selected) buttonStyle = { ...buttonStyle, ...styles.selected };
 
   return (
     <button
       style={buttonStyle}
-      onClick={() => { onClick(type); }}
+      onClick={() => {
+        onClick(type);
+      }}
     >
-      {type === BUTTON_TYPE.LIVE_MATCH
-        && <div style={styles.icon}>
-          <SVGIcon
-            name='live-match'
-            width={8}
-            height={8}
-          />
+      {type === BUTTON_TYPE.LIVE_MATCH && (
+        <div style={styles.icon}>
+          <SVGIcon name="live-match" width={8} height={8} />
         </div>
-      }
+      )}
       <div style={styles.label}>{Localization.Labels.gamerDetails[type]}</div>
     </button>
   );

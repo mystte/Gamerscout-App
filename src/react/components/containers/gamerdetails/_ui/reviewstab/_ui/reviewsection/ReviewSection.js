@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import Localization from '../../../../../../../config/localization/Localization';
-import Button, { BUTTON_THEME } from '../../../../../../views/elements/button/Button';
+import Button, {
+  BUTTON_THEME,
+} from '../../../../../../views/elements/button/Button';
 import CommentArea from './_ui/commentarea/CommentArea';
 import styles from './styles';
 
@@ -10,11 +12,14 @@ const ReviewSection = ({ preselect, onReviewSubmitClick }) => {
   const labels = Localization.Labels.gamerDetails.attributesCard.reviewSection;
   const [selectedAttributes, setSelectedAttributes] = useState([]);
 
-  const onSelectAttribute = (attr) => {
+  const onSelectAttribute = attr => {
     let isAttrValidated = true;
 
-    if (selectedAttributes.length >= 2
-        || selectedAttributes.find((el) => el.id === attr.id)) isAttrValidated = false;
+    if (
+      selectedAttributes.length >= 2 ||
+      selectedAttributes.find(el => el.id === attr.id)
+    )
+      isAttrValidated = false;
 
     if (isAttrValidated) setSelectedAttributes([...selectedAttributes, attr]);
   };
@@ -46,11 +51,9 @@ const ReviewSection = ({ preselect, onReviewSubmitClick }) => {
 
 ReviewSection.propTypes = {
   onReviewSubmitClick: PropTypes.func.isRequired,
-  preselect: PropTypes.string,
+  preselect: PropTypes.string.isRequired,
 };
 
-ReviewSection.defaultProps = {
-
-};
+ReviewSection.defaultProps = {};
 
 export default ReviewSection;

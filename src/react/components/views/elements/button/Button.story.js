@@ -6,10 +6,5 @@ import Button from './Button';
 storiesOf('Elements/Button', module)
   .addDecorator(withKnobs)
   .add('Default', () => {
-
-    return (
-      <Button
-        label={text('Label', 'Delete')}
-      />
-    );
+    return <Button label={text('Label', 'Delete')} />;
   });

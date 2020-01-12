@@ -3,31 +3,22 @@ import React, { PureComponent } from 'react';
 import styles from './styles';
 
 class PureComponentTest extends PureComponent {
-  static propTypes = {
-  };
+  static propTypes = {};
 
-  static defaultProps = {
-  };
+  static defaultProps = {};
 
   constructor(props) {
     super(props);
 
-    this.state = {
-    };
+    this.state = {};
   }
 
-  componentDidMount() {
-  }
+  componentDidMount() {}
 
-  componentWillUnmount() {
-  }
+  componentWillUnmount() {}
 
   render() {
-    return (
-      <div style={styles.container}>
-        PureComponent
-      </div>
-    );
+    return <div style={styles.container}>PureComponent</div>;
   }
 }
 

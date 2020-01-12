@@ -47,7 +47,6 @@ const styles = {
     fontSize: 12,
     color: colorNameToHex('regentgray'),
   },
-
 };
 
 export default styles;

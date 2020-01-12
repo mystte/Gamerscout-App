@@ -16,39 +16,46 @@ const defaultProps = {
   filtered: List(ReviewRecord),
 };
 
-const ExtendsWith = (superclass) => class extends superclass {
-  applyReviewsFilter(show, filterBy) {
-    let updatedFilteredReviews = this.reviews;
+const ExtendsWith = superclass =>
+  class extends superclass {
+    applyReviewsFilter(show, filterBy) {
+      let updatedFilteredReviews = this.reviews;
 
-    if (show === REVIEW_FILTER.SHOW_APPROVALS) {
-      updatedFilteredReviews = this.reviews.filter((review) => (
-        review.type === REVIEW_TYPE.APPROVAL
-      ));
-    } else if (show === REVIEW_FILTER.SHOW_DISAPPROVALS) {
-      updatedFilteredReviews = this.reviews.filter((review) => (
-        review.type === REVIEW_TYPE.DISAPPROVAL
-      ));
+      if (show === REVIEW_FILTER.SHOW_APPROVALS) {
+        updatedFilteredReviews = this.reviews.filter(
+          review => review.type === REVIEW_TYPE.APPROVAL
+        );
+      } else if (show === REVIEW_FILTER.SHOW_DISAPPROVALS) {
+        updatedFilteredReviews = this.reviews.filter(
+          review => review.type === REVIEW_TYPE.DISAPPROVAL
+        );
+      }
+
+      updatedFilteredReviews = updatedFilteredReviews.sort((a, b) => {
+        if (filterBy === REVIEW_FILTER.NEWEST) {
+          return moment(b.date).valueOf() - moment(a.date).valueOf();
+        }
+        return moment(a.date).valueOf() - moment(b.date).valueOf();
+      });
+
+      return this.set('filtered', updatedFilteredReviews);
     }
 
-    updatedFilteredReviews = updatedFilteredReviews.sort((a, b) => {
-      if (filterBy === REVIEW_FILTER.NEWEST) {
-        return moment(b.date).valueOf() - moment(a.date).valueOf();
-      }
-      return moment(a.date).valueOf() - moment(b.date).valueOf();
-    });
+    static get defaultProps() {
+      return defaultProps;
+    }
 
-    return this.set('filtered', updatedFilteredReviews);
-  }
+    static get ExtendsWith() {
+      return ExtendsWith;
+    }
+  };
 
-  static get defaultProps() { return defaultProps; }
-
-  static get ExtendsWith() { return ExtendsWith; }
-};
-
-export default class ReviewsCardRecord extends ExtendsWith(Record(defaultProps, 'ReviewsCardRecord')) {
+export default class ReviewsCardRecord extends ExtendsWith(
+  Record(defaultProps, 'ReviewsCardRecord')
+) {
   static apiParser(data) {
     const reviewsList = data.reviews
-      ? data.reviews.map((reviewData) => ReviewRecord.apiParser(reviewData))
+      ? data.reviews.map(reviewData => ReviewRecord.apiParser(reviewData))
       : [];
 
     const parsedData = {

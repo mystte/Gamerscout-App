@@ -25,13 +25,20 @@ const defaultProps = {
   show: Maybe(Boolean),
 };
 
-const ExtendsWith = (superclass) => class extends superclass {
-  static get defaultProps() { return defaultProps; }
+const ExtendsWith = superclass =>
+  class extends superclass {
+    static get defaultProps() {
+      return defaultProps;
+    }
 
-  static get ExtendsWith() { return ExtendsWith; }
-};
+    static get ExtendsWith() {
+      return ExtendsWith;
+    }
+  };
 
-export default class NotificationRecord extends ExtendsWith(Record(defaultProps, 'NotificationRecord')) {
+export default class NotificationRecord extends ExtendsWith(
+  Record(defaultProps, 'NotificationRecord')
+) {
   static apiParser(data) {
     const parsedData = {
       title: data.title ? data.title : null,
@@ -42,15 +49,11 @@ export default class NotificationRecord extends ExtendsWith(Record(defaultProps,
     return new NotificationRecord(parsedData);
   }
 
-  static createNotif({
-    type,
-    title,
-    isPersistent,
-  }) {
+  static createNotif({ type, title, isPersistent }) {
     return new NotificationRecord({
-      type: (type || NOTIFICATION_TYPE.DEFAULT),
+      type: type || NOTIFICATION_TYPE.DEFAULT,
       title,
-      isPersistent: (isPersistent || false),
+      isPersistent: isPersistent || false,
       show: true,
     });
   }

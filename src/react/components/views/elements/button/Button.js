@@ -41,18 +41,17 @@ class Button extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = {
-    };
+    this.state = {};
   }
 
   render() {
-    const iconContainerStyle = (this.props.theme === BUTTON_THEME.SIMPLE)
-      ? {} : styles.iconContainer;
-    const buttonDisabledStyle = (this.props.disabled) ? styles.disabled : null;
+    const iconContainerStyle =
+      this.props.theme === BUTTON_THEME.SIMPLE ? {} : styles.iconContainer;
+    const buttonDisabledStyle = this.props.disabled ? styles.disabled : null;
 
     return (
       <button
-        onClick={(this.props.disabled) ? null : this.props.onClick}
+        onClick={this.props.disabled ? null : this.props.onClick}
         style={{
           ...styles.container,
           ...styles[this.props.theme],
@@ -60,11 +59,11 @@ class Button extends PureComponent {
           ...buttonDisabledStyle,
         }}
       >
-        { this.props.icon
-          && <span style={iconContainerStyle}>
-            <SVGIcon width='16' height='16' name={this.props.icon} />
+        {this.props.icon && (
+          <span style={iconContainerStyle}>
+            <SVGIcon width="16" height="16" name={this.props.icon} />
           </span>
-        }
+        )}
         <span>{this.props.label}</span>
       </button>
     );

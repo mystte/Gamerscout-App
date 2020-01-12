@@ -3,24 +3,18 @@ import PropTypes from 'prop-types';
 
 import styles from './styles';
 
-const NavElem = ({
-  label,
-  selected,
-  onClick,
-  type,
-}) => {
-  const labelStyle = (selected) ? {
-    ...styles.container,
-    ...styles.selected,
-  } : {
-    ...styles.container,
-  };
+const NavElem = ({ label, selected, onClick, type }) => {
+  const labelStyle = selected
+    ? {
+        ...styles.container,
+        ...styles.selected,
+      }
+    : {
+        ...styles.container,
+      };
 
   return (
-    <div
-      onClick={() => onClick(type)}
-      style={labelStyle}
-    >
+    <div onClick={() => onClick(type)} style={labelStyle}>
       {label}
     </div>
   );

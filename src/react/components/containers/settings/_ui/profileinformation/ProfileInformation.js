@@ -8,14 +8,10 @@ import Input from '../../../../views/elements/input/Input';
 import Button, { BUTTON_THEME } from '../../../../views/elements/button/Button';
 import Validator from '../../../../../datamanager/api/Validator';
 
-const ProfileInformation = ({
-  isEditMode,
-  username,
-  onUpdate,
-}) => {
+const ProfileInformation = ({ isEditMode, username, onUpdate }) => {
   const labels = Localization.Labels.settings.profile;
   const errors = Localization.Errors.userUpdate;
-  const editLabel = (isEditMode) ? labels.close : labels.edit;
+  const editLabel = isEditMode ? labels.close : labels.edit;
   const [usernameError, setUsernameError] = useState(null);
   const [gsId, setGsId] = useState(null);
   const maxInputLength = '50';
@@ -24,14 +20,15 @@ const ProfileInformation = ({
     setUsernameError(null);
   };
 
-  const getDataContainerStyle = () => (
-    (isEditMode) ? {
-      ...styles.dataContainer,
-      ...styles.dataContainerEditMode,
-    } : {
-      ...styles.dataContainer,
-    }
-  );
+  const getDataContainerStyle = () =>
+    isEditMode
+      ? {
+          ...styles.dataContainer,
+          ...styles.dataContainerEditMode,
+        }
+      : {
+          ...styles.dataContainer,
+        };
 
   const onProfileSubmit = () => {
     const valid = Validator.doUsernameValidator(gsId);
@@ -43,11 +40,11 @@ const ProfileInformation = ({
     } else setUsernameError(valid);
   };
 
-  const onCancelClick = (section) => {
+  const onCancelClick = section => {
     onUpdate(section, null);
   };
 
-  const updateGsId = (newId) => {
+  const updateGsId = newId => {
     clearErrors();
     setGsId(newId);
   };
@@ -56,36 +53,38 @@ const ProfileInformation = ({
     let renderDataContentView = null;
 
     if (isEditMode) {
-      renderDataContentView = (<div style={styles.inputDataContainer}>
-        <div style={styles.inputContainer}>
-          <Input
-            focus
-            placeholder={username}
-            length={maxInputLength}
-            value={gsId}
-            onChange={(e) => updateGsId(e.target.value)}
-            error={usernameError !== true && usernameError !== null}
-            message={errors[usernameError]}
-          />
-        </div>
-        <div style={styles.submitlButtonsContainer}>
-          <div style={styles.cancelButtonContainer}>
-            <Button
-              label={labels.cancel}
-              theme={BUTTON_THEME.GREY}
-              onClick={() => onCancelClick(NAV_SECTION.PROFILE)}
+      renderDataContentView = (
+        <div style={styles.inputDataContainer}>
+          <div style={styles.inputContainer}>
+            <Input
+              focus
+              placeholder={username}
+              length={maxInputLength}
+              value={gsId}
+              onChange={e => updateGsId(e.target.value)}
+              error={usernameError !== true && usernameError !== null}
+              message={errors[usernameError]}
             />
           </div>
-          <div style={styles.cancelButtonContainer}>
-            <Button
-              label={labels.submit}
-              theme={BUTTON_THEME.BLUE}
-              onClick={onProfileSubmit}
-              disabled={Validator.doUpdateGamerscoutIdDisableValidator(gsId)}
-            />
+          <div style={styles.submitlButtonsContainer}>
+            <div style={styles.cancelButtonContainer}>
+              <Button
+                label={labels.cancel}
+                theme={BUTTON_THEME.GREY}
+                onClick={() => onCancelClick(NAV_SECTION.PROFILE)}
+              />
+            </div>
+            <div style={styles.cancelButtonContainer}>
+              <Button
+                label={labels.submit}
+                theme={BUTTON_THEME.BLUE}
+                onClick={onProfileSubmit}
+                disabled={Validator.doUpdateGamerscoutIdDisableValidator(gsId)}
+              />
+            </div>
           </div>
         </div>
-      </div>);
+      );
     }
     return renderDataContentView;
   };
@@ -94,12 +93,13 @@ const ProfileInformation = ({
     <div style={styles.container}>
       <div style={styles.title}>{labels.title}</div>
       <div className="settings-animation" style={getDataContainerStyle()}>
-        <div style={styles.topContainer} onClick={() => onUpdate(NAV_SECTION.PROFILE, null)}>
+        <div
+          style={styles.topContainer}
+          onClick={() => onUpdate(NAV_SECTION.PROFILE, null)}
+        >
           <div style={styles.infoTitle}>{labels.info}</div>
           <div style={styles.infoDesc}>{labels.desc}</div>
-          <div style={styles.edit}>
-            {editLabel}
-          </div>
+          <div style={styles.edit}>{editLabel}</div>
         </div>
         {renderDataContent()}
       </div>

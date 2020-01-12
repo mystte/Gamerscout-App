@@ -69,7 +69,6 @@ const styles = {
     color: colorNameToHex('white'),
     marginRight: 5,
   },
-
 };
 
 export default styles;

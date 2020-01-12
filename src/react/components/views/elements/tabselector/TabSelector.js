@@ -8,8 +8,7 @@ class TabSelector extends PureComponent {
     contentList: PropTypes.array.isRequired,
   };
 
-  static defaultProps = {
-  };
+  static defaultProps = {};
 
   constructor(props) {
     super(props);
@@ -19,20 +18,23 @@ class TabSelector extends PureComponent {
     };
   }
 
-  onSelectTab = (idx) => {
+  onSelectTab = idx => {
     if (idx !== this.state.selectedTab) {
       this.setState({
         selectedTab: idx,
       });
     }
-  }
+  };
 
-  renderHeader = () => (
+  renderHeader = () =>
     this.props.headerList.map((header, idx) => {
-      const tabStyle = (idx === this.state.selectedTab) ? {
-        ...styles.headerTab,
-        ...styles.selectedTab,
-      } : styles.headerTab;
+      const tabStyle =
+        idx === this.state.selectedTab
+          ? {
+              ...styles.headerTab,
+              ...styles.selectedTab,
+            }
+          : styles.headerTab;
 
       return (
         <div
@@ -43,26 +45,20 @@ class TabSelector extends PureComponent {
           {header.name}
         </div>
       );
-    })
-  )
+    });
 
-  renderContent = () => (
-    this.props.contentList.map((content, idx) => ((idx === this.state.selectedTab)
-      ? content : null
-    ))
-  )
+  renderContent = () =>
+    this.props.contentList.map((content, idx) =>
+      idx === this.state.selectedTab ? content : null
+    );
 
   render() {
     if (!this.props.headerList && !this.props.contentList) return null;
 
     return (
       <div style={styles.container}>
-        <div style={styles.headerContainer}>
-          {this.renderHeader()}
-        </div>
-        <div style={styles.contentContainer}>
-          {this.renderContent()}
-        </div>
+        <div style={styles.headerContainer}>{this.renderHeader()}</div>
+        <div style={styles.contentContainer}>{this.renderContent()}</div>
       </div>
     );
   }

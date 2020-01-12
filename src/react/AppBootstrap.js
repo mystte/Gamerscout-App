@@ -4,16 +4,15 @@ import PropTypes from 'prop-types';
 import { withCookies } from 'react-cookie';
 
 import AppRouter from './router/AppRouter';
-import {
-  loadAppData,
-  togglePopup,
-} from './redux/actions/app';
+import { loadAppData, togglePopup } from './redux/actions/app';
 import Localization from './config/localization/Localization';
 import Popup from './components/views/elements/popup/Popup';
 import { pushNotification } from './redux/actions/notifications';
-import NotificationRecord, { MOCKED_NOTIFICATION } from './datamanager/models/NotificationRecord';
+import NotificationRecord, {
+  MOCKED_NOTIFICATION,
+} from './datamanager/models/NotificationRecord';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   config: state.app.get('data'),
   user: state.app.getIn(['data', 'user']),
   popupData: state.app.getIn(['data', 'popupData']),
@@ -43,7 +42,7 @@ class AppBootstrap extends PureComponent {
 
   togglePopup = () => {
     this.props.dispatch(togglePopup());
-  }
+  };
 
   componentDidMount() {
     this.props.dispatch(loadAppData(this.props.cookies.cookies));
@@ -56,38 +55,42 @@ class AppBootstrap extends PureComponent {
 
   componentDidUpdate() {
     if (this.props.user) {
-      if (this.props.cookies.get('gamerscout-api-session') !== this.props.user.get('sessionId')) {
-        this.props.cookies.set('gamerscout-api-session', this.props.user.get('sessionId'));
+      if (
+        this.props.cookies.get('gamerscout-api-session') !==
+        this.props.user.get('sessionId')
+      ) {
+        this.props.cookies.set(
+          'gamerscout-api-session',
+          this.props.user.get('sessionId')
+        );
       }
 
       if (!this.props.user.validated && !this.props.cookies.get('gs-notif')) {
         this.props.cookies.set('gs-notif', 1, { maxAge: 3600 });
         this.props.dispatch(
           pushNotification({
-            record: NotificationRecord.getMockedNotif(MOCKED_NOTIFICATION.INVALID_ACCOUNT),
-          }),
+            record: NotificationRecord.getMockedNotif(
+              MOCKED_NOTIFICATION.INVALID_ACCOUNT
+            ),
+          })
         );
       }
     }
   }
 
   render() {
-    const showPopup = this.props.popupData ? this.props.popupData.get('showPopup') : false;
+    const showPopup = this.props.popupData
+      ? this.props.popupData.get('showPopup')
+      : false;
     const type = this.props.popupData ? this.props.popupData.get('type') : null;
 
     return (
       <React.Fragment>
-        <AppRouter cookies={ this.props.cookies } />
-        <Popup
-          show={showPopup}
-          togglePopup={this.togglePopup}
-          type={type}
-        />
-      </ React.Fragment>
+        <AppRouter cookies={this.props.cookies} />
+        <Popup show={showPopup} togglePopup={this.togglePopup} type={type} />
+      </React.Fragment>
     );
   }
 }
 
-export default withCookies(
-  connect(mapStateToProps)(AppBootstrap),
-);
+export default withCookies(connect(mapStateToProps)(AppBootstrap));

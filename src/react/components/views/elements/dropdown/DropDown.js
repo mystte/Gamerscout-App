@@ -27,47 +27,63 @@ const DropDown = ({
 }) => {
   if (options.length === 0) return null;
   const [select, setSelect] = useState(1);
-  const selectedLabel = (options[select - 1].label)
+  const selectedLabel = options[select - 1].label
     ? options[select - 1].label
     : options[select - 1].name;
   const { isOpen, toggle, node } = UseModal();
 
-  const onSelect = (selectedItemNumber) => {
+  const onSelect = selectedItemNumber => {
     setSelect(selectedItemNumber);
     if (onChange) onChange(options[selectedItemNumber - 1]);
   };
 
-  const getTextTransform = () => ({ textTransform: (uppercase) ? 'uppercase' : 'capitalize' });
+  const getTextTransform = () => ({
+    textTransform: uppercase ? 'uppercase' : 'capitalize',
+  });
 
   const renderSelectContent = () => {
-    let result = <span
-      style={{
-        ...styles.selectedLabel,
-        ...getTextTransform(),
-      }}>{selectedLabel}</span>;
+    let result = (
+      <span
+        style={{
+          ...styles.selectedLabel,
+          ...getTextTransform(),
+        }}
+      >
+        {selectedLabel}
+      </span>
+    );
 
     if (selectType === SELECT_TYPE.CUSTOM_CONTENT) {
-      result = <div style={{
-        ...styles.customSelect,
-        ...getTextTransform(),
-      }}>{selectContent}</div>;
+      result = (
+        <div
+          style={{
+            ...styles.customSelect,
+            ...getTextTransform(),
+          }}
+        >
+          {selectContent}
+        </div>
+      );
     }
 
     return result;
   };
 
-  const renderListView = () => (
+  const renderListView = () =>
     options.map((elem, idx) => {
-      const elemLabelStyle = (idx === select - 1 && !noSelectFeedback) ? {
-        ...styles.elemLabel,
-        ...styles.elemLabelSelect,
-        ...getTextTransform(),
-      } : {
-        ...styles.elemLabel,
-        ...getTextTransform(),
-      };
+      const elemLabelStyle =
+        idx === select - 1 && !noSelectFeedback
+          ? {
+              ...styles.elemLabel,
+              ...styles.elemLabelSelect,
+              ...getTextTransform(),
+            }
+          : {
+              ...styles.elemLabel,
+              ...getTextTransform(),
+            };
 
-      const elemLabel = (elem.label) ? elem.label : elem.name;
+      const elemLabel = elem.label ? elem.label : elem.name;
       return (
         <div
           className={'option'}
@@ -75,24 +91,22 @@ const DropDown = ({
           style={styles.listElem}
           onClick={() => onSelect(idx + 1)}
         >
-          <span
-            style={elemLabelStyle}
-            className='noselect'
-          >
+          <span style={elemLabelStyle} className="noselect">
             {elemLabel}
           </span>
         </div>
       );
-    })
-  );
+    });
 
   const getSelectContainerStyle = () => {
     let containerStyle = {
       ...styles.selectContainer,
       height,
     };
-    if (selectType === SELECT_TYPE.SIMPLE
-      || selectType === SELECT_TYPE.CUSTOM_CONTENT) {
+    if (
+      selectType === SELECT_TYPE.SIMPLE ||
+      selectType === SELECT_TYPE.CUSTOM_CONTENT
+    ) {
       containerStyle = {
         ...containerStyle,
         ...styles.selectSimple,
@@ -113,21 +127,15 @@ const DropDown = ({
       ref={node}
       className="dropdown noselect"
       onClick={toggle}
-      style={containerStyle}>
+      style={containerStyle}
+    >
       {renderSelectContent()}
-      <SVGIcon
-        name="dropdown-array"
-        width={7}
-        height={4}
-      />
-      {isOpen
-        && <div
-          className="listContainer shadow"
-          style={listViewContainerStyle}
-        >
+      <SVGIcon name="dropdown-array" width={7} height={4} />
+      {isOpen && (
+        <div className="listContainer shadow" style={listViewContainerStyle}>
           {renderListView()}
         </div>
-      }
+      )}
     </div>
   );
 };

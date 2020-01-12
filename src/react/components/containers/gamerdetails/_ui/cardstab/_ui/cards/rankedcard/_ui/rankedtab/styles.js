@@ -1,9 +1,7 @@
 import { colorNameToHex } from '../../../../../../../../../../utils/color';
 
 const styles = {
-  container: {
-
-  },
+  container: {},
 
   dataContainer: {
     justifyContent: 'center',

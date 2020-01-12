@@ -1,9 +1,6 @@
 import Immutable from 'immutable';
 import NotificationsManagerRecord from '../../datamanager/models/NotificationsManagerRecord';
-import {
-  NOTIFICATIONS,
-} from '../actions/actionTypes';
-
+import { NOTIFICATIONS } from '../actions/actionTypes';
 
 // Default state
 export const initialState = Immutable.fromJS({
@@ -17,10 +14,16 @@ export default function reducer(state = initialState, action) {
 
   switch (type) {
     case NOTIFICATIONS.PUSH:
-      return state.set('notificationsManagerRecord', state.get('notificationsManagerRecord').push(parameters.record));
+      return state.set(
+        'notificationsManagerRecord',
+        state.get('notificationsManagerRecord').push(parameters.record)
+      );
 
     case NOTIFICATIONS.DELETE:
-      return state.set('notificationsManagerRecord', state.get('notificationsManagerRecord').delete(parameters.idx));
+      return state.set(
+        'notificationsManagerRecord',
+        state.get('notificationsManagerRecord').delete(parameters.idx)
+      );
 
     default:
   }

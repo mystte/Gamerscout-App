@@ -5,10 +5,7 @@ import Localization from '../../../../../config/localization/Localization';
 import styles from './styles';
 import Input, { INPUT_TYPE } from '../../../../views/elements/input/Input';
 import Button, { BUTTON_THEME } from '../../../../views/elements/button/Button';
-import {
-  togglePopup,
-  doSignup,
-} from '../../../../../redux/actions/app';
+import { togglePopup, doSignup } from '../../../../../redux/actions/app';
 import { POPUP_TYPE } from '../../../../../datamanager/models/PopupRecord';
 import Validator from '../../../../../datamanager/api/Validator';
 import UseKeyPress from '../../../../views/hooks/UseKeyPress';
@@ -24,7 +21,7 @@ const SigninPopup = () => {
   const [errorMessage, setErrorMessage] = useState(null);
   const labels = Localization.Labels.signupPopup;
   const errorLabels = Localization.Errors.signup;
-  const apiError = useSelector((state) => state.app.get('error'));
+  const apiError = useSelector(state => state.app.get('error'));
   const dispatch = useDispatch();
   const enterPressed = UseKeyPress('Enter');
 
@@ -49,25 +46,27 @@ const SigninPopup = () => {
     }
   };
 
-  useEffect(() => (
-    () => {
+  useEffect(
+    () => () => {
       setWrongUsername(true);
       setWrongEmail(true);
-    }
-  ), [apiError]);
+    },
+    [apiError]
+  );
 
-  useEffect(() => (
-    () => {
+  useEffect(
+    () => () => {
       if (enterPressed) createAccount();
-    }
-  ), [enterPressed]);
+    },
+    [enterPressed]
+  );
 
   return (
     <div style={styles.container}>
       <div style={styles.title}>{labels.title}</div>
       <div style={styles.fieldsContainer}>
         <Input
-          onChange={(e) => setUsername(e.target.value)}
+          onChange={e => setUsername(e.target.value)}
           placeholder={labels.username}
           icon={'user-icon'}
           type={INPUT_TYPE.TEXT}
@@ -76,7 +75,7 @@ const SigninPopup = () => {
         />
         <span style={styles.inputSeparator} />
         <Input
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={e => setEmail(e.target.value)}
           placeholder={labels.email}
           icon={'email'}
           type={INPUT_TYPE.EMAIL}
@@ -84,11 +83,11 @@ const SigninPopup = () => {
         />
         <span style={styles.inputSeparator} />
         <Input
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={e => setPassword(e.target.value)}
           placeholder={labels.password}
           icon={'lock'}
           type={INPUT_TYPE.PASSWORD}
-          message={(apiError) ? errorLabels[apiError] : errorMessage}
+          message={apiError ? errorLabels[apiError] : errorMessage}
           error={wrongPassword}
         />
       </div>
@@ -99,19 +98,13 @@ const SigninPopup = () => {
           onClick={createAccount}
         />
         <span style={styles.inputSeparator} />
-        <FacebookButton
-          label={labels.facebook}
-        />
+        <FacebookButton label={labels.facebook} />
       </div>
       <div style={styles.aggreementContainer}>
         {Localization.Labels.formatString(
           labels.agreement,
-            <span style={styles.agreementButton}>
-              {labels.terms}
-            </span>,
-            <span style={styles.agreementButton}>
-              {labels.policy}
-            </span>,
+          <span style={styles.agreementButton}>{labels.terms}</span>,
+          <span style={styles.agreementButton}>{labels.policy}</span>
         )}
       </div>
       <div style={styles.signinContainer}>

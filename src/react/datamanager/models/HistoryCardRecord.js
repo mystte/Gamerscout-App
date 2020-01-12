@@ -24,13 +24,20 @@ const defaultProps = {
   teammates: Maybe(List(HistoryPlayerRecord)),
 };
 
-const ExtendsWith = (superclass) => class extends superclass {
-  static get defaultProps() { return defaultProps; }
+const ExtendsWith = superclass =>
+  class extends superclass {
+    static get defaultProps() {
+      return defaultProps;
+    }
 
-  static get ExtendsWith() { return ExtendsWith; }
-};
+    static get ExtendsWith() {
+      return ExtendsWith;
+    }
+  };
 
-export default class HistoryCardRecord extends ExtendsWith(Record(defaultProps, 'HistoryCardRecord')) {
+export default class HistoryCardRecord extends ExtendsWith(
+  Record(defaultProps, 'HistoryCardRecord')
+) {
   static apiParser(data) {
     const parsedData = {
       gameType: data.gameType,
@@ -51,8 +58,12 @@ export default class HistoryCardRecord extends ExtendsWith(Record(defaultProps, 
       spell2Id: data.spell2Id || null,
       teamId: data.teamId || null,
       items: data.items || null,
-      opponents: data.opponents.map((playerData) => HistoryPlayerRecord.apiParser(playerData)),
-      teammates: data.teammates.map((playerData) => HistoryPlayerRecord.apiParser(playerData)),
+      opponents: data.opponents.map(playerData =>
+        HistoryPlayerRecord.apiParser(playerData)
+      ),
+      teammates: data.teammates.map(playerData =>
+        HistoryPlayerRecord.apiParser(playerData)
+      ),
     };
 
     return new HistoryCardRecord(parsedData);

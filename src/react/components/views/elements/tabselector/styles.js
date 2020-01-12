@@ -26,9 +26,7 @@ const styles = {
     borderBottomWidth: 1,
   },
 
-  contentContainer: {
-
-  },
+  contentContainer: {},
 
   container: {
     margin: 15,

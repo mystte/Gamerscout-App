@@ -7,25 +7,18 @@ import styles from './styles';
 import UserActionsWidget from './_ui/useractionswidget/UserActionsWidget';
 import { USER_MENU_ACTIONS } from './enums';
 
-const UserMenu = ({
-  isAuthenticated,
-  userMenuActions,
-  user,
-}) => {
+const UserMenu = ({ isAuthenticated, userMenuActions, user }) => {
   const labels = Localization.Labels.navBar;
 
   return (
     <div style={styles.container}>
-      {isAuthenticated
-        && <div>
-          <UserActionsWidget
-            user={user}
-            onUserActions={userMenuActions}
-          />
+      {isAuthenticated && (
+        <div>
+          <UserActionsWidget user={user} onUserActions={userMenuActions} />
         </div>
-      }
-      {!isAuthenticated
-        && <div style={styles.signinSignupContainer}>
+      )}
+      {!isAuthenticated && (
+        <div style={styles.signinSignupContainer}>
           <Button
             label={labels.login}
             buttonStyle={styles.buttonLabel}
@@ -37,7 +30,7 @@ const UserMenu = ({
             onClick={() => userMenuActions(USER_MENU_ACTIONS.SIGNUP)}
           />
         </div>
-      }
+      )}
     </div>
   );
 };

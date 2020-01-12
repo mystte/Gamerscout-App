@@ -5,7 +5,9 @@ import styles from './styles';
 import ApprovalsCard from '../cardstab/_ui/cards/approvalscard/ApprovalsCard';
 import Review from './_ui/review/Review';
 import AttributesCard from './_ui/attributescard/AttributesCard';
-import ApprovalsCardRecord, { APPROVAL_TYPE } from '../../../../../datamanager/models/ApprovalsCardRecord';
+import ApprovalsCardRecord, {
+  APPROVAL_TYPE,
+} from '../../../../../datamanager/models/ApprovalsCardRecord';
 import DisapprovalsCardRecord from '../../../../../datamanager/models/DisapprovalsCardRecord';
 import ReviewsCardRecord from '../../../../../datamanager/models/ReviewsCardRecord';
 import ReviewSection from './_ui/reviewsection/ReviewSection';
@@ -31,18 +33,13 @@ class ReviewsTab extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = {
-    };
+    this.state = {};
   }
 
-  renderReviews = () => (
+  renderReviews = () =>
     this.props.reviewsCardRecord.filtered.map((review, idx) => (
-      (<Review
-        key={`review-${idx}`}
-        reviewRecord={review}
-      />)
-    ))
-  );
+      <Review key={`review-${idx}`} reviewRecord={review} />
+    ));
 
   render() {
     if (!this.props.reviewsCardRecord) return null;
@@ -60,17 +57,15 @@ class ReviewsTab extends PureComponent {
               type={APPROVAL_TYPE.DISAPPROVAL}
             />
           </div>
-          <AttributesCard
-            attributesList={this.props.attributesList}
-          />
+          <AttributesCard attributesList={this.props.attributesList} />
         </div>
         <div style={styles.reviewSectionContainer}>
           <ReviewSection
             onReviewSubmitClick={this.props.onReviewSubmitClick}
             preselect={this.props.preselect}
           />
-          {this.props.reviewsCardRecord.reviews.size > 0
-            && <div style={styles.reviewsListContainer}>
+          {this.props.reviewsCardRecord.reviews.size > 0 && (
+            <div style={styles.reviewsListContainer}>
               <div style={styles.reviewFilterContainer}>
                 <ReviewFilter
                   onReviewFilterChange={this.props.onReviewFilterChange}
@@ -78,7 +73,7 @@ class ReviewsTab extends PureComponent {
               </div>
               {this.renderReviews()}
             </div>
-          }
+          )}
         </div>
       </div>
     );

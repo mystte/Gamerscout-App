@@ -1,7 +1,9 @@
 import React from 'react';
 
 import Localization from '../../../../../../../../../../../../config/localization/Localization';
-import SVGIcon, { IMG_TYPE } from '../../../../../../../../../../../views/elements/svgicon/SVGIcon';
+import SVGIcon, {
+  IMG_TYPE,
+} from '../../../../../../../../../../../views/elements/svgicon/SVGIcon';
 import styles from './styles';
 
 const Unranked = () => (
@@ -12,7 +14,9 @@ const Unranked = () => (
       name={'lol/rankingIcons/unranked'}
       type={IMG_TYPE.PNG}
     />
-    <div style={styles.title}>{Localization.Labels.gamerDetails.rankedCard.unranked}</div>
+    <div style={styles.title}>
+      {Localization.Labels.gamerDetails.rankedCard.unranked}
+    </div>
   </div>
 );
 

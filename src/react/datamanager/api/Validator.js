@@ -1,7 +1,6 @@
 import validator from 'validator';
 import ERROR_TYPES from '../../config/localization/errors/errorTypes';
 
-
 export default class Validator {
   static doLoginValidator(email, password) {
     if (!validator.isEmail(email)) return ERROR_TYPES.ERR_WRONG_EMAIL;
@@ -30,7 +29,8 @@ export default class Validator {
 
   static doUsernameValidator(username) {
     if (!username) return ERROR_TYPES.ERR_USERNAME_REQUIRED;
-    if (validator.contains(username, ' ')) return ERROR_TYPES.ERR_USERNAME_CONTAINS_SPACE;
+    if (validator.contains(username, ' '))
+      return ERROR_TYPES.ERR_USERNAME_CONTAINS_SPACE;
 
     return true;
   }
@@ -56,9 +56,13 @@ export default class Validator {
   }
 
   static doCreatePasswordDisabledValidator(password, passwordConfirm) {
-    if (!password || !passwordConfirm
-    || (password !== passwordConfirm)
-    || (password.length < 6)) return true;
+    if (
+      !password ||
+      !passwordConfirm ||
+      password !== passwordConfirm ||
+      password.length < 6
+    )
+      return true;
 
     return false;
   }
@@ -69,15 +73,20 @@ export default class Validator {
     return false;
   }
 
-  static doUpdatePasswordDisabledValidator(currentPassword, password, passwordConfirm) {
+  static doUpdatePasswordDisabledValidator(
+    currentPassword,
+    password,
+    passwordConfirm
+  ) {
     if (!currentPassword || !password || !passwordConfirm) return true;
     if (
-      password !== passwordConfirm
-      || password === null
-      || password === ''
-      || password.length < 6
-      || currentPassword.length < 6
-    ) return true;
+      password !== passwordConfirm ||
+      password === null ||
+      password === '' ||
+      password.length < 6 ||
+      currentPassword.length < 6
+    )
+      return true;
     return false;
   }
 }

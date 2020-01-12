@@ -4,7 +4,7 @@ const useModal = () => {
   const [isOpen, setIsOpen] = useState(false);
   const node = useRef();
 
-  const handleClick = (e) => {
+  const handleClick = e => {
     if (node.current.contains(e.target)) {
       return;
     }

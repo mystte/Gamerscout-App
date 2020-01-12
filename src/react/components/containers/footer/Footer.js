@@ -5,7 +5,10 @@ import { Link } from 'react-router-dom';
 import Localization from '../../../config/localization/Localization';
 import styles from './styles';
 import SVGIcon from '../../views/elements/svgicon/SVGIcon';
-import { getPrivacyPolicyUrl, getTermsAndConditionsUrl } from '../../../config/routes';
+import {
+  getPrivacyPolicyUrl,
+  getTermsAndConditionsUrl,
+} from '../../../config/routes';
 
 const Footer = () => {
   const labels = Localization.Labels.footer;
@@ -13,9 +16,15 @@ const Footer = () => {
   return (
     <div style={styles.container}>
       <div style={styles.menuContainer}>
-        <a href="mailto:team@gamerscout.com" style={styles.link}>{labels.contact}</a>
-        <Link to={getPrivacyPolicyUrl()} style={styles.link}>{labels.privacyPolicy}</Link>
-        <Link to={getTermsAndConditionsUrl()} style={styles.link}>{labels.terms}</Link>
+        <a href="mailto:team@gamerscout.com" style={styles.link}>
+          {labels.contact}
+        </a>
+        <Link to={getPrivacyPolicyUrl()} style={styles.link}>
+          {labels.privacyPolicy}
+        </Link>
+        <Link to={getTermsAndConditionsUrl()} style={styles.link}>
+          {labels.terms}
+        </Link>
       </div>
       <div style={styles.socialContainer}>
         <a
@@ -23,40 +32,29 @@ const Footer = () => {
           target="_blank"
           rel="noreferrer noopener"
         >
-          <SVGIcon
-            height={18}
-            name="discord-logo"
-          />
+          <SVGIcon height={18} name="discord-logo" />
         </a>
         <a
           href="https://www.facebook.com/gamerscoutHQ/"
           target="_blank"
           rel="noreferrer noopener"
         >
-          <SVGIcon
-            height={18}
-            name="facebook"
-          />
+          <SVGIcon height={18} name="facebook" />
         </a>
         <a
           href="https://twitter.com/GamerscoutHQ"
           target="_blank"
           rel="noreferrer noopener"
         >
-          <SVGIcon
-            height={18}
-            name="twitter"
-          />
+          <SVGIcon height={18} name="twitter" />
         </a>
       </div>
     </div>
   );
 };
 
-Footer.propTypes = {
-};
+Footer.propTypes = {};
 
-Footer.defaultProps = {
-};
+Footer.defaultProps = {};
 
 export default Footer;

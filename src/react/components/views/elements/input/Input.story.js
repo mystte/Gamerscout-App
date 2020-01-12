@@ -6,7 +6,6 @@ import Input, { INPUT_TYPE } from './Input';
 storiesOf('Elements/Input', module)
   .addDecorator(withKnobs)
   .add('Default', () => {
-
     return (
       <Input
         placeholder={text('Placeholder', 'placeholder')}

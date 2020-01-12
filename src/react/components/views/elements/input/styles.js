@@ -18,8 +18,7 @@ const styles = {
     fontWeight: 600,
   },
 
-  inputPassword: {
-  },
+  inputPassword: {},
 
   defaultTheme: {
     backgroundColor: colorNameToHex('darkgrey'),

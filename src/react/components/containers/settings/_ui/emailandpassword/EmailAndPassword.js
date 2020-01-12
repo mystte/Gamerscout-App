@@ -8,7 +8,10 @@ import { NAV_SECTION } from '../../enums';
 import Input, { INPUT_TYPE } from '../../../../views/elements/input/Input';
 import Button, { BUTTON_THEME } from '../../../../views/elements/button/Button';
 import Validator from '../../../../../datamanager/api/Validator';
-import { clearAppError, doResendValidationEmail } from '../../../../../redux/actions/app';
+import {
+  clearAppError,
+  doResendValidationEmail,
+} from '../../../../../redux/actions/app';
 
 const EmailAndPassword = ({
   isEditEmailMode,
@@ -20,8 +23,8 @@ const EmailAndPassword = ({
 }) => {
   const dispatch = useDispatch();
   const labels = Localization.Labels.settings.emailPassword;
-  const editEmailLabel = (isEditEmailMode) ? labels.close : labels.edit;
-  const editPasswordLabel = (isEditPasswordMode) ? labels.close : labels.edit;
+  const editEmailLabel = isEditEmailMode ? labels.close : labels.edit;
+  const editPasswordLabel = isEditPasswordMode ? labels.close : labels.edit;
   const [newEmail, setNewEmail] = useState(null);
   const [currentPassword, setCurrentPassword] = useState(null);
   const [newPassword, setNewPassword] = useState(null);
@@ -29,14 +32,15 @@ const EmailAndPassword = ({
   const [wrongEmail, setWrongEmail] = useState(null);
   const [emailErrorMessage, setEmailErrorMessage] = useState(null);
   const [pwdErrorMessage, setpwdErrorMessage] = useState(null);
-  const apiError = useSelector((state) => state.app.get('error'));
+  const apiError = useSelector(state => state.app.get('error'));
   const errorLabels = Localization.Errors.userUpdate;
-  const isVerifiedLabel = (isVerified) ? labels.verified : labels.unverified;
-  const verifiedLabelStyle = (isVerified)
-    ? styles.emailStatusLabel : { ...styles.emailStatusLabel, ...styles.unverified };
+  const isVerifiedLabel = isVerified ? labels.verified : labels.unverified;
+  const verifiedLabelStyle = isVerified
+    ? styles.emailStatusLabel
+    : { ...styles.emailStatusLabel, ...styles.unverified };
   const maxInputLength = '150';
 
-  const getErrorMessage = (localErrorMessage) => {
+  const getErrorMessage = localErrorMessage => {
     let errorMessage = null;
 
     if (localErrorMessage) errorMessage = localErrorMessage;
@@ -60,7 +64,7 @@ const EmailAndPassword = ({
     setWrongEmail(null);
   };
 
-  const onCancelClick = (section) => {
+  const onCancelClick = section => {
     onUpdate(section, null);
     clearEmailData();
     clearPwdData();
@@ -68,7 +72,10 @@ const EmailAndPassword = ({
   };
 
   const onPasswordUpdateSubmit = () => {
-    const isValid = Validator.doNewPasswordValidator(newPassword, newPasswordConfirm);
+    const isValid = Validator.doNewPasswordValidator(
+      newPassword,
+      newPasswordConfirm
+    );
 
     if (isValid === true) {
       onUpdate(NAV_SECTION.PASSWORD, { currentPassword, newPassword });
@@ -92,34 +99,42 @@ const EmailAndPassword = ({
     }
   };
 
-  const getEMailDataContainerStyle = () => (
-    ((isEditEmailMode) ? {
-      ...styles.dataContainer,
-      ...styles.dataContainerEmailEditMode,
-    } : {
-      ...styles.dataContainer,
-    })
-  );
+  const getEMailDataContainerStyle = () =>
+    isEditEmailMode
+      ? {
+          ...styles.dataContainer,
+          ...styles.dataContainerEmailEditMode,
+        }
+      : {
+          ...styles.dataContainer,
+        };
 
-  const getPasswordDataContainerStyle = () => (
-    ((isEditPasswordMode) ? {
-      ...styles.dataContainer,
-      ...styles.dataContainerPwdEditMode,
-    } : {
-      ...styles.dataContainer,
-      ...styles.pwdDataContainer,
-    })
-  );
+  const getPasswordDataContainerStyle = () =>
+    isEditPasswordMode
+      ? {
+          ...styles.dataContainer,
+          ...styles.dataContainerPwdEditMode,
+        }
+      : {
+          ...styles.dataContainer,
+          ...styles.pwdDataContainer,
+        };
 
   const renderEmailValidationButton = () => {
-    const label = (isVerified) ? labels.submit : labels.resubmit;
+    const label = isVerified ? labels.submit : labels.resubmit;
 
-    return (<Button
-      label={label}
-      theme={BUTTON_THEME.BLUE}
-      onClick={onEmailUpdateSubmit}
-      disabled={Validator.doUpdateEmailDisableValidator(newEmail, email, isVerified)}
-    />);
+    return (
+      <Button
+        label={label}
+        theme={BUTTON_THEME.BLUE}
+        onClick={onEmailUpdateSubmit}
+        disabled={Validator.doUpdateEmailDisableValidator(
+          newEmail,
+          email,
+          isVerified
+        )}
+      />
+    );
   };
 
   const renderEmailDataContent = () => {
@@ -133,24 +148,25 @@ const EmailAndPassword = ({
               focus
               placeholder={email}
               length={maxInputLength}
-              onChange={(e) => setNewEmail(e.target.value)}
+              onChange={e => setNewEmail(e.target.value)}
               message={getErrorMessage(emailErrorMessage)}
               error={wrongEmail || apiError !== null}
             />
           </div>
           <div style={styles.submitlButtonsContainer}>
-              <div style={styles.cancelButtonContainer}>
-                <Button
-                  label={labels.cancel}
-                  theme={BUTTON_THEME.GREY}
-                  onClick={() => onCancelClick(NAV_SECTION.EMAIL)}
-                />
-              </div>
-              <div style={styles.submitButtonContainer}>
-                {renderEmailValidationButton()}
-              </div>
+            <div style={styles.cancelButtonContainer}>
+              <Button
+                label={labels.cancel}
+                theme={BUTTON_THEME.GREY}
+                onClick={() => onCancelClick(NAV_SECTION.EMAIL)}
+              />
+            </div>
+            <div style={styles.submitButtonContainer}>
+              {renderEmailValidationButton()}
+            </div>
           </div>
-        </div>);
+        </div>
+      );
     }
     return renderDataContent;
   };
@@ -159,69 +175,73 @@ const EmailAndPassword = ({
     let renderdataContent = null;
 
     if (isEditPasswordMode) {
-      renderdataContent = (<div style={styles.inputDataContainer}>
-        <div style={styles.inputContainer}>
-          {!noPassword
-            && <Input
-              focus
+      renderdataContent = (
+        <div style={styles.inputDataContainer}>
+          <div style={styles.inputContainer}>
+            {!noPassword && (
+              <Input
+                focus
+                type={INPUT_TYPE.PASSWORD}
+                placeholder={labels.currentPasswordPlaceholder}
+                length={maxInputLength}
+                onChange={e => {
+                  setCurrentPassword(e.target.value);
+                }}
+                error={hasPwdError()}
+              />
+            )}
+            <span style={styles.inputSeparator} />
+            <Input
               type={INPUT_TYPE.PASSWORD}
-              placeholder={labels.currentPasswordPlaceholder}
+              placeholder={labels.newPassword}
               length={maxInputLength}
-              onChange={(e) => {
-                setCurrentPassword(e.target.value);
+              onChange={e => {
+                setNewPassword(e.target.value);
               }}
               error={hasPwdError()}
             />
-          }
-          <span style={styles.inputSeparator} />
-          <Input
-            type={INPUT_TYPE.PASSWORD}
-            placeholder={labels.newPassword}
-            length={maxInputLength}
-            onChange={(e) => {
-              setNewPassword(e.target.value);
-            }}
-            error={hasPwdError()}
-          />
-          <span style={styles.inputSeparator}/>
-          <Input
-            type={INPUT_TYPE.PASSWORD}
-            placeholder={labels.newPassword}
-            length={maxInputLength}
-            onChange={(e) => {
-              setNewPasswordConfirm(e.target.value);
-            }}
-            error={hasPwdError()}
-            message={getErrorMessage(pwdErrorMessage)}
-          />
-        </div>
-        <div style={styles.submitlButtonsContainer}>
-          <div style={styles.cancelButtonContainer}>
-            <Button
-              label={labels.cancel}
-              theme={BUTTON_THEME.GREY}
-              onClick={() => onCancelClick(NAV_SECTION.PASSWORD)}
+            <span style={styles.inputSeparator} />
+            <Input
+              type={INPUT_TYPE.PASSWORD}
+              placeholder={labels.newPassword}
+              length={maxInputLength}
+              onChange={e => {
+                setNewPasswordConfirm(e.target.value);
+              }}
+              error={hasPwdError()}
+              message={getErrorMessage(pwdErrorMessage)}
             />
           </div>
-          <div style={styles.submitButtonContainer}>
-            <Button
-              label={labels.save}
-              theme={BUTTON_THEME.BLUE}
-              onClick={onPasswordUpdateSubmit}
-              disabled={(noPassword)
-                ? Validator.doCreatePasswordDisabledValidator(
-                  newPassword,
-                  newPasswordConfirm,
-                )
-                : Validator.doUpdatePasswordDisabledValidator(
-                  currentPassword,
-                  newPassword,
-                  newPasswordConfirm,
-                )}
-            />
+          <div style={styles.submitlButtonsContainer}>
+            <div style={styles.cancelButtonContainer}>
+              <Button
+                label={labels.cancel}
+                theme={BUTTON_THEME.GREY}
+                onClick={() => onCancelClick(NAV_SECTION.PASSWORD)}
+              />
+            </div>
+            <div style={styles.submitButtonContainer}>
+              <Button
+                label={labels.save}
+                theme={BUTTON_THEME.BLUE}
+                onClick={onPasswordUpdateSubmit}
+                disabled={
+                  noPassword
+                    ? Validator.doCreatePasswordDisabledValidator(
+                        newPassword,
+                        newPasswordConfirm
+                      )
+                    : Validator.doUpdatePasswordDisabledValidator(
+                        currentPassword,
+                        newPassword,
+                        newPasswordConfirm
+                      )
+                }
+              />
+            </div>
           </div>
         </div>
-      </div>);
+      );
     }
 
     return renderdataContent;
@@ -231,16 +251,22 @@ const EmailAndPassword = ({
     <div style={styles.container}>
       <div style={styles.title}>{labels.title}</div>
       <div className="settings-animation" style={getEMailDataContainerStyle()}>
-        <div onClick={() => {
-          onUpdate(NAV_SECTION.EMAIL, null); clearEmailData();
-        }} style={styles.infosContainer}>
+        <div
+          onClick={() => {
+            onUpdate(NAV_SECTION.EMAIL, null);
+            clearEmailData();
+          }}
+          style={styles.infosContainer}
+        >
           <div style={styles.infoTitle}>{labels.email}</div>
           <div style={styles.infoDesc}>{labels.emailDesc}</div>
         </div>
         <div
           style={styles.edit}
-          onClick={() => (isEditEmailMode
-            ? onCancelClick() : onUpdate(NAV_SECTION.EMAIL, null))
+          onClick={() =>
+            isEditEmailMode
+              ? onCancelClick()
+              : onUpdate(NAV_SECTION.EMAIL, null)
           }
         >
           <span style={styles.editEmailLabel}>{editEmailLabel}</span>
@@ -248,17 +274,26 @@ const EmailAndPassword = ({
         </div>
         {renderEmailDataContent()}
       </div>
-      <div className="settings-animation" style={getPasswordDataContainerStyle()}>
-        <div onClick={() => {
-          onUpdate(NAV_SECTION.PASSWORD, null); clearPwdData();
-        }} style={styles.infosContainer}>
+      <div
+        className="settings-animation"
+        style={getPasswordDataContainerStyle()}
+      >
+        <div
+          onClick={() => {
+            onUpdate(NAV_SECTION.PASSWORD, null);
+            clearPwdData();
+          }}
+          style={styles.infosContainer}
+        >
           <div style={styles.infoTitle}>{labels.password}</div>
           <div style={styles.infoDesc}>{labels.passwordDesc}</div>
         </div>
         <div
           style={styles.edit}
-          onClick={() => (isEditPasswordMode
-            ? onCancelClick() : onUpdate(NAV_SECTION.PASSWORD, null))
+          onClick={() =>
+            isEditPasswordMode
+              ? onCancelClick()
+              : onUpdate(NAV_SECTION.PASSWORD, null)
           }
         >
           {editPasswordLabel}

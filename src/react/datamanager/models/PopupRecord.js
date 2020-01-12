@@ -13,15 +13,23 @@ const defaultProps = {
   params: Object,
 };
 
-const ExtendsWith = (superclass) => class extends superclass {
-  updateViewContent = (newViewContent) => this.set('viewContent', newViewContent);
+const ExtendsWith = superclass =>
+  class extends superclass {
+    updateViewContent = newViewContent =>
+      this.set('viewContent', newViewContent);
 
-  static get defaultProps() { return defaultProps; }
+    static get defaultProps() {
+      return defaultProps;
+    }
 
-  static get ExtendsWith() { return ExtendsWith; }
-};
+    static get ExtendsWith() {
+      return ExtendsWith;
+    }
+  };
 
-export default class PopupRecord extends ExtendsWith(Record(defaultProps, 'PopupRecord')) {
+export default class PopupRecord extends ExtendsWith(
+  Record(defaultProps, 'PopupRecord')
+) {
   static apiParser(data) {
     const parsedData = {
       showPopup: data.showPopup ? data.showPopup : false,

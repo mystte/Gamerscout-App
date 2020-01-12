@@ -28,10 +28,9 @@ async function doApiCall(url, params, callType = CALL_TYPE.GET) {
   const apiVersion = process.env.API_VERSION;
   const serverFullUrl = `${apiUrl}/api/${apiVersion}`;
 
-
   let result = null;
   const axiosOptions = {
-    validateStatus: (status) => status >= 200 && status <= 500,
+    validateStatus: status => status >= 200 && status <= 500,
     withCredentials: true,
   };
 
@@ -46,9 +45,7 @@ async function doApiCall(url, params, callType = CALL_TYPE.GET) {
 }
 
 export default class Api {
-  static loadGamerDetails({
-    game, gamertag, platform, region,
-  }) {
+  static loadGamerDetails({ game, gamertag, platform, region }) {
     const url = `/search/${platform}/${region}/${game}/${gamertag}`;
 
     return doApiCall(url);
@@ -95,12 +92,7 @@ export default class Api {
     return doApiCall('/users/newPasswordRequest', data, CALL_TYPE.POST);
   }
 
-  static doUpdateUser({
-    id,
-    email,
-    password,
-    username,
-  }) {
+  static doUpdateUser({ id, email, password, username }) {
     const data = { id };
 
     if (email) data.email = email;

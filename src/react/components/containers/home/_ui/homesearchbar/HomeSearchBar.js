@@ -5,7 +5,10 @@ import styles from './styles';
 import SVGIcon from '../../../../views/elements/svgicon/SVGIcon';
 import Input from '../../../../views/elements/input/Input';
 import Localisation from '../../../../../config/localization/Localization';
-import DropDown, { DROPDOWN_TYPE, SELECT_TYPE } from '../../../../views/elements/dropdown/DropDown';
+import DropDown, {
+  DROPDOWN_TYPE,
+  SELECT_TYPE,
+} from '../../../../views/elements/dropdown/DropDown';
 import Button, { BUTTON_THEME } from '../../../../views/elements/button/Button';
 
 const HomeSearchBar = ({
@@ -16,16 +19,12 @@ const HomeSearchBar = ({
 }) => {
   const labels = Localisation.Labels.navBar;
 
-  const disableEnter = (e) => ((e.which === 13) ? e.preventDefault() : null);
+  const disableEnter = e => (e.which === 13 ? e.preventDefault() : null);
 
   return (
     <div style={styles.container}>
       <div style={styles.platformDropdown}>
-        <SVGIcon
-          width={20}
-          height={20}
-          name={'platforms/lol'}
-        />
+        <SVGIcon width={20} height={20} name={'platforms/lol'} />
       </div>
       <div style={styles.searchContainer}>
         <form onKeyDown={disableEnter} autoComplete="false">
@@ -68,7 +67,6 @@ HomeSearchBar.propTypes = {
   onRegionChange: PropTypes.func.isRequired,
 };
 
-HomeSearchBar.defaultProps = {
-};
+HomeSearchBar.defaultProps = {};
 
 export default HomeSearchBar;

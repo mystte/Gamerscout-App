@@ -16,31 +16,36 @@ import {
 } from '../../../redux/actions/app';
 import { POPUP_TYPE } from '../../../datamanager/models/PopupRecord';
 import { APP, loading } from '../../../redux/actions/actionTypes';
-import { MOCKED_NOTIFICATION, NOTIFICATION_TYPE } from '../../../datamanager/models/NotificationRecord';
+import {
+  MOCKED_NOTIFICATION,
+  NOTIFICATION_TYPE,
+} from '../../../datamanager/models/NotificationRecord';
 import { pushNotification } from '../../../redux/actions/notifications';
-
 
 const Settings = () => {
   const labels = Localization.Labels.settings;
   const notifLabels = Localization.Labels.notifications;
   const [selectedNav, setSelectedNav] = useState(NAV_SECTION.PROFILE);
   const [editingSection, setEditingSection] = useState(null);
-  const connectedUser = useSelector((state) => state.app.getIn(['data', 'user']));
+  const connectedUser = useSelector(state => state.app.getIn(['data', 'user']));
   const dispatch = useDispatch();
 
   if (!connectedUser) return null;
 
   const sendPasswordUpdateNotification = () => {
-    dispatch(pushNotification({
-      title: notifLabels.updatePasswordRequired.title,
-      type: NOTIFICATION_TYPE.ALERT,
-    }));
+    dispatch(
+      pushNotification({
+        title: notifLabels.updatePasswordRequired.title,
+        type: NOTIFICATION_TYPE.ALERT,
+      })
+    );
   };
 
   const onSettingsUpdate = (type, data) => {
     if (data) {
       if (type === NAV_SECTION.EMAIL) {
-        if (connectedUser.hasAutomaticGeneratedPwd) sendPasswordUpdateNotification();
+        if (connectedUser.hasAutomaticGeneratedPwd)
+          sendPasswordUpdateNotification();
         else {
           const params = {
             onValidAction: loading(APP.DO_UPDATE_USER),
@@ -57,39 +62,42 @@ const Settings = () => {
           }
         }
       } else if (type === NAV_SECTION.PROFILE) {
-        dispatch(togglePopup(
-          POPUP_TYPE.CONFIRM_PWD,
-          true,
-          {
+        dispatch(
+          togglePopup(POPUP_TYPE.CONFIRM_PWD, true, {
             onSuccessNotif: MOCKED_NOTIFICATION.UPATED_PROFILE,
             onValidAction: loading(APP.DO_UPDATE_USER),
             data: {
               id: connectedUser.id,
               username: data.username,
             },
-          },
-        ));
+          })
+        );
       } else if (type === NAV_SECTION.PASSWORD) {
         if (connectedUser.hasAutomaticGeneratedPwd) {
-          dispatch(doCreatePassword({
-            userId: connectedUser.id,
-            newPassword: data.newPassword,
-          }));
+          dispatch(
+            doCreatePassword({
+              userId: connectedUser.id,
+              newPassword: data.newPassword,
+            })
+          );
         } else {
-          dispatch(doUpdatePassword({
-            userId: connectedUser.id,
-            currentPassword: data.currentPassword,
-            newPassword: data.newPassword,
-          }));
+          dispatch(
+            doUpdatePassword({
+              userId: connectedUser.id,
+              currentPassword: data.currentPassword,
+              newPassword: data.newPassword,
+            })
+          );
         }
       } else if (type === NAV_SECTION.ACCOUNTS) {
-        if (connectedUser.hasAutomaticGeneratedPwd) sendPasswordUpdateNotification();
+        if (connectedUser.hasAutomaticGeneratedPwd)
+          sendPasswordUpdateNotification();
         else {
-          dispatch(togglePopup(
-            POPUP_TYPE.CONFIRM_PWD,
-            true,
-            { onValidAction: loading(APP.DO_DISCONNECT_FACEBOOK) },
-          ));
+          dispatch(
+            togglePopup(POPUP_TYPE.CONFIRM_PWD, true, {
+              onValidAction: loading(APP.DO_DISCONNECT_FACEBOOK),
+            })
+          );
         }
       }
     } else if (editingSection === type) {
@@ -108,7 +116,7 @@ const Settings = () => {
       <div style={styles.contentContainer}>
         <SettingsNav
           selectedNav={selectedNav}
-          onNavSelect={(section) => onSettingsUpdate(section)}
+          onNavSelect={section => onSettingsUpdate(section)}
         />
         <div style={styles.settingsDataContainer}>
           <ProfileInformation
@@ -123,12 +131,11 @@ const Settings = () => {
             email={connectedUser.email}
             isVerified={connectedUser.validated}
             noPassword={connectedUser.hasAutomaticGeneratedPwd}
-
-        />
-        <ConnectedAccounts
-          onUpdate={onSettingsUpdate}
-          isEditMode={editingSection === NAV_SECTION.ACCOUNTS}
-        />
+          />
+          <ConnectedAccounts
+            onUpdate={onSettingsUpdate}
+            isEditMode={editingSection === NAV_SECTION.ACCOUNTS}
+          />
         </div>
       </div>
     </div>

@@ -10,11 +10,7 @@ import ForgetPasswordPopup from '../../../containers/navbar/_ui/forgetpasswordpo
 import { POPUP_TYPE } from '../../../../datamanager/models/PopupRecord';
 import ConfirmPassword from './_ui/confirmpassword/ConfirmPassword';
 
-const Popup = ({
-  togglePopup,
-  show,
-  type,
-}) => {
+const Popup = ({ togglePopup, show, type }) => {
   const escapePressed = UseKeyPress('Escape');
 
   const renderedContent = () => {
@@ -31,19 +27,18 @@ const Popup = ({
     return result;
   };
 
-  useEffect(() => (
-    () => {
+  useEffect(
+    () => () => {
       if (escapePressed && show) togglePopup();
-    }
-  ), [escapePressed]);
+    },
+    [escapePressed]
+  );
 
   return (
     <React.Fragment>
-      {show
-        && <div style={styles.popupBackground}>
-          <div
-            style={styles.container}
-          >
+      {show && (
+        <div style={styles.popupBackground}>
+          <div style={styles.container}>
             <div style={styles.closeContainer}>
               <Button
                 icon="close"
@@ -54,7 +49,7 @@ const Popup = ({
             {renderedContent()}
           </div>
         </div>
-      }
+      )}
     </React.Fragment>
   );
 };

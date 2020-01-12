@@ -5,15 +5,8 @@ import SVGIcon from '../../../../../../../../../views/elements/svgicon/SVGIcon';
 import styles from './styles';
 
 const ReviewButton = ({ onClick }) => (
-  <button
-    style={styles.container}
-    onClick={onClick}
-  >
-    <SVGIcon
-      width={9}
-      height={9}
-      name={'add-icon'}
-    />
+  <button style={styles.container} onClick={onClick}>
+    <SVGIcon width={9} height={9} name={'add-icon'} />
   </button>
 );
 
@@ -21,7 +14,6 @@ ReviewButton.propTypes = {
   onClick: PropTypes.func.isRequired,
 };
 
-ReviewButton.defaultProps = {
-};
+ReviewButton.defaultProps = {};
 
 export default ReviewButton;

@@ -20,7 +20,7 @@ import styles from './styles';
 import { getGamerDetailsUrl } from '../../../config/routes';
 import Footer from '../footer/Footer';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   config: state.app.get('data'),
   gamerData: state.gamerDetails.get('data'),
   loading: state.gamerDetails.get('loading'),
@@ -53,21 +53,23 @@ class GamerDetails extends PureComponent {
   }
 
   componentDidMount() {
-    this.props.dispatch(loadGamerDetails(
-      this.props.match.params.platform,
-      this.props.match.params.region,
-      this.props.match.params.game,
-      this.props.match.params.gamertag,
-    ));
+    this.props.dispatch(
+      loadGamerDetails(
+        this.props.match.params.platform,
+        this.props.match.params.region,
+        this.props.match.params.game,
+        this.props.match.params.gamertag
+      )
+    );
   }
 
-  onSelectHeaderTab = (buttonType) => {
+  onSelectHeaderTab = buttonType => {
     if (buttonType !== this.state.selectedTab) {
       this.setState({ selectedTab: buttonType });
     }
   };
 
-  onApprovalButtonClick = (type) => {
+  onApprovalButtonClick = type => {
     console.log(`on ${type} button button click`);
     this.selectTab(BUTTON_TYPE.REVIEWS, type);
   };
@@ -75,23 +77,29 @@ class GamerDetails extends PureComponent {
   onReviewButtonClick = () => {
     console.log('On review button click');
     this.selectTab(BUTTON_TYPE.REVIEWS);
-  }
+  };
 
   onReviewSubmitClick = () => {
     console.log('On review submit click');
-  }
+  };
 
-  getStaticDataUrlForPlatform = () => (
+  getStaticDataUrlForPlatform = () =>
     this.props.config
-      ? this.props.config.getStaticDataUrlForPlatform(this.props.match.params.platform)
-      : null
-  )
+      ? this.props.config.getStaticDataUrlForPlatform(
+          this.props.match.params.platform
+        )
+      : null;
 
   onReviewFilterChange = (show, filterBy) => {
-    this.props.dispatch(applyReviewFilters(
-      this.props.gamerData.reviewsCardRecord.applyReviewsFilter(show, filterBy),
-    ));
-  }
+    this.props.dispatch(
+      applyReviewFilters(
+        this.props.gamerData.reviewsCardRecord.applyReviewsFilter(
+          show,
+          filterBy
+        )
+      )
+    );
+  };
 
   selectTab = (tabType, preselect = null) => {
     if (this.state.selectedTab !== tabType) {
@@ -100,58 +108,66 @@ class GamerDetails extends PureComponent {
         selectedTab: tabType,
       });
     }
-  }
+  };
 
-  doSearchPlayer = (gamer) => {
-    this.props.history.push(getGamerDetailsUrl(
-      this.props.gamerData.platform,
-      this.props.gamerData.region,
-      this.props.gamerData.gameCode,
-      gamer,
-    ));
-    this.props.dispatch(loadGamerDetails(
-      this.props.gamerData.platform,
-      this.props.gamerData.region,
-      this.props.gamerData.gameCode,
-      gamer,
-    ));
-  }
+  doSearchPlayer = gamer => {
+    this.props.history.push(
+      getGamerDetailsUrl(
+        this.props.gamerData.platform,
+        this.props.gamerData.region,
+        this.props.gamerData.gameCode,
+        gamer
+      )
+    );
+    this.props.dispatch(
+      loadGamerDetails(
+        this.props.gamerData.platform,
+        this.props.gamerData.region,
+        this.props.gamerData.gameCode,
+        gamer
+      )
+    );
+  };
 
   renderGamerDetailsContent = () => {
     let content = null;
     if (this.state.selectedTab === BUTTON_TYPE.OVERVIEW) {
-      content = (<CardsTab
-        gamertag={this.props.gamerData.gamertag}
-        gameCode={this.props.gamerData.gameCode}
-        platform={this.props.gamerData.platform}
-        rankedCardRecord={this.props.gamerData.rankedCardRecord}
-        championsCardRecord={this.props.gamerData.championsCardRecord}
-        approvalsCardRecord={this.props.gamerData.approvalsCardRecord}
-        disapprovalsCardRecord={this.props.gamerData.disapprovalsCardRecord}
-        reviewsCardRecord={this.props.gamerData.reviewsCardRecord}
-        onApprovalButtonClick={this.onApprovalButtonClick}
-        onReviewButtonClick={this.onReviewButtonClick}
-        trendsCardRecord={this.props.gamerData.trendsCardRecord}
-        historyCardList={this.props.gamerData.gameHistoryList}
-        staticDataUrl={this.getStaticDataUrlForPlatform()}
-        doSearchPlayer={this.doSearchPlayer}
-      />);
+      content = (
+        <CardsTab
+          gamertag={this.props.gamerData.gamertag}
+          gameCode={this.props.gamerData.gameCode}
+          platform={this.props.gamerData.platform}
+          rankedCardRecord={this.props.gamerData.rankedCardRecord}
+          championsCardRecord={this.props.gamerData.championsCardRecord}
+          approvalsCardRecord={this.props.gamerData.approvalsCardRecord}
+          disapprovalsCardRecord={this.props.gamerData.disapprovalsCardRecord}
+          reviewsCardRecord={this.props.gamerData.reviewsCardRecord}
+          onApprovalButtonClick={this.onApprovalButtonClick}
+          onReviewButtonClick={this.onReviewButtonClick}
+          trendsCardRecord={this.props.gamerData.trendsCardRecord}
+          historyCardList={this.props.gamerData.gameHistoryList}
+          staticDataUrl={this.getStaticDataUrlForPlatform()}
+          doSearchPlayer={this.doSearchPlayer}
+        />
+      );
     } else if (this.state.selectedTab === BUTTON_TYPE.REVIEWS) {
-      content = (<ReviewsTab
-        approvalsCardRecord={this.props.gamerData.approvalsCardRecord}
-        disapprovalsCardRecord={this.props.gamerData.disapprovalsCardRecord}
-        reviewsCardRecord={this.props.gamerData.reviewsCardRecord}
-        attributesList={this.props.gamerData.attributesList}
-        onReviewSubmitClick={this.onReviewSubmitClick}
-        preselect={this.state.preselect}
-        onReviewFilterChange={this.onReviewFilterChange}
-      />);
+      content = (
+        <ReviewsTab
+          approvalsCardRecord={this.props.gamerData.approvalsCardRecord}
+          disapprovalsCardRecord={this.props.gamerData.disapprovalsCardRecord}
+          reviewsCardRecord={this.props.gamerData.reviewsCardRecord}
+          attributesList={this.props.gamerData.attributesList}
+          onReviewSubmitClick={this.onReviewSubmitClick}
+          preselect={this.state.preselect}
+          onReviewFilterChange={this.onReviewFilterChange}
+        />
+      );
     } else if (this.state.selectedTab === BUTTON_TYPE.CHAMPIONS) {
-      content = (<ChampionsTab />);
+      content = <ChampionsTab />;
     } else if (this.state.selectedTab === BUTTON_TYPE.LEAGUES) {
-      content = (<LeaguesTab />);
+      content = <LeaguesTab />;
     } else if (this.state.selectedTab === BUTTON_TYPE.LIVE_MATCH) {
-      content = (<LiveMatchTab />);
+      content = <LiveMatchTab />;
     }
 
     return content;
@@ -160,11 +176,9 @@ class GamerDetails extends PureComponent {
   render() {
     return (
       <React.Fragment>
-        {this.props.loading
-          && <GamerSkeleton />
-        }
-        {(!this.props.loading && this.props.gamerData)
-          && <div style={styles.container}>
+        {this.props.loading && <GamerSkeleton />}
+        {!this.props.loading && this.props.gamerData && (
+          <div style={styles.container}>
             <NavHeader
               selectedTab={this.state.selectedTab}
               gamertag={this.props.gamerData.gamertag}
@@ -175,16 +189,12 @@ class GamerDetails extends PureComponent {
             />
             {this.renderGamerDetailsContent()}
           </div>
-        }
-        {(!this.props.loading && !this.props.gamerData)
-          && <GamerNotFound />
-        }
+        )}
+        {!this.props.loading && !this.props.gamerData && <GamerNotFound />}
         <Footer />
       </React.Fragment>
     );
   }
 }
 
-export default withRouter(
-  connect(mapStateToProps)(GamerDetails),
-);
+export default withRouter(connect(mapStateToProps)(GamerDetails));

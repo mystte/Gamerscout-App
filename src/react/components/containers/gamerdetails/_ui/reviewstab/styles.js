@@ -23,8 +23,7 @@ const styles = {
     marginBottom: 38,
   },
 
-  reviewsListContainer: {
-  },
+  reviewsListContainer: {},
 
   approvalsContainer: {
     flexDirection: 'row',

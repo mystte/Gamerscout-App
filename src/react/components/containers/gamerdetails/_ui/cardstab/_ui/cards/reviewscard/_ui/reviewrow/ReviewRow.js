@@ -4,16 +4,14 @@ import PropTypes from 'prop-types';
 import Avatar from '../../../../../../../../../views/avatar/Avatar';
 import styles from './styles';
 
-
-const ReviewRow = ({
-  reviewerName,
-  comment,
-}) => (
+const ReviewRow = ({ reviewerName, comment }) => (
   <div style={styles.container}>
     <div style={styles.reviewerName}>
       <Avatar name={reviewerName} />
     </div>
-    <div className="multiline-ellipsis" style={styles.comment}>{comment}</div>
+    <div className="multiline-ellipsis" style={styles.comment}>
+      {comment}
+    </div>
   </div>
 );
 

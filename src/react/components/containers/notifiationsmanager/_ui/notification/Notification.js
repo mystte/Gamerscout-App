@@ -7,14 +7,8 @@ import { NOTIFICATION_TYPE } from '../../../../../datamanager/models/Notificatio
 import Button, { BUTTON_THEME } from '../../../../views/elements/button/Button';
 import UseTimeout from '../../../../views/hooks/UseTimeout';
 
-const Notification = ({
-  title,
-  type,
-  onClose,
-  id,
-  isPersistent,
-}) => {
-  const icon = (type === NOTIFICATION_TYPE.ALERT) ? 'notif-alert-type' : 'info';
+const Notification = ({ title, type, onClose, id, isPersistent }) => {
+  const icon = type === NOTIFICATION_TYPE.ALERT ? 'notif-alert-type' : 'info';
   let timeout = null;
 
   if (!isPersistent) timeout = UseTimeout(() => onClose(id), 7000);
@@ -31,12 +25,10 @@ const Notification = ({
         ...styles[type],
       }}
     >
-      <SVGIcon
-        width={16}
-        height={16}
-        name={icon}
-      />
-      <span className="ellipsis" style={styles.title}>{title}</span>
+      <SVGIcon width={16} height={16} name={icon} />
+      <span className="ellipsis" style={styles.title}>
+        {title}
+      </span>
       <span style={styles.close}>
         <Button
           icon="notif-close"

@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { getLolChampionImgUrl, getLolSpellImgUrl } from '../../../../../../../../../../../../utils/lol';
+import {
+  getLolChampionImgUrl,
+  getLolSpellImgUrl,
+} from '../../../../../../../../../../../../utils/lol';
 import styles from './styles';
 
 const ChampionImg = ({
@@ -13,13 +16,15 @@ const ChampionImg = ({
   win,
   staticDataUrl,
 }) => {
-  const championBorder = (win) ? {
-    ...styles.champIcon,
-    ...styles.champIconWin,
-  } : {
-    ...styles.champIcon,
-    ...styles.champIconloss,
-  };
+  const championBorder = win
+    ? {
+        ...styles.champIcon,
+        ...styles.champIconWin,
+      }
+    : {
+        ...styles.champIcon,
+        ...styles.champIconloss,
+      };
 
   const renderChampionAvatar = () => (
     <div style={styles.innerContentContainer}>
@@ -58,11 +63,7 @@ const ChampionImg = ({
     </div>
   );
 
-  return (
-    <div style={styles.container}>
-      {renderChampionAvatar()}
-    </div>
-  );
+  return <div style={styles.container}>{renderChampionAvatar()}</div>;
 };
 
 ChampionImg.propTypes = {

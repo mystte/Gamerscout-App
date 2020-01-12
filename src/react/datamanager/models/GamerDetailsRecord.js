@@ -32,28 +32,38 @@ const defaultProps = {
   attributesList: Maybe(List(AttributeRecord)),
 };
 
-const ExtendsWith = (superclass) => class extends superclass {
-  static get defaultProps() { return defaultProps; }
+const ExtendsWith = superclass =>
+  class extends superclass {
+    static get defaultProps() {
+      return defaultProps;
+    }
 
-  static get ExtendsWith() { return ExtendsWith; }
-};
+    static get ExtendsWith() {
+      return ExtendsWith;
+    }
+  };
 
-export default class GamerDetailsRecord extends ExtendsWith(Record(defaultProps, 'GamerDetailsRecord')) {
+export default class GamerDetailsRecord extends ExtendsWith(
+  Record(defaultProps, 'GamerDetailsRecord')
+) {
   static parseAttributesData(apiData) {
     if (!apiData.attributes) return apiData.allAttributes;
 
-    return apiData.allAttributes.map((attribute) => (
-      {
+    return apiData.allAttributes
+      .map(attribute => ({
         ratio: 0,
         frequency: 0,
-        ...apiData.attributes.filter((userAttr) => attribute.name === userAttr.name)[0],
+        ...apiData.attributes.filter(
+          userAttr => attribute.name === userAttr.name
+        )[0],
         ...attribute,
-      }
-    )).sort((a, b) => {
-      if (a.ratio < b.ratio) return 1;
-      if (a.ratio > b.ratio) return -1;
-      return 0;
-    }).map((attr) => AttributeRecord.apiParser(attr));
+      }))
+      .sort((a, b) => {
+        if (a.ratio < b.ratio) return 1;
+        if (a.ratio > b.ratio) return -1;
+        return 0;
+      })
+      .map(attr => AttributeRecord.apiParser(attr));
   }
 
   static apiParser(data) {
@@ -78,10 +88,14 @@ export default class GamerDetailsRecord extends ExtendsWith(Record(defaultProps,
         ? DisapprovalsCardRecord.apiParser(apiData)
         : null,
       gameHistoryList: HistoryListRecord.apiParser(apiData.stats.recent),
-      recentPerformanceCardRecord: RecentPerformanceCardRecord.apiParser(apiData.stats.recent),
+      recentPerformanceCardRecord: RecentPerformanceCardRecord.apiParser(
+        apiData.stats.recent
+      ),
       trendsCardRecord: TrendsCardRecord.apiParser(apiData.stats.trends),
       championsCardRecord: ChampionsCardRecord.apiParser(apiData.stats),
-      reviewsCardRecord: apiData.reviews ? ReviewsCardRecord.apiParser(apiData) : null,
+      reviewsCardRecord: apiData.reviews
+        ? ReviewsCardRecord.apiParser(apiData)
+        : null,
       attributesList: GamerDetailsRecord.parseAttributesData(apiData),
     };
     return new GamerDetailsRecord(parsedData);

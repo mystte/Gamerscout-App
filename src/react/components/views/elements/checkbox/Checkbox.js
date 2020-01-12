@@ -4,12 +4,7 @@ import PropTypes from 'prop-types';
 import styles from './styles';
 import SVGIcon from '../svgicon/SVGIcon';
 
-const Checkbox = ({
-  label,
-  disabled,
-  isSelected,
-  onChange,
-}) => {
+const Checkbox = ({ label, disabled, isSelected, onChange }) => {
   const [selected, setSelected] = useState(isSelected);
   let disabledStyle = {};
   let selectedStyle = {};
@@ -29,26 +24,28 @@ const Checkbox = ({
       style={styles.container}
     >
       <div style={styles.checkbox}>
-        {selected
-          && <div style={{
-            ...styles.selectedContainer,
-            ...disabledStyle,
-          }}>
-            <SVGIcon
-              width={7}
-              height={6}
-              name={'check'}
-            />
+        {selected && (
+          <div
+            style={{
+              ...styles.selectedContainer,
+              ...disabledStyle,
+            }}
+          >
+            <SVGIcon width={7} height={6} name={'check'} />
           </div>
-        }
+        )}
       </div>
-      {label
-        && <span style={{
-          ...styles.label,
-          ...selectedStyle,
-          ...disabledStyle,
-        }}>{label}</span>
-      }
+      {label && (
+        <span
+          style={{
+            ...styles.label,
+            ...selectedStyle,
+            ...disabledStyle,
+          }}
+        >
+          {label}
+        </span>
+      )}
     </div>
   );
 };

@@ -16,8 +16,10 @@ const ConfirmPassword = () => {
   const [password, setPassword] = useState(null);
   const [wrongPassword, setWrongPassword] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
-  const apiError = useSelector((state) => state.app.get('error'));
-  const validPwdActionData = useSelector((state) => state.app.getIn(['data', 'popupData', 'params']));
+  const apiError = useSelector(state => state.app.get('error'));
+  const validPwdActionData = useSelector(state =>
+    state.app.getIn(['data', 'popupData', 'params'])
+  );
   const enterPressed = UseKeyPress('Enter');
 
   const onSubmitClick = () => {
@@ -32,9 +34,12 @@ const ConfirmPassword = () => {
     }
   };
 
-  useEffect(() => () => {
-    if (enterPressed) onSubmitClick();
-  }, [enterPressed]);
+  useEffect(
+    () => () => {
+      if (enterPressed) onSubmitClick();
+    },
+    [enterPressed]
+  );
 
   return (
     <div style={styles.container}>
@@ -42,10 +47,10 @@ const ConfirmPassword = () => {
       <span style={styles.desc}>{labels.desc}</span>
       <Input
         placeholder={labels.password}
-        onChange={(e) => setPassword(e.target.value)}
+        onChange={e => setPassword(e.target.value)}
         icon={'lock'}
         type={INPUT_TYPE.PASSWORD}
-        message={(apiError) ? errorsLabels[apiError] : errorMessage}
+        message={apiError ? errorsLabels[apiError] : errorMessage}
         error={wrongPassword !== false || apiError !== null}
         focus
       />
@@ -53,7 +58,9 @@ const ConfirmPassword = () => {
         <Button
           label={labels.submit}
           theme={BUTTON_THEME.BLUE}
-          disabled={Validator.doNewPasswordValidator(password, password) !== true}
+          disabled={
+            Validator.doNewPasswordValidator(password, password) !== true
+          }
           onClick={onSubmitClick}
         />
       </div>
@@ -61,10 +68,8 @@ const ConfirmPassword = () => {
   );
 };
 
-ConfirmPassword.propTypes = {
-};
+ConfirmPassword.propTypes = {};
 
-ConfirmPassword.defaultProps = {
-};
+ConfirmPassword.defaultProps = {};
 
 export default ConfirmPassword;

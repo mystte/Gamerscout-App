@@ -17,13 +17,12 @@ const styles = {
 storiesOf('Elements/SVGIcon', module)
   .addDecorator(withKnobs)
   .add('Default', () => {
-
     return (
       <div style={styles.container}>
         <SVGIcon
           width={number('Width', 40)}
           height={number('Height', 40)}
-          name={"delete"}
+          name={'delete'}
         />
       </div>
     );

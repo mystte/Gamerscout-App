@@ -4,35 +4,35 @@
     "no-console": "off",
     "max-classes-per-file": "off",
     "no-underscore-dangle": "off",
-    "class-methods-use-this": "off",
+    "class-methods-use-this": "off"
   },
   "env": {
     "browser": true,
     "node": true
   },
-  "plugins": [
-    "react"
-  ],
+  "plugins": ["react", "prettier"],
   "extends": [
     "airbnb-base",
     "eslint:recommended",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "prettier",
+    "prettier/react"
   ],
-    "settings": {
-      "react": {
-        "createClass": "createReactClass",
-        "pragma": "React",
-        "version": "16.8"
+  "settings": {
+    "react": {
+      "createClass": "createReactClass",
+      "pragma": "React",
+      "version": "16.8"
+    },
+    "propWrapperFunctions": [
+      "forbidExtraProps",
+      {
+        "property": "freeze",
+        "object": "Object"
       },
-      "propWrapperFunctions": [
-        "forbidExtraProps",
-        {
-          "property": "freeze",
-          "object": "Object"
-        },
-        {
-          "property": "myFavoriteWrapper"
-        }
-      ]
-    }
+      {
+        "property": "myFavoriteWrapper"
+      }
+    ]
+  }
 }

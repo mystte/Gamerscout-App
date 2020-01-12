@@ -1,4 +1,3 @@
-
 import { HOME, loading } from './actionTypes';
 
 export function loadHome() {

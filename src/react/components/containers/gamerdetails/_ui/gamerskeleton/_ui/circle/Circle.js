@@ -11,9 +11,7 @@ const Circle = ({ radius, colorName }) => {
     borderRadius: '50%',
   };
 
-  return (
-    <div style={containerStyle} />
-  );
+  return <div style={containerStyle} />;
 };
 
 Circle.propTypes = {

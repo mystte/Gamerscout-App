@@ -18,28 +18,31 @@ const MathHistoryCardsList = ({
     setDisplay(display + 5);
   };
 
-  const renderShowMoreAction = () => ((display <= historyCardList.historyCards.size)
-    ? <div onClick={onShowMoreClick} style={styles.showMoreContainer}>
-      <div style={styles.separator}></div>
-      <div style={styles.showMoreLabel}>{labels.showMore}</div>
-      <div style={styles.separator}></div>
-    </div> : null
-  );
+  const renderShowMoreAction = () =>
+    display <= historyCardList.historyCards.size ? (
+      <div onClick={onShowMoreClick} style={styles.showMoreContainer}>
+        <div style={styles.separator}></div>
+        <div style={styles.showMoreLabel}>{labels.showMore}</div>
+        <div style={styles.separator}></div>
+      </div>
+    ) : null;
 
   const renderCards = () => {
     let renderedView = null;
     if (historyCardList.historyCards) {
       renderedView = historyCardList.historyCards.map((record, idx) => {
         const key = `historyCard$${idx}`;
-        return (idx < display)
-          ? <div style={styles.historyCardContainer} key={key}>
-          <HistoryCard
-            historyCardRecord={record}
-            staticDataUrl={staticDataUrl}
-            doSearchPlayer={doSearchPlayer}
-          />
-        </div>
-          : <div key={key} />;
+        return idx < display ? (
+          <div style={styles.historyCardContainer} key={key}>
+            <HistoryCard
+              historyCardRecord={record}
+              staticDataUrl={staticDataUrl}
+              doSearchPlayer={doSearchPlayer}
+            />
+          </div>
+        ) : (
+          <div key={key} />
+        );
       });
     }
     return renderedView;

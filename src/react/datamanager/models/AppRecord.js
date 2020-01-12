@@ -29,12 +29,14 @@ export const GAME_CODE = {
 };
 
 const defaultProps = {
-  platforms: List(Record({
-    name: String,
-    enabled: Boolean,
-    iconUrl: Maybe(String),
-    staticPath: Maybe(String),
-  })),
+  platforms: List(
+    Record({
+      name: String,
+      enabled: Boolean,
+      iconUrl: Maybe(String),
+      staticPath: Maybe(String),
+    })
+  ),
   regions: Record({
     riot: Object,
   }),
@@ -45,25 +47,36 @@ const defaultProps = {
   user: Maybe(UserRecord),
 };
 
-const ExtendsWith = (superclass) => class extends superclass {
-  static get defaultProps() { return defaultProps; }
+const ExtendsWith = superclass =>
+  class extends superclass {
+    static get defaultProps() {
+      return defaultProps;
+    }
 
-  static get ExtendsWith() { return ExtendsWith; }
+    static get ExtendsWith() {
+      return ExtendsWith;
+    }
 
-  getStaticDataUrlForPlatform = (platformName) => {
-    const result = this.platforms.filter((platform) => platform.name === platformName);
-    if (result.size > 0) return `${process.env.API_URL}${result.getIn([0, 'staticPath'])}`;
-    return null;
-  }
-};
+    getStaticDataUrlForPlatform = platformName => {
+      const result = this.platforms.filter(
+        platform => platform.name === platformName
+      );
+      if (result.size > 0)
+        return `${process.env.API_URL}${result.getIn([0, 'staticPath'])}`;
+      return null;
+    };
+  };
 
-export default class AppRecord extends ExtendsWith(Record(defaultProps, 'AppRecord')) {
+export default class AppRecord extends ExtendsWith(
+  Record(defaultProps, 'AppRecord')
+) {
   static parseRegionsData(regionsData) {
     const parsedData = {
-      riot: (regionsData.riot)
+      riot: regionsData.riot
         ? ConfigRegionRecord.apiParser({
-          ...regionsData.riot, platform: GAME_PLATFORM.RIOT,
-        })
+            ...regionsData.riot,
+            platform: GAME_PLATFORM.RIOT,
+          })
         : null,
     };
 
@@ -72,12 +85,14 @@ export default class AppRecord extends ExtendsWith(Record(defaultProps, 'AppReco
 
   static apiParser(data) {
     const parsedData = {
-      platforms: (data.platforms) ? data.platforms.map((platform) => ({
-        name: platform.name,
-        enabled: platform.enabled,
-        iconUrl: platform['icon-url'],
-        staticPath: platform.staticPath || null,
-      })) : [],
+      platforms: data.platforms
+        ? data.platforms.map(platform => ({
+            name: platform.name,
+            enabled: platform.enabled,
+            iconUrl: platform['icon-url'],
+            staticPath: platform.staticPath || null,
+          }))
+        : [],
       regions: AppRecord.parseRegionsData(data.regions),
       isAuthenticated: data.user !== null,
       showPopup: false,

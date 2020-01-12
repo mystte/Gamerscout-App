@@ -13,8 +13,7 @@ class RankedCard extends PureComponent {
     rankedCardRecord: PropTypes.instanceOf(RankedCardRecord).isRequired,
   };
 
-  static defaultProps = {
-  };
+  static defaultProps = {};
 
   constructor(props) {
     super(props);
@@ -22,7 +21,7 @@ class RankedCard extends PureComponent {
     this.state = {
       headerList: this.props.rankedCardRecord.getRankedCardTabHeader(
         this.props.platform,
-        this.props.gameCode,
+        this.props.gameCode
       ),
     };
   }
@@ -30,13 +29,17 @@ class RankedCard extends PureComponent {
   render() {
     const renderedTabs = this.state.headerList.map((header, idx) => {
       const filteredRankedData = this.props.rankedCardRecord.tabsList.filter(
-        (tabData) => (tabData.title === header.title),
+        tabData => tabData.title === header.title
       );
 
-      return (<RankedTab
-        key={`rankedTab${idx}`}
-        rankedData={filteredRankedData.size > 0 ? filteredRankedData.get(0) : null}
-      />);
+      return (
+        <RankedTab
+          key={`rankedTab${idx}`}
+          rankedData={
+            filteredRankedData.size > 0 ? filteredRankedData.get(0) : null
+          }
+        />
+      );
     });
 
     return (

@@ -1,4 +1,4 @@
-export const romanToNumber = (romanNumber) => {
+export const romanToNumber = romanNumber => {
   let result = null;
   if (romanNumber === 'I') result = 1;
   else if (romanNumber === 'II') result = 2;
@@ -14,8 +14,7 @@ export const romanToNumber = (romanNumber) => {
   return result;
 };
 
-export const capitalize = (str) => (
-  `${(str.charAt(0)).toUpperCase()}${str.slice(1)}`
-);
+export const capitalize = str =>
+  `${str.charAt(0).toUpperCase()}${str.slice(1)}`;
 
 export default null;

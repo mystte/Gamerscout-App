@@ -2,8 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles';
 
-import AttributeRecord, { ATTRIBUTE_TYPE } from '../../../../../../../../../datamanager/models/AttributeRecord';
-import SVGIcon, { IMG_TYPE } from '../../../../../../../../views/elements/svgicon/SVGIcon';
+import AttributeRecord, {
+  ATTRIBUTE_TYPE,
+} from '../../../../../../../../../datamanager/models/AttributeRecord';
+import SVGIcon, {
+  IMG_TYPE,
+} from '../../../../../../../../views/elements/svgicon/SVGIcon';
 import Localization from '../../../../../../../../../config/localization/Localization';
 
 const AttributeRow = ({ attributeRecord }) => {

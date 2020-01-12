@@ -9,13 +9,18 @@ import { loadHome } from '../../../../../redux/actions/home';
 import Playerlist from '../../../../views/playerlist/Playerlist';
 import { loadGamerDetails } from '../../../../../redux/actions/gamerDetails';
 import { getGamerDetailsUrl } from '../../../../../config/routes';
-import { GAME_PLATFORM, GAME_CODE } from '../../../../../datamanager/models/AppRecord';
+import {
+  GAME_PLATFORM,
+  GAME_CODE,
+} from '../../../../../datamanager/models/AppRecord';
 
 const GamerNotFound = ({ history }) => {
   const labels = Localization.Labels.gamerDetails.notFound;
   const homeLabels = Localization.Labels.home;
   const dispatch = useDispatch();
-  const homeRecord = useSelector((state) => state.home.getIn(['data', 'homeRecord']));
+  const homeRecord = useSelector(state =>
+    state.home.getIn(['data', 'homeRecord'])
+  );
   const [searchPlatform] = useState(GAME_PLATFORM.RIOT);
   const [searchGame] = useState(GAME_CODE.LEAGUE_OF_LEGENDS);
 
@@ -23,21 +28,20 @@ const GamerNotFound = ({ history }) => {
     dispatch(loadHome());
   }, []);
 
-  const setAndGoToPlayer = (player) => {
+  const setAndGoToPlayer = player => {
     const newSearchValue = player.gamertag;
     const playerRegion = player.region;
-    history.push(getGamerDetailsUrl(
-      searchPlatform,
-      playerRegion,
-      searchGame,
-      newSearchValue,
-    ));
-    dispatch(loadGamerDetails(
-      searchPlatform,
-      playerRegion,
-      searchGame,
-      newSearchValue,
-    ));
+    history.push(
+      getGamerDetailsUrl(
+        searchPlatform,
+        playerRegion,
+        searchGame,
+        newSearchValue
+      )
+    );
+    dispatch(
+      loadGamerDetails(searchPlatform, playerRegion, searchGame, newSearchValue)
+    );
   };
 
   return (
@@ -45,10 +49,17 @@ const GamerNotFound = ({ history }) => {
       <div style={styles.title1}>{labels.title1}</div>
       <div style={styles.title2}>{labels.title2}</div>
       {/* <div style={styles.title3}>{labels.title3}</div> */}
-      {homeRecord && <div style={styles.playerList}>
-        <span style={styles.playerListTitle}>{homeLabels.recent.toUpperCase()}</span>
-        <Playerlist goToPlayer={setAndGoToPlayer} players={homeRecord.recentReviewedPlayers} />
-      </div>}
+      {homeRecord && (
+        <div style={styles.playerList}>
+          <span style={styles.playerListTitle}>
+            {homeLabels.recent.toUpperCase()}
+          </span>
+          <Playerlist
+            goToPlayer={setAndGoToPlayer}
+            players={homeRecord.recentReviewedPlayers}
+          />
+        </div>
+      )}
     </div>
   );
 };
@@ -57,7 +68,6 @@ GamerNotFound.propTypes = {
   history: PropTypes.object.isRequired,
 };
 
-GamerNotFound.defaultProps = {
-};
+GamerNotFound.defaultProps = {};
 
 export default withRouter(GamerNotFound);

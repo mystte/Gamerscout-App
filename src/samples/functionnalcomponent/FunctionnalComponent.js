@@ -4,19 +4,11 @@ import React from 'react';
 import styles from './styles';
 
 const FunctionnalComponent = () => {
-  const name = 'FunctionnalComponent';
-
-  return (
-    <div style={styles.container}>
-      {name}
-    </div>
-  );
+  return <div style={styles.container}>{name}</div>;
 };
 
-FunctionnalComponent.propTypes = {
-};
+FunctionnalComponent.propTypes = {};
 
-FunctionnalComponent.defaultProps = {
-};
+FunctionnalComponent.defaultProps = {};
 
 export default FunctionnalComponent;

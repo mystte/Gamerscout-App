@@ -14,17 +14,21 @@ const CommentArea = ({ preselect, selectedAttributes, onSelectAttribute }) => {
   const [showAttributes, setShowAttributes] = useState(false);
 
   const renderSelectedAttributes = () => {
-    const containerStyle = selectedAttributes.length > 0 ? styles.attributesWrapper : null;
+    const containerStyle =
+      selectedAttributes.length > 0 ? styles.attributesWrapper : null;
 
-    const renderedAttributes = selectedAttributes.map((attr) => (
+    const renderedAttributes = selectedAttributes.map(attr => (
       <div style={styles.attributeIconContainer} key={attr.id}>
         <AttrIcon attribute={attr} />
-      </div>));
+      </div>
+    ));
 
-    return <div style={containerStyle}>
-      <Button />
-      {renderedAttributes}
-    </div>;
+    return (
+      <div style={containerStyle}>
+        <Button />
+        {renderedAttributes}
+      </div>
+    );
   };
 
   return (
@@ -36,9 +40,7 @@ const CommentArea = ({ preselect, selectedAttributes, onSelectAttribute }) => {
       />
       <div style={styles.horizontalSeparator}></div>
       <div style={styles.actionsBar}>
-        <ApprovalsToggle
-          preselect={preselect}
-        />
+        <ApprovalsToggle preselect={preselect} />
         <div style={styles.attributesContainer}>
           {renderSelectedAttributes()}
           <AddButton
@@ -46,9 +48,9 @@ const CommentArea = ({ preselect, selectedAttributes, onSelectAttribute }) => {
               setShowAttributes(!showAttributes);
             }}
           />
-          {showAttributes && <AttributesModal
-            onSelectAttribute={onSelectAttribute}
-          />}
+          {showAttributes && (
+            <AttributesModal onSelectAttribute={onSelectAttribute} />
+          )}
           <span style={styles.attributesLabel}>{labels.attributes}</span>
         </div>
       </div>

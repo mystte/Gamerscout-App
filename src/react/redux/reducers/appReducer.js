@@ -1,10 +1,5 @@
 import Immutable from 'immutable';
-import {
-  APP,
-  loading,
-  success,
-  error,
-} from '../actions/actionTypes';
+import { APP, loading, success, error } from '../actions/actionTypes';
 import AppRecord from '../../datamanager/models/AppRecord';
 
 // Default state
@@ -18,13 +13,19 @@ export default function reducer(state = initialState, action) {
   const { type } = action;
   switch (type) {
     case APP.TOGGLE_POPUP:
-      return state.withMutations((mutate) => {
-        mutate.setIn(['data', 'popupData', 'showPopup'],
+      return state.withMutations(mutate => {
+        mutate.setIn(
+          ['data', 'popupData', 'showPopup'],
           action.parameters.forceDisplay
             ? action.parameters.forceDisplay
-            : !state.getIn(['data', 'popupData', 'showPopup']));
+            : !state.getIn(['data', 'popupData', 'showPopup'])
+        );
         mutate.setIn(['data', 'popupData', 'type'], action.parameters.type);
-        if (action.parameters.params) mutate.setIn(['data', 'popupData', 'params'], action.parameters.params);
+        if (action.parameters.params)
+          mutate.setIn(
+            ['data', 'popupData', 'params'],
+            action.parameters.params
+          );
         mutate.set('error', null);
         mutate.set('data', new AppRecord(mutate.get('data')));
       });
@@ -38,27 +39,30 @@ export default function reducer(state = initialState, action) {
     case loading(APP.DO_VALIDATE_ACCOUNT):
     case loading(APP.DO_DISCONNECT_FACEBOOK):
     case loading(APP.DO_ADD_FACEBOOK_ACCOUNT):
-      return state.withMutations((mutate) => {
+      return state.withMutations(mutate => {
         mutate.set('loading', true);
         mutate.set('error', null);
       });
 
     case success(APP.DO_ADD_FACEBOOK_ACCOUNT):
-      return state.withMutations((mutate) => {
+      return state.withMutations(mutate => {
         mutate.set('loading', false);
         mutate.set('error', null);
-        mutate.setIn(['data', 'user'], state.getIn(['data', 'user']).updateUser(action.data));
+        mutate.setIn(
+          ['data', 'user'],
+          state.getIn(['data', 'user']).updateUser(action.data)
+        );
       });
 
     case success(APP.LOAD):
-      return state.withMutations((mutate) => {
+      return state.withMutations(mutate => {
         mutate.set('data', action.data);
         mutate.set('loading', false);
         mutate.set('error', null);
       });
 
     case success(APP.DO_LOGIN):
-      return state.withMutations((mutate) => {
+      return state.withMutations(mutate => {
         mutate.setIn(['data', 'user'], action.data);
         mutate.setIn(['data', 'isAuthenticated'], true);
         mutate.set('loading', false);
@@ -66,14 +70,17 @@ export default function reducer(state = initialState, action) {
       });
 
     case success(APP.DO_DISCONNECT_FACEBOOK):
-      return state.withMutations((mutate) => {
+      return state.withMutations(mutate => {
         mutate.set('loading', false);
-        mutate.setIn(['data', 'user'], state.getIn(['data', 'user']).removeFacebook());
+        mutate.setIn(
+          ['data', 'user'],
+          state.getIn(['data', 'user']).removeFacebook()
+        );
         mutate.set('error', null);
       });
 
     case success(APP.DO_LOGOUT):
-      return state.withMutations((mutate) => {
+      return state.withMutations(mutate => {
         mutate.setIn(['data', 'isAuthenticated'], false);
         mutate.setIn(['data', 'user'], null);
         mutate.set('loading', false);
@@ -81,17 +88,23 @@ export default function reducer(state = initialState, action) {
       });
 
     case success(APP.DO_UPDATE_USER):
-      return state.withMutations((mutate) => {
+      return state.withMutations(mutate => {
         mutate.set('loading', false);
-        mutate.setIn(['data', 'user'], state.getIn(['data', 'user']).updateUser(action.data));
+        mutate.setIn(
+          ['data', 'user'],
+          state.getIn(['data', 'user']).updateUser(action.data)
+        );
         mutate.set('error', null);
       });
 
     case success(APP.DO_VALIDATE_ACCOUNT):
-      return state.withMutations((mutate) => {
+      return state.withMutations(mutate => {
         mutate.set('loading', false);
         mutate.set('error', null);
-        mutate.setIn(['data', 'user'], state.getIn(['data', 'user']).validateUserAccount(action.data));
+        mutate.setIn(
+          ['data', 'user'],
+          state.getIn(['data', 'user']).validateUserAccount(action.data)
+        );
       });
 
     case error(APP.LOAD):
@@ -105,7 +118,7 @@ export default function reducer(state = initialState, action) {
     case error(APP.DO_DISCONNECT_FACEBOOK):
     case error(APP.DO_ADD_FACEBOOK_ACCOUNT):
       console.log('ACTION ERROR = ', action);
-      return state.withMutations((mutate) => {
+      return state.withMutations(mutate => {
         mutate.set('loading', false);
         mutate.set('error', action.error);
       });

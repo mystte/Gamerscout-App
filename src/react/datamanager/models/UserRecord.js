@@ -16,47 +16,68 @@ const defaultProps = {
   hasAutomaticGeneratedPwd: Boolean,
 };
 
-const ExtendsWith = (superclass) => class extends superclass {
-  updateUser = (data) => new UserRecord(this.withMutations((mutate) => {
-    if (data.email) {
-      mutate.set('email', data.email);
-      mutate.set('validated', false);
+const ExtendsWith = superclass =>
+  class extends superclass {
+    updateUser = data =>
+      new UserRecord(
+        this.withMutations(mutate => {
+          if (data.email) {
+            mutate.set('email', data.email);
+            mutate.set('validated', false);
+          }
+
+          if (data.firstName) mutate.set('firstName', data.firstName);
+          if (data.lastName) mutate.set('lastName', data.lastName);
+          if (data.gender) mutate.set('gender', data.gender);
+          if (data.username) mutate.set('username', data.username);
+          if (data.facebookId) mutate.set('facebookId', +data.facebookId);
+          if (data.facebookEmail)
+            mutate.set('facebookEmail', data.facebookEmail);
+          if (data.hasAutomaticGeneratedPwd)
+            mutate.set(
+              'hasAutomaticGeneratedPwd',
+              data.hasAutomaticGeneratedPwd
+            );
+        })
+      );
+
+    removeFacebook = () =>
+      new UserRecord(
+        this.withMutations(mutate => {
+          mutate.set('facebookId', null);
+          mutate.set('facebookEmail', null);
+        })
+      );
+
+    validateUserAccount = () =>
+      new UserRecord(
+        this.withMutations(mutate => {
+          mutate.set('validated', true);
+          mutate.set('email', mutate.get('emailToValidate'));
+          mutate.set('emailToValidate', null);
+        })
+      );
+
+    getLinkedAccountNumber = () => {
+      let count = 0;
+
+      if (this.facebookId) count += 1;
+
+      return count;
+    };
+
+    static get defaultProps() {
+      return defaultProps;
     }
 
-    if (data.firstName) mutate.set('firstName', data.firstName);
-    if (data.lastName) mutate.set('lastName', data.lastName);
-    if (data.gender) mutate.set('gender', data.gender);
-    if (data.username) mutate.set('username', data.username);
-    if (data.facebookId) mutate.set('facebookId', +data.facebookId);
-    if (data.facebookEmail) mutate.set('facebookEmail', data.facebookEmail);
-    if (data.hasAutomaticGeneratedPwd) mutate.set('hasAutomaticGeneratedPwd', data.hasAutomaticGeneratedPwd);
-  }));
+    static get ExtendsWith() {
+      return ExtendsWith;
+    }
+  };
 
-  removeFacebook = () => new UserRecord(this.withMutations((mutate) => {
-    mutate.set('facebookId', null);
-    mutate.set('facebookEmail', null);
-  }));
-
-  validateUserAccount = () => new UserRecord(this.withMutations((mutate) => {
-    mutate.set('validated', true);
-    mutate.set('email', mutate.get('emailToValidate'));
-    mutate.set('emailToValidate', null);
-  }));
-
-  getLinkedAccountNumber = () => {
-    let count = 0;
-
-    if (this.facebookId) count += 1;
-
-    return count;
-  }
-
-  static get defaultProps() { return defaultProps; }
-
-  static get ExtendsWith() { return ExtendsWith; }
-};
-
-export default class UserRecord extends ExtendsWith(Record(defaultProps, 'UserRecord')) {
+export default class UserRecord extends ExtendsWith(
+  Record(defaultProps, 'UserRecord')
+) {
   static apiParser(data) {
     const parsedData = {
       id: data._id ? data._id : null,
@@ -68,7 +89,9 @@ export default class UserRecord extends ExtendsWith(Record(defaultProps, 'UserRe
       emailToValidate: data.emailToValidate ? data.emailToValidate : null,
       username: data.username ? data.username : null,
       validated: data.validated ? data.validated : false,
-      sessionId: data['gamerscout-api-session'] ? data['gamerscout-api-session'] : null,
+      sessionId: data['gamerscout-api-session']
+        ? data['gamerscout-api-session']
+        : null,
       facebookId: data.facebook_id ? +data.facebook_id : null,
       hasAutomaticGeneratedPwd: data.isAutomaticGeneratedPwd,
     };

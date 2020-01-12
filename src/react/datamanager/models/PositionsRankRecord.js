@@ -17,13 +17,20 @@ const defaultProps = {
   losses: Number,
 };
 
-const ExtendsWith = (superclass) => class extends superclass {
-  static get defaultProps() { return defaultProps; }
+const ExtendsWith = superclass =>
+  class extends superclass {
+    static get defaultProps() {
+      return defaultProps;
+    }
 
-  static get ExtendsWith() { return ExtendsWith; }
-};
+    static get ExtendsWith() {
+      return ExtendsWith;
+    }
+  };
 
-export default class PositionsRankRecord extends ExtendsWith(Record(defaultProps, 'PositionsRankRecord')) {
+export default class PositionsRankRecord extends ExtendsWith(
+  Record(defaultProps, 'PositionsRankRecord')
+) {
   static apiParser(data) {
     const parsedData = {
       positionType: data.positionType,

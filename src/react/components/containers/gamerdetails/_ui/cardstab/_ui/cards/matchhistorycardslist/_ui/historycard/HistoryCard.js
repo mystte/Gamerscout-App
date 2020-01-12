@@ -9,27 +9,29 @@ import styles from './styles';
 import UsedItems from './_ui/useditems/UsedItems';
 import PlayersList from './_ui/playerslist/PlayersList';
 
-const HistoryCard = ({
-  historyCardRecord,
-  staticDataUrl,
-  doSearchPlayer,
-}) => {
+const HistoryCard = ({ historyCardRecord, staticDataUrl, doSearchPlayer }) => {
   const labels = Localization.Labels.gamerDetails.historyCard;
-  const gameDuration = moment.utc(historyCardRecord.gameDuration * 1000).format('mm[m] s[s]');
+  const gameDuration = moment
+    .utc(historyCardRecord.gameDuration * 1000)
+    .format('mm[m] s[s]');
 
-  const containerStyle = historyCardRecord.win ? {
-    ...styles.container,
-    ...styles.winContainer,
-  } : {
-    ...styles.container,
-    ...styles.lossContainer,
-  };
+  const containerStyle = historyCardRecord.win
+    ? {
+        ...styles.container,
+        ...styles.winContainer,
+      }
+    : {
+        ...styles.container,
+        ...styles.lossContainer,
+      };
 
   return (
     <div style={containerStyle}>
       <div style={styles.topContainer}>
         <span style={styles.gameType}>{historyCardRecord.gameMode}</span>
-        <span style={styles.time}>{moment(historyCardRecord.startDate).fromNow()}</span>
+        <span style={styles.time}>
+          {moment(historyCardRecord.startDate).fromNow()}
+        </span>
         <span style={styles.dotSeparator}>.</span>
         <span style={styles.time}>{gameDuration}</span>
       </div>

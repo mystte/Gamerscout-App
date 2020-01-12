@@ -23,10 +23,8 @@ const ValidateAccount = () => {
   );
 };
 
-ValidateAccount.propTypes = {
-};
+ValidateAccount.propTypes = {};
 
-ValidateAccount.defaultProps = {
-};
+ValidateAccount.defaultProps = {};
 
 export default ValidateAccount;

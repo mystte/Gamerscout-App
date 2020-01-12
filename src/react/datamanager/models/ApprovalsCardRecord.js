@@ -9,16 +9,23 @@ const defaultProps = {
   approvalsCount: Number,
 };
 
-const ExtendsWith = (superclass) => class extends superclass {
-  static get defaultProps() { return defaultProps; }
+const ExtendsWith = superclass =>
+  class extends superclass {
+    static get defaultProps() {
+      return defaultProps;
+    }
 
-  static get ExtendsWith() { return ExtendsWith; }
-};
+    static get ExtendsWith() {
+      return ExtendsWith;
+    }
+  };
 
-export default class ApprovalsCardRecord extends ExtendsWith(Record(defaultProps, 'ApprovalsCardRecord')) {
+export default class ApprovalsCardRecord extends ExtendsWith(
+  Record(defaultProps, 'ApprovalsCardRecord')
+) {
   static apiParser(data) {
     const parsedData = {
-      approvalsCount: (data.rep_review_count) ? data.rep_review_count : 0,
+      approvalsCount: data.rep_review_count ? data.rep_review_count : 0,
     };
     return new ApprovalsCardRecord(parsedData);
   }

@@ -4,7 +4,6 @@ export const USER_MENU_ACTIONS = {
   PROFILE: 'USER_MENU_PROFILE',
   SETTINGS: 'USER_MENU_SETTINGS',
   LOGOUT: 'USER_MENU_LOGOUT',
-
 };
 
 export default null;

@@ -1,12 +1,19 @@
 import { put, takeEvery, takeLatest } from 'redux-saga/effects';
 import {
-  APP, NOTIFICATIONS, loading, success, error,
+  APP,
+  NOTIFICATIONS,
+  loading,
+  success,
+  error,
 } from '../actions/actionTypes';
 import Api, { fetchAsync } from '../../datamanager/api/Api';
 import AppRecord from '../../datamanager/models/AppRecord';
 import UserRecord from '../../datamanager/models/UserRecord';
 import { isEmpty } from '../../utils/objects';
-import NotificationRecord, { MOCKED_NOTIFICATION, NOTIFICATION_TYPE } from '../../datamanager/models/NotificationRecord';
+import NotificationRecord, {
+  MOCKED_NOTIFICATION,
+  NOTIFICATION_TYPE,
+} from '../../datamanager/models/NotificationRecord';
 import Localization from '../../config/localization/Localization';
 
 function* loadAppData({ parameters }) {
@@ -19,10 +26,13 @@ function* loadAppData({ parameters }) {
       type: success(actionType),
       data: AppRecord.apiParser({
         ...appConfigData.data,
-        user: !isEmpty(authenticatedData.data) ? {
-          ...authenticatedData.data,
-          'gamerscout-api-session': parameters.cookies['gamerscout-api-session'],
-        } : null,
+        user: !isEmpty(authenticatedData.data)
+          ? {
+              ...authenticatedData.data,
+              'gamerscout-api-session':
+                parameters.cookies['gamerscout-api-session'],
+            }
+          : null,
       }),
     });
   } catch (e) {
@@ -78,7 +88,9 @@ function* doUpdatePassword({ parameters }) {
   const actionType = APP.DO_UPDATE_PASSWORD;
 
   try {
-    yield fetchAsync(Api.doConfirmPassword, { password: parameters.currentPassword });
+    yield fetchAsync(Api.doConfirmPassword, {
+      password: parameters.currentPassword,
+    });
     yield fetchAsync(Api.doUpdateUser, {
       id: parameters.userId,
       password: parameters.newPassword,
@@ -86,7 +98,9 @@ function* doUpdatePassword({ parameters }) {
     yield put({
       type: NOTIFICATIONS.PUSH,
       parameters: {
-        record: NotificationRecord.getMockedNotif(MOCKED_NOTIFICATION.UPATED_PASSWORD),
+        record: NotificationRecord.getMockedNotif(
+          MOCKED_NOTIFICATION.UPATED_PASSWORD
+        ),
       },
     });
     yield put({ type: success(actionType) });
@@ -139,7 +153,8 @@ function* doLogin({ parameters }) {
   try {
     const loginData = yield fetchAsync(Api.doLogin, parameters);
     yield put({
-      type: success(actionType), data: UserRecord.apiParser(loginData.data),
+      type: success(actionType),
+      data: UserRecord.apiParser(loginData.data),
     });
     yield put({ type: APP.TOGGLE_POPUP, parameters: {} });
   } catch (e) {
@@ -153,7 +168,8 @@ function* doFacebookLogin({ parameters }) {
   try {
     const facebookLoginData = yield fetchAsync(Api.doFacebookLogin, parameters);
     yield put({
-      type: success(actionType), data: UserRecord.apiParser(facebookLoginData.data),
+      type: success(actionType),
+      data: UserRecord.apiParser(facebookLoginData.data),
     });
     yield put({ type: APP.TOGGLE_POPUP, parameters: {} });
   } catch (e) {
@@ -218,7 +234,8 @@ function* doLogout() {
   try {
     const logoutData = yield fetchAsync(Api.doLogout);
     yield put({
-      type: success(actionType), data: logoutData,
+      type: success(actionType),
+      data: logoutData,
     });
   } catch (e) {
     yield put({ type: error(actionType), error: e.message });
@@ -234,7 +251,9 @@ function* doResendValidationEmail() {
     yield put({
       type: NOTIFICATIONS.PUSH,
       parameters: {
-        record: NotificationRecord.getMockedNotif(MOCKED_NOTIFICATION.VALIDATION_EMAIL_RESENT),
+        record: NotificationRecord.getMockedNotif(
+          MOCKED_NOTIFICATION.VALIDATION_EMAIL_RESENT
+        ),
       },
     });
   } catch (e) {
@@ -251,14 +270,18 @@ function* doValidateAccount({ parameters }) {
     yield put({
       type: NOTIFICATIONS.PUSH,
       parameters: {
-        record: NotificationRecord.getMockedNotif(MOCKED_NOTIFICATION.ACCOUNT_VALIDATED),
+        record: NotificationRecord.getMockedNotif(
+          MOCKED_NOTIFICATION.ACCOUNT_VALIDATED
+        ),
       },
     });
   } catch (e) {
     yield put({
       type: NOTIFICATIONS.PUSH,
       parameters: {
-        record: NotificationRecord.getMockedNotif(MOCKED_NOTIFICATION.WRONG_VALIDATION_TOKEN),
+        record: NotificationRecord.getMockedNotif(
+          MOCKED_NOTIFICATION.WRONG_VALIDATION_TOKEN
+        ),
       },
     });
     yield put({ type: error(actionType), error: e.message });
@@ -285,7 +308,9 @@ function* doValidatePassword({ parameters }) {
     yield put({
       type: NOTIFICATIONS.PUSH,
       parameters: {
-        record: NotificationRecord.getMockedNotif(MOCKED_NOTIFICATION.WRONG_VALIDATION_TOKEN),
+        record: NotificationRecord.getMockedNotif(
+          MOCKED_NOTIFICATION.WRONG_VALIDATION_TOKEN
+        ),
       },
     });
     yield put({ type: error(actionType), error: e.message });
@@ -305,7 +330,10 @@ export function* appSaga() {
   yield takeLatest(loading(APP.DO_CONFIRM_PASSWORD), doConfirmPassword);
   yield takeLatest(loading(APP.DO_CREATE_PASSWORD), doCreatePassword);
   yield takeLatest(loading(APP.DO_UPDATE_PASSWORD), doUpdatePassword);
-  yield takeLatest(loading(APP.DO_RESEND_VALIDATION_EMAIL), doResendValidationEmail);
+  yield takeLatest(
+    loading(APP.DO_RESEND_VALIDATION_EMAIL),
+    doResendValidationEmail
+  );
   yield takeLatest(loading(APP.DO_VALIDATE_ACCOUNT), doValidateAccount);
   yield takeLatest(loading(APP.DO_VALIDATE_PASSWORD), doValidatePassword);
 }

@@ -10,26 +10,30 @@ const PlayersList = ({
   teammates,
   doSearchPlayer,
 }) => {
-  const renderChampionImg = (championName) => ((championName)
-    ? <img
-      style={styles.championImg}
-      alt={`championIcon${championName}`}
-      src={getLolChampionImgUrl(staticDataUrl, championName)}
-    ></img>
-    : <div style={{
-      ...styles.championImg,
-      ...styles.championPlaceholder,
-    }}></div>
-  );
+  const renderChampionImg = championName =>
+    championName ? (
+      <img
+        style={styles.championImg}
+        alt={`championIcon${championName}`}
+        src={getLolChampionImgUrl(staticDataUrl, championName)}
+      ></img>
+    ) : (
+      <div
+        style={{
+          ...styles.championImg,
+          ...styles.championPlaceholder,
+        }}
+      ></div>
+    );
 
-  const onPlayerClick = (playerName) => {
+  const onPlayerClick = playerName => {
     doSearchPlayer(playerName);
   };
 
   const renderOpponents = () => {
     const result = opponents.map((oppData, idx) => (
       <div
-        className='noSelect'
+        className="noSelect"
         style={styles.opponentContainer}
         key={`opponent ${idx}`}
       >
@@ -40,7 +44,7 @@ const PlayersList = ({
             ...styles.summoner,
             ...styles.opponentSummoner,
           }}
-          className='ellipsis'
+          className="ellipsis"
         >
           {oppData.summonerId}
         </div>
@@ -58,11 +62,12 @@ const PlayersList = ({
         key={`teammate ${idx}`}
       >
         <span
-          className='ellipsis'
+          className="ellipsis"
           style={{
             ...styles.summoner,
             ...styles.mateSummoner,
-          }}>
+          }}
+        >
           {mateData.summonerId}
         </span>
         {renderChampionImg(mateData.champion)}
@@ -74,12 +79,8 @@ const PlayersList = ({
 
   return (
     <div style={styles.container}>
-      <div style={styles.teammatesContainer}>
-        {renderTeammates()}
-      </div>
-      <div style={styles.opponentsContainer}>
-        {renderOpponents()}
-      </div>
+      <div style={styles.teammatesContainer}>{renderTeammates()}</div>
+      <div style={styles.opponentsContainer}>{renderOpponents()}</div>
     </div>
   );
 };

@@ -15,15 +15,18 @@ export const spellMap = {
   32: 'SummonerSnowball',
 };
 
-export const getLolChampionImgUrl = (url, name) => ((name)
-  ? `${url}/img/champion/${capitalize(name.replace("'", '')
-    .replace(' ', '')
-    .replace('.', ''))}.png`
-  : null);
+export const getLolChampionImgUrl = (url, name) =>
+  name
+    ? `${url}/img/champion/${capitalize(
+        name
+          .replace("'", '')
+          .replace(' ', '')
+          .replace('.', '')
+      )}.png`
+    : null;
 
-export const getLolSpellImgUrl = (url, id = 1) => (
-  `${url}/img/spell/${spellMap[id]}.png`
-);
+export const getLolSpellImgUrl = (url, id = 1) =>
+  `${url}/img/spell/${spellMap[id]}.png`;
 
 export const getLolPerksImgUrl = (url, id = 1) => {
   let name = null;
@@ -36,8 +39,6 @@ export const getLolPerksImgUrl = (url, id = 1) => {
   return `${url}/img/spell/${name}.png`;
 };
 
-export const getLolItemImgUrl = (url, id) => (
-  `${url}/img/item/${id}.png`
-);
+export const getLolItemImgUrl = (url, id) => `${url}/img/item/${id}.png`;
 
 export default null;

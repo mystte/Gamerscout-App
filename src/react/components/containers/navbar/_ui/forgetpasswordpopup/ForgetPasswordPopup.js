@@ -5,10 +5,7 @@ import Localization from '../../../../../config/localization/Localization';
 import Input, { INPUT_TYPE } from '../../../../views/elements/input/Input';
 import styles from './styles';
 import Button, { BUTTON_THEME } from '../../../../views/elements/button/Button';
-import {
-  togglePopup,
-  doResetPassword,
-} from '../../../../../redux/actions/app';
+import { togglePopup, doResetPassword } from '../../../../../redux/actions/app';
 import { POPUP_TYPE } from '../../../../../datamanager/models/PopupRecord';
 import UseKeyPress from '../../../../views/hooks/UseKeyPress';
 import Validator from '../../../../../datamanager/api/Validator';
@@ -21,7 +18,7 @@ const ForgetPasswordPopup = () => {
   const [errorMessage, setErrorMessage] = useState(null);
   const labels = Localization.Labels.forgetPasswordPopup;
   const errorsLabels = Localization.Errors.resetPassword;
-  const apiError = useSelector((state) => state.app.get('error'));
+  const apiError = useSelector(state => state.app.get('error'));
   const enterPressed = UseKeyPress('Enter');
 
   const onSubmit = () => {
@@ -36,30 +33,32 @@ const ForgetPasswordPopup = () => {
     }
   };
 
-  useEffect(() => (
-    () => {
+  useEffect(
+    () => () => {
       if (enterPressed) onSubmit();
-    }
-  ), [enterPressed]);
+    },
+    [enterPressed]
+  );
 
-  useEffect(() => () => {
-    setWrongEmail(true);
-  }, [apiError]);
+  useEffect(
+    () => () => {
+      setWrongEmail(true);
+    },
+    [apiError]
+  );
 
   return (
     <div style={styles.container}>
       <div style={styles.title}>{labels.title}</div>
-      {resetDone
-        && <div>Sent</div>
-      }
-      {!resetDone
-        && <React.Fragment>
+      {resetDone && <div>Sent</div>}
+      {!resetDone && (
+        <React.Fragment>
           <div style={styles.desc}>{labels.desc}</div>
           <div style={styles.fieldsContainer}>
             <Input
               placeholder={labels.placeholder}
               icon={'email'}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={e => setEmail(e.target.value)}
               type={INPUT_TYPE.EMAIL}
               focus
               error={wrongEmail}
@@ -81,7 +80,7 @@ const ForgetPasswordPopup = () => {
             />
           </div>
         </React.Fragment>
-      }
+      )}
     </div>
   );
 };

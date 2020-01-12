@@ -1,6 +1,5 @@
 dist/
 src/lib/
-src/react/datamanager/models
 ios/
 node_modules/
 .git/

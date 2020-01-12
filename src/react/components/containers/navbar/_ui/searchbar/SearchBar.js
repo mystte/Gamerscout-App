@@ -5,7 +5,10 @@ import styles from './styles';
 import SVGIcon from '../../../../views/elements/svgicon/SVGIcon';
 import Input from '../../../../views/elements/input/Input';
 import Localisation from '../../../../../config/localization/Localization';
-import DropDown, { SELECT_TYPE, DROPDOWN_TYPE } from '../../../../views/elements/dropdown/DropDown';
+import DropDown, {
+  SELECT_TYPE,
+  DROPDOWN_TYPE,
+} from '../../../../views/elements/dropdown/DropDown';
 import Button from '../../../../views/elements/button/Button';
 import UseKeyPress from '../../../../views/hooks/UseKeyPress';
 
@@ -18,20 +21,19 @@ const SearchBar = ({
   const labels = Localisation.Labels.navBar;
   const enterPressed = UseKeyPress('Enter');
 
-  const disableEnter = (e) => ((e.which === 13) ? e.preventDefault() : null);
+  const disableEnter = e => (e.which === 13 ? e.preventDefault() : null);
 
-  useEffect(() => () => {
-    if (enterPressed) onSearch();
-  }, [enterPressed]);
+  useEffect(
+    () => () => {
+      if (enterPressed) onSearch();
+    },
+    [enterPressed]
+  );
 
   return (
     <div style={styles.container}>
       <div style={styles.platformDropdown}>
-        <SVGIcon
-          width={20}
-          height={20}
-          name={'platforms/lol'}
-        />
+        <SVGIcon width={20} height={20} name={'platforms/lol'} />
       </div>
       <div style={styles.searchContainer}>
         <form onKeyDown={disableEnter} autoComplete="false">
@@ -69,7 +71,6 @@ SearchBar.propTypes = {
   onSearchChange: PropTypes.func.isRequired,
 };
 
-SearchBar.defaultProps = {
-};
+SearchBar.defaultProps = {};
 
 export default SearchBar;

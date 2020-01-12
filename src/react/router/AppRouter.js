@@ -20,11 +20,16 @@ import ValidatePassword from '../components/containers/validatepassword/Validate
 import TermsAndConditions from '../components/containers/termsandconditions/TermsAndConditions';
 import PrivacyPolicy from '../components/containers/privacypolicy/PrivacyPolicy';
 
-
 const Home = React.lazy(() => import('../components/containers/home/Home'));
-const GamerDetails = React.lazy(() => import('../components/containers/gamerdetails/GamerDetails'));
-const Settings = React.lazy(() => import('../components/containers/settings/Settings'));
-const ValidateAccount = React.lazy(() => import('../components/containers/validateaccount/ValidateAccount'));
+const GamerDetails = React.lazy(() =>
+  import('../components/containers/gamerdetails/GamerDetails')
+);
+const Settings = React.lazy(() =>
+  import('../components/containers/settings/Settings')
+);
+const ValidateAccount = React.lazy(() =>
+  import('../components/containers/validateaccount/ValidateAccount')
+);
 
 const AppRouter = ({ cookies }) => {
   const routesConfig = [
@@ -58,25 +63,27 @@ const AppRouter = ({ cookies }) => {
     },
   ];
 
-  const renderedRoutes = routesConfig.map((route) => (<Route
+  const renderedRoutes = routesConfig.map(route => (
+    <Route
       cookies={cookies}
       key={`route${route.path}`}
       path={route.path}
       exact
       component={route.component}
-    />));
+    />
+  ));
 
   return (
     <Router>
       <QueryParamProvider ReactRouterRoute={Route}>
-      <NavBar />
-      <NotificationsManager />
-      <Suspense fallback={<Loading />}>
-        <Switch>
-          {renderedRoutes}
-          <Route component={FourOFour} />
-        </Switch>
-      </Suspense>
+        <NavBar />
+        <NotificationsManager />
+        <Suspense fallback={<Loading />}>
+          <Switch>
+            {renderedRoutes}
+            <Route component={FourOFour} />
+          </Switch>
+        </Suspense>
       </QueryParamProvider>
     </Router>
   );

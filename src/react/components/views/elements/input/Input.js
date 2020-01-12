@@ -39,10 +39,11 @@ const Input = ({
   const [mounted, setMounted] = useState(false);
   const [value, setValue] = useState(initValue);
   const [toggleFocus, setToggleFocus] = useState(false);
-  const focusStyle = (toggleFocus) ? styles.focus : null;
-  const errorStyle = (error) ? styles.error : null;
-  const validStyle = (valid) ? styles.valid : null;
-  const passwordStyle = (type === INPUT_TYPE.PASSWORD) ? styles.inputPassword : null;
+  const focusStyle = toggleFocus ? styles.focus : null;
+  const errorStyle = error ? styles.error : null;
+  const validStyle = valid ? styles.valid : null;
+  const passwordStyle =
+    type === INPUT_TYPE.PASSWORD ? styles.inputPassword : null;
 
   const mergedInputStyle = {
     ...styles.input,
@@ -58,32 +59,28 @@ const Input = ({
     let iconToRender = null;
     if (iconPosition === ICON_POSITION.LEFT) {
       iconToRender = (
-        <div style={{
-          ...styles.iconLeftContainer,
-          ...focusStyle,
-          ...errorStyle,
-          ...validStyle,
-        }}>
-          <SVGIcon
-            width={16}
-            name={icon}
-          />
+        <div
+          style={{
+            ...styles.iconLeftContainer,
+            ...focusStyle,
+            ...errorStyle,
+            ...validStyle,
+          }}
+        >
+          <SVGIcon width={16} name={icon} />
         </div>
       );
     } else if (iconPosition === ICON_POSITION.RIGHT) {
       iconToRender = (
         <div style={styles.iconRightContainer}>
-          <SVGIcon
-            width={16}
-            name={icon}
-          />
+          <SVGIcon width={16} name={icon} />
         </div>
       );
     }
     return iconToRender;
   };
 
-  const onInputChange = (e) => {
+  const onInputChange = e => {
     setValue(e.target.value);
     if (onChange) onChange(e);
   };
@@ -98,16 +95,14 @@ const Input = ({
 
   return (
     <div>
-      {title
-        && <div style={styles.title}>{title}</div>
-      }
+      {title && <div style={styles.title}>{title}</div>}
       <div style={styles.inputContainer}>
-        {icon && iconPosition === ICON_POSITION.LEFT
-          && renderedIcon()
-        }
+        {icon && iconPosition === ICON_POSITION.LEFT && renderedIcon()}
         <input
           className="input-animation"
-          ref={(input) => { setRef(input); }}
+          ref={input => {
+            setRef(input);
+          }}
           style={mergedInputStyle}
           onFocus={() => setToggleFocus(true)}
           onBlur={() => setToggleFocus(false)}
@@ -117,13 +112,13 @@ const Input = ({
           onChange={onInputChange}
           maxLength={length}
         />
-        {icon && iconPosition === ICON_POSITION.RIGHT
-          && renderedIcon()
-        }
+        {icon && iconPosition === ICON_POSITION.RIGHT && renderedIcon()}
       </div>
-      {message
-        && <div className="input-animation" style={styles.message}>{message}</div>
-      }
+      {message && (
+        <div className="input-animation" style={styles.message}>
+          {message}
+        </div>
+      )}
     </div>
   );
 };

@@ -3,33 +3,34 @@ import PropTypes from 'prop-types';
 
 import styles from './styles';
 import TabSelector from '../../../../../../../views/elements/tabselector/TabSelector';
-import ChampionsCardRecord, { CHAMPIONS_CARD_TAB } from '../../../../../../../../datamanager/models/ChampionsCardRecord';
+import ChampionsCardRecord, {
+  CHAMPIONS_CARD_TAB,
+} from '../../../../../../../../datamanager/models/ChampionsCardRecord';
 import ChampionStats from './_ui/championstats/ChampionStats';
 import PositionStats from './_ui/positionstats/PositionStats';
 
-const ChampionsCard = ({
-  championsCardRecord,
-  staticDataUrl,
-}) => {
-  const getHeaderList = () => (
-    championsCardRecord ? championsCardRecord.getChampionsCardTabHeader() : []
-  );
+const ChampionsCard = ({ championsCardRecord, staticDataUrl }) => {
+  const getHeaderList = () =>
+    championsCardRecord ? championsCardRecord.getChampionsCardTabHeader() : [];
 
-  const getContentList = () => (
-    championsCardRecord ? championsCardRecord.getChampionsCardTabHeader().map((header, idx) => (
-      <div key={`header${idx}`}>
-        {header.title === CHAMPIONS_CARD_TAB.CHAMPIONS
-          && <ChampionStats
-            staticDataUrl={staticDataUrl}
-            championsStatsList={championsCardRecord.championsStatsList}
-          />}
-        {header.title === CHAMPIONS_CARD_TAB.POSITIONS
-          && <PositionStats
-            positionsStatsList={championsCardRecord.positionsStatsList}
-          />}
-      </div>
-    )) : []
-  );
+  const getContentList = () =>
+    championsCardRecord
+      ? championsCardRecord.getChampionsCardTabHeader().map((header, idx) => (
+          <div key={`header${idx}`}>
+            {header.title === CHAMPIONS_CARD_TAB.CHAMPIONS && (
+              <ChampionStats
+                staticDataUrl={staticDataUrl}
+                championsStatsList={championsCardRecord.championsStatsList}
+              />
+            )}
+            {header.title === CHAMPIONS_CARD_TAB.POSITIONS && (
+              <PositionStats
+                positionsStatsList={championsCardRecord.positionsStatsList}
+              />
+            )}
+          </div>
+        ))
+      : [];
 
   return (
     <div style={styles.container}>

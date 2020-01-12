@@ -9,7 +9,9 @@ import ChampionsCard from './_ui/cards/championscard/ChampionsCard';
 import ReviewsCard from './_ui/cards/reviewscard/ReviewsCard';
 
 import RankedCardRecord from '../../../../../datamanager/models/RankedCardRecord';
-import ApprovalsCardRecord, { APPROVAL_TYPE } from '../../../../../datamanager/models/ApprovalsCardRecord';
+import ApprovalsCardRecord, {
+  APPROVAL_TYPE,
+} from '../../../../../datamanager/models/ApprovalsCardRecord';
 import DisapprovalsCardRecord from '../../../../../datamanager/models/DisapprovalsCardRecord';
 import ReviewsCardRecord from '../../../../../datamanager/models/ReviewsCardRecord';
 import MathHistoryCardsList from './_ui/cards/matchhistorycardslist/MatchHistoryCardsList';
@@ -53,15 +55,17 @@ class CardsTab extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = {
-    };
+    this.state = {};
   }
 
   render() {
-    if (!this.props.rankedCardRecord
-        || !this.props.trendsCardRecord
-        || !this.props.approvalsCardRecord
-        || !this.props.reviewsCardRecord) return null;
+    if (
+      !this.props.rankedCardRecord ||
+      !this.props.trendsCardRecord ||
+      !this.props.approvalsCardRecord ||
+      !this.props.reviewsCardRecord
+    )
+      return null;
 
     return (
       <div style={styles.container}>

@@ -3,25 +3,18 @@ import React, { PureComponent } from 'react';
 import styles from './styles';
 
 class LiveMatchTab extends PureComponent {
-  static propTypes = {
-  };
+  static propTypes = {};
 
-  static defaultProps = {
-  };
+  static defaultProps = {};
 
   constructor(props) {
     super(props);
 
-    this.state = {
-    };
+    this.state = {};
   }
 
   render() {
-    return (
-      <div style={styles.container}>
-        LiveMatchTab
-      </div>
-    );
+    return <div style={styles.container}>LiveMatchTab</div>;
   }
 }
 

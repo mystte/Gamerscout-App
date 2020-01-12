@@ -7,13 +7,20 @@ const defaultProps = {
   teamKda: Number,
 };
 
-const ExtendsWith = (superclass) => class extends superclass {
-  static get defaultProps() { return defaultProps; }
+const ExtendsWith = superclass =>
+  class extends superclass {
+    static get defaultProps() {
+      return defaultProps;
+    }
 
-  static get ExtendsWith() { return ExtendsWith; }
-};
+    static get ExtendsWith() {
+      return ExtendsWith;
+    }
+  };
 
-export default class TrendDataRecord extends ExtendsWith(Record(defaultProps, 'TrendDataRecord')) {
+export default class TrendDataRecord extends ExtendsWith(
+  Record(defaultProps, 'TrendDataRecord')
+) {
   static apiParser(data) {
     const parsedData = {
       cs: Math.round(data.cs),

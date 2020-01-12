@@ -15,7 +15,8 @@ class ApprovalsToggle extends PureComponent {
   };
 
   componentWillMount() {
-    if (this.props.preselect === APPROVAL_TYPE.APPROVAL) this.setState({ approveSelected: true });
+    if (this.props.preselect === APPROVAL_TYPE.APPROVAL)
+      this.setState({ approveSelected: true });
     if (this.props.preselect === APPROVAL_TYPE.DISAPPROVAL) {
       this.setState({ disapproveSelected: true });
     }
@@ -30,20 +31,20 @@ class ApprovalsToggle extends PureComponent {
     };
   }
 
-  onApproveButtonClick = (type) => {
-    this.setState((state) => {
+  onApproveButtonClick = type => {
+    this.setState(state => {
       let { approveSelected, disapproveSelected } = state;
 
       if (type === APPROVAL_TYPE.APPROVAL) {
         approveSelected = !approveSelected;
-        disapproveSelected = (approveSelected) ? false : disapproveSelected;
+        disapproveSelected = approveSelected ? false : disapproveSelected;
       } else {
         disapproveSelected = !disapproveSelected;
-        approveSelected = (disapproveSelected) ? false : approveSelected;
+        approveSelected = disapproveSelected ? false : approveSelected;
       }
       return { approveSelected, disapproveSelected };
     });
-  }
+  };
 
   render() {
     return (

@@ -6,26 +6,29 @@ import Chart from 'react-c3-component';
 import 'c3/c3.css';
 
 import TrendTip from './_ui/trendtip/TrendTip';
-import TrendsCardRecord, { TRENDS_OPTIONS } from '../../../../../../../../datamanager/models/TrendsCardRecord';
+import TrendsCardRecord, {
+  TRENDS_OPTIONS,
+} from '../../../../../../../../datamanager/models/TrendsCardRecord';
 import Localization from '../../../../../../../../config/localization/Localization';
 
 import styles from './styles';
 import { colorNameToHex } from '../../../../../../../../utils/color';
-import DropDown, { SELECT_TYPE } from '../../../../../../../views/elements/dropdown/DropDown';
+import DropDown, {
+  SELECT_TYPE,
+} from '../../../../../../../views/elements/dropdown/DropDown';
 import useResize from '../../../../../../../views/hooks/UseResize';
 
-const TrendsCard = ({
-  trendsCardRecord,
-  gamertag,
-}) => {
+const TrendsCard = ({ trendsCardRecord, gamertag }) => {
   const labels = Localization.Labels.gamerDetails.trendsCard;
-  const [selectedFilter, setSelectedFilter] = useState(TRENDS_OPTIONS.TEAM_KDA_VS_KDA);
+  const [selectedFilter, setSelectedFilter] = useState(
+    TRENDS_OPTIONS.TEAM_KDA_VS_KDA
+  );
   const { dimensions, targetRef } = useResize();
   const data = {
     columns: trendsCardRecord.getChartData(selectedFilter),
   };
 
-  const onFilterChange = (filter) => {
+  const onFilterChange = filter => {
     setSelectedFilter(filter.name);
   };
 
@@ -49,10 +52,14 @@ const TrendsCard = ({
             selectType={SELECT_TYPE.SIMPLE}
             onChange={onFilterChange}
             options={[
-              { name: TRENDS_OPTIONS.TEAM_KDA_VS_KDA, label: labels.teamKdaVsKda },
+              {
+                name: TRENDS_OPTIONS.TEAM_KDA_VS_KDA,
+                label: labels.teamKdaVsKda,
+              },
               { name: TRENDS_OPTIONS.KDA, label: labels.kda },
               // { name: TRENDS_OPTIONS.TEAM_KDA, label: labels.teamKda },
-            ]} />
+            ]}
+          />
         </div>
         <div style={styles.chartContainer}>
           <Chart
@@ -80,14 +87,10 @@ const TrendsCard = ({
                 r: 1,
               },
               tooltip: {
-                contents: (d, defaultTitleFormat, defaultValueFormat, color) => (
+                contents: (d, defaultTitleFormat, defaultValueFormat, color) =>
                   ReactDOMServer.renderToStaticMarkup(
-                    <TrendTip
-                      gamertag={gamertag}
-                      getColor={color}
-                      data={d}
-                    />,
-                  )),
+                    <TrendTip gamertag={gamertag} getColor={color} data={d} />
+                  ),
               },
             }}
           />

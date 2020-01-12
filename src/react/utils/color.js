@@ -179,19 +179,28 @@ function colorNameToHex(value) {
 function hexToRgb(hex) {
   // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
   const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-  const normalizedHex = hex.replace(shorthandRegex, (m, r, g, b) => r + r + g + g + b + b);
+  const normalizedHex = hex.replace(
+    shorthandRegex,
+    (m, r, g, b) => r + r + g + g + b + b
+  );
 
-  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(normalizedHex);
-  return result ? {
-    r: parseInt(result[1], 16),
-    g: parseInt(result[2], 16),
-    b: parseInt(result[3], 16),
-  } : null;
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(
+    normalizedHex
+  );
+  return result
+    ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16),
+      }
+    : null;
 }
 
 function hexToRgba(hex, alpha) {
   const result = hexToRgb(hex);
-  return result ? `rgba(${result.r}, ${result.g}, ${result.b}, ${alpha})` : null;
+  return result
+    ? `rgba(${result.r}, ${result.g}, ${result.b}, ${alpha})`
+    : null;
 }
 
 function colorNameToRgba(name, alpha) {
@@ -199,9 +208,4 @@ function colorNameToRgba(name, alpha) {
   return hexToRgba(hexColor, alpha);
 }
 
-export {
-  colorNameToHex,
-  colorNameToRgba,
-  hexToRgb,
-  hexToRgba,
-};
+export { colorNameToHex, colorNameToRgba, hexToRgb, hexToRgba };

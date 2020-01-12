@@ -3,7 +3,10 @@ import PropTypes from 'prop-types';
 
 import Localization from '../../../../../../../config/localization/Localization';
 import styles from './styles';
-import DropDown, { SELECT_TYPE, DROPDOWN_TYPE } from '../../../../../../views/elements/dropdown/DropDown';
+import DropDown, {
+  SELECT_TYPE,
+  DROPDOWN_TYPE,
+} from '../../../../../../views/elements/dropdown/DropDown';
 import { REVIEW_FILTER } from '../../../../../../../datamanager/models/ReviewsCardRecord';
 
 const ReviewFilter = ({ onReviewFilterChange }) => {
@@ -12,13 +15,15 @@ const ReviewFilter = ({ onReviewFilterChange }) => {
   const [showFilter, setShowFilter] = useState(REVIEW_FILTER.SHOW_ALL);
   const [filterBy, setFilterBy] = useState(REVIEW_FILTER.NEWEST);
 
-  const onFilterChange = (selectedFilter) => {
+  const onFilterChange = selectedFilter => {
     let newShowFilter = showFilter;
     let newFilterBy = filterBy;
 
-    if (selectedFilter.name === REVIEW_FILTER.SHOW_ALL
-        || selectedFilter.name === REVIEW_FILTER.SHOW_APPROVALS
-        || selectedFilter.name === REVIEW_FILTER.SHOW_DISAPPROVALS) {
+    if (
+      selectedFilter.name === REVIEW_FILTER.SHOW_ALL ||
+      selectedFilter.name === REVIEW_FILTER.SHOW_APPROVALS ||
+      selectedFilter.name === REVIEW_FILTER.SHOW_DISAPPROVALS
+    ) {
       setShowFilter(selectedFilter.name);
       newShowFilter = selectedFilter.name;
     } else {
@@ -37,7 +42,10 @@ const ReviewFilter = ({ onReviewFilterChange }) => {
           options={[
             { name: REVIEW_FILTER.SHOW_ALL, label: labels.all },
             { name: REVIEW_FILTER.SHOW_APPROVALS, label: labels.approvals },
-            { name: REVIEW_FILTER.SHOW_DISAPPROVALS, label: labels.disapprovals },
+            {
+              name: REVIEW_FILTER.SHOW_DISAPPROVALS,
+              label: labels.disapprovals,
+            },
           ]}
           selectType={SELECT_TYPE.SIMPLE}
           dropDown={DROPDOWN_TYPE.DEFAULT}
@@ -62,7 +70,6 @@ ReviewFilter.propTypes = {
   onReviewFilterChange: PropTypes.func,
 };
 
-ReviewFilter.defaultProps = {
-};
+ReviewFilter.defaultProps = {};
 
 export default ReviewFilter;

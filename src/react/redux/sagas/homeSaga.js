@@ -1,10 +1,5 @@
 import { put, takeEvery } from 'redux-saga/effects';
-import {
-  loading,
-  HOME,
-  success,
-  error,
-} from '../actions/actionTypes';
+import { loading, HOME, success, error } from '../actions/actionTypes';
 import Api, { fetchAsync } from '../../datamanager/api/Api';
 import HomeRecord from '../../datamanager/models/HomeRecord';
 
@@ -13,7 +8,9 @@ function* loadHome() {
   try {
     const getMostReviewedData = yield fetchAsync(Api.doGetMostReviewedPlayers);
     const getHighestRatedData = yield fetchAsync(Api.doGetHighestRatedPlayers);
-    const getRecentReviewsData = yield fetchAsync(Api.doGetRecentReviewsPlayers);
+    const getRecentReviewsData = yield fetchAsync(
+      Api.doGetRecentReviewsPlayers
+    );
 
     yield put({
       type: success(actionType),

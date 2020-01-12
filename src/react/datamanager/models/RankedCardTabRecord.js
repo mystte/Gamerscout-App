@@ -15,15 +15,24 @@ const defaultProps = {
   tier: String,
 };
 
-const ExtendsWith = (superclass) => class extends superclass {
-  static get defaultProps() { return defaultProps; }
+const ExtendsWith = superclass =>
+  class extends superclass {
+    static get defaultProps() {
+      return defaultProps;
+    }
 
-  static get ExtendsWith() { return ExtendsWith; }
-};
+    static get ExtendsWith() {
+      return ExtendsWith;
+    }
+  };
 
-export default class RankedCardTabRecord extends ExtendsWith(Record(defaultProps, 'RankedCardTabRecord')) {
+export default class RankedCardTabRecord extends ExtendsWith(
+  Record(defaultProps, 'RankedCardTabRecord')
+) {
   static apiParser(data) {
-    const rankedLeagueImg = `lol/rankingIcons/${data.tier.toLowerCase()}_${romanToNumber(data.rank)}`;
+    const rankedLeagueImg = `lol/rankingIcons/${data.tier.toLowerCase()}_${romanToNumber(
+      data.rank
+    )}`;
     const parsedData = {
       title: data.queueType,
       rank: data.rank,

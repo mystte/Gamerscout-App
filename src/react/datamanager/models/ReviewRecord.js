@@ -15,19 +15,27 @@ const defaultProps = {
   attributes: Maybe(List(AttributeRecord)),
 };
 
-const ExtendsWith = (superclass) => class extends superclass {
-  static get defaultProps() { return defaultProps; }
+const ExtendsWith = superclass =>
+  class extends superclass {
+    static get defaultProps() {
+      return defaultProps;
+    }
 
-  static get ExtendsWith() { return ExtendsWith; }
-};
+    static get ExtendsWith() {
+      return ExtendsWith;
+    }
+  };
 
-export default class ReviewRecord extends ExtendsWith(Record(defaultProps, 'ReviewsCardRecord')) {
+export default class ReviewRecord extends ExtendsWith(
+  Record(defaultProps, 'ReviewsCardRecord')
+) {
   static parseAttributes(attributes) {
-    return attributes.map((attribute) => (
+    return attributes.map(attribute =>
       AttributeRecord.apiParser({
         ...attribute,
         frequency: 1,
-      })));
+      })
+    );
   }
 
   static apiParser(data) {
@@ -35,7 +43,10 @@ export default class ReviewRecord extends ExtendsWith(Record(defaultProps, 'Revi
       comment: data.comment ? data.comment : null,
       reviewerName: data.username ? data.username : null,
       date: data.date ? data.date : null,
-      type: data.review_type === 'REP' ? REVIEW_TYPE.APPROVAL : REVIEW_TYPE.DISAPPROVAL,
+      type:
+        data.review_type === 'REP'
+          ? REVIEW_TYPE.APPROVAL
+          : REVIEW_TYPE.DISAPPROVAL,
       attributes: ReviewRecord.parseAttributes(data.tags),
     };
 

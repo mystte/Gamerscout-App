@@ -18,10 +18,14 @@ const GamerSkeleton = () => (
           <Circle radius={32.5} />
         </div>
         <div>
-          <div style={styles.avatarName}><Rectangle width={134} height={19} /></div>
+          <div style={styles.avatarName}>
+            <Rectangle width={134} height={19} />
+          </div>
           <Rectangle width={46} height={12} />
         </div>
-        <div style={styles.reviewButton}><Rectangle width={109} height={36} /></div>
+        <div style={styles.reviewButton}>
+          <Rectangle width={109} height={36} />
+        </div>
       </div>
       <div style={styles.navBottom} />
     </div>
@@ -34,8 +38,12 @@ const GamerSkeleton = () => (
       <div style={styles.leftColumn}>
         <StatsCardSkeleton />
         <div style={styles.approvalsContainer}>
-          <div style={styles.approvalCard}><ApprovalsCardSkeleton /></div>
-          <div style={styles.disapprovalCard}><ApprovalsCardSkeleton /></div>
+          <div style={styles.approvalCard}>
+            <ApprovalsCardSkeleton />
+          </div>
+          <div style={styles.disapprovalCard}>
+            <ApprovalsCardSkeleton />
+          </div>
         </div>
         <StatsCardSkeleton />
       </div>

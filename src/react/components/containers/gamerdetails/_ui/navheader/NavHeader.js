@@ -30,15 +30,12 @@ class NavHeader extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = {
-    };
+    this.state = {};
   }
 
-  componentDidMount() {
-  }
+  componentDidMount() {}
 
-  componentWillUnmount() {
-  }
+  componentWillUnmount() {}
 
   render() {
     return (
@@ -46,8 +43,8 @@ class NavHeader extends PureComponent {
         <div style={styles.topBannerContainer}>
           <SVGIcon
             type={IMG_TYPE.PNG}
-            name='lol/lol-bg'
-            width='100%'
+            name="lol/lol-bg"
+            width="100%"
             height={220}
           />
           <div style={styles.gamerAvatarContainer}>

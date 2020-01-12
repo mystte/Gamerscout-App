@@ -6,10 +6,7 @@ import styles from './styles';
 import NavElem from './_ui/navelem/NavElem';
 import { NAV_SECTION } from '../../enums';
 
-const SettingsNav = ({
-  selectedNav,
-  onNavSelect,
-}) => {
+const SettingsNav = ({ selectedNav, onNavSelect }) => {
   const labels = Localization.Labels.settings.nav;
 
   return (

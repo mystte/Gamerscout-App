@@ -8,7 +8,11 @@ import SVGIcon, { IMG_TYPE } from '../../views/elements/svgicon/SVGIcon';
 
 import styles from './styles';
 import HomeSearchBar from './_ui/homesearchbar/HomeSearchBar';
-import { GAME_PLATFORM, GAME_CODE, GAME_REGIONS } from '../../../datamanager/models/AppRecord';
+import {
+  GAME_PLATFORM,
+  GAME_CODE,
+  GAME_REGIONS,
+} from '../../../datamanager/models/AppRecord';
 import { getGamerDetailsUrl } from '../../../config/routes';
 import { loadGamerDetails } from '../../../redux/actions/gamerDetails';
 import UseKeyPress from '../../views/hooks/UseKeyPress';
@@ -19,18 +23,14 @@ import Footer from '../footer/Footer';
 import { loadHome } from '../../../redux/actions/home';
 import Playerlist from '../../views/playerlist/Playerlist';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   config: state.app.get('data'),
   homeRecord: state.home.getIn(['data', 'homeRecord']),
   loading: state.app.get('loading'),
   error: state.app.get('error'),
 });
 
-const Home = ({
-  config,
-  homeRecord,
-  history,
-}) => {
+const Home = ({ config, homeRecord, history }) => {
   if (!config) return null;
   const labels = Localization.Labels.home;
   const dispatch = useDispatch();
@@ -42,38 +42,36 @@ const Home = ({
 
   const onSearchClick = () => {
     if (searchValue) {
-      history.push(getGamerDetailsUrl(
-        searchPlatform,
-        searchRegion,
-        searchGame,
-        searchValue,
-      ));
-      dispatch(loadGamerDetails(
-        searchPlatform,
-        searchRegion,
-        searchGame,
-        searchValue,
-      ));
+      history.push(
+        getGamerDetailsUrl(
+          searchPlatform,
+          searchRegion,
+          searchGame,
+          searchValue
+        )
+      );
+      dispatch(
+        loadGamerDetails(searchPlatform, searchRegion, searchGame, searchValue)
+      );
     }
   };
 
-  const setAndGoToPlayer = (player) => {
+  const setAndGoToPlayer = player => {
     const newSearchValue = player.gamertag;
     const playerRegion = player.region;
     setSearchValue(newSearchValue);
     setSearchRegion(playerRegion);
-    history.push(getGamerDetailsUrl(
-      searchPlatform,
-      playerRegion,
-      searchGame,
-      newSearchValue,
-    ));
-    dispatch(loadGamerDetails(
-      searchPlatform,
-      playerRegion,
-      searchGame,
-      newSearchValue,
-    ));
+    history.push(
+      getGamerDetailsUrl(
+        searchPlatform,
+        playerRegion,
+        searchGame,
+        newSearchValue
+      )
+    );
+    dispatch(
+      loadGamerDetails(searchPlatform, playerRegion, searchGame, newSearchValue)
+    );
   };
 
   useEffect(() => {
@@ -84,7 +82,7 @@ const Home = ({
     if (enterPressed) onSearchClick();
   }, [enterPressed]);
 
-  const onRegionChanged = (newRegion) => {
+  const onRegionChanged = newRegion => {
     setSearchRegion(newRegion.name);
   };
 
@@ -98,7 +96,7 @@ const Home = ({
         <h1 style={styles.title}>{labels.title}</h1>
         <h1 style={styles.title}>{labels.title2}</h1>
         <HomeSearchBar
-          onInputChange={(e) => setSearchValue(e.target.value)}
+          onInputChange={e => setSearchValue(e.target.value)}
           regionsList={config.regions.riot.regionsCode}
           onRegionChange={onRegionChanged}
           onSearchClick={onSearchClick}
@@ -130,9 +128,7 @@ const Home = ({
               height={115}
             />
           </div>
-          <span style={styles.statTitle}>
-            {labels.ratings}
-          </span>
+          <span style={styles.statTitle}>{labels.ratings}</span>
         </div>
         <div style={styles.approvalsContainer}>
           <SVGIcon
@@ -141,9 +137,7 @@ const Home = ({
             width={350}
             height={148}
           />
-          <span style={styles.statTitle}>
-            {labels.reviews}
-          </span>
+          <span style={styles.statTitle}>{labels.reviews}</span>
         </div>
         <div style={styles.approvalsContainer}>
           <SVGIcon
@@ -152,9 +146,7 @@ const Home = ({
             width={350}
             height={119}
           />
-          <span style={styles.statTitle}>
-            {labels.stats}
-          </span>
+          <span style={styles.statTitle}>{labels.stats}</span>
         </div>
       </div>
       <div style={styles.createAccountContainer}>
@@ -168,22 +160,37 @@ const Home = ({
       </div>
       <div style={styles.featuredGamersContainers}>
         <h2 style={styles.ftTitle}>{labels.featuredGamers}</h2>
-        {homeRecord
-        && <div style={styles.playersListContainer}>
-          <div style={styles.playerList}>
-            <span style={styles.playerListTitle}>{labels.recent.toUpperCase()}</span>
-            <Playerlist goToPlayer={setAndGoToPlayer} players={homeRecord.recentReviewedPlayers} />
+        {homeRecord && (
+          <div style={styles.playersListContainer}>
+            <div style={styles.playerList}>
+              <span style={styles.playerListTitle}>
+                {labels.recent.toUpperCase()}
+              </span>
+              <Playerlist
+                goToPlayer={setAndGoToPlayer}
+                players={homeRecord.recentReviewedPlayers}
+              />
+            </div>
+            <div style={styles.playerList}>
+              <span style={styles.playerListTitle}>
+                {labels.highestRated.toUpperCase()}
+              </span>
+              <Playerlist
+                goToPlayer={setAndGoToPlayer}
+                players={homeRecord.highestRatedPlayers}
+              />
+            </div>
+            <div style={styles.playerList}>
+              <span style={styles.playerListTitle}>
+                {labels.mostReviewed.toUpperCase()}
+              </span>
+              <Playerlist
+                goToPlayer={setAndGoToPlayer}
+                players={homeRecord.mostReviewedPlayers}
+              />
+            </div>
           </div>
-          <div style={styles.playerList}>
-            <span style={styles.playerListTitle}>{labels.highestRated.toUpperCase()}</span>
-            <Playerlist goToPlayer={setAndGoToPlayer} players={homeRecord.highestRatedPlayers} />
-          </div>
-          <div style={styles.playerList}>
-            <span style={styles.playerListTitle}>{labels.mostReviewed.toUpperCase()}</span>
-            <Playerlist goToPlayer={setAndGoToPlayer} players={homeRecord.mostReviewedPlayers} />
-          </div>
-          </div>
-        }
+        )}
       </div>
       <Footer />
     </div>
@@ -202,6 +209,4 @@ Home.defaultProps = {
   homeRecord: null,
 };
 
-export default withRouter(
-  connect(mapStateToProps)(Home),
-);
+export default withRouter(connect(mapStateToProps)(Home));

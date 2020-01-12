@@ -3,17 +3,17 @@ import PropTypes from 'prop-types';
 
 import styles from './styles';
 import Avatar from '../../../../../../views/avatar/Avatar';
-import DropDown, { SELECT_TYPE, DROPDOWN_TYPE } from '../../../../../../views/elements/dropdown/DropDown';
+import DropDown, {
+  SELECT_TYPE,
+  DROPDOWN_TYPE,
+} from '../../../../../../views/elements/dropdown/DropDown';
 import Localization from '../../../../../../../config/localization/Localization';
 import { USER_MENU_ACTIONS } from '../../enums';
 
-const UserActionsWidget = ({
-  user,
-  onUserActions,
-}) => {
+const UserActionsWidget = ({ user, onUserActions }) => {
   const labels = Localization.Labels.navBar.userMenuOptions;
 
-  const onDropdownSelect = (action) => {
+  const onDropdownSelect = action => {
     let userAction = null;
     if (action.name === labels.profile) {
       userAction = USER_MENU_ACTIONS.PROFILE;
@@ -26,22 +26,16 @@ const UserActionsWidget = ({
   };
 
   const getAvatar = () => (
-    <Avatar
-      name={user.username}
-      width={36}
-      height={36}
-    />
+    <Avatar name={user.username} width={36} height={36} />
   );
 
   return (
     <div style={styles.container}>
       <DropDown
-        options={
-          Object.values(labels).map((label) => ({
-            name: label,
-            label,
-          }))
-        }
+        options={Object.values(labels).map(label => ({
+          name: label,
+          label,
+        }))}
         selectType={SELECT_TYPE.CUSTOM_CONTENT}
         selectContent={getAvatar()}
         dropDown={DROPDOWN_TYPE.DEFAULT}
@@ -57,7 +51,6 @@ UserActionsWidget.propTypes = {
   onUserActions: PropTypes.func.isRequired,
 };
 
-UserActionsWidget.defaultProps = {
-};
+UserActionsWidget.defaultProps = {};
 
 export default UserActionsWidget;

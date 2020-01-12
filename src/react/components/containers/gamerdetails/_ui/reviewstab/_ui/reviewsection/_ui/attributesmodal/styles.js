@@ -27,8 +27,7 @@ const styles = {
     borderRadius: '50%',
   },
 
-  row: {
-  },
+  row: {},
 
   separator: {
     borderBottom: `1px solid ${colorNameToHex('dimgrey')}`,

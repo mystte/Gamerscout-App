@@ -1,4 +1,3 @@
-
 import { APP, loading } from './actionTypes';
 
 export function loadAppData(cookies) {
@@ -10,10 +9,7 @@ export function loadAppData(cookies) {
   };
 }
 
-export function doLogin(
-  email,
-  password,
-) {
+export function doLogin(email, password) {
   return {
     type: loading(APP.DO_LOGIN),
     parameters: {
@@ -72,11 +68,7 @@ export function doDisconnectFacebook() {
   };
 }
 
-export function doSignup(
-  username,
-  email,
-  password,
-) {
+export function doSignup(username, email, password) {
   return {
     type: loading(APP.DO_SIGNUP),
     parameters: {
@@ -87,10 +79,7 @@ export function doSignup(
   };
 }
 
-export function doCreatePassword({
-  userId,
-  newPassword,
-}) {
+export function doCreatePassword({ userId, newPassword }) {
   return {
     type: loading(APP.DO_CREATE_PASSWORD),
     parameters: {
@@ -100,11 +89,7 @@ export function doCreatePassword({
   };
 }
 
-export function doUpdatePassword({
-  userId,
-  currentPassword,
-  newPassword,
-}) {
+export function doUpdatePassword({ userId, currentPassword, newPassword }) {
   return {
     type: loading(APP.DO_UPDATE_PASSWORD),
     parameters: {
@@ -132,7 +117,6 @@ export function doUpdateUser({
   };
 }
 
-
 export function doConfirmPassword(password, onSuccessData = null) {
   return {
     type: loading(APP.DO_CONFIRM_PASSWORD),
@@ -143,9 +127,7 @@ export function doConfirmPassword(password, onSuccessData = null) {
   };
 }
 
-export function doResetPassword(
-  email,
-) {
+export function doResetPassword(email) {
   return {
     type: loading(APP.DO_RESET_PWD),
     parameters: {

@@ -8,13 +8,20 @@ const defaultProps = {
   teamId: Number,
 };
 
-const ExtendsWith = (superclass) => class extends superclass {
-  static get defaultProps() { return defaultProps; }
+const ExtendsWith = superclass =>
+  class extends superclass {
+    static get defaultProps() {
+      return defaultProps;
+    }
 
-  static get ExtendsWith() { return ExtendsWith; }
-};
+    static get ExtendsWith() {
+      return ExtendsWith;
+    }
+  };
 
-export default class HistoryPlayerRecord extends ExtendsWith(Record(defaultProps, 'HistoryPlayerRecord')) {
+export default class HistoryPlayerRecord extends ExtendsWith(
+  Record(defaultProps, 'HistoryPlayerRecord')
+) {
   static apiParser(data) {
     const parsedData = {
       champion: data.champion || null,

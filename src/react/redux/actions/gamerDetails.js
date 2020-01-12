@@ -1,4 +1,3 @@
-
 import { GAMER_DETAILS, loading } from './actionTypes';
 
 export function loadGamerDetails(platform, region, game, gamertag) {

@@ -13,13 +13,8 @@ import {
   GAME_REGIONS,
   GAME_CODE,
 } from '../../../datamanager/models/AppRecord';
-import {
-  loadGamerDetails,
-} from '../../../redux/actions/gamerDetails';
-import {
-  togglePopup,
-  doLogout,
-} from '../../../redux/actions/app';
+import { loadGamerDetails } from '../../../redux/actions/gamerDetails';
+import { togglePopup, doLogout } from '../../../redux/actions/app';
 import SVGIcon from '../../views/elements/svgicon/SVGIcon';
 import SearchBar from './_ui/searchbar/SearchBar';
 import styles from './styles';
@@ -27,7 +22,7 @@ import UserMenu from './_ui/usermenu/UserMenu';
 import { POPUP_TYPE } from '../../../datamanager/models/PopupRecord';
 import { USER_MENU_ACTIONS } from './_ui/usermenu/enums';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   config: state.app.get('data'),
   loading: state.app.get('loading'),
   error: state.app.get('error'),
@@ -63,19 +58,19 @@ class NavBar extends PureComponent {
     };
   }
 
-  onRegionChange = (newRegion) => {
+  onRegionChange = newRegion => {
     this.setState({
       selectedRegion: newRegion.name,
     });
-  }
+  };
 
-  onSearchInputChange = (event) => {
+  onSearchInputChange = event => {
     this.setState({
       searchValue: event.target.value,
     });
-  }
+  };
 
-  userMenuActions = (action) => {
+  userMenuActions = action => {
     if (action === USER_MENU_ACTIONS.SIGNIN) {
       this.props.dispatch(togglePopup(POPUP_TYPE.SIGNIN));
     } else if (action === USER_MENU_ACTIONS.SIGNUP) {
@@ -85,43 +80,39 @@ class NavBar extends PureComponent {
     } else if (action === USER_MENU_ACTIONS.SETTINGS) {
       this.props.history.push(getSettingsUrl());
     }
-  }
+  };
 
   onSearchClick = () => {
     if (this.state.searchValue) {
-      this.props.history.push(getGamerDetailsUrl(
-        GAME_PLATFORM.RIOT,
-        this.state.selectedRegion,
-        GAME_CODE.LEAGUE_OF_LEGENDS,
-        this.state.searchValue,
-      ));
-      this.props.dispatch(loadGamerDetails(
-        GAME_PLATFORM.RIOT,
-        this.state.selectedRegion,
-        GAME_CODE.LEAGUE_OF_LEGENDS,
-        this.state.searchValue,
-      ));
+      this.props.history.push(
+        getGamerDetailsUrl(
+          GAME_PLATFORM.RIOT,
+          this.state.selectedRegion,
+          GAME_CODE.LEAGUE_OF_LEGENDS,
+          this.state.searchValue
+        )
+      );
+      this.props.dispatch(
+        loadGamerDetails(
+          GAME_PLATFORM.RIOT,
+          this.state.selectedRegion,
+          GAME_CODE.LEAGUE_OF_LEGENDS,
+          this.state.searchValue
+        )
+      );
     }
-  }
+  };
 
   render() {
     if (!this.props.config) return null;
 
     return (
       <React.Fragment>
-        {this.props.loading
-          && <div>Loading...</div>
-        }
-        {!this.props.loading
-          && <div style={styles.container}>
-            <Link style={styles.link}
-              to={getHomeUrl()}
-            >
-              <SVGIcon
-                width='120'
-                height='22'
-                name="logo-beta"
-              />
+        {this.props.loading && <div>Loading...</div>}
+        {!this.props.loading && (
+          <div style={styles.container}>
+            <Link style={styles.link} to={getHomeUrl()}>
+              <SVGIcon width="120" height="22" name="logo-beta" />
             </Link>
             <SearchBar
               regionsList={this.props.config.regions.riot.regionsCode}
@@ -137,12 +128,10 @@ class NavBar extends PureComponent {
               />
             </div>
           </div>
-        }
+        )}
       </React.Fragment>
     );
   }
 }
 
-export default withRouter(
-  connect(mapStateToProps)(NavBar),
-);
+export default withRouter(connect(mapStateToProps)(NavBar));

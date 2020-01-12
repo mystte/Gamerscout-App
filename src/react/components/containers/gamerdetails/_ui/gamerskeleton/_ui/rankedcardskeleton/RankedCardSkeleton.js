@@ -12,7 +12,9 @@ const RankedCardSkeleton = () => (
     <div style={styles.content}>
       <Circle radius={27} />
       <div style={styles.rankedData}>
-        <div style={styles.firstRect}><Rectangle width={120} height={15} /></div>
+        <div style={styles.firstRect}>
+          <Rectangle width={120} height={15} />
+        </div>
         <Rectangle width={120} height={15} />
       </div>
     </div>

@@ -23,10 +23,8 @@ const ValidatePassword = () => {
   );
 };
 
-ValidatePassword.propTypes = {
-};
+ValidatePassword.propTypes = {};
 
-ValidatePassword.defaultProps = {
-};
+ValidatePassword.defaultProps = {};
 
 export default ValidatePassword;

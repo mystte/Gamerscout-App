@@ -2,13 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import styles from './styles';
-import SVGIcon, { IMG_TYPE } from '../../../../../../../../views/elements/svgicon/SVGIcon';
+import SVGIcon, {
+  IMG_TYPE,
+} from '../../../../../../../../views/elements/svgicon/SVGIcon';
 import { ATTRIBUTE_TYPE } from '../../../../../../../../../datamanager/models/AttributeRecord';
 
 const AttrIcon = ({ attribute }) => {
-  const attrIconStyle = (attribute.type === ATTRIBUTE_TYPE.NEUTRAL)
-    ? styles.attrNeutral
-    : styles.attrBad;
+  const attrIconStyle =
+    attribute.type === ATTRIBUTE_TYPE.NEUTRAL
+      ? styles.attrNeutral
+      : styles.attrBad;
 
   return (
     <div style={attrIconStyle}>
@@ -26,7 +29,6 @@ AttrIcon.propTypes = {
   attribute: PropTypes.object.isRequired,
 };
 
-AttrIcon.defaultProps = {
-};
+AttrIcon.defaultProps = {};
 
 export default AttrIcon;

@@ -5,6 +5,7 @@ export const spellMap = {
   2: '',
   3: 'SummonerExhaust',
   4: 'SummonerFlash',
+  6: 'SummonerHaste',
   7: 'SummonerHeal',
   11: 'SummonerSmite',
   12: 'SummonerTeleport',
@@ -27,9 +28,9 @@ export const getLolChampionImgUrl = (url, name) =>
       )}.png`
     : null;
 
-export const getLolSpellImgUrl = (url, id = 1) =>
-  `${url}/img/spell/${spellMap[id]}.png`;
-
+export const getLolSpellImgUrl = (url, id = 1) => {
+  return `${url}/img/spell/${spellMap[id]}.png`;
+};
 export const getLolPerksImgUrl = (url, id = 1) => {
   let name = null;
 

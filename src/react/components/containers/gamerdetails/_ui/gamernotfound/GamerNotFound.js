@@ -15,6 +15,8 @@ import {
 } from '../../../../../datamanager/models/AppRecord';
 
 const GamerNotFound = ({ history }) => {
+  const config = useSelector(state => state.app.get('data'));
+  if (!config) return null;
   const labels = Localization.Labels.gamerDetails.notFound;
   const homeLabels = Localization.Labels.home;
   const dispatch = useDispatch();
@@ -27,6 +29,9 @@ const GamerNotFound = ({ history }) => {
   useEffect(() => {
     dispatch(loadHome());
   }, []);
+
+  const getStaticDataUrlForPlatform = () =>
+    config ? config.getStaticDataUrlForPlatform(GAME_PLATFORM.RIOT) : null;
 
   const setAndGoToPlayer = player => {
     const newSearchValue = player.gamertag;
@@ -57,6 +62,7 @@ const GamerNotFound = ({ history }) => {
           <Playerlist
             goToPlayer={setAndGoToPlayer}
             players={homeRecord.recentReviewedPlayers}
+            staticDataPath={getStaticDataUrlForPlatform()}
           />
         </div>
       )}

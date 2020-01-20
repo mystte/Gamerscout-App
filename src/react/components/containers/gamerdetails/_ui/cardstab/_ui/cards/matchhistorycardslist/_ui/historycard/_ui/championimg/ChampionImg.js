@@ -37,16 +37,20 @@ const ChampionImg = ({
         <span style={styles.championLevel}>{championLevel}</span>
       </div>
       <div style={styles.spellsContainer}>
-        <img
-          style={styles.spell}
-          alt={'spell1Icon'}
-          src={getLolSpellImgUrl(staticDataUrl, spell1Id)}
-        ></img>
-        <img
-          style={styles.spell}
-          alt={'spell2Icon'}
-          src={getLolSpellImgUrl(staticDataUrl, spell2Id)}
-        ></img>
+        {spell1Id && (
+          <img
+            style={styles.spell}
+            alt={'spell1Icon'}
+            src={getLolSpellImgUrl(staticDataUrl, spell1Id)}
+          ></img>
+        )}
+        {spell2Id && (
+          <img
+            style={styles.spell}
+            alt={'spell2Icon'}
+            src={getLolSpellImgUrl(staticDataUrl, spell2Id)}
+          ></img>
+        )}
       </div>
       <div style={styles.perksContainer}>
         <img

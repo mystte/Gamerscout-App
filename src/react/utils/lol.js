@@ -12,6 +12,8 @@ export const spellMap = {
   14: 'SummonerDot',
   21: 'SummonerBarrier',
   22: 'SummonerSnowball',
+  30: 'SummonerPoroRecall',
+  31: 'SummonerPoroThrow',
   32: 'SummonerSnowball',
 };
 

@@ -57,9 +57,18 @@ const styles = {
     bottom: 46,
   },
 
+  buttonContainer: {
+    width: 20,
+    height: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 6,
+  },
+
   attributesWrapper: {
     marginRight: 26,
     flexDirection: 'row',
+    alignItems: 'center',
   },
 
   attributesContainer: {

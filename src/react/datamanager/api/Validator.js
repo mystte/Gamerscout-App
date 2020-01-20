@@ -27,6 +27,15 @@ export default class Validator {
     return true;
   }
 
+  static doPostReviewValidation(comment, attributes, approval, disapproval) {
+    if (!comment) return ERROR_TYPES.ERR_MISSING_COMMENT;
+    if (!attributes || attributes.length < 1)
+      return ERROR_TYPES.ERR_MISSING_ATTRIBUTE;
+    if (approval === disapproval || approval === null || disapproval === null)
+      return ERROR_TYPES.ERR_MISSING_APPROVAL;
+    return true;
+  }
+
   static doUsernameValidator(username) {
     if (!username) return ERROR_TYPES.ERR_USERNAME_REQUIRED;
     if (validator.contains(username, ' '))

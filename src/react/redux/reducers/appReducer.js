@@ -63,8 +63,13 @@ export default function reducer(state = initialState, action) {
 
     case success(APP.DO_LOGIN):
       return state.withMutations(mutate => {
-        mutate.setIn(['data', 'user'], action.data);
-        mutate.setIn(['data', 'isAuthenticated'], true);
+        mutate.set(
+          'data',
+          mutate.get('data').updateApp({
+            user: action.data,
+            isAuthenticated: true,
+          })
+        );
         mutate.set('loading', false);
         mutate.set('error', null);
       });
@@ -81,8 +86,13 @@ export default function reducer(state = initialState, action) {
 
     case success(APP.DO_LOGOUT):
       return state.withMutations(mutate => {
-        mutate.setIn(['data', 'isAuthenticated'], false);
-        mutate.setIn(['data', 'user'], null);
+        mutate.set(
+          'data',
+          mutate.get('data').updateApp({
+            isAuthenticated: false,
+            user: null,
+          })
+        );
         mutate.set('loading', false);
         mutate.set('error', null);
       });

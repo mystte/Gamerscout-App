@@ -17,6 +17,7 @@ export const MOCKED_NOTIFICATION = {
   ACCOUNT_VALIDATED: 'MOCKED_NOTIF_ACCOUNT_VALIDATED',
   WRONG_VALIDATION_TOKEN: 'MOCKED_NOTIF_WRONG_VALIDATION_TOKEN',
   TEST: 'MOCKED_NOTIF_TEST',
+  REVIEW_SUBMITTED: 'MOCKED_NOTIF_REVIEW_SUBMITTED',
 };
 
 const defaultProps = {
@@ -75,6 +76,15 @@ export default class NotificationRecord extends ExtendsWith(
       case MOCKED_NOTIFICATION.UPATED_PASSWORD:
         notificationData = {
           title: labels.updatedPassword.title,
+          display: true,
+          type: NOTIFICATION_TYPE.SUCCESS,
+          isPersistent: false,
+        };
+        break;
+
+      case MOCKED_NOTIFICATION.REVIEW_SUBMITTED:
+        notificationData = {
+          title: labels.reviewSubmitted.title,
           display: true,
           type: NOTIFICATION_TYPE.SUCCESS,
           isPersistent: false,

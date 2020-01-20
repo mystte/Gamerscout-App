@@ -46,9 +46,6 @@ class AppBootstrap extends PureComponent {
 
   componentDidMount() {
     this.props.dispatch(loadAppData(this.props.cookies.cookies));
-    // this.props.dispatch(pushNotification({
-    //   title: 'title',
-    // }));
     // Force app in English for now
     Localization.setLanguage('en');
   }

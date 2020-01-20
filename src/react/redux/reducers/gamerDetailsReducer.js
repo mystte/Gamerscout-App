@@ -25,11 +25,22 @@ export default function reducer(state = initialState, action) {
         mutate.set('error', null);
       });
 
+    case error(GAMER_DETAILS.DO_PUSH_REVIEW):
+      return state.withMutations(mutate => {
+        mutate.set('loading', false);
+        mutate.set('error', action.error);
+      });
+
     case error(GAMER_DETAILS.LOAD):
       return state.withMutations(mutate => {
         mutate.set('data', null);
         mutate.set('loading', false);
         mutate.set('error', action.error);
+      });
+
+    case GAMER_DETAILS.SET_ERROR:
+      return state.withMutations(mutate => {
+        mutate.set('error', parameters.error);
       });
 
     case GAMER_DETAILS.APPLY_REVIEW_FILTERS:

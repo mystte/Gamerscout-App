@@ -59,8 +59,8 @@ export default class GamerDetailsRecord extends ExtendsWith(
         ...attribute,
       }))
       .sort((a, b) => {
-        if (a.ratio < b.ratio) return 1;
-        if (a.ratio > b.ratio) return -1;
+        if (a.name > b.name) return 1;
+        if (a.name < b.name) return -1;
         return 0;
       })
       .map(attr => AttributeRecord.apiParser(attr));

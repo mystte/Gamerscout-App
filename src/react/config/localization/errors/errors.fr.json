@@ -27,5 +27,12 @@
     "errPasswordUpdateRequired": "Vous devez changer votre mot de passe avant d'effectuer cette action",
     "errUserNameExists": "Le username existe déjà",
     "errUsernameContainsSpace": "Le username ne peut pas contenir d'espaces"
+  },
+
+  "review": {
+    "errMissingComment": "Commentaire manquant",
+    "errMissingAttribute": "Selectionnez au moins un tag",
+    "errMissingApproval": "Choisir un approval / disapproval",
+    "errAlreadyReviewed": "Impossible de review un jouer deux fois"
   }
 }

@@ -57,6 +57,15 @@ const ExtendsWith = superclass =>
       return ExtendsWith;
     }
 
+    updateApp = data =>
+      new AppRecord(
+        this.withMutations(mutate => {
+          if (typeof data.isAuthenticated !== 'undefined')
+            mutate.set('isAuthenticated', data.isAuthenticated);
+          if (typeof data.user !== 'undefined') mutate.set('user', data.user);
+        })
+      );
+
     getStaticDataUrlForPlatform = platformName => {
       const result = this.platforms.filter(
         platform => platform.name === platformName

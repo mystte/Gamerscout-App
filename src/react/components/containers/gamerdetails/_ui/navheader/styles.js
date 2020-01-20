@@ -28,6 +28,7 @@ const styles = {
     position: 'absolute',
     bottom: 30,
     right: 30,
+    width: 109,
   },
 };
 

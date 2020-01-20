@@ -27,8 +27,6 @@ const RecentPerformanceCard = () => {
     championFilter
   );
 
-  console.log('filteredData = ', filteredData);
-
   const onPositionChange = (position = null) => {
     if (position && position !== positionFilter) {
       setPositionFilter(position);

@@ -86,6 +86,17 @@ export default class Api {
     return doApiCall('/users/login', data, CALL_TYPE.POST);
   }
 
+  static doPushReview({ review, selectedAttributes, gamerId, isApproval }) {
+    const data = {
+      id: gamerId,
+      comment: review,
+      attributes: selectedAttributes,
+      review_type: isApproval ? 'REP' : 'FLAME',
+    };
+
+    return doApiCall('/gamer/review', data, CALL_TYPE.POST);
+  }
+
   static createNewPasswordRequest({ newPassword }) {
     const data = { password: md5(newPassword) };
 

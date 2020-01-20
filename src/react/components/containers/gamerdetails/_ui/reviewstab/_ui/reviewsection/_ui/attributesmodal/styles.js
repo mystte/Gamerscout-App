@@ -27,7 +27,10 @@ const styles = {
     borderRadius: '50%',
   },
 
-  row: {},
+  tick: {
+    position: 'absolute',
+    right: 15,
+  },
 
   separator: {
     borderBottom: `1px solid ${colorNameToHex('dimgrey')}`,
@@ -40,6 +43,10 @@ const styles = {
     color: colorNameToHex('white'),
     textTransform: 'capitalize',
     marginLeft: 12,
+  },
+
+  selected: {
+    color: colorNameToHex('dodgerblue'),
   },
 };
 

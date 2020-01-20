@@ -9,7 +9,8 @@ import { ATTRIBUTE_TYPE } from '../../../../../../../../../datamanager/models/At
 
 const AttrIcon = ({ attribute }) => {
   const attrIconStyle =
-    attribute.type === ATTRIBUTE_TYPE.NEUTRAL
+    attribute.type === ATTRIBUTE_TYPE.NEUTRAL ||
+    attribute.type === ATTRIBUTE_TYPE.GOOD
       ? styles.attrNeutral
       : styles.attrBad;
 

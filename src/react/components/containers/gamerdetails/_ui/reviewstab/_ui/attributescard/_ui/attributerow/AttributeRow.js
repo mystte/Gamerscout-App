@@ -52,7 +52,8 @@ const AttributeRow = ({ attributeRecord }) => {
         </div>
         <div style={styles.name}>{labels[attributeRecord.name]}</div>
       </div>
-      <div style={styles.ratio}>{`${attributeRecord.ratio}%`}</div>
+      <div style={styles.ratio}>{`${Math.round(attributeRecord.ratio * 10) /
+        10}%`}</div>
     </div>
   );
 };

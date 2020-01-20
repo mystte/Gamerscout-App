@@ -19,6 +19,12 @@
     "terms": "Terms"
   },
   "notifications": {
+    "reviewSubmitted": {
+      "title": "Review has been successfully posted"
+    },
+    "accountRequired": {
+      "title": "You need to be logged in to push a review"
+    },
     "invalidAccount": {
       "title": "Your email has not been validated yet."
     },

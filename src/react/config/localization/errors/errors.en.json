@@ -27,5 +27,12 @@
     "errPasswordUpdateRequired": "You must update your password before disconnecting Facebook",
     "errUserNameExists": "Username already taken",
     "errUsernameContainsSpace": "Gamerscout Id cannot contains spaces"
+  },
+
+  "review": {
+    "errMissingComment": "Missing review",
+    "errMissingAttribute": "Select at least one attribute",
+    "errMissingApproval": "Please select an approval / disapproval",
+    "errAlreadyReviewed": "You already reviewed this player"
   }
 }

@@ -19,6 +19,12 @@
     "Terms": "Termes"
   },
   "notifications": {
+    "reviewSubmitted": {
+      "title": "La review a été posté avec success"
+    },
+    "accountRequired": {
+      "title": "Connectez-vous pour poster votre commentaire"
+    },
     "invalidAccount": {
       "title": "Votre courriel n'a pas encore été validé."
     },

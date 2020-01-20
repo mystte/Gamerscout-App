@@ -22,7 +22,15 @@ export const IMG_TYPE = {
   JPG: 'jpg',
 };
 
-const SVGIcon = ({ name, width, height, color, type, isFontAwesome }) => {
+const SVGIcon = ({
+  style,
+  name,
+  width,
+  height,
+  color,
+  type,
+  isFontAwesome,
+}) => {
   const containerStyle = {
     width: width !== null ? width : styles.container.width,
     height: height !== null ? height : styles.container.height,
@@ -31,7 +39,7 @@ const SVGIcon = ({ name, width, height, color, type, isFontAwesome }) => {
   let imgSrc = null;
   if (type === IMG_TYPE.SVG) {
     if (isFontAwesome) {
-      return <FontAwesomeIcon icon={name} color={color} />;
+      return <FontAwesomeIcon style={style} icon={name} color={color} />;
     }
     imgSrc = require(`../../../../../assets/svg/${name}.svg`);
   } else if (type === IMG_TYPE.PNG || type === IMG_TYPE.JPG) {
@@ -42,6 +50,7 @@ const SVGIcon = ({ name, width, height, color, type, isFontAwesome }) => {
 };
 
 SVGIcon.propTypes = {
+  style: PropTypes.object,
   name: PropTypes.string.isRequired,
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -54,6 +63,7 @@ SVGIcon.defaultProps = {
   width: null,
   height: null,
   type: IMG_TYPE.SVG,
+  style: null,
   isFontAwesome: false,
   color: styles.container.color,
 };

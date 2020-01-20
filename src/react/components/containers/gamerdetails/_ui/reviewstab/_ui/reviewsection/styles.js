@@ -23,6 +23,18 @@ const styles = {
 
   reviewButton: {
     alignSelf: 'flex-end',
+    width: 86,
+    flexDirection: 'row',
+  },
+
+  errorMessage: {
+    position: 'absolute',
+    left: 15,
+    color: colorNameToHex('cinnabar'),
+    fontSize: 12,
+    height: 19,
+    marginTop: 3,
+    fontWeight: 600,
   },
 };
 

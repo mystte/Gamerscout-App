@@ -8,6 +8,7 @@ import { APPROVAL_TYPE } from '../../../../../../../../../../../datamanager/mode
 class ApprovalsToggle extends PureComponent {
   static propTypes = {
     preselect: PropTypes.string,
+    onApprovalsSelect: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -42,6 +43,7 @@ class ApprovalsToggle extends PureComponent {
         disapproveSelected = !disapproveSelected;
         approveSelected = disapproveSelected ? false : approveSelected;
       }
+      this.props.onApprovalsSelect({ approveSelected, disapproveSelected });
       return { approveSelected, disapproveSelected };
     });
   };

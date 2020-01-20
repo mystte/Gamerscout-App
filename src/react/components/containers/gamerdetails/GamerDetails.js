@@ -95,6 +95,10 @@ class GamerDetails extends PureComponent {
     isApproval,
     isDisapproval,
   }) => {
+    if (this.state.selectedTab !== BUTTON_TYPE.REVIEWS) {
+      this.setState({ selectedTab: BUTTON_TYPE.REVIEWS });
+      return;
+    }
     if (!this.props.connectedUser) {
       this.props.dispatch(
         pushNotification({
@@ -227,8 +231,12 @@ class GamerDetails extends PureComponent {
               gamertag={this.props.gamerData.gamertag}
               gamerLevel={this.props.gamerData.level}
               region={this.props.gamerData.region}
-              gamerIconUrl={this.props.gamerData.gamerIconUrl}
+              gamerIconUrl={`${this.getStaticDataUrlForPlatform()}${
+                this.props.gamerData.gamerIconUrl
+              }`}
               onSelectTab={this.onSelectHeaderTab}
+              onReviewSubmitClick={this.onReviewSubmitClick}
+              staticDataUrl={this.getStaticDataUrlForPlatform()}
             />
             {this.renderGamerDetailsContent()}
           </div>

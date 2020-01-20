@@ -7,6 +7,7 @@ import ActionButtons from './_ui/actionbuttons/ActionButtons';
 import GamerAvatar from './_ui/gameravatar/GamerAvatar';
 import Localization from '../../../../../config/localization/Localization';
 import styles from './styles';
+import { BUTTON_TYPE } from './_ui/actionbuttons/_ui/actionbutton/ActionButton';
 
 class NavHeader extends PureComponent {
   static propTypes = {
@@ -16,6 +17,8 @@ class NavHeader extends PureComponent {
     gamerIconUrl: PropTypes.string,
     onSelectTab: PropTypes.func,
     selectedTab: PropTypes.string,
+    onReviewSubmitClick: PropTypes.func.isRequired,
+    staticDataUrl: PropTypes.string,
   };
 
   static defaultProps = {
@@ -25,6 +28,7 @@ class NavHeader extends PureComponent {
     gamerIconUrl: null,
     onSelectTab: null,
     selectedTab: null,
+    staticDataUrl: null,
   };
 
   constructor(props) {
@@ -32,10 +36,6 @@ class NavHeader extends PureComponent {
 
     this.state = {};
   }
-
-  componentDidMount() {}
-
-  componentWillUnmount() {}
 
   render() {
     return (
@@ -56,11 +56,13 @@ class NavHeader extends PureComponent {
             />
           </div>
           <div style={styles.reviewButtonsContainer}>
-            <Button
-              label={Localization.Labels.gamerDetails.reviewButton}
-              theme={BUTTON_THEME.BLUE}
-              onClick={() => {}}
-            />
+            {this.props.selectedTab !== BUTTON_TYPE.REVIEWS && (
+              <Button
+                label={Localization.Labels.gamerDetails.reviewButton}
+                theme={BUTTON_THEME.BLUE}
+                onClick={this.props.onReviewSubmitClick}
+              />
+            )}
           </div>
         </div>
         <ActionButtons

@@ -40,6 +40,9 @@ const Home = ({ config, homeRecord, history }) => {
   const [searchRegion, setSearchRegion] = useState(GAME_REGIONS.NA);
   const enterPressed = UseKeyPress('Enter');
 
+  const getStaticDataUrlForPlatform = () =>
+    config ? config.getStaticDataUrlForPlatform(GAME_PLATFORM.RIOT) : null;
+
   const onSearchClick = () => {
     if (searchValue) {
       history.push(
@@ -169,6 +172,7 @@ const Home = ({ config, homeRecord, history }) => {
               <Playerlist
                 goToPlayer={setAndGoToPlayer}
                 players={homeRecord.recentReviewedPlayers}
+                staticDataPath={getStaticDataUrlForPlatform()}
               />
             </div>
             <div style={styles.playerList}>
@@ -178,6 +182,7 @@ const Home = ({ config, homeRecord, history }) => {
               <Playerlist
                 goToPlayer={setAndGoToPlayer}
                 players={homeRecord.highestRatedPlayers}
+                staticDataPath={getStaticDataUrlForPlatform()}
               />
             </div>
             <div style={styles.playerList}>
@@ -187,6 +192,7 @@ const Home = ({ config, homeRecord, history }) => {
               <Playerlist
                 goToPlayer={setAndGoToPlayer}
                 players={homeRecord.mostReviewedPlayers}
+                staticDataPath={getStaticDataUrlForPlatform()}
               />
             </div>
           </div>

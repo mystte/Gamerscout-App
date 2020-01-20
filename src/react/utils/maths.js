@@ -6,4 +6,8 @@ export const computeKda = (kills, assists, deaths = 1) => {
   return Math.round(((kills + assists) / newDeaths) * 10) / 10;
 };
 
+export const round = data => {
+  return Math.round(data * 10) / 10;
+};
+
 export default null;

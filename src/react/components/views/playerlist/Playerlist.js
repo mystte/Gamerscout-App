@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import styles from './styles';
 import SVGIcon from '../elements/svgicon/SVGIcon';
 
-const Playerlist = ({ players, goToPlayer }) => (
+const Playerlist = ({ staticDataPath, players, goToPlayer }) => (
   <div style={styles.container}>
     {players.map((playerData, idx) => {
       const playerCardStyle = idx === 0 ? styles.firstPlayerCard : {};
@@ -20,7 +20,7 @@ const Playerlist = ({ players, goToPlayer }) => (
         >
           <img
             style={styles.profileImg}
-            src={playerData.profile_picture}
+            src={`${staticDataPath}${playerData.profile_picture}`}
             alt="profilePicture"
             height="38"
             width="38"
@@ -52,11 +52,13 @@ const Playerlist = ({ players, goToPlayer }) => (
 Playerlist.propTypes = {
   players: PropTypes.object,
   goToPlayer: PropTypes.func,
+  staticDataPath: PropTypes.string,
 };
 
 Playerlist.defaultProps = {
   players: () => {},
   goToPlayer: null,
+  staticDataPath: null,
 };
 
 export default Playerlist;

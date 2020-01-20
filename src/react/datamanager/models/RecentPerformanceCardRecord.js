@@ -1,7 +1,7 @@
 import { Record, List, Maybe } from 'typed-immutable';
 
 import RecentPerformanceDataRecord from './RecentPerformanceDataRecord';
-import { computeKda } from '../../utils/maths';
+import { computeKda, round } from '../../utils/maths';
 import Localization from '../../config/localization/Localization';
 
 export const RECENT_PERFORMANCE_FILTERS = {
@@ -91,22 +91,19 @@ const ExtendsWith = superclass =>
         }
       });
 
-      const winsPercentage = Math.round(
-        (winsCount * 100) / (winsCount + lossesCount)
-      );
-      const lossesPercentage = Math.round(
-        (lossesCount * 100) / (winsCount + lossesCount)
-      );
+      const totalGames = winsCount + lossesCount;
+      const winsPercentage = Math.round((winsCount * 100) / totalGames);
+      const lossesPercentage = Math.round((lossesCount * 100) / totalGames);
 
       return {
         winsPercentage: winsPercentage || 0,
         lossesPercentage: lossesPercentage || 0,
         wins: winsCount,
         losses: lossesCount,
-        cs,
-        kills,
-        deaths,
-        assists,
+        cs: cs ? round(cs / totalGames) : 0,
+        kills: kills ? round(kills / totalGames) : 0,
+        deaths: deaths ? round(deaths / totalGames) : 0,
+        assists: assists ? round(assists / totalGames) : 0,
         kda: computeKda(kills, assists, deaths),
         champions: champions.sort((a, b) => a.name - b.name),
         positions,

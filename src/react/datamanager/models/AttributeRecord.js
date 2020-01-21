@@ -23,6 +23,13 @@ const ExtendsWith = superclass =>
     static get ExtendsWith() {
       return ExtendsWith;
     }
+
+    updateStats(frequency = null, ratio = null) {
+      return this.withMutations(mutate => {
+        if (frequency !== null) mutate.set('frequency', frequency);
+        if (ratio !== null) mutate.set('ratio', ratio);
+      });
+    }
   };
 
 export default class AttributeRecord extends ExtendsWith(

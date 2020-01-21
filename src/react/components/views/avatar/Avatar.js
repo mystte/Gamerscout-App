@@ -11,7 +11,7 @@ class Avatar extends PureComponent {
   };
 
   static defaultProps = {
-    name: null,
+    name: 'JD',
     width: 28,
     height: 28,
   };

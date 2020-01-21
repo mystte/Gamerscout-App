@@ -97,6 +97,10 @@ export default class Api {
     return doApiCall('/gamer/review', data, CALL_TYPE.POST);
   }
 
+  static doGetReviews(gamerId) {
+    return doApiCall(`/reviews/${gamerId}`);
+  }
+
   static createNewPasswordRequest({ newPassword }) {
     const data = { password: md5(newPassword) };
 

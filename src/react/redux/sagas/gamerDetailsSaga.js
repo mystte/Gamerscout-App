@@ -34,9 +34,14 @@ function* doPushReview({ parameters }) {
   const actionType = GAMER_DETAILS.DO_PUSH_REVIEW;
   try {
     yield fetchAsync(Api.doPushReview, parameters);
+    const reviews = yield fetchAsync(Api.doGetReviews, parameters.gamerId);
+
     yield put({
       type: success(actionType),
-      data: parameters,
+      parameters: {
+        ...parameters,
+        reviews: reviews.data.reviews,
+      },
     });
     yield put({
       type: NOTIFICATIONS.PUSH,

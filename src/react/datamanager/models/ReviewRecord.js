@@ -41,7 +41,7 @@ export default class ReviewRecord extends ExtendsWith(
   static apiParser(data) {
     const parsedData = {
       comment: data.comment ? data.comment : null,
-      reviewerName: data.username ? data.username : null,
+      reviewerName: data.username ? data.username : 'JD',
       date: data.date ? data.date : null,
       type:
         data.review_type === 'REP'

@@ -18,6 +18,13 @@ const defaultProps = {
 
 const ExtendsWith = superclass =>
   class extends superclass {
+    addReview(reviewData) {
+      return this.withMutations(mutate => {
+        mutate.set('reviews', this.reviews.push(new ReviewRecord(reviewData)));
+        mutate.set('filtered', this.reviews.push(new ReviewRecord(reviewData)));
+      });
+    }
+
     applyReviewsFilter(show, filterBy) {
       let updatedFilteredReviews = this.reviews;
 
@@ -62,7 +69,6 @@ export default class ReviewsCardRecord extends ExtendsWith(
       reviews: reviewsList,
       filtered: reviewsList,
     };
-
     return new ReviewsCardRecord(parsedData);
   }
 }

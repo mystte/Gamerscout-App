@@ -123,6 +123,7 @@ class GamerDetails extends PureComponent {
             selectedAttributes,
             isApproval,
             isDisapproval,
+            username: this.props.connectedUser.username,
           })
         );
       }

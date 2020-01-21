@@ -10,6 +10,10 @@ const ExtendsWith = superclass =>
       return defaultProps;
     }
 
+    increment() {
+      return this.set('disapprovalsCount', this.disapprovalsCount + 1);
+    }
+
     static get ExtendsWith() {
       return ExtendsWith;
     }

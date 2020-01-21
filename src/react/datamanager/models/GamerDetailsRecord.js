@@ -10,6 +10,7 @@ import TrendsCardRecord from './TrendsCardRecord';
 import AttributeRecord from './AttributeRecord';
 import HistoryListRecord from './HistoryListRecord';
 import RecentPerformanceCardRecord from './RecentPerformanceCardRecord';
+import { REVIEW_TYPE } from './ReviewRecord';
 
 const defaultProps = {
   accountId: String,
@@ -40,6 +41,68 @@ const ExtendsWith = superclass =>
 
     static get ExtendsWith() {
       return ExtendsWith;
+    }
+
+    updateAttributesList(selectedAttributes) {
+      return this.withMutations(mutate => {
+        //   selectedAttributes.map(attr => {
+        //     const index = this.attributesList.findIndex(
+        //       e => e.name === attr.name
+        //     );
+        //     const currentAttr = this.setIn(
+        //       ['attributesList', index],
+        //       this.getIn(['attributesList', index]).updateStats(4, 70)
+        //     );
+        //     if (index) {
+        //       console.log('index = ', index, currentAttr);
+        //       mutate.set('attributesList', currentAttr);
+        //     }
+        //   });
+      });
+    }
+
+    addReview(parameters) {
+      const {
+        isApproval,
+        isDisapproval,
+        review,
+        selectedAttributes,
+        username,
+      } = parameters;
+      console.log('addReview parameters', parameters);
+      let reviewType = REVIEW_TYPE.APPROVAL;
+      return this.withMutations(mutate => {
+        if (isApproval)
+          mutate.set(
+            'approvalsCardRecord',
+            this.approvalsCardRecord.increment()
+          );
+        if (isDisapproval) {
+          mutate.set(
+            'disapprovalsCardRecord',
+            this.disapprovalsCardRecord.increment()
+          );
+          reviewType = REVIEW_TYPE.DISAPPROVAL;
+        }
+        if (review && selectedAttributes && username && reviewType) {
+          mutate.set(
+            'reviewsCardRecord',
+            this.reviewsCardRecord.addReview({
+              comment: review,
+              reviewerName: username,
+              attributes: selectedAttributes,
+              date: Date.now(),
+              type: reviewType,
+            })
+          );
+        }
+        if (selectedAttributes) {
+          // mutate.set(
+          //   'attributesList',
+          //   this.updateAttributesList(selectedAttributes)
+          // );
+        }
+      });
     }
   };
 

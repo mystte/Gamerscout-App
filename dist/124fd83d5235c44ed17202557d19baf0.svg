@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.1 (78136) - https://sketchapp.com -->
+    <title>Search icon</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Gamer-Details/LoL/Desktop" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Gamer-Details---Reviews---Selecting-Attributes" transform="translate(-510.000000, -28.000000)" fill="#CED0DA">
+            <g id="Navigation/Top-Bar/Logged-In/1400">
+                <g id="Searchbox" transform="translate(181.000000, 17.000000)">
+                    <g id="Placeholder" transform="translate(53.000000, 0.000000)">
+                        <path d="M285.202458,14.0261418 C283.496569,12.3202521 280.732031,12.3202521 279.026142,14.0261418 C277.320252,15.7320314 277.320252,18.4965685 279.026142,20.2024582 C280.732031,21.9083479 283.496569,21.9083479 285.202458,20.2024582 C286.908348,18.4965685 286.908348,15.7320314 285.202458,14.0261418 M289.74451,24.7445096 C289.402982,25.0851635 288.850075,25.0851635 288.508548,24.7445096 L285.757986,21.9930746 C283.362927,23.783691 279.96687,23.6142376 277.791053,21.4375468 C275.402982,19.0503494 275.402982,15.179124 277.791053,12.7910532 C280.178251,10.4029823 284.050349,10.4029823 286.437547,12.7910532 C288.614238,14.9668705 288.783691,18.3629274 286.993075,20.757986 L289.74451,23.509421 C290.085163,23.8500749 290.085163,24.4029823 289.74451,24.7445096" id="Search-icon"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

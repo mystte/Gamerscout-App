@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="6px" height="6px" viewBox="0 0 6 6" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 54.1 (76490) - https://sketchapp.com -->
+    <title>Add icon</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icon/20px/Add-Icon" transform="translate(-7.000000, -7.000000)" fill="#7F8FA4">
+            <g id="Add-Icon">
+                <path d="M10.6,9.4 L12.4027615,9.4 C12.7326072,9.4 13,9.67832031 13,10 C13,10.3313708 12.7266014,10.6 12.4027615,10.6 L10.6,10.6 L10.6,12.4027615 C10.6,12.7326072 10.3216797,13 10,13 C9.66862915,13 9.4,12.7266014 9.4,12.4027615 L9.4,10.6 L7.59723854,10.6 C7.2673928,10.6 7,10.3216797 7,10 C7,9.66862915 7.27339864,9.4 7.59723854,9.4 L9.4,9.4 L9.4,7.59723854 C9.4,7.2673928 9.67832031,7 10,7 C10.3313708,7 10.6,7.27339864 10.6,7.59723854 L10.6,9.4 Z" id="Add-icon"></path>
+            </g>
+        </g>
+    </g>
+</svg>

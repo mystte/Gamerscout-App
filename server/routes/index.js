@@ -2,10 +2,10 @@ const path = require('path');
 const router = require('express').Router();
 
 router.get(
-  '/.well-known/pki-validation/3F005EF50CBA24C5836A32ABC5CA9E59.txt',
+  '/.well-known/pki-validation/4692FC9AF913B6E25BAFFA9C5B33ADF8.txt',
   (req, res, next) => {
     res.send(
-      '036416679B0B4CD572D7BE08B6B81081061B1C9F880422269FF9127F759B2177 comodoca.com 5e290296010ca'
+      '70CB24D622CCB84FAC8F6EEA6883DFB15A1092C48AEF1081BB039587C1E7B4A6 comodoca.com 5e2c4b0c2108e'
     );
   }
 );

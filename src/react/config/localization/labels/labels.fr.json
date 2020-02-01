@@ -13,6 +13,10 @@
     "highestRated": "Meilleur joueur",
     "mostReviewed": "Le plus noté"
   },
+  "fourOFour": {
+    "desc": "Les aliens ont volé cette page",
+    "goHome": "Retour à la home"
+  },
   "footer": {
     "contact": "Contact",
     "privacyPolicy": "Politique de confidentialité",

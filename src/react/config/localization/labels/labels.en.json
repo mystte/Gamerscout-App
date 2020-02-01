@@ -13,9 +13,13 @@
     "highestRated": "Best player",
     "mostReviewed": "Most reviewed"
   },
+  "fourOFour": {
+    "desc": "Alien invaders stole this page",
+    "goHome": "Visit Homepage"
+  },
   "footer": {
     "contact": "Contact",
-    "privacyPolicy": "Provacy Policy",
+    "privacyPolicy": "Privacy Policy",
     "terms": "Terms"
   },
   "notifications": {

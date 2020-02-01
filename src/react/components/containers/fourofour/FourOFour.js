@@ -17,7 +17,7 @@ const FourOFour = () => {
 
   return (
     <div style={styles.container}>
-      <SVGIcon width={300} height={333} type={IMG_TYPE.PNG} name={'404'} />
+      <SVGIcon width={300} height={333} type={IMG_TYPE.PNG} name={'fof'} />
       <div style={styles.title}>404</div>
       <div style={styles.desc}>{labels.desc}</div>
       <div style={styles.goHome}>

@@ -1,6 +1,18 @@
 import { Record, Maybe, List } from 'typed-immutable';
 import HistoryPlayerRecord from './HistoryPlayerRecord';
 
+export const QUEUE_TYPES = {
+  '5V5_RANKED_FLEX_GAMES': '5V5 RANKED FLEX',
+  '5V5_RANKED_SOLO_GAMES': '5V5 RANKED SOLO',
+  '5V5_ARAM_GAMES': 'ARAM',
+  '5V5_BLIND_PICK_GAMES': '5V5 BLIND PICK',
+};
+
+export const OTHER_QUEUE_TYPES = {
+  CLASSIC: 'NORMAL',
+  URF: 'URF',
+};
+
 const defaultProps = {
   kda: Number,
   gameDuration: Number,
@@ -22,6 +34,7 @@ const defaultProps = {
   items: Maybe(List(Number)),
   opponents: Maybe(List(HistoryPlayerRecord)),
   teammates: Maybe(List(HistoryPlayerRecord)),
+  queueType: Maybe(String),
 };
 
 const ExtendsWith = superclass =>
@@ -58,6 +71,7 @@ export default class HistoryCardRecord extends ExtendsWith(
       spell2Id: data.spell2Id || null,
       teamId: data.teamId || null,
       items: data.items || null,
+      queueType: data.queueType,
       opponents: data.opponents.map(playerData =>
         HistoryPlayerRecord.apiParser(playerData)
       ),

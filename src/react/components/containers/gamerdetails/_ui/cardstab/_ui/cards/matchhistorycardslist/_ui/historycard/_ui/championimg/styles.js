@@ -33,6 +33,12 @@ const styles = {
     borderColor: colorNameToHex('nightshadz'),
   },
 
+  lane: {
+    color: colorNameToHex('regentgray'),
+    fontWeight: 600,
+    fontSize: 12,
+  },
+
   championLevel: {
     width: 20,
     height: 20,
@@ -44,8 +50,12 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     position: 'absolute',
-    bottom: 0,
+    bottom: 16,
     right: 0,
+  },
+
+  championsInnerContent: {
+    alignItems: 'center',
   },
 
   spell: {

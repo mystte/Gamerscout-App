@@ -15,7 +15,12 @@ const ChampionImg = ({
   spell2Id,
   win,
   staticDataUrl,
+  lane,
 }) => {
+  const championLevelStyle =
+    lane !== 'NONE'
+      ? styles.championLevel
+      : { ...styles.championLevel, bottom: 0 };
   const championBorder = win
     ? {
         ...styles.champIcon,
@@ -29,12 +34,15 @@ const ChampionImg = ({
   const renderChampionAvatar = () => (
     <div style={styles.innerContentContainer}>
       <div style={styles.championImgContainer}>
-        <img
-          style={championBorder}
-          alt={`champion ${championId} icon`}
-          src={getLolChampionImgUrl(staticDataUrl, championName)}
-        ></img>
-        <span style={styles.championLevel}>{championLevel}</span>
+        <div style={styles.championsInnerContent}>
+          <img
+            style={championBorder}
+            alt={`champion ${championId} icon`}
+            src={getLolChampionImgUrl(staticDataUrl, championName)}
+          ></img>
+          <span style={championLevelStyle}>{championLevel}</span>
+          {lane !== 'NONE' && <span style={styles.lane}>{lane}</span>}
+        </div>
       </div>
       <div style={styles.spellsContainer}>
         {spell1Id && (
@@ -78,10 +86,12 @@ ChampionImg.propTypes = {
   staticDataUrl: PropTypes.string,
   spell1Id: PropTypes.number,
   spell2Id: PropTypes.number,
+  lane: PropTypes.string,
 };
 
 ChampionImg.defaultProps = {
   staticDataUrl: null,
+  lane: null,
 };
 
 export default ChampionImg;

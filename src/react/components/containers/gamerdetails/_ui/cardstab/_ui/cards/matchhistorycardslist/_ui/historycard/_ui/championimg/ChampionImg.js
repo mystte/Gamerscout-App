@@ -64,12 +64,12 @@ const ChampionImg = ({
         <img
           style={styles.spell}
           alt={'perk1Icon'}
-          src={getLolSpellImgUrl(staticDataUrl, 22)}
+          src={getLolSpellImgUrl(staticDataUrl, 30)}
         ></img>
         <img
           style={styles.spell}
           alt={'perk2Icon'}
-          src={getLolSpellImgUrl(staticDataUrl, 22)}
+          src={getLolSpellImgUrl(staticDataUrl, 31)}
         ></img>
       </div>
     </div>

@@ -10,6 +10,15 @@ router.get(
   }
 );
 
+router.get(
+  '/.well-known/pki-validation/F4D80C696A4902B6E202A466C9E5BA18.txt',
+  (req, res, next) => {
+    res.send(
+      'AFFD57E888B584FC827F8356DC2156B77D1F6324139C9CF260144C663B8BE2F4 comodoca.com 5e3a032fed0c9'
+    );
+  }
+);
+
 router.get('/*', (req, res, next) => {
   const routePath = path.join(
     __dirname + '..',

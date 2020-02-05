@@ -3,7 +3,10 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 
 import Localization from '../../../../../../../../../../config/localization/Localization';
-import HistoryCardRecord from '../../../../../../../../../../datamanager/models/HistoryCardRecord';
+import HistoryCardRecord, {
+  QUEUE_TYPES,
+  OTHER_QUEUE_TYPES,
+} from '../../../../../../../../../../datamanager/models/HistoryCardRecord';
 import ChampionImg from './_ui/championimg/ChampionImg';
 import styles from './styles';
 import UsedItems from './_ui/useditems/UsedItems';
@@ -25,10 +28,16 @@ const HistoryCard = ({ historyCardRecord, staticDataUrl, doSearchPlayer }) => {
         ...styles.lossContainer,
       };
 
+  const getGameName = () => {
+    return historyCardRecord.queueType !== 'OTHER'
+      ? QUEUE_TYPES[historyCardRecord.queueType]
+      : OTHER_QUEUE_TYPES[historyCardRecord.gameMode];
+  };
+
   return (
     <div style={containerStyle}>
       <div style={styles.topContainer}>
-        <span style={styles.gameType}>{historyCardRecord.gameMode}</span>
+        <span style={styles.gameType}>{getGameName()}</span>
         <span style={styles.time}>
           {moment(historyCardRecord.startDate).fromNow()}
         </span>
@@ -44,6 +53,7 @@ const HistoryCard = ({ historyCardRecord, staticDataUrl, doSearchPlayer }) => {
           championLevel={historyCardRecord.championLevel}
           win={historyCardRecord.win}
           staticDataUrl={staticDataUrl}
+          lane={historyCardRecord.lane}
         />
         <div style={styles.killsContainer}>
           <div style={styles.kills}>

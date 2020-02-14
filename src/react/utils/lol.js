@@ -31,6 +31,11 @@ export const getLolChampionImgUrl = (url, name) =>
 export const getLolSpellImgUrl = (url, id = 1) => {
   return `${url}/img/spell/${spellMap[id]}.png`;
 };
+
+export const getPerksSpellImgUrl = (url, icon) => {
+  return `${url}/img/${icon}`;
+};
+
 export const getLolPerksImgUrl = (url, id = 1) => {
   let name = null;
 

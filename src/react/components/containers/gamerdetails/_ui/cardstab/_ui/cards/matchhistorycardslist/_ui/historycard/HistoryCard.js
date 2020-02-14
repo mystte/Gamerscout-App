@@ -48,6 +48,7 @@ const HistoryCard = ({ historyCardRecord, staticDataUrl, doSearchPlayer }) => {
         <ChampionImg
           spell1Id={historyCardRecord.spell1Id}
           spell2Id={historyCardRecord.spell2Id}
+          perks={historyCardRecord.perks}
           championId={historyCardRecord.championId}
           championName={historyCardRecord.champion}
           championLevel={historyCardRecord.championLevel}

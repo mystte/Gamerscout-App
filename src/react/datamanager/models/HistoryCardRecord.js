@@ -35,6 +35,7 @@ const defaultProps = {
   opponents: Maybe(List(HistoryPlayerRecord)),
   teammates: Maybe(List(HistoryPlayerRecord)),
   queueType: Maybe(String),
+  perks: Maybe(Array),
 };
 
 const ExtendsWith = superclass =>
@@ -70,6 +71,7 @@ export default class HistoryCardRecord extends ExtendsWith(
       spell1Id: data.spell1Id || null,
       spell2Id: data.spell2Id || null,
       teamId: data.teamId || null,
+      perks: data.perks || null,
       items: data.items || null,
       queueType: data.queueType,
       opponents: data.opponents.map(playerData =>

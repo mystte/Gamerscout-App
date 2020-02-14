@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import {
   getLolChampionImgUrl,
   getLolSpellImgUrl,
+  getPerksSpellImgUrl,
 } from '../../../../../../../../../../../../utils/lol';
 import styles from './styles';
 
@@ -16,6 +17,7 @@ const ChampionImg = ({
   win,
   staticDataUrl,
   lane,
+  perks,
 }) => {
   const championLevelStyle =
     lane !== 'NONE'
@@ -64,12 +66,12 @@ const ChampionImg = ({
         <img
           style={styles.spell}
           alt={'perk1Icon'}
-          src={getLolSpellImgUrl(staticDataUrl, 30)}
+          src={getPerksSpellImgUrl(staticDataUrl, perks[0].icon)}
         ></img>
         <img
           style={styles.spell}
           alt={'perk2Icon'}
-          src={getLolSpellImgUrl(staticDataUrl, 31)}
+          src={getPerksSpellImgUrl(staticDataUrl, perks[1].icon)}
         ></img>
       </div>
     </div>
@@ -86,12 +88,14 @@ ChampionImg.propTypes = {
   staticDataUrl: PropTypes.string,
   spell1Id: PropTypes.number,
   spell2Id: PropTypes.number,
+  perks: PropTypes.array,
   lane: PropTypes.string,
 };
 
 ChampionImg.defaultProps = {
   staticDataUrl: null,
   lane: null,
+  perks: [],
 };
 
 export default ChampionImg;

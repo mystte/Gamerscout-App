@@ -20,7 +20,7 @@ const styles = {
   },
 
   homeBg: {
-    width: 1440,
+    width: '100%',
     position: 'absolute',
     top: 0,
     left: '50%',

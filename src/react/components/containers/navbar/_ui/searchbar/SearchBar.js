@@ -11,6 +11,8 @@ import DropDown, {
 } from '../../../../views/elements/dropdown/DropDown';
 import Button from '../../../../views/elements/button/Button';
 import UseKeyPress from '../../../../views/hooks/UseKeyPress';
+import UseMediaQueries from '../../../../views/hooks/UseMediaQueries';
+import SearchBarMobile from './SearchBar.mobile';
 
 const SearchBar = ({
   regionsList,
@@ -19,7 +21,9 @@ const SearchBar = ({
   onSearchChange,
 }) => {
   const labels = Localisation.Labels.navBar;
+  const { isDesktopOrLaptop } = UseMediaQueries();
   const enterPressed = UseKeyPress('Enter');
+  let view = null;
 
   const disableEnter = e => (e.which === 13 ? e.preventDefault() : null);
 
@@ -30,38 +34,52 @@ const SearchBar = ({
     [enterPressed]
   );
 
-  return (
-    <div style={styles.container}>
-      <div style={styles.platformDropdown}>
-        <SVGIcon width={20} height={20} name={'platforms/lol'} />
-      </div>
-      <div style={styles.searchContainer}>
-        <form onKeyDown={disableEnter} autoComplete="false">
-          <Input
-            length="50"
-            placeholder={labels.placeholder}
-            inputStyle={styles.inputStyle}
-            onChange={onSearchChange}
-          />
-        </form>
-        <div style={styles.dropdownContainer}>
-          <DropDown
-            options={regionsList.toArray()}
-            selectType={SELECT_TYPE.SIMPLE}
-            dropDown={DROPDOWN_TYPE.DEFAULT}
-            onChange={onRegionChange}
-          />
+  if (isDesktopOrLaptop)
+    view = (
+      <div style={styles.container}>
+        <div style={styles.platformDropdown}>
+          <SVGIcon width={20} height={20} name={'platforms/lol'} />
         </div>
-        <div style={styles.searchButtonContainer}>
-          <Button
-            icon="search"
-            buttonStyle={styles.searchButton}
-            onClick={onSearch}
-          />
+        <div style={styles.searchContainer}>
+          <form onKeyDown={disableEnter} autoComplete="false">
+            <Input
+              length="50"
+              placeholder={labels.placeholder}
+              inputStyle={styles.inputStyle}
+              onChange={onSearchChange}
+            />
+          </form>
+          <div style={styles.dropdownContainer}>
+            <DropDown
+              options={regionsList.toArray()}
+              selectType={SELECT_TYPE.SIMPLE}
+              dropDown={DROPDOWN_TYPE.DEFAULT}
+              onChange={onRegionChange}
+            />
+          </div>
+          <div style={styles.searchButtonContainer}>
+            <Button
+              icon="search"
+              buttonStyle={styles.searchButton}
+              onClick={onSearch}
+            />
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  else
+    view = (
+      <SearchBarMobile
+        regionsList={regionsList}
+        onRegionChange={onRegionChange}
+        onSearch={onSearch}
+        onSearchChange={onSearchChange}
+        disableEnter={disableEnter}
+        labels={labels}
+      />
+    );
+
+  return view;
 };
 
 SearchBar.propTypes = {

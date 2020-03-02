@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -21,6 +21,8 @@ import styles from './styles';
 import UserMenu from './_ui/usermenu/UserMenu';
 import { POPUP_TYPE } from '../../../datamanager/models/PopupRecord';
 import { USER_MENU_ACTIONS } from './_ui/usermenu/enums';
+import UseMediaQueries from '../../views/hooks/UseMediaQueries';
+import NavBarMobile from './NavBar.mobile';
 
 const mapStateToProps = state => ({
   config: state.app.get('data'),
@@ -30,108 +32,117 @@ const mapStateToProps = state => ({
   user: state.app.getIn(['data', 'user']),
 });
 
-class NavBar extends PureComponent {
-  static propTypes = {
-    config: PropTypes.object,
-    dispatch: PropTypes.func.isRequired,
-    match: PropTypes.object.isRequired,
-    loading: PropTypes.bool.isRequired,
-    history: PropTypes.object.isRequired,
-    isAuthenticated: PropTypes.bool,
-    region: PropTypes.string,
-    user: PropTypes.object,
+const NavBar = ({
+  config,
+  dispatch,
+  loading,
+  history,
+  isAuthenticated,
+  user,
+}) => {
+  const [selectedPlatform, setSelectedPlatform] = useState(GAME_PLATFORM.RIOT);
+  const [searchValue, setSearchValue] = useState(null);
+  const [selectedRegion] = useState(GAME_REGIONS.NA);
+  const { isDesktopOrLaptop } = UseMediaQueries();
+  let view = null;
+
+  const onRegionChange = newRegion => {
+    setSelectedPlatform(newRegion.name);
   };
 
-  static defaultProps = {
-    config: null,
-    isAuthenticated: false,
-    user: null,
+  const onSearchInputChange = event => {
+    setSearchValue(event.target.value);
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      selectedPlatform: GAME_PLATFORM.RIOT,
-      searchValue: null,
-      selectedRegion: GAME_REGIONS.NA,
-    };
-  }
-
-  onRegionChange = newRegion => {
-    this.setState({
-      selectedRegion: newRegion.name,
-    });
-  };
-
-  onSearchInputChange = event => {
-    this.setState({
-      searchValue: event.target.value,
-    });
-  };
-
-  userMenuActions = action => {
+  const userMenuActions = action => {
     if (action === USER_MENU_ACTIONS.SIGNIN) {
-      this.props.dispatch(togglePopup(POPUP_TYPE.SIGNIN));
+      dispatch(togglePopup(POPUP_TYPE.SIGNIN));
     } else if (action === USER_MENU_ACTIONS.SIGNUP) {
-      this.props.dispatch(togglePopup(POPUP_TYPE.SIGNUP));
+      dispatch(togglePopup(POPUP_TYPE.SIGNUP));
     } else if (action === USER_MENU_ACTIONS.LOGOUT) {
-      this.props.dispatch(doLogout());
+      dispatch(doLogout());
     } else if (action === USER_MENU_ACTIONS.SETTINGS) {
-      this.props.history.push(getSettingsUrl());
+      history.push(getSettingsUrl());
     }
   };
 
-  onSearchClick = () => {
-    if (this.state.searchValue) {
-      this.props.history.push(
+  const onSearchClick = () => {
+    if (searchValue) {
+      history.push(
         getGamerDetailsUrl(
-          GAME_PLATFORM.RIOT,
-          this.state.selectedRegion,
+          selectedPlatform,
+          selectedRegion,
           GAME_CODE.LEAGUE_OF_LEGENDS,
-          this.state.searchValue
+          searchValue
         )
       );
-      this.props.dispatch(
+      dispatch(
         loadGamerDetails(
-          GAME_PLATFORM.RIOT,
-          this.state.selectedRegion,
+          selectedPlatform,
+          selectedRegion,
           GAME_CODE.LEAGUE_OF_LEGENDS,
-          this.state.searchValue
+          searchValue
         )
       );
     }
   };
 
-  render() {
-    if (!this.props.config) return null;
-
-    return (
-      <React.Fragment>
-        {this.props.loading && <div>Loading...</div>}
-        {!this.props.loading && (
+  if (!config) return null;
+  if (isDesktopOrLaptop)
+    view = (
+      <>
+        {loading && <div>Loading...</div>}
+        {!loading && (
           <div style={styles.container}>
             <Link style={styles.link} to={getHomeUrl()}>
               <SVGIcon width="120" height="22" name="logo-beta" />
             </Link>
             <SearchBar
-              regionsList={this.props.config.regions.riot.regionsCode}
-              onRegionChange={this.onRegionChange}
-              onSearch={this.onSearchClick}
-              onSearchChange={this.onSearchInputChange}
+              regionsList={config.regions.riot.regionsCode}
+              onRegionChange={onRegionChange}
+              onSearch={onSearchClick}
+              onSearchChange={onSearchInputChange}
             />
             <div style={styles.userMenu}>
               <UserMenu
-                user={this.props.user}
-                userMenuActions={this.userMenuActions}
-                isAuthenticated={this.props.isAuthenticated}
+                user={user}
+                userMenuActions={userMenuActions}
+                isAuthenticated={isAuthenticated}
               />
             </div>
           </div>
         )}
-      </React.Fragment>
+      </>
     );
-  }
-}
+  else
+    view = (
+      <NavBarMobile
+        loading={loading}
+        config={config}
+        onRegionChange={onRegionChange}
+        onSearchInputChange={onSearchInputChange}
+        onSearchClick={onSearchInputChange}
+        isAuthenticated={isAuthenticated}
+        userMenuActions={userMenuActions}
+        user={user}
+      />
+    );
+  return view;
+};
+
+NavBar.propTypes = {
+  config: PropTypes.object,
+  dispatch: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
+  history: PropTypes.object.isRequired,
+  isAuthenticated: PropTypes.bool,
+  user: PropTypes.object,
+};
+
+NavBar.defaultProps = {
+  config: null,
+  isAuthenticated: false,
+  user: null,
+};
 
 export default withRouter(connect(mapStateToProps)(NavBar));

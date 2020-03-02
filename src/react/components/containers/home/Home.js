@@ -142,7 +142,7 @@ const Home = ({ config, homeRecord, history }) => {
           />
           <span style={styles.statTitle}>{labels.reviews}</span>
         </div>
-        <div style={styles.approvalsContainer}>
+        <div style={{ ...styles.approvalsContainer, marginRight: 0 }}>
           <SVGIcon
             type={IMG_TYPE.PNG}
             name={'home/trends'}

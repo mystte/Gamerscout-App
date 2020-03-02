@@ -12,6 +12,11 @@ const styles = {
     flexDirection: 'row',
   },
 
+  mbContainer: {
+    width: '100%',
+    margin: 0,
+  },
+
   searchContainer: {
     flexDirection: 'row',
   },

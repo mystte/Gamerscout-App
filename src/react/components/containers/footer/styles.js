@@ -13,7 +13,6 @@ const styles = {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: '18%',
     marginBottom: 50,
   },
 
@@ -22,6 +21,8 @@ const styles = {
     fontSize: 16,
     color: colorNameToHex('white'),
     textDecoration: 'none',
+    marginRigth: 10,
+    marginLeft: 10,
   },
 
   socialContainer: {

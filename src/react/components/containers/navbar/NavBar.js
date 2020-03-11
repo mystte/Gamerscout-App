@@ -43,7 +43,7 @@ const NavBar = ({
   const [selectedPlatform, setSelectedPlatform] = useState(GAME_PLATFORM.RIOT);
   const [searchValue, setSearchValue] = useState(null);
   const [selectedRegion] = useState(GAME_REGIONS.NA);
-  const { isDesktopOrLaptop } = UseMediaQueries();
+  const { isDesktop } = UseMediaQueries();
   let view = null;
 
   const onRegionChange = newRegion => {
@@ -88,7 +88,7 @@ const NavBar = ({
   };
 
   if (!config) return null;
-  if (isDesktopOrLaptop)
+  if (isDesktop)
     view = (
       <>
         {loading && <div>Loading...</div>}

@@ -22,6 +22,7 @@ import { POPUP_TYPE } from '../../../datamanager/models/PopupRecord';
 import Footer from '../footer/Footer';
 import { loadHome } from '../../../redux/actions/home';
 import Playerlist from '../../views/playerlist/Playerlist';
+import UseMediaQueries from '../../views/hooks/UseMediaQueries';
 
 const mapStateToProps = state => ({
   config: state.app.get('data'),
@@ -32,6 +33,7 @@ const mapStateToProps = state => ({
 
 const Home = ({ config, homeRecord, history }) => {
   if (!config) return null;
+  const { getResponsiveStyle } = UseMediaQueries();
   const labels = Localization.Labels.home;
   const dispatch = useDispatch();
   const [searchPlatform] = useState(GAME_PLATFORM.RIOT);
@@ -111,11 +113,12 @@ const Home = ({ config, homeRecord, history }) => {
             width={'100%'}
             height={'100%'}
             name={'home/background'}
+            fit="cover"
           />
         </div>
       </div>
-      <div style={styles.statsBandeau}>
-        <div style={styles.approvalsContainer}>
+      <div style={styles[getResponsiveStyle('statsBandeau')]}>
+        <div style={styles[getResponsiveStyle('approvalsContainer')]}>
           <div style={styles.approvalsPictContainer}>
             <SVGIcon
               type={IMG_TYPE.PNG}
@@ -131,25 +134,36 @@ const Home = ({ config, homeRecord, history }) => {
               height={115}
             />
           </div>
-          <span style={styles.statTitle}>{labels.ratings}</span>
+          <span style={styles[getResponsiveStyle('statTitle')]}>
+            {labels.ratings}
+          </span>
         </div>
-        <div style={styles.approvalsContainer}>
+        <div style={styles[getResponsiveStyle('approvalsContainer')]}>
           <SVGIcon
             type={IMG_TYPE.PNG}
             name={'home/review'}
             width={350}
             height={148}
           />
-          <span style={styles.statTitle}>{labels.reviews}</span>
+          <span style={styles[getResponsiveStyle('statTitle')]}>
+            {labels.reviews}
+          </span>
         </div>
-        <div style={{ ...styles.approvalsContainer, marginRight: 0 }}>
+        <div
+          style={{
+            ...styles[getResponsiveStyle('approvalsContainer')],
+            marginRight: 0,
+          }}
+        >
           <SVGIcon
             type={IMG_TYPE.PNG}
             name={'home/trends'}
             width={350}
             height={119}
           />
-          <span style={styles.statTitle}>{labels.stats}</span>
+          <span style={styles[getResponsiveStyle('statTitle')]}>
+            {labels.stats}
+          </span>
         </div>
       </div>
       <div style={styles.createAccountContainer}>
@@ -161,12 +175,12 @@ const Home = ({ config, homeRecord, history }) => {
           onClick={onCreateAccountClick}
         />
       </div>
-      <div style={styles.featuredGamersContainers}>
+      <div style={styles[getResponsiveStyle('featuredGamersContainers')]}>
         <h2 style={styles.ftTitle}>{labels.featuredGamers}</h2>
         {homeRecord && (
-          <div style={styles.playersListContainer}>
+          <div style={styles[getResponsiveStyle('playersListContainer')]}>
             <div style={styles.playerList}>
-              <span style={styles.playerListTitle}>
+              <span style={styles[getResponsiveStyle('playerListTitle')]}>
                 {labels.recent.toUpperCase()}
               </span>
               <Playerlist
@@ -176,7 +190,7 @@ const Home = ({ config, homeRecord, history }) => {
               />
             </div>
             <div style={styles.playerList}>
-              <span style={styles.playerListTitle}>
+              <span style={styles[getResponsiveStyle('playerListTitle')]}>
                 {labels.highestRated.toUpperCase()}
               </span>
               <Playerlist
@@ -186,7 +200,7 @@ const Home = ({ config, homeRecord, history }) => {
               />
             </div>
             <div style={styles.playerList}>
-              <span style={styles.playerListTitle}>
+              <span style={styles[getResponsiveStyle('playerListTitle')]}>
                 {labels.mostReviewed.toUpperCase()}
               </span>
               <Playerlist

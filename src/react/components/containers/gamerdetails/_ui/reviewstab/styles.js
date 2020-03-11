@@ -6,6 +6,12 @@ const styles = {
     marginTop: 30,
   },
 
+  mbContainer: {
+    alignItems: 'center',
+    marginTop: 30,
+    width: '100%',
+  },
+
   statsContainer: {
     width: '32%',
     maxWidth: 350,
@@ -13,9 +19,18 @@ const styles = {
     marginRight: 30,
   },
 
+  mbStatsContainer: {
+    marginBottom: 30,
+    width: '100%',
+  },
+
   reviewSectionContainer: {
     width: '70%',
     maxWidth: 730,
+  },
+
+  mbReviewSectionContainer: {
+    width: '100%',
   },
 
   reviewFilterContainer: {

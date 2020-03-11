@@ -8,9 +8,11 @@ import DropDown from '../../../../../../../views/elements/dropdown/DropDown';
 import styles from './styles';
 import { colorNameToHex } from '../../../../../../../../utils/color';
 import { RECENT_PERFORMANCE_FILTERS } from '../../../../../../../../datamanager/models/RecentPerformanceCardRecord';
+import UseMediaQueries from '../../../../../../../views/hooks/UseMediaQueries';
 
 const RecentPerformanceCard = () => {
   const labels = Localization.Labels.gamerDetails.recentPerformanceCard;
+  const { getResponsiveStyle } = UseMediaQueries();
   const recentPerformanceRecord = useSelector(state =>
     state.gamerDetails.getIn(['data', 'recentPerformanceCardRecord'])
   );
@@ -40,7 +42,7 @@ const RecentPerformanceCard = () => {
   };
 
   return (
-    <div style={styles.container}>
+    <div style={styles[getResponsiveStyle('container')]}>
       <div style={styles.header}>
         <div style={styles.positionsFilter}>
           <DropDown
@@ -55,7 +57,7 @@ const RecentPerformanceCard = () => {
           />
         </div>
       </div>
-      <div style={styles.content}>
+      <div style={styles[getResponsiveStyle('content')]}>
         <div style={styles.title}>{labels.title}</div>
         <div style={styles.dataContainer}>
           <div style={styles.donutContainer}>

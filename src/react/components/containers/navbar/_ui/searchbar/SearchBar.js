@@ -21,7 +21,7 @@ const SearchBar = ({
   onSearchChange,
 }) => {
   const labels = Localisation.Labels.navBar;
-  const { isDesktopOrLaptop } = UseMediaQueries();
+  const { isDesktop } = UseMediaQueries();
   const enterPressed = UseKeyPress('Enter');
   let view = null;
 
@@ -34,7 +34,7 @@ const SearchBar = ({
     [enterPressed]
   );
 
-  if (isDesktopOrLaptop)
+  if (isDesktop)
     view = (
       <div style={styles.container}>
         <div style={styles.platformDropdown}>

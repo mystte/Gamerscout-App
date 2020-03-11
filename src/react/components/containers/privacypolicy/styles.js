@@ -33,7 +33,10 @@ const styles = {
     marginBottom: 20,
   },
   textBloc: {
-    width: 820,
+    width: '100%',
+    maxWidth: 820,
+    paddingRight: 20,
+    paddingLeft: 20,
     textAlign: 'justify',
     color: colorNameToRgba('white', 0.7),
     fontSize: 16,

@@ -58,7 +58,7 @@ SearchBarMobile.propTypes = {
   onSearch: PropTypes.func.isRequired,
   onSearchChange: PropTypes.func.isRequired,
   labels: PropTypes.object.isRequired,
-  disableEnter: PropTypes.bool.isRequired,
+  disableEnter: PropTypes.func.isRequired,
 };
 
 SearchBarMobile.defaultProps = {};

@@ -1,24 +1,16 @@
 import { useMediaQuery } from 'react-responsive';
 
 const UseMediaQueries = () => {
-  const isDesktopOrLaptop = useMediaQuery({
-    query: '(min-device-width: 1224px)',
-  });
-  const isBigScreen = useMediaQuery({
-    query: '(min-device-width: 1824px)',
-  });
-  const isTabletOrMobileDevice = useMediaQuery({
-    query: '(max-device-width: 1224px)',
-  });
-  const isPortrait = useMediaQuery({ query: '(orientation: portrait)' });
-  const isRetina = useMediaQuery({ query: '(min-resolution: 2dppx)' });
+  const isDesktop = useMediaQuery({ minWidth: 700 });
+
+  const getResponsiveStyle = styleName => {
+    if (isDesktop) return styleName;
+    return `mb${styleName.substr(0, 1).toUpperCase()}${styleName.substr(1)}`;
+  };
 
   return {
-    isDesktopOrLaptop,
-    isBigScreen,
-    isTabletOrMobileDevice,
-    isPortrait,
-    isRetina,
+    isDesktop,
+    getResponsiveStyle,
   };
 };
 

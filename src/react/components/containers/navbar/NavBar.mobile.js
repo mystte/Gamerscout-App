@@ -22,22 +22,24 @@ const NavBarMobile = ({
       {loading && <div>Loading...</div>}
       {!loading && (
         <div style={styles.mbContainer}>
-          <Link style={styles.mbLink} to={getHomeUrl()}>
-            <SVGIcon width="120" height="22" name="logo-beta" />
-          </Link>
-          <SearchBar
-            regionsList={config.regions.riot.regionsCode}
-            onRegionChange={onRegionChange}
-            onSearch={onSearchClick}
-            onSearchChange={onSearchInputChange}
-          />
-          <div>
+          <div style={styles.mbTopContainer}>
+            <div styles={styles.mbUserMenuContainer}>
+              <Link style={styles.mbLink} to={getHomeUrl()}>
+                <SVGIcon width="120" height="22" name="logo-beta" />
+              </Link>
+            </div>
             <UserMenu
               user={user}
               userMenuActions={userMenuActions}
               isAuthenticated={isAuthenticated}
             />
           </div>
+          <SearchBar
+            regionsList={config.regions.riot.regionsCode}
+            onRegionChange={onRegionChange}
+            onSearch={onSearchClick}
+            onSearchChange={onSearchInputChange}
+          />
         </div>
       )}
     </>

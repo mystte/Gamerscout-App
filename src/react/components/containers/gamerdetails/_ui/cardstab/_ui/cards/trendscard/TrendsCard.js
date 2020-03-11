@@ -17,8 +17,10 @@ import DropDown, {
   SELECT_TYPE,
 } from '../../../../../../../views/elements/dropdown/DropDown';
 import useResize from '../../../../../../../views/hooks/UseResize';
+import UseMediaQueries from '../../../../../../../views/hooks/UseMediaQueries';
 
 const TrendsCard = ({ trendsCardRecord, gamertag }) => {
+  const { getResponsiveStyle } = UseMediaQueries();
   const labels = Localization.Labels.gamerDetails.trendsCard;
   const [selectedFilter, setSelectedFilter] = useState(
     TRENDS_OPTIONS.TEAM_KDA_VS_KDA
@@ -43,7 +45,7 @@ const TrendsCard = ({ trendsCardRecord, gamertag }) => {
   };
 
   return (
-    <div ref={targetRef} style={styles.container}>
+    <div ref={targetRef} style={styles[getResponsiveStyle('container')]}>
       <div style={styles.header}>
         <div style={styles.title}>{labels.title}</div>
         <div style={styles.optionsContainer}>

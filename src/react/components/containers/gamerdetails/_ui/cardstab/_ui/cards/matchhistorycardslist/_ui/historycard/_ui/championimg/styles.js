@@ -17,6 +17,12 @@ const styles = {
     marginRight: 3,
   },
 
+  mbChampionImgContainer: {
+    position: 'relative',
+    marginRight: 15,
+    marginBottom: 5,
+  },
+
   champIcon: {
     width: 53,
     height: 53,

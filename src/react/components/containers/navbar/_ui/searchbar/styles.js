@@ -14,6 +14,7 @@ const styles = {
 
   mbContainer: {
     width: '100%',
+    maxWidth: 353,
     margin: 0,
   },
 

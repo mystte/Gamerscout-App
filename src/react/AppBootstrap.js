@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withCookies } from 'react-cookie';
+import MetaTags from 'react-meta-tags';
+import MediaQuery from 'react-responsive';
 
 import AppRouter from './router/AppRouter';
 import { loadAppData, togglePopup } from './redux/actions/app';
@@ -83,6 +85,14 @@ class AppBootstrap extends PureComponent {
 
     return (
       <React.Fragment>
+        <MediaQuery minWidth={700}>
+          <MetaTags>
+            <meta
+              name="viewport"
+              content="width=device-width, initial-scale=1"
+            />
+          </MetaTags>
+        </MediaQuery>
         <AppRouter cookies={this.props.cookies} />
         <Popup show={showPopup} togglePopup={this.togglePopup} type={type} />
       </React.Fragment>

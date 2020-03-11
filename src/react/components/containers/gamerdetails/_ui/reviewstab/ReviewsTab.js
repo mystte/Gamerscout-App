@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import styles from './styles';
@@ -12,72 +12,72 @@ import DisapprovalsCardRecord from '../../../../../datamanager/models/Disapprova
 import ReviewsCardRecord from '../../../../../datamanager/models/ReviewsCardRecord';
 import ReviewSection from './_ui/reviewsection/ReviewSection';
 import ReviewFilter from './_ui/reviewfilters/ReviewFilters';
+import UseMediaQueries from '../../../../views/hooks/UseMediaQueries';
 
-class ReviewsTab extends PureComponent {
-  static propTypes = {
-    approvalsCardRecord: PropTypes.instanceOf(ApprovalsCardRecord),
-    disapprovalsCardRecord: PropTypes.instanceOf(DisapprovalsCardRecord),
-    reviewsCardRecord: PropTypes.instanceOf(ReviewsCardRecord),
-    onReviewSubmitClick: PropTypes.func.isRequired,
-    attributesList: PropTypes.object,
-    preselect: PropTypes.string,
-    onReviewFilterChange: PropTypes.func.isRequired,
-  };
+const ReviewsTab = ({
+  approvalsCardRecord,
+  disapprovalsCardRecord,
+  reviewsCardRecord,
+  onReviewSubmitClick,
+  attributesList,
+  preselect,
+  onReviewFilterChange,
+}) => {
+  if (!reviewsCardRecord) return null;
+  const { getResponsiveStyle } = UseMediaQueries();
 
-  static defaultProps = {
-    reviewsCardRecord: null,
-    attributesList: null,
-    preselect: null,
-  };
-
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-  }
-
-  renderReviews = () =>
-    this.props.reviewsCardRecord.filtered.map((review, idx) => (
+  const renderReviews = () =>
+    reviewsCardRecord.filtered.map((review, idx) => (
       <Review key={`review-${idx}`} reviewRecord={review} />
     ));
 
-  render() {
-    if (!this.props.reviewsCardRecord) return null;
-
-    return (
-      <div style={styles.container}>
-        <div style={styles.statsContainer}>
-          <div style={styles.approvalsContainer}>
-            <ApprovalsCard
-              approvalsCardRecord={this.props.approvalsCardRecord}
-              type={APPROVAL_TYPE.APPROVAL}
-            />
-            <ApprovalsCard
-              approvalsCardRecord={this.props.disapprovalsCardRecord}
-              type={APPROVAL_TYPE.DISAPPROVAL}
-            />
-          </div>
-          <AttributesCard attributesList={this.props.attributesList} />
-        </div>
-        <div style={styles.reviewSectionContainer}>
-          <ReviewSection
-            onReviewSubmitClick={this.props.onReviewSubmitClick}
-            preselect={this.props.preselect}
+  return (
+    <div style={styles[getResponsiveStyle('container')]}>
+      <div style={styles[getResponsiveStyle('statsContainer')]}>
+        <div style={styles.approvalsContainer}>
+          <ApprovalsCard
+            approvalsCardRecord={approvalsCardRecord}
+            type={APPROVAL_TYPE.APPROVAL}
           />
-          {this.props.reviewsCardRecord.reviews.size > 0 && (
-            <div style={styles.reviewsListContainer}>
-              <div style={styles.reviewFilterContainer}>
-                <ReviewFilter
-                  onReviewFilterChange={this.props.onReviewFilterChange}
-                />
-              </div>
-              {this.renderReviews()}
-            </div>
-          )}
+          <ApprovalsCard
+            approvalsCardRecord={disapprovalsCardRecord}
+            type={APPROVAL_TYPE.DISAPPROVAL}
+          />
         </div>
+        <AttributesCard attributesList={attributesList} />
       </div>
-    );
-  }
-}
+      <div style={styles[getResponsiveStyle('reviewSectionContainer')]}>
+        <ReviewSection
+          onReviewSubmitClick={onReviewSubmitClick}
+          preselect={preselect}
+        />
+        {reviewsCardRecord.reviews.size > 0 && (
+          <div style={styles.reviewsListContainer}>
+            <div style={styles.reviewFilterContainer}>
+              <ReviewFilter onReviewFilterChange={onReviewFilterChange} />
+            </div>
+            {renderReviews()}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+ReviewsTab.propTypes = {
+  approvalsCardRecord: PropTypes.instanceOf(ApprovalsCardRecord),
+  disapprovalsCardRecord: PropTypes.instanceOf(DisapprovalsCardRecord),
+  reviewsCardRecord: PropTypes.instanceOf(ReviewsCardRecord),
+  onReviewSubmitClick: PropTypes.func.isRequired,
+  attributesList: PropTypes.object,
+  preselect: PropTypes.string,
+  onReviewFilterChange: PropTypes.func.isRequired,
+};
+
+ReviewsTab.defaultProps = {
+  reviewsCardRecord: null,
+  attributesList: null,
+  preselect: null,
+};
 
 export default ReviewsTab;

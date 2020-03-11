@@ -7,6 +7,13 @@ const styles = {
     marginLeft: 15,
   },
 
+  mbContainer: {
+    width: '100%',
+    marginTop: 30,
+    marginRight: 15,
+    marginLeft: 15,
+  },
+
   header: {
     flexDirection: 'row',
   },
@@ -48,6 +55,17 @@ const styles = {
     maxWidth: 350,
     minWidth: 279,
     width: '31vw',
+    height: 119,
+    backgroundColor: colorNameToHex('ebonyclay'),
+    marginTop: 5,
+    borderWidth: 1,
+    borderColor: colorNameToHex('dimgrey'),
+    borderStyle: 'solid',
+    borderRadius: 1,
+  },
+
+  mbContent: {
+    width: '100%',
     height: 119,
     backgroundColor: colorNameToHex('ebonyclay'),
     marginTop: 5,

@@ -10,6 +10,14 @@ const styles = {
     padding: 15,
   },
 
+  mbContainer: {
+    width: '100%',
+    borderStyle: 'solid',
+    borderWidth: 1,
+    borderRadius: 1,
+    padding: 15,
+  },
+
   winContainer: {
     backgroundColor: colorNameToHex('pickledbluewood'),
     borderColor: colorNameToHex('astronaut'),
@@ -24,11 +32,22 @@ const styles = {
     flexDirection: 'row',
   },
 
+  mbTopContainer: {
+    flexDirection: 'row',
+    marginBottom: 20,
+  },
+
   bottomContainer: {
     flexDirection: 'row',
     justifyCcontent: 'center',
     alignItems: 'center',
     height: 79,
+  },
+
+  mbBottomContainer: {
+    flexDirection: 'column',
+    justifyCcontent: 'center',
+    alignItems: 'center',
   },
 
   gameType: {
@@ -61,6 +80,13 @@ const styles = {
     alignItems: 'center',
   },
 
+  mbKillsContainer: {
+    minWidth: 75,
+    width: 75,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
   kills: {
     flexDirection: 'row',
   },
@@ -75,11 +101,22 @@ const styles = {
     marginLeft: '6%',
   },
 
+  mbUsedItemsContainer: {
+    marginTop: 5,
+    marginBottom: 10,
+  },
+
   csContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     marginLeft: '6%',
+  },
+
+  mbCsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 
   playersListContainer: {

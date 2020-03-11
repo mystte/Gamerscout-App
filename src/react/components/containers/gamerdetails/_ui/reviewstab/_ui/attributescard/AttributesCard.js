@@ -1,40 +1,27 @@
-import React, { PureComponent } from 'react';
+import React, { useState } from 'react';
 import { PropTypes } from 'prop-types';
 
 import styles from './styles';
 import Localization from '../../../../../../../config/localization/Localization';
 import AttributeRow from './_ui/attributerow/AttributeRow';
+import UseMediaQueries from '../../../../../../views/hooks/UseMediaQueries';
 
-class AttributesCard extends PureComponent {
-  static propTypes = {
-    attributesList: PropTypes.object,
+const AttributesCard = ({ attributesList }) => {
+  const [expanded, setExpanded] = useState(false);
+  const { getResponsiveStyle } = UseMediaQueries();
+
+  const toggleShowAll = () => {
+    setExpanded(!expanded);
   };
 
-  static defaultProps = {
-    attributesList: null,
-    reviewsCardRecord: null,
-  };
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      expanded: false,
-    };
-  }
-
-  toggleShowAll = () => {
-    this.setState({ expanded: !this.state.expanded });
-  };
-
-  renderAttributes = () => {
-    const sortedAttributesList = this.props.attributesList.sort((a, b) => {
+  const renderAttributes = () => {
+    const sortedAttributesList = attributesList.sort((a, b) => {
       if (a.ratio < b.ratio) return 1;
       if (a.ratio > b.ratio) return -1;
       return 0;
     });
     return sortedAttributesList.map((attribute, idx) =>
-      (!this.state.expanded && idx < 3) || this.state.expanded ? (
+      (!expanded && idx < 3) || expanded ? (
         <AttributeRow key={`attribute-${idx}`} attributeRecord={attribute} />
       ) : (
         <div key={`attribute-${idx}`} />
@@ -42,29 +29,35 @@ class AttributesCard extends PureComponent {
     );
   };
 
-  render() {
-    if (!this.props.attributesList) return null;
-    const labels = Localization.Labels.gamerDetails.attributesCard;
-    const containerStyle = this.state.expanded
-      ? {
-          ...styles.container,
-          ...styles.expandedContainer,
-        }
-      : styles.container;
+  if (!attributesList) return null;
+  const labels = Localization.Labels.gamerDetails.attributesCard;
+  const containerStyle = expanded
+    ? {
+        ...styles[getResponsiveStyle('container')],
+        ...styles.expandedContainer,
+      }
+    : styles[getResponsiveStyle('container')];
 
-    return (
-      <div style={containerStyle}>
-        <div style={styles.title}>{labels.title}</div>
-        <div style={styles.attributesList}>{this.renderAttributes()}</div>
-        <div style={styles.footer}>
-          <button style={styles.showAll} onClick={this.toggleShowAll}>
-            {!this.state.expanded && labels.showAll}
-            {this.state.expanded && labels.showLess}
-          </button>
-        </div>
+  return (
+    <div style={containerStyle}>
+      <div style={styles.title}>{labels.title}</div>
+      <div style={styles.attributesList}>{renderAttributes()}</div>
+      <div style={styles.footer}>
+        <button style={styles.showAll} onClick={toggleShowAll}>
+          {!expanded && labels.showAll}
+          {expanded && labels.showLess}
+        </button>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
+
+AttributesCard.propTypes = {
+  attributesList: PropTypes.object,
+};
+
+AttributesCard.defaultProps = {
+  attributesList: null,
+};
 
 export default AttributesCard;

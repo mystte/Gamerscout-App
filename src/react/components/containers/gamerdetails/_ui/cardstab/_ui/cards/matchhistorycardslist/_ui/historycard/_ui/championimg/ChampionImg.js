@@ -7,6 +7,7 @@ import {
   getPerksSpellImgUrl,
 } from '../../../../../../../../../../../../utils/lol';
 import styles from './styles';
+import UseMediaQueries from '../../../../../../../../../../../views/hooks/UseMediaQueries';
 
 const ChampionImg = ({
   championId,
@@ -19,6 +20,7 @@ const ChampionImg = ({
   lane,
   perks,
 }) => {
+  const { getResponsiveStyle } = UseMediaQueries();
   const championLevelStyle =
     lane !== 'NONE'
       ? styles.championLevel
@@ -35,7 +37,7 @@ const ChampionImg = ({
 
   const renderChampionAvatar = () => (
     <div style={styles.innerContentContainer}>
-      <div style={styles.championImgContainer}>
+      <div style={styles[getResponsiveStyle('championImgContainer')]}>
         <div style={styles.championsInnerContent}>
           <img
             style={championBorder}

@@ -17,10 +17,13 @@ const styles = {
     fontWeight: 600,
     fontSize: 40,
     margin: 10,
+    textAlign: 'center',
+    lineHeight: '34px',
   },
 
   homeBg: {
-    width: 1440,
+    width: '100%',
+    height: '100%',
     position: 'absolute',
     top: 0,
     left: '50%',
@@ -39,6 +42,15 @@ const styles = {
     height: 200,
     backgroundColor: colorNameToHex('mirage'),
     flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  mbStatsBandeau: {
+    position: 'relative',
+    width: '100%',
+    backgroundColor: colorNameToHex('mirage'),
+    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -70,6 +82,13 @@ const styles = {
     marginTop: 46,
   },
 
+  mbStatTitle: {
+    fontSize: 24,
+    fontWeight: 600,
+    marginBottom: 20,
+    marginTop: 20,
+  },
+
   approvalsContainer: {
     flexDirection: 'column',
     width: 350,
@@ -77,6 +96,13 @@ const styles = {
     alignItems: 'center',
     marginRight: '5%',
     marginTop: -140,
+  },
+
+  mbApprovalsContainer: {
+    flexDirection: 'column-reverse',
+    width: 350,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 
   approvalsPictContainer: {
@@ -95,8 +121,22 @@ const styles = {
     alignItems: 'center',
   },
 
+  mbFeaturedGamersContainers: {
+    width: '100%',
+    backgroundColor: colorNameToHex('mirage'),
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+  },
+
   playersListContainer: {
     flexDirection: 'row',
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  mbPlayersListContainer: {
+    flexDirection: 'column',
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
@@ -120,6 +160,14 @@ const styles = {
     color: colorNameToHex('regentgray'),
     fontWeight: 600,
     marginBottom: 20,
+  },
+
+  mbPlayerListTitle: {
+    fontSize: 12,
+    color: colorNameToHex('regentgray'),
+    fontWeight: 600,
+    marginBottom: 20,
+    marginTop: 20,
   },
 };
 

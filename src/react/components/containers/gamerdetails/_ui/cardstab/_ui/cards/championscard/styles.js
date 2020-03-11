@@ -13,6 +13,17 @@ const styles = {
     borderRadius: 1,
     marginBottom: 30,
   },
+
+  mbContainer: {
+    width: '100%',
+    height: 265,
+    backgroundColor: colorNameToHex('ebonyclay'),
+    borderWidth: 1,
+    borderColor: colorNameToHex('dimgrey'),
+    borderStyle: 'solid',
+    borderRadius: 1,
+    marginBottom: 30,
+  },
 };
 
 export default styles;

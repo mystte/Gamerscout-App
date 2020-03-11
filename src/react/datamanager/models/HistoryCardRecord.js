@@ -1,4 +1,4 @@
-import { Record, Maybe, List } from 'typed-immutable';
+import { Record, Maybe, List, Object } from 'typed-immutable';
 import HistoryPlayerRecord from './HistoryPlayerRecord';
 
 export const QUEUE_TYPES = {
@@ -35,7 +35,16 @@ const defaultProps = {
   opponents: Maybe(List(HistoryPlayerRecord)),
   teammates: Maybe(List(HistoryPlayerRecord)),
   queueType: Maybe(String),
-  perks: Maybe(Array),
+  perk1: Maybe(
+    Record({
+      icon: String,
+    })
+  ),
+  perk2: Maybe(
+    Record({
+      icon: String,
+    })
+  ),
 };
 
 const ExtendsWith = superclass =>
@@ -71,7 +80,8 @@ export default class HistoryCardRecord extends ExtendsWith(
       spell1Id: data.spell1Id || null,
       spell2Id: data.spell2Id || null,
       teamId: data.teamId || null,
-      perks: data.perks || null,
+      perk1: data.perkPrimaryStyle || null,
+      perk2: data.perkSubStyle || null,
       items: data.items || null,
       queueType: data.queueType,
       opponents: data.opponents.map(playerData =>

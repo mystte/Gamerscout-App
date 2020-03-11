@@ -17,7 +17,8 @@ const ChampionImg = ({
   win,
   staticDataUrl,
   lane,
-  perks,
+  perk1,
+  perk2,
 }) => {
   const championLevelStyle =
     lane !== 'NONE'
@@ -66,12 +67,12 @@ const ChampionImg = ({
         <img
           style={styles.spell}
           alt={'perk1Icon'}
-          src={getPerksSpellImgUrl(staticDataUrl, perks[0].icon)}
+          src={getPerksSpellImgUrl(staticDataUrl, perk1.icon)}
         ></img>
         <img
           style={styles.spell}
           alt={'perk2Icon'}
-          src={getPerksSpellImgUrl(staticDataUrl, perks[1].icon)}
+          src={getPerksSpellImgUrl(staticDataUrl, perk2.icon)}
         ></img>
       </div>
     </div>
@@ -88,14 +89,16 @@ ChampionImg.propTypes = {
   staticDataUrl: PropTypes.string,
   spell1Id: PropTypes.number,
   spell2Id: PropTypes.number,
-  perks: PropTypes.array,
+  perk1: PropTypes.object,
+  perk2: PropTypes.object,
   lane: PropTypes.string,
 };
 
 ChampionImg.defaultProps = {
   staticDataUrl: null,
   lane: null,
-  perks: [],
+  perk1: null,
+  perk2: null,
 };
 
 export default ChampionImg;

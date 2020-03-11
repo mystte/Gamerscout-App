@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -33,76 +33,69 @@ const mapStateToProps = state => ({
   loading: state.gamerDetails.get('loading'),
   error: state.gamerDetails.get('error'),
 });
-class GamerDetails extends PureComponent {
-  static propTypes = {
-    config: PropTypes.object,
-    dispatch: PropTypes.func.isRequired,
-    match: PropTypes.object.isRequired,
-    gamerData: PropTypes.object,
-    loading: PropTypes.bool.isRequired,
-    staticDataUrl: PropTypes.string,
-    history: PropTypes.object.isRequired,
-    connectedUser: PropTypes.object,
-  };
 
-  static defaultProps = {
-    config: null,
-    gamerData: null,
-    staticDataUrl: null,
-    connectedUser: null,
-  };
+const GamerDetails = ({
+  config,
+  dispatch,
+  match,
+  gamerData,
+  loading,
+  history,
+  connectedUser,
+}) => {
+  const [selectedTab, setSelectedTab] = useState(BUTTON_TYPE.OVERVIEW);
+  const [preselect, setPreselect] = useState(null);
+  const [notifLabels] = useState(Localization.Labels.notifications);
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      selectedTab: BUTTON_TYPE.OVERVIEW,
-      preselect: null,
-      notifLabels: Localization.Labels.notifications,
-    };
-  }
-
-  componentDidMount() {
-    this.props.dispatch(
+  useEffect(() => {
+    dispatch(
       loadGamerDetails(
-        this.props.match.params.platform,
-        this.props.match.params.region,
-        this.props.match.params.game,
-        this.props.match.params.gamertag
+        match.params.platform,
+        match.params.region,
+        match.params.game,
+        match.params.gamertag
       )
     );
-  }
+  }, []);
 
-  onSelectHeaderTab = buttonType => {
-    if (buttonType !== this.state.selectedTab) {
-      this.setState({ selectedTab: buttonType });
+  const selectTab = (tabType, preselectTab = null) => {
+    if (selectedTab !== tabType) {
+      setPreselect(preselectTab);
+      setSelectedTab(tabType);
     }
   };
 
-  onApprovalButtonClick = type => {
+  const onSelectHeaderTab = buttonType => {
+    if (buttonType !== selectedTab) {
+      setSelectedTab(buttonType);
+    }
+  };
+
+  const onApprovalButtonClick = type => {
     console.log(`on ${type} button button click`);
-    this.selectTab(BUTTON_TYPE.REVIEWS, type);
+    setSelectedTab();
+    selectTab(BUTTON_TYPE.REVIEWS, type);
   };
 
-  onReviewButtonClick = () => {
+  const onReviewButtonClick = () => {
     console.log('On review button click');
-    this.selectTab(BUTTON_TYPE.REVIEWS);
+    selectTab(BUTTON_TYPE.REVIEWS);
   };
 
-  onReviewSubmitClick = ({
+  const onReviewSubmitClick = ({
     review,
     selectedAttributes,
     isApproval,
     isDisapproval,
   }) => {
-    if (this.state.selectedTab !== BUTTON_TYPE.REVIEWS) {
-      this.setState({ selectedTab: BUTTON_TYPE.REVIEWS });
+    if (selectedTab !== BUTTON_TYPE.REVIEWS) {
+      setSelectedTab(BUTTON_TYPE.REVIEWS);
       return;
     }
-    if (!this.props.connectedUser) {
-      this.props.dispatch(
+    if (!connectedUser) {
+      dispatch(
         pushNotification({
-          title: this.state.notifLabels.accountRequired.title,
+          title: notifLabels.accountRequired.title,
           type: NOTIFICATION_TYPE.WARNING,
         })
       );
@@ -114,139 +107,137 @@ class GamerDetails extends PureComponent {
         isDisapproval
       );
       if (error !== true) {
-        this.props.dispatch(setGamerDetailsError(error));
+        dispatch(setGamerDetailsError(error));
       } else {
-        this.props.dispatch(
+        dispatch(
           doPushReview({
-            gamerId: this.props.gamerData.gamerId,
+            gamerId: gamerData.gamerId,
             review,
             selectedAttributes,
             isApproval,
             isDisapproval,
-            username: this.props.connectedUser.username,
+            username: connectedUser.username,
           })
         );
       }
     }
   };
 
-  getStaticDataUrlForPlatform = () =>
-    this.props.config
-      ? this.props.config.getStaticDataUrlForPlatform(
-          this.props.match.params.platform
-        )
-      : null;
+  const getStaticDataUrlForPlatform = () =>
+    config ? config.getStaticDataUrlForPlatform(match.params.platform) : null;
 
-  onReviewFilterChange = (show, filterBy) => {
-    this.props.dispatch(
+  const onReviewFilterChange = (show, filterBy) => {
+    dispatch(
       applyReviewFilters(
-        this.props.gamerData.reviewsCardRecord.applyReviewsFilter(
-          show,
-          filterBy
-        )
+        gamerData.reviewsCardRecord.applyReviewsFilter(show, filterBy)
       )
     );
   };
 
-  selectTab = (tabType, preselect = null) => {
-    if (this.state.selectedTab !== tabType) {
-      this.setState({
-        preselect,
-        selectedTab: tabType,
-      });
-    }
-  };
-
-  doSearchPlayer = gamer => {
-    this.props.history.push(
+  const doSearchPlayer = gamer => {
+    history.push(
       getGamerDetailsUrl(
-        this.props.gamerData.platform,
-        this.props.gamerData.region,
-        this.props.gamerData.gameCode,
+        gamerData.platform,
+        gamerData.region,
+        gamerData.gameCode,
         gamer
       )
     );
-    this.props.dispatch(
+    dispatch(
       loadGamerDetails(
-        this.props.gamerData.platform,
-        this.props.gamerData.region,
-        this.props.gamerData.gameCode,
+        gamerData.platform,
+        gamerData.region,
+        gamerData.gameCode,
         gamer
       )
     );
   };
 
-  renderGamerDetailsContent = () => {
+  const renderGamerDetailsContent = () => {
     let content = null;
-    if (this.state.selectedTab === BUTTON_TYPE.OVERVIEW) {
+    if (selectedTab === BUTTON_TYPE.OVERVIEW) {
       content = (
         <CardsTab
-          gamertag={this.props.gamerData.gamertag}
-          gameCode={this.props.gamerData.gameCode}
-          platform={this.props.gamerData.platform}
-          rankedCardRecord={this.props.gamerData.rankedCardRecord}
-          championsCardRecord={this.props.gamerData.championsCardRecord}
-          approvalsCardRecord={this.props.gamerData.approvalsCardRecord}
-          disapprovalsCardRecord={this.props.gamerData.disapprovalsCardRecord}
-          reviewsCardRecord={this.props.gamerData.reviewsCardRecord}
-          onApprovalButtonClick={this.onApprovalButtonClick}
-          onReviewButtonClick={this.onReviewButtonClick}
-          trendsCardRecord={this.props.gamerData.trendsCardRecord}
-          historyCardList={this.props.gamerData.gameHistoryList}
-          staticDataUrl={this.getStaticDataUrlForPlatform()}
-          doSearchPlayer={this.doSearchPlayer}
+          gamertag={gamerData.gamertag}
+          gameCode={gamerData.gameCode}
+          platform={gamerData.platform}
+          rankedCardRecord={gamerData.rankedCardRecord}
+          championsCardRecord={gamerData.championsCardRecord}
+          approvalsCardRecord={gamerData.approvalsCardRecord}
+          disapprovalsCardRecord={gamerData.disapprovalsCardRecord}
+          reviewsCardRecord={gamerData.reviewsCardRecord}
+          onApprovalButtonClick={onApprovalButtonClick}
+          onReviewButtonClick={onReviewButtonClick}
+          trendsCardRecord={gamerData.trendsCardRecord}
+          historyCardList={gamerData.gameHistoryList}
+          staticDataUrl={getStaticDataUrlForPlatform()}
+          doSearchPlayer={doSearchPlayer}
         />
       );
-    } else if (this.state.selectedTab === BUTTON_TYPE.REVIEWS) {
+    } else if (selectedTab === BUTTON_TYPE.REVIEWS) {
       content = (
         <ReviewsTab
-          approvalsCardRecord={this.props.gamerData.approvalsCardRecord}
-          disapprovalsCardRecord={this.props.gamerData.disapprovalsCardRecord}
-          reviewsCardRecord={this.props.gamerData.reviewsCardRecord}
-          attributesList={this.props.gamerData.attributesList}
-          onReviewSubmitClick={this.onReviewSubmitClick}
-          preselect={this.state.preselect}
-          onReviewFilterChange={this.onReviewFilterChange}
+          approvalsCardRecord={gamerData.approvalsCardRecord}
+          disapprovalsCardRecord={gamerData.disapprovalsCardRecord}
+          reviewsCardRecord={gamerData.reviewsCardRecord}
+          attributesList={gamerData.attributesList}
+          onReviewSubmitClick={onReviewSubmitClick}
+          preselect={preselect}
+          onReviewFilterChange={onReviewFilterChange}
         />
       );
-    } else if (this.state.selectedTab === BUTTON_TYPE.CHAMPIONS) {
+    } else if (selectedTab === BUTTON_TYPE.CHAMPIONS) {
       content = <ChampionsTab />;
-    } else if (this.state.selectedTab === BUTTON_TYPE.LEAGUES) {
+    } else if (selectedTab === BUTTON_TYPE.LEAGUES) {
       content = <LeaguesTab />;
-    } else if (this.state.selectedTab === BUTTON_TYPE.LIVE_MATCH) {
+    } else if (selectedTab === BUTTON_TYPE.LIVE_MATCH) {
       content = <LiveMatchTab />;
     }
 
     return content;
   };
 
-  render() {
-    if (!this.props.config) return null;
-    return (
-      <>
-        {this.props.loading && <GamerSkeleton />}
-        {!this.props.loading && this.props.gamerData && (
-          <div style={styles.container}>
-            <NavHeader
-              selectedTab={this.state.selectedTab}
-              gamertag={this.props.gamerData.gamertag}
-              gamerLevel={this.props.gamerData.level}
-              region={this.props.gamerData.region}
-              gamerIconUrl={`${this.getStaticDataUrlForPlatform()}${
-                this.props.gamerData.gamerIconUrl
-              }`}
-              onSelectTab={this.onSelectHeaderTab}
-              onReviewSubmitClick={this.onReviewSubmitClick}
-              staticDataUrl={this.getStaticDataUrlForPlatform()}
-            />
-            {this.renderGamerDetailsContent()}
-          </div>
-        )}
-        {!this.props.loading && !this.props.gamerData && <GamerNotFound />}
-        <Footer />
-      </>
-    );
-  }
-}
+  if (!config) return null;
+  return (
+    <>
+      {loading && <GamerSkeleton />}
+      {!loading && gamerData && (
+        <div style={styles.container}>
+          <NavHeader
+            selectedTab={selectedTab}
+            gamertag={gamerData.gamertag}
+            gamerLevel={gamerData.level}
+            region={gamerData.region}
+            gamerIconUrl={`${getStaticDataUrlForPlatform()}${
+              gamerData.gamerIconUrl
+            }`}
+            onSelectTab={onSelectHeaderTab}
+            onReviewSubmitClick={onReviewSubmitClick}
+            staticDataUrl={getStaticDataUrlForPlatform()}
+          />
+          {renderGamerDetailsContent()}
+        </div>
+      )}
+      {!loading && !gamerData && <GamerNotFound />}
+      <Footer />
+    </>
+  );
+};
+
+GamerDetails.propTypes = {
+  config: PropTypes.object,
+  dispatch: PropTypes.func.isRequired,
+  match: PropTypes.object.isRequired,
+  gamerData: PropTypes.object,
+  loading: PropTypes.bool.isRequired,
+  history: PropTypes.object.isRequired,
+  connectedUser: PropTypes.object,
+};
+
+GamerDetails.defaultProps = {
+  config: null,
+  gamerData: null,
+  connectedUser: null,
+};
 
 export default withRouter(connect(mapStateToProps)(GamerDetails));

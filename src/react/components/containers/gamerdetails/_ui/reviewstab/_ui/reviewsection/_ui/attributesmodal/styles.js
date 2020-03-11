@@ -2,7 +2,7 @@ import { colorNameToHex } from '../../../../../../../../../utils/color';
 
 const styles = {
   container: {
-    width: 245,
+    // width: 245,
     height: 233,
     position: 'absolute',
     top: 37,
@@ -11,6 +11,7 @@ const styles = {
     overflowY: 'auto',
     border: `1px solid ${colorNameToHex('dimgrey')}`,
     cursor: 'pointer',
+    zIndex: 1,
   },
 
   attrItem: {

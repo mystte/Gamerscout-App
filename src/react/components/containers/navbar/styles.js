@@ -16,6 +16,7 @@ const styles = {
   mbContainer: {
     height: 120,
     backgroundColor: colorNameToHex('ebonyclay'),
+    alignItems: 'center',
   },
 
   userMenu: {
@@ -27,6 +28,15 @@ const styles = {
     height: 45,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  mbTopContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 5,
+  },
+  mbUserMenuContainer: {
+    marginLeft: 10,
   },
 };
 

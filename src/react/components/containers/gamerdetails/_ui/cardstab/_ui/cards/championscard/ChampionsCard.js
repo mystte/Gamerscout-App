@@ -8,8 +8,10 @@ import ChampionsCardRecord, {
 } from '../../../../../../../../datamanager/models/ChampionsCardRecord';
 import ChampionStats from './_ui/championstats/ChampionStats';
 import PositionStats from './_ui/positionstats/PositionStats';
+import UseMediaQueries from '../../../../../../../views/hooks/UseMediaQueries';
 
 const ChampionsCard = ({ championsCardRecord, staticDataUrl }) => {
+  const { getResponsiveStyle } = UseMediaQueries();
   const getHeaderList = () =>
     championsCardRecord ? championsCardRecord.getChampionsCardTabHeader() : [];
 
@@ -33,7 +35,7 @@ const ChampionsCard = ({ championsCardRecord, staticDataUrl }) => {
       : [];
 
   return (
-    <div style={styles.container}>
+    <div style={styles[getResponsiveStyle('container')]}>
       <TabSelector
         headerList={getHeaderList()}
         contentList={getContentList()}

@@ -14,6 +14,17 @@ const styles = {
     position: 'relative',
   },
 
+  mbContainer: {
+    width: '100%',
+    minHeight: 160,
+    backgroundColor: colorNameToHex('ebonyclay'),
+    borderWidth: 1,
+    borderColor: colorNameToHex('dimgrey'),
+    borderStyle: 'solid',
+    borderRadius: 1,
+    position: 'relative',
+  },
+
   header: {
     margin: 15,
     marginBottom: 0,

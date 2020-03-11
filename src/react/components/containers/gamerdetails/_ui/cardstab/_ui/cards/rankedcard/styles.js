@@ -15,6 +15,19 @@ const styles = {
     borderStyle: 'solid',
     borderRadius: 1,
   },
+
+  mbContainer: {
+    width: '100%',
+    height: 160,
+    backgroundColor: colorNameToHex('ebonyclay'),
+    marginTop: 30,
+    marginRight: 15,
+    marginLeft: 15,
+    borderWidth: 1,
+    borderColor: colorNameToHex('dimgrey'),
+    borderStyle: 'solid',
+    borderRadius: 1,
+  },
 };
 
 export default styles;

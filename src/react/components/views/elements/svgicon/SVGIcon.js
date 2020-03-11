@@ -30,10 +30,12 @@ const SVGIcon = ({
   color,
   type,
   isFontAwesome,
+  fit,
 }) => {
   const containerStyle = {
     width: width !== null ? width : styles.container.width,
     height: height !== null ? height : styles.container.height,
+    objectFit: fit,
   };
 
   let imgSrc = null;
@@ -57,6 +59,7 @@ SVGIcon.propTypes = {
   type: PropTypes.string,
   isFontAwesome: PropTypes.bool,
   color: PropTypes.string,
+  fit: PropTypes.string,
 };
 
 SVGIcon.defaultProps = {
@@ -66,6 +69,7 @@ SVGIcon.defaultProps = {
   style: null,
   isFontAwesome: false,
   color: styles.container.color,
+  fit: 'contain',
 };
 
 export default SVGIcon;

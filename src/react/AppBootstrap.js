@@ -85,7 +85,7 @@ class AppBootstrap extends PureComponent {
 
     return (
       <React.Fragment>
-        <MediaQuery maxDeviceWidth={1224}>
+        <MediaQuery minWidth={700}>
           <MetaTags>
             <meta
               name="viewport"

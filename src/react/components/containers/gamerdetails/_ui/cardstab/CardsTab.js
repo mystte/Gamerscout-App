@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import RankedCard from './_ui/cards/rankedcard/RankedCard';
@@ -18,103 +18,110 @@ import MathHistoryCardsList from './_ui/cards/matchhistorycardslist/MatchHistory
 import HistoryListRecord from '../../../../../datamanager/models/HistoryListRecord';
 import ChampionsCardRecord from '../../../../../datamanager/models/ChampionsCardRecord';
 import TrendsCardRecord from '../../../../../datamanager/models/TrendsCardRecord';
+import UseMediaQueries from '../../../../views/hooks/UseMediaQueries';
 
 import styles from './styles';
 
-class CardsTab extends PureComponent {
-  static propTypes = {
-    gameCode: PropTypes.string,
-    gamertag: PropTypes.string,
-    platform: PropTypes.string,
-    rankedCardRecord: PropTypes.instanceOf(RankedCardRecord),
-    championsCardRecord: PropTypes.instanceOf(ChampionsCardRecord),
-    approvalsCardRecord: PropTypes.instanceOf(ApprovalsCardRecord),
-    disapprovalsCardRecord: PropTypes.instanceOf(DisapprovalsCardRecord),
-    reviewsCardRecord: PropTypes.instanceOf(ReviewsCardRecord),
-    historyCardList: PropTypes.instanceOf(HistoryListRecord),
-    trendsCardRecord: PropTypes.instanceOf(TrendsCardRecord),
-    onApprovalButtonClick: PropTypes.func,
-    onReviewButtonClick: PropTypes.func,
-    staticDataUrl: PropTypes.string,
-    doSearchPlayer: PropTypes.func.isRequired,
-  };
+const CardsTab = ({
+  gameCode,
+  gamertag,
+  platform,
+  rankedCardRecord,
+  championsCardRecord,
+  approvalsCardRecord,
+  disapprovalsCardRecord,
+  reviewsCardRecord,
+  historyCardList,
+  trendsCardRecord,
+  onApprovalButtonClick,
+  onReviewButtonClick,
+  staticDataUrl,
+  doSearchPlayer,
+}) => {
+  const { getResponsiveStyle } = UseMediaQueries();
 
-  static defaultProps = {
-    platform: null,
-    gameCode: null,
-    gamertag: null,
-    rankedCardRecord: null,
-    approvalsCardRecord: null,
-    historyCardList: null,
-    reviewsCardRecord: null,
-    onApprovalButtonClick: null,
-    championsCardRecord: null,
-    staticDataUrl: null,
-  };
+  if (
+    !rankedCardRecord ||
+    !trendsCardRecord ||
+    !approvalsCardRecord ||
+    !reviewsCardRecord
+  )
+    return null;
 
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-  }
-
-  render() {
-    if (
-      !this.props.rankedCardRecord ||
-      !this.props.trendsCardRecord ||
-      !this.props.approvalsCardRecord ||
-      !this.props.reviewsCardRecord
-    )
-      return null;
-
-    return (
-      <div style={styles.container}>
-        <div style={styles.firstRow}>
-          <RankedCard
-            gameCode={this.props.gameCode}
-            platform={this.props.platform}
-            rankedCardRecord={this.props.rankedCardRecord}
+  return (
+    <div style={styles[getResponsiveStyle('container')]}>
+      <div style={styles[getResponsiveStyle('firstRow')]}>
+        <RankedCard
+          gameCode={gameCode}
+          platform={platform}
+          rankedCardRecord={rankedCardRecord}
+        />
+        <RecentPerformanceCard />
+        <TrendsCard trendsCardRecord={trendsCardRecord} gamertag={gamertag} />
+      </div>
+      <div style={styles[getResponsiveStyle('secondRow')]}>
+        <div style={styles[getResponsiveStyle('leftColumn')]}>
+          <ChampionsCard
+            staticDataUrl={staticDataUrl}
+            championsCardRecord={championsCardRecord}
           />
-          <RecentPerformanceCard />
-          <TrendsCard
-            trendsCardRecord={this.props.trendsCardRecord}
-            gamertag={this.props.gamertag}
+          <div style={styles.rateContainer}>
+            <ApprovalsCard
+              approvalsCardRecord={approvalsCardRecord}
+              type={APPROVAL_TYPE.APPROVAL}
+              onClick={onApprovalButtonClick}
+            />
+            <ApprovalsCard
+              approvalsCardRecord={disapprovalsCardRecord}
+              type={APPROVAL_TYPE.DISAPPROVAL}
+              onClick={onApprovalButtonClick}
+            />
+          </div>
+          <ReviewsCard
+            reviewsCardRecord={reviewsCardRecord}
+            onReviewButtonClick={onReviewButtonClick}
           />
         </div>
-        <div style={styles.secondRow}>
-          <div style={styles.leftColumn}>
-            <ChampionsCard
-              staticDataUrl={this.props.staticDataUrl}
-              championsCardRecord={this.props.championsCardRecord}
-            />
-            <div style={styles.rateContainer}>
-              <ApprovalsCard
-                approvalsCardRecord={this.props.approvalsCardRecord}
-                type={APPROVAL_TYPE.APPROVAL}
-                onClick={this.props.onApprovalButtonClick}
-              />
-              <ApprovalsCard
-                approvalsCardRecord={this.props.disapprovalsCardRecord}
-                type={APPROVAL_TYPE.DISAPPROVAL}
-                onClick={this.props.onApprovalButtonClick}
-              />
-            </div>
-            <ReviewsCard
-              reviewsCardRecord={this.props.reviewsCardRecord}
-              onReviewButtonClick={this.props.onReviewButtonClick}
-            />
-          </div>
-          <div style={styles.historyColumn}>
-            <MathHistoryCardsList
-              doSearchPlayer={this.props.doSearchPlayer}
-              historyCardList={this.props.historyCardList}
-              staticDataUrl={this.props.staticDataUrl}
-            />
-          </div>
+        <div style={styles[getResponsiveStyle('historyColumn')]}>
+          <MathHistoryCardsList
+            doSearchPlayer={doSearchPlayer}
+            historyCardList={historyCardList}
+            staticDataUrl={staticDataUrl}
+          />
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
+
+CardsTab.propTypes = {
+  gameCode: PropTypes.string,
+  gamertag: PropTypes.string,
+  platform: PropTypes.string,
+  rankedCardRecord: PropTypes.instanceOf(RankedCardRecord),
+  championsCardRecord: PropTypes.instanceOf(ChampionsCardRecord),
+  approvalsCardRecord: PropTypes.instanceOf(ApprovalsCardRecord),
+  disapprovalsCardRecord: PropTypes.instanceOf(DisapprovalsCardRecord),
+  reviewsCardRecord: PropTypes.instanceOf(ReviewsCardRecord),
+  historyCardList: PropTypes.instanceOf(HistoryListRecord),
+  trendsCardRecord: PropTypes.instanceOf(TrendsCardRecord),
+  onApprovalButtonClick: PropTypes.func,
+  onReviewButtonClick: PropTypes.func,
+  staticDataUrl: PropTypes.string,
+  doSearchPlayer: PropTypes.func.isRequired,
+};
+
+CardsTab.defaultProps = {
+  platform: null,
+  gameCode: null,
+  gamertag: null,
+  rankedCardRecord: null,
+  approvalsCardRecord: null,
+  historyCardList: null,
+  reviewsCardRecord: null,
+  onApprovalButtonClick: null,
+  championsCardRecord: null,
+  staticDataUrl: null,
+};
 
 export default CardsTab;

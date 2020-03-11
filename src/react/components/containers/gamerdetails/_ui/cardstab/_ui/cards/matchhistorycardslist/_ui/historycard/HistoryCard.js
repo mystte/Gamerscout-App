@@ -11,8 +11,10 @@ import ChampionImg from './_ui/championimg/ChampionImg';
 import styles from './styles';
 import UsedItems from './_ui/useditems/UsedItems';
 import PlayersList from './_ui/playerslist/PlayersList';
+import UseMediaQueries from '../../../../../../../../../views/hooks/UseMediaQueries';
 
 const HistoryCard = ({ historyCardRecord, staticDataUrl, doSearchPlayer }) => {
+  const { getResponsiveStyle } = UseMediaQueries();
   const labels = Localization.Labels.gamerDetails.historyCard;
   const gameDuration = moment
     .utc(historyCardRecord.gameDuration * 1000)
@@ -20,11 +22,11 @@ const HistoryCard = ({ historyCardRecord, staticDataUrl, doSearchPlayer }) => {
 
   const containerStyle = historyCardRecord.win
     ? {
-        ...styles.container,
+        ...styles[getResponsiveStyle('container')],
         ...styles.winContainer,
       }
     : {
-        ...styles.container,
+        ...styles[getResponsiveStyle('container')],
         ...styles.lossContainer,
       };
 
@@ -36,7 +38,7 @@ const HistoryCard = ({ historyCardRecord, staticDataUrl, doSearchPlayer }) => {
 
   return (
     <div style={containerStyle}>
-      <div style={styles.topContainer}>
+      <div style={styles[getResponsiveStyle('topContainer')]}>
         <span style={styles.gameType}>{getGameName()}</span>
         <span style={styles.time}>
           {moment(historyCardRecord.startDate).fromNow()}
@@ -44,7 +46,7 @@ const HistoryCard = ({ historyCardRecord, staticDataUrl, doSearchPlayer }) => {
         <span style={styles.dotSeparator}>.</span>
         <span style={styles.time}>{gameDuration}</span>
       </div>
-      <div style={styles.bottomContainer}>
+      <div style={styles[getResponsiveStyle('bottomContainer')]}>
         <ChampionImg
           spell1Id={historyCardRecord.spell1Id}
           spell2Id={historyCardRecord.spell2Id}
@@ -56,7 +58,7 @@ const HistoryCard = ({ historyCardRecord, staticDataUrl, doSearchPlayer }) => {
           staticDataUrl={staticDataUrl}
           lane={historyCardRecord.lane}
         />
-        <div style={styles.killsContainer}>
+        <div style={styles[getResponsiveStyle('killsContainer')]}>
           <div style={styles.kills}>
             <span style={styles.textData}>{historyCardRecord.kills}</span>
             <span style={styles.slashSeparator}>/</span>
@@ -69,17 +71,17 @@ const HistoryCard = ({ historyCardRecord, staticDataUrl, doSearchPlayer }) => {
             <span style={styles.kdaLabel}>{labels.kda}</span>
           </div>
         </div>
-        <div style={styles.csContainer}>
+        <div style={styles[getResponsiveStyle('csContainer')]}>
           <span style={styles.csTitle}>{historyCardRecord.cs}</span>
           <span style={styles.csLabel}>{labels.cs}</span>
         </div>
-        <div style={styles.usedItemsContainer}>
+        <div style={styles[getResponsiveStyle('usedItemsContainer')]}>
           <UsedItems
             staticDataUrl={staticDataUrl}
             items={historyCardRecord.items}
           />
         </div>
-        <div style={styles.playersListContainer}>
+        <div style={styles[getResponsiveStyle('playersListContainer')]}>
           <PlayersList
             staticDataUrl={staticDataUrl}
             opponents={historyCardRecord.opponents}

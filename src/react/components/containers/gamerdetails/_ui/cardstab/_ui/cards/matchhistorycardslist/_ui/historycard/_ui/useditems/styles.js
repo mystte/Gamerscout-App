@@ -7,6 +7,11 @@ const styles = {
     flexDirection: 'row',
   },
 
+  mbContainer: {
+    width: '100%',
+    flexDirection: 'row',
+  },
+
   itemsContainer: {
     flexDirection: 'column',
   },
@@ -31,6 +36,16 @@ const styles = {
   itemImg: {
     width: 25,
     height: 25,
+    marginRight: 2,
+    marginTop: 3,
+    borderColor: colorNameToHex('darkslategrey'),
+    borderWidth: 1,
+    borderStyle: 'solid',
+  },
+
+  mbItemImg: {
+    width: 35,
+    height: 35,
     marginRight: 2,
     marginTop: 3,
     borderColor: colorNameToHex('darkslategrey'),

@@ -147,7 +147,6 @@
     "signup": "Créer un compte",
     "login": "Login",
     "userMenuOptions": {
-      "profile": "Profile",
       "settings": "Paramètres",
       "logout": "Déconnexion"
     }

@@ -51,7 +51,7 @@ const NavBar = ({
   };
 
   const onSearchInputChange = event => {
-    setSearchValue(event.target.value);
+    if (event) setSearchValue(event.target.value);
   };
 
   const userMenuActions = action => {
@@ -121,7 +121,7 @@ const NavBar = ({
         config={config}
         onRegionChange={onRegionChange}
         onSearchInputChange={onSearchInputChange}
-        onSearchClick={onSearchInputChange}
+        onSearchClick={onSearchClick}
         isAuthenticated={isAuthenticated}
         userMenuActions={userMenuActions}
         user={user}

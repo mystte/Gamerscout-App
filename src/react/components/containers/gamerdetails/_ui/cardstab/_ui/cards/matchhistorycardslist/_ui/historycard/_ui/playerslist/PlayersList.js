@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import styles from './styles';
 import { getLolChampionImgUrl } from '../../../../../../../../../../../../utils/lol';
+import UseMediaQueries from '../../../../../../../../../../../views/hooks/UseMediaQueries';
 
 const PlayersList = ({
   staticDataUrl,
@@ -10,17 +11,19 @@ const PlayersList = ({
   teammates,
   doSearchPlayer,
 }) => {
+  const { getResponsiveStyle } = UseMediaQueries();
+
   const renderChampionImg = championName =>
     championName ? (
       <img
-        style={styles.championImg}
+        style={styles[getResponsiveStyle('championImg')]}
         alt={`championIcon${championName}`}
         src={getLolChampionImgUrl(staticDataUrl, championName)}
       ></img>
     ) : (
       <div
         style={{
-          ...styles.championImg,
+          ...styles[getResponsiveStyle('championImg')],
           ...styles.championPlaceholder,
         }}
       ></div>

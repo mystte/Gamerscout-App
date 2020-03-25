@@ -12,6 +12,7 @@ import {
   clearAppError,
   doResendValidationEmail,
 } from '../../../../../redux/actions/app';
+import UseMediaQueries from '../../../../views/hooks/UseMediaQueries';
 
 const EmailAndPassword = ({
   isEditEmailMode,
@@ -35,6 +36,7 @@ const EmailAndPassword = ({
   const apiError = useSelector(state => state.app.get('error'));
   const errorLabels = Localization.Errors.userUpdate;
   const isVerifiedLabel = isVerified ? labels.verified : labels.unverified;
+  const { getResponsiveStyle } = UseMediaQueries();
   const verifiedLabelStyle = isVerified
     ? styles.emailStatusLabel
     : { ...styles.emailStatusLabel, ...styles.unverified };
@@ -103,7 +105,7 @@ const EmailAndPassword = ({
     isEditEmailMode
       ? {
           ...styles.dataContainer,
-          ...styles.dataContainerEmailEditMode,
+          ...styles[getResponsiveStyle('dataContainerEmailEditMode')],
         }
       : {
           ...styles.dataContainer,
@@ -113,7 +115,7 @@ const EmailAndPassword = ({
     isEditPasswordMode
       ? {
           ...styles.dataContainer,
-          ...styles.dataContainerPwdEditMode,
+          ...styles[getResponsiveStyle('dataContainerPwdEditMode')],
         }
       : {
           ...styles.dataContainer,
@@ -256,7 +258,7 @@ const EmailAndPassword = ({
             onUpdate(NAV_SECTION.EMAIL, null);
             clearEmailData();
           }}
-          style={styles.infosContainer}
+          style={styles[getResponsiveStyle('infosContainer')]}
         >
           <div style={styles.infoTitle}>{labels.email}</div>
           <div style={styles.infoDesc}>{labels.emailDesc}</div>

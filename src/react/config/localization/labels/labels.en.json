@@ -152,7 +152,6 @@
     "signup": "Create Account",
     "login": "Sign In",
     "userMenuOptions": {
-      "profile": "Profile",
       "settings": "Settings",
       "logout": "Logout"
     }

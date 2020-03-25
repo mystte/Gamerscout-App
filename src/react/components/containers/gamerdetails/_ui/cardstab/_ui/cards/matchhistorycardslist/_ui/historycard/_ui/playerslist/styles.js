@@ -55,6 +55,13 @@ const styles = {
     borderRadius: '50%',
     marginBottom: 1,
   },
+
+  mbChampionImg: {
+    width: 25,
+    height: 25,
+    borderRadius: '50%',
+    marginBottom: 1,
+  },
 };
 
 export default styles;

@@ -16,9 +16,28 @@ const styles = {
     fontWeight: 600,
   },
 
+  mbTitle: {
+    fontSize: 24,
+    color: colorNameToHex('white'),
+    fontWeight: 600,
+    textAlign: 'center',
+  },
+
   contentContainer: {
     marginTop: 30,
     flexDirection: 'row',
+  },
+
+  mbContentContainer: {
+    marginTop: 30,
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  mbSettingsDataContainer: {
+    marginTop: 30,
+    width: '100%',
   },
 
   settingsDataContainer: {

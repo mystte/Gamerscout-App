@@ -9,6 +9,11 @@ const styles = {
     cursor: 'pointer',
   },
 
+  mbInfosContainer: {
+    cursor: 'pointer',
+    width: '70%',
+  },
+
   title: {
     textTransform: 'uppercase',
     color: colorNameToHex('regentgray'),
@@ -32,6 +37,11 @@ const styles = {
   dataContainerEmailEditMode: {
     borderColor: colorNameToHex('dodgerblue'),
     height: 215,
+  },
+
+  mbDataContainerEmailEditMode: {
+    borderColor: colorNameToHex('dodgerblue'),
+    height: 235,
   },
 
   dataContainerPwdEditMode: {

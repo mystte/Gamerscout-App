@@ -42,6 +42,7 @@
     "react-dedux": "^0.4.0-beta.4",
     "react-dom": "^16.9.0",
     "react-facebook": "^8.0.4",
+    "react-ga": "^2.7.0",
     "react-localization": "^1.0.15",
     "react-meta-tags": "^0.7.4",
     "react-native": "^0.60.5",

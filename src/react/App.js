@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { CookiesProvider } from 'react-cookie';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import ReactGA from 'react-ga';
 
 import store from './redux/configureStore';
 import ErrorBoundary from './components/containers/errorboundary/ErrorBoundary';
@@ -20,6 +21,9 @@ const styles = {
     color: colorNameToHex('white'),
   },
 };
+
+ReactGA.initialize('UA-113317255-01');
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 class App extends PureComponent {
   constructor(props) {

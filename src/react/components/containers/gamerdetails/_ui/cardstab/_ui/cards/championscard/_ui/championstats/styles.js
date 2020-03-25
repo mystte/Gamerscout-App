@@ -62,6 +62,7 @@ const styles = {
     fontSize: 12,
     fontWeight: 400,
     marginLeft: 30,
+    minWidth: 48,
   },
 };
 

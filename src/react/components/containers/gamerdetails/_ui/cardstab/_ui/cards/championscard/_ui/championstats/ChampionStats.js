@@ -25,7 +25,9 @@ const ChampionStats = ({ championsStatsList, staticDataUrl }) => {
             alt={`champion ${champion.championName} icon`}
             src={getLolChampionImgUrl(staticDataUrl, champion.championName)}
           ></img>
-          <span style={styles.championName}>{champion.championName}</span>
+          <span className="ellipsis" style={styles.championName}>
+            {champion.championName}
+          </span>
           <span style={styles.kdaContainer}>
             <span style={styles.kda}>{champion.kda}</span>
             <span style={styles.kdaLbl}>{labels.kda}</span>

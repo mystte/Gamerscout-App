@@ -1,7 +1,13 @@
 import { colorNameToHex } from '../../../../../../../../../../utils/color';
 
 const styles = {
-  container: {},
+  container: {
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    minHeight: 192,
+  },
 
   championImg: {
     width: 30,

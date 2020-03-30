@@ -18,6 +18,9 @@ import DropDown, {
 } from '../../../../../../../views/elements/dropdown/DropDown';
 import useResize from '../../../../../../../views/hooks/UseResize';
 import UseMediaQueries from '../../../../../../../views/hooks/UseMediaQueries';
+import SVGIcon, {
+  IMG_TYPE,
+} from '../../../../../../../views/elements/svgicon/SVGIcon';
 
 const TrendsCard = ({ trendsCardRecord, gamertag }) => {
   const { getResponsiveStyle } = UseMediaQueries();
@@ -63,40 +66,57 @@ const TrendsCard = ({ trendsCardRecord, gamertag }) => {
             ]}
           />
         </div>
-        <div style={styles.chartContainer}>
-          <Chart
-            config={{
-              data,
-              size: {
-                width: dimensions.width,
-                height: 90,
-              },
-              axis: {
-                x: {
+        {data.columns[0].length <= 1 && (
+          <div style={styles.zeroStateContainer}>
+            <SVGIcon
+              width={102}
+              height={61}
+              type={IMG_TYPE.PNG}
+              name="no-data-2"
+            />
+          </div>
+        )}
+        {data.columns[0].length > 1 && (
+          <div style={styles.chartContainer}>
+            <Chart
+              config={{
+                data,
+                size: {
+                  width: dimensions.width,
+                  height: 90,
+                },
+                axis: {
+                  x: {
+                    show: false,
+                  },
+                  y: {
+                    show: false,
+                  },
+                },
+                legend: {
                   show: false,
                 },
-                y: {
-                  show: false,
+                color: {
+                  pattern: getChartLinesColors(),
                 },
-              },
-              legend: {
-                show: false,
-              },
-              color: {
-                pattern: getChartLinesColors(),
-              },
-              point: {
-                r: 1,
-              },
-              tooltip: {
-                contents: (d, defaultTitleFormat, defaultValueFormat, color) =>
-                  ReactDOMServer.renderToStaticMarkup(
-                    <TrendTip gamertag={gamertag} getColor={color} data={d} />
-                  ),
-              },
-            }}
-          />
-        </div>
+                point: {
+                  r: 1,
+                },
+                tooltip: {
+                  contents: (
+                    d,
+                    defaultTitleFormat,
+                    defaultValueFormat,
+                    color
+                  ) =>
+                    ReactDOMServer.renderToStaticMarkup(
+                      <TrendTip gamertag={gamertag} getColor={color} data={d} />
+                    ),
+                },
+              }}
+            />
+          </div>
+        )}
       </div>
     </div>
   );

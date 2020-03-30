@@ -9,9 +9,9 @@
     "createAccountDesc": "Find out what they’re saying about you.",
     "createAccount": "Create Account",
     "featuredGamers": "Featured Gamers",
-    "recent": "Recently reviewed",
-    "highestRated": "Best player",
-    "mostReviewed": "Most reviewed"
+    "recent": "Recently viewed",
+    "highestRated": "Most Reviewed",
+    "mostReviewed": "Highest Rated"
   },
   "fourOFour": {
     "desc": "Alien invaders stole this page",
@@ -217,6 +217,7 @@
     },
 
     "reviewsCard": {
+      "noReview": "This gamer has not been reviewed yet.",
       "title": "Reviews",
       "viewAll": "View All",
       "action": "Review gamer",
@@ -232,6 +233,7 @@
     },
 
     "historyCard": {
+      "title": "Match history",
       "kda": "KDA",
       "cs": "CS",
       "showMore": "Show more"

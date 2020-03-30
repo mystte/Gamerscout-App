@@ -10,6 +10,31 @@ const styles = {
     marginBottom: 10,
   },
 
+  zeroStateContainer: {
+    width: '100%',
+    height: 265,
+    backgroundColor: colorNameToHex('ebonyclay'),
+    borderWidth: 1,
+    borderColor: colorNameToHex('dimgrey'),
+    borderStyle: 'solid',
+    borderRadius: 1,
+    padding: 15,
+  },
+
+  iconContainer: {
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  title: {
+    fontWeight: 600,
+    fontSize: 12,
+    color: colorNameToHex('regentgray'),
+    textTransform: 'uppercase',
+  },
+
   showMoreContainer: {
     width: '100%',
     flexDirection: 'row',

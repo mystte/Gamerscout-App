@@ -11,6 +11,7 @@ export const QUEUE_TYPES = {
 export const OTHER_QUEUE_TYPES = {
   CLASSIC: 'NORMAL',
   URF: 'URF',
+  ONEFORALL: 'ONE FOR ALL',
 };
 
 const defaultProps = {
@@ -28,6 +29,7 @@ const defaultProps = {
   champion: Maybe(String),
   championId: Maybe(Number),
   lane: Maybe(String),
+  role: Maybe(String),
   spell1Id: Maybe(Number),
   spell2Id: Maybe(Number),
   teamId: Maybe(Number),
@@ -77,6 +79,7 @@ export default class HistoryCardRecord extends ExtendsWith(
       champion: data.champion || null,
       championId: data.championId || null,
       lane: data.lane || null,
+      role: data.role || null,
       spell1Id: data.spell1Id || null,
       spell2Id: data.spell2Id || null,
       teamId: data.teamId || null,

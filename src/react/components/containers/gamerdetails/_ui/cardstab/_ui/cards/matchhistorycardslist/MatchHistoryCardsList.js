@@ -5,6 +5,9 @@ import HistoryListRecord from '../../../../../../../../datamanager/models/Histor
 import styles from './styles';
 import HistoryCard from './_ui/historycard/HistoryCard';
 import Localization from '../../../../../../../../config/localization/Localization';
+import SVGIcon, {
+  IMG_TYPE,
+} from '../../../../../../../views/elements/svgicon/SVGIcon';
 
 const MathHistoryCardsList = ({
   historyCardList,
@@ -29,7 +32,7 @@ const MathHistoryCardsList = ({
 
   const renderCards = () => {
     let renderedView = null;
-    if (historyCardList.historyCards) {
+    if (historyCardList.historyCards && historyCardList.historyCards.size > 0) {
       renderedView = historyCardList.historyCards.map((record, idx) => {
         const key = `historyCard$${idx}`;
         return idx < display ? (
@@ -44,6 +47,20 @@ const MathHistoryCardsList = ({
           <div key={key} />
         );
       });
+    } else {
+      renderedView = (
+        <div style={styles.zeroStateContainer}>
+          <span style={styles.title}>{labels.title}</span>
+          <div style={styles.iconContainer}>
+            <SVGIcon
+              width={102}
+              height={61}
+              type={IMG_TYPE.PNG}
+              name="no-data"
+            />
+          </div>
+        </div>
+      );
     }
     return renderedView;
   };

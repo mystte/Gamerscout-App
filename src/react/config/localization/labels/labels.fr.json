@@ -212,6 +212,7 @@
     },
 
     "reviewsCard": {
+      "noReview": "Ce joueur n'a pas encore de commentaire.",
       "title": "Commentaires",
       "viewAll": "Voir tous",
       "action": "Commenter",
@@ -227,6 +228,7 @@
     },
 
     "historyCard": {
+      "title": "Historique",
       "kda": "KDA",
       "cs": "CS",
       "showMore": "Voir plus"

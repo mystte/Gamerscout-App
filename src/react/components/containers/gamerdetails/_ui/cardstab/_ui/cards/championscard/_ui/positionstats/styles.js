@@ -1,6 +1,14 @@
 import { colorNameToHex } from '../../../../../../../../../../utils/color';
 
 const styles = {
+  container: {
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    minHeight: 192,
+  },
+
   positionRowContainer: {
     flexDirection: 'row',
     height: 40,

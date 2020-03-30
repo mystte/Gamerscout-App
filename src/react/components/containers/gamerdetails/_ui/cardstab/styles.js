@@ -19,6 +19,7 @@ const styles = {
   mbSecondRow: {
     flexDirection: 'column',
     alignItems: 'center',
+    width: '100%',
     marginRight: 15,
     marginLeft: 15,
   },

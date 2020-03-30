@@ -58,6 +58,7 @@ const HistoryCard = ({ historyCardRecord, staticDataUrl, doSearchPlayer }) => {
           win={historyCardRecord.win}
           staticDataUrl={staticDataUrl}
           lane={historyCardRecord.lane}
+          role={historyCardRecord.role}
         />
         <div style={styles[getResponsiveStyle('killsContainer')]}>
           <div style={styles.kills}>

@@ -5,6 +5,7 @@ const styles = {
     maxWidth: 350,
     minWidth: 279,
     width: '31vw',
+    minHeight: 265,
     backgroundColor: colorNameToHex('ebonyclay'),
     borderWidth: 1,
     borderColor: colorNameToHex('dimgrey'),

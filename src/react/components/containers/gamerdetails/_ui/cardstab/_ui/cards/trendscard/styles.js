@@ -4,7 +4,7 @@ const styles = {
   container: {
     maxWidth: 350,
     minWidth: 279,
-    width: '31vw',
+    width: '100%',
     height: 119,
     backgroundColor: colorNameToHex('ebonyclay'),
     marginTop: 71,
@@ -21,7 +21,7 @@ const styles = {
     width: '100%',
     height: 119,
     backgroundColor: colorNameToHex('ebonyclay'),
-    marginTop: 71,
+    marginTop: 30,
     marginRight: 15,
     marginLeft: 15,
     borderWidth: 1,
@@ -29,6 +29,15 @@ const styles = {
     borderStyle: 'solid',
     borderRadius: 1,
     position: 'relative',
+  },
+
+  zeroStateContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
+    left: 0,
+    width: '100%',
+    bottom: 12,
   },
 
   optionsContainer: {

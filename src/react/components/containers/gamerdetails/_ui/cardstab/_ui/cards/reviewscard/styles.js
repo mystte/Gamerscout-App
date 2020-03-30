@@ -1,4 +1,7 @@
-import { colorNameToHex } from '../../../../../../../../utils/color';
+import {
+  colorNameToHex,
+  colorNameToRgba,
+} from '../../../../../../../../utils/color';
 
 const styles = {
   container: {
@@ -23,6 +26,12 @@ const styles = {
     borderStyle: 'solid',
     borderRadius: 1,
     position: 'relative',
+  },
+
+  zeroStateLbl: {
+    padding: 15,
+    fontSize: 14,
+    color: colorNameToRgba('white', 0.5),
   },
 
   header: {

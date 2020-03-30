@@ -18,12 +18,13 @@ const ChampionImg = ({
   win,
   staticDataUrl,
   lane,
+  role,
   perk1,
   perk2,
 }) => {
   const { getResponsiveStyle } = UseMediaQueries();
   const championLevelStyle =
-    lane !== 'NONE'
+    lane !== 'NONE' || role !== 'NONE'
       ? styles.championLevel
       : { ...styles.championLevel, bottom: 0 };
   const championBorder = win
@@ -36,6 +37,15 @@ const ChampionImg = ({
         ...styles.champIconloss,
       };
 
+  const getPlayedRole = () => {
+    let cLane = lane;
+
+    if (role === 'DUO_CARRY') cLane = 'ADC';
+    else if (role === 'DUO_SUPPORT') cLane = 'SUPPORT';
+    else if (lane === 'NONE' && role !== 'NONE') cLane = role;
+    return lane ? <span style={styles.lane}>{cLane}</span> : null;
+  };
+
   const renderChampionAvatar = () => (
     <div style={styles.innerContentContainer}>
       <div style={styles[getResponsiveStyle('championImgContainer')]}>
@@ -46,7 +56,7 @@ const ChampionImg = ({
             src={getLolChampionImgUrl(staticDataUrl, championName)}
           ></img>
           <span style={championLevelStyle}>{championLevel}</span>
-          {lane !== 'NONE' && <span style={styles.lane}>{lane}</span>}
+          {getPlayedRole()}
         </div>
       </div>
       <div style={styles.spellsContainer}>
@@ -94,11 +104,13 @@ ChampionImg.propTypes = {
   perk1: PropTypes.object,
   perk2: PropTypes.object,
   lane: PropTypes.string,
+  role: PropTypes.string,
 };
 
 ChampionImg.defaultProps = {
   staticDataUrl: null,
   lane: null,
+  role: null,
   perk1: null,
   perk2: null,
 };

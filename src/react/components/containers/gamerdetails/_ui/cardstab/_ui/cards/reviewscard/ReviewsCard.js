@@ -10,8 +10,12 @@ import UseMediaQueries from '../../../../../../../views/hooks/UseMediaQueries';
 
 const ReviewsCard = ({ reviewsCardRecord, onReviewButtonClick }) => {
   const { getResponsiveStyle } = UseMediaQueries();
-  const renderReviews = () =>
-    reviewsCardRecord.reviews.map((review, idx) =>
+  const labels = Localisation.Labels.gamerDetails.reviewsCard;
+
+  const renderReviews = () => {
+    if (reviewsCardRecord.reviews.size === 0)
+      return <div style={styles.zeroStateLbl}>{labels.noReview}</div>;
+    return reviewsCardRecord.reviews.map((review, idx) =>
       idx < 3 ? (
         <ReviewRow
           key={`reviewrow-${idx}`}
@@ -22,10 +26,9 @@ const ReviewsCard = ({ reviewsCardRecord, onReviewButtonClick }) => {
         ''
       )
     );
-
+  };
   if (!reviewsCardRecord) return null;
 
-  const labels = Localisation.Labels.gamerDetails.reviewsCard;
   const footerStyle =
     reviewsCardRecord.reviews.size === 0
       ? {

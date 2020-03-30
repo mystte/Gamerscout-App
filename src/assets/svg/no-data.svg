@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100px" height="55px" viewBox="0 0 100 55" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61.2 (89653) - https://sketch.com -->
+    <title>Zero state placeholder</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Gamer-Details/LoL/Desktop" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" font-weight="normal">
+        <g id="Gamer-Details---Overview-Empty" transform="translate(-860.000000, -659.000000)" fill="#FFFFFF">
+            <g id="Zero-state-placeholder" transform="translate(859.000000, 657.000000)">
+                <text id="" opacity="0.50562686" font-family="LastResort, .LastResort" font-size="36">
+                    <tspan x="33" y="30"></tspan>
+                </text>
+                <text id="No-data-available-Copy" opacity="0.50265067" font-family="SourceSansPro-Regular, Source Sans Pro" font-size="14" line-spacing="19">
+                    <tspan x="0.467" y="56">No data available</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -40,14 +40,14 @@ const NavBar = ({
   isAuthenticated,
   user,
 }) => {
-  const [selectedPlatform, setSelectedPlatform] = useState(GAME_PLATFORM.RIOT);
+  const [selectedPlatform] = useState(GAME_PLATFORM.RIOT);
   const [searchValue, setSearchValue] = useState(null);
-  const [selectedRegion] = useState(GAME_REGIONS.NA);
+  const [selectedRegion, setSelectedRegion] = useState(GAME_REGIONS.NA);
   const { isDesktop } = UseMediaQueries();
   let view = null;
 
   const onRegionChange = newRegion => {
-    setSelectedPlatform(newRegion.name);
+    setSelectedRegion(newRegion.name);
   };
 
   const onSearchInputChange = event => {

@@ -8,6 +8,14 @@ const styles = {
     minHeight: 192,
   },
 
+  noDataContainer: {
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    minHeight: 192,
+  },
+
   championImg: {
     width: 30,
     height: 30,

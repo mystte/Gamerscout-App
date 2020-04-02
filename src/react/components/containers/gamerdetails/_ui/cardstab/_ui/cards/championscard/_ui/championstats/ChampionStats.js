@@ -16,7 +16,7 @@ const ChampionStats = ({ championsStatsList, staticDataUrl }) => {
 
     if (championsStatsList.size === 0)
       renderedList = (
-        <div style={styles.container}>
+        <div style={styles.noDataContainer}>
           <SVGIcon width={102} height={61} type={IMG_TYPE.PNG} name="no-data" />
         </div>
       );

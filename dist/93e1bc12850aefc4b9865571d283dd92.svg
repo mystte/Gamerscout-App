@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="7px" height="4px" viewBox="0 0 7 4" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.1 (78136) - https://sketchapp.com -->
+    <title>Icons/Dropdown/Inactive</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Select/Simple/Default" transform="translate(-46.000000, -7.000000)" fill="#A8AAB7">
+            <g id="Icon/Dropdown-Arrow" transform="translate(46.000000, 7.000000)">
+                <path d="M3.49776172,2.74059108 L6.10154527,0.153982924 C6.30589826,-0.0490220967 6.64398998,-0.0422967124 6.84328377,0.155682476 C7.04858164,0.359626134 7.055283,0.683626979 6.84499461,0.892528239 L3.86777556,3.85010861 C3.76589108,3.95132101 3.63076278,4.00040011 3.49616645,3.99963571 C3.3662574,4.00483895 3.23260001,3.95426909 3.12774789,3.85010861 L0.150528831,0.892528239 C-0.0538241674,0.689523219 -0.0470541257,0.353661665 0.152239668,0.155682476 C0.357537536,-0.0482611812 0.683689786,-0.0549183364 0.893978176,0.153982924 L3.49776172,2.74059108 Z" id="Dropdown-Arrow"></path>
+            </g>
+        </g>
+    </g>
+</svg>

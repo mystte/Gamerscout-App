@@ -1,12 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Tooltip from '@material-ui/core/Tooltip';
 
-import { getLolItemImgUrl } from '../../../../../../../../../../../../utils/lol';
+import {
+  getLolItemImgUrl,
+  getItemsJsonData,
+} from '../../../../../../../../../../../../utils/lol';
 import styles from './styles';
 import UseMediaQueries from '../../../../../../../../../../../views/hooks/UseMediaQueries';
 
 const UsedItems = ({ items, staticDataUrl }) => {
   const { getResponsiveStyle } = UseMediaQueries();
+  const itemsJson = getItemsJsonData(staticDataUrl);
+
+  console.log('itemsJson = ', itemsJson);
+
   const renderItemPlaceholder = key => (
     <div
       style={{
@@ -22,12 +30,13 @@ const UsedItems = ({ items, staticDataUrl }) => {
       .filter((item, idx) => idx < 3)
       .map((item, idx) =>
         item !== 0 ? (
-          <img
-            key={`itemLine1${item}${idx}Icon`}
-            style={styles[getResponsiveStyle('itemImg')]}
-            alt={`item ${item} icon`}
-            src={getLolItemImgUrl(staticDataUrl, item)}
-          ></img>
+          <Tooltip title={item} key={`itemLine1${item}${idx}Icon`}>
+            <img
+              style={styles[getResponsiveStyle('itemImg')]}
+              alt={`item ${item} icon`}
+              src={getLolItemImgUrl(staticDataUrl, item)}
+            ></img>
+          </Tooltip>
         ) : (
           renderItemPlaceholder(`itemLine1${item}${idx}Icon`)
         )
@@ -38,12 +47,13 @@ const UsedItems = ({ items, staticDataUrl }) => {
       .filter((item, idx) => idx >= 3 && idx < 6)
       .map((item, idx) =>
         item !== 0 ? (
-          <img
-            key={`itemLine2${item}${idx}Icon`}
-            style={styles[getResponsiveStyle('itemImg')]}
-            alt={`item ${item} icon`}
-            src={getLolItemImgUrl(staticDataUrl, item)}
-          ></img>
+          <Tooltip title={item} key={`itemLine2${item}${idx}Icon`}>
+            <img
+              style={styles[getResponsiveStyle('itemImg')]}
+              alt={`item ${item} icon`}
+              src={getLolItemImgUrl(staticDataUrl, item)}
+            ></img>
+          </Tooltip>
         ) : (
           renderItemPlaceholder(`itemLine1${item}${idx}Icon`)
         )
@@ -51,11 +61,13 @@ const UsedItems = ({ items, staticDataUrl }) => {
 
   const renderWardImg = () =>
     items.get(6) ? (
-      <img
-        style={styles[getResponsiveStyle('itemImg')]}
-        alt={'item ward icon'}
-        src={getLolItemImgUrl(staticDataUrl, items.get(6))}
-      ></img>
+      <Tooltip title={items.get(6)}>
+        <img
+          style={styles[getResponsiveStyle('itemImg')]}
+          alt={'item ward icon'}
+          src={getLolItemImgUrl(staticDataUrl, items.get(6))}
+        ></img>
+      </Tooltip>
     ) : (
       renderItemPlaceholder()
     );

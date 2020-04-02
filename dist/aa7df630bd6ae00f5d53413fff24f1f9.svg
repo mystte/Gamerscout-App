@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>Icon/Material/add_box</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M15.8333333,2.5 L4.16666667,2.5 C3.24166667,2.5 2.5,3.25 2.5,4.16666667 L2.5,15.8333333 C2.5,16.75 3.24166667,17.5 4.16666667,17.5 L15.8333333,17.5 C16.75,17.5 17.5,16.75 17.5,15.8333333 L17.5,4.16666667 C17.5,3.25 16.75,2.5 15.8333333,2.5 L15.8333333,2.5 Z M14.1666667,10.8333333 L10.8333333,10.8333333 L10.8333333,14.1666667 L9.16666667,14.1666667 L9.16666667,10.8333333 L5.83333333,10.8333333 L5.83333333,9.16666667 L9.16666667,9.16666667 L9.16666667,5.83333333 L10.8333333,5.83333333 L10.8333333,9.16666667 L14.1666667,9.16666667 L14.1666667,10.8333333 L14.1666667,10.8333333 Z" id="path-1"></path>
+        <linearGradient x1="50%" y1="97.783801%" x2="50%" y2="1.55905295%" id="linearGradient-3">
+            <stop stop-color="#1991EB" offset="0%"></stop>
+            <stop stop-color="#2DA1F8" offset="100%"></stop>
+        </linearGradient>
+        <rect id="path-4" x="0" y="0" width="41.6666667" height="41.6666667"></rect>
+    </defs>
+    <g id="Account-Settings/Desktop" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Account-Settings---Disconnect-Integration" transform="translate(-487.000000, -724.000000)">
+            <g id="Connected-Accounts" transform="translate(455.000000, 607.000000)">
+                <g id="Connect-new-account" transform="translate(30.000000, 115.000000)">
+                    <g id="Icon/Material/add_box">
+                        <mask id="mask-2" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <g id="Mask"></g>
+                        <g id="🎨-Color" stroke-width="1" fill-rule="evenodd" mask="url(#mask-2)">
+                            <g transform="translate(-10.833333, -10.833333)">
+                                <mask id="mask-5" fill="white">
+                                    <use xlink:href="#path-4"></use>
+                                </mask>
+                                <use id="Black" stroke="none" fill="url(#linearGradient-3)" fill-rule="evenodd" xlink:href="#path-4"></use>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

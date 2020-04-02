@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="13px" viewBox="0 0 16 13" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>email icon</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Sign-In/Sign-Up" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Sign-In" transform="translate(-590.000000, -388.000000)" fill="#CED0DA" fill-rule="nonzero">
+            <g transform="translate(550.000000, 285.000000)" id="Email-Form">
+                <g transform="translate(30.000000, 91.000000)">
+                    <g id="email-icon" transform="translate(10.000000, 12.000000)">
+                        <path d="M0,0 L0,12.2352941 L16,12.2352941 L16,0 L0,0 Z M7.99435294,7.35717647 L1.504,0.941176471 L14.5110588,0.941176471 L7.99435294,7.35717647 Z M5.41647059,6.13270588 L0.941176471,10.5392941 L0.941176471,1.70823529 L5.41647059,6.13270588 Z M6.08564706,6.79435294 L7.99247059,8.67952941 L9.87105882,6.82917647 L14.3887059,11.2941176 L1.51623529,11.2941176 L6.08564706,6.79435294 L6.08564706,6.79435294 Z M10.5421176,6.16941176 L15.0588235,1.72235294 L15.0588235,10.6324706 L10.5421176,6.16941176 Z" id="Shape"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

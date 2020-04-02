@@ -40,7 +40,7 @@ const ChampionImg = ({
   const getPlayedRole = () => {
     let cLane = lane;
 
-    if (role === 'DUO_CARRY') cLane = 'ADC';
+    if (role === 'DUO_CARRY') cLane = 'BOTTOM';
     else if (role === 'DUO_SUPPORT') cLane = 'SUPPORT';
     else if (lane === 'NONE' && role !== 'NONE') cLane = role;
     return lane ? <span style={styles.lane}>{cLane}</span> : null;

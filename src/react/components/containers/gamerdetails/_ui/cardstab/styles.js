@@ -20,6 +20,7 @@ const styles = {
     flexDirection: 'column',
     alignItems: 'center',
     width: '100%',
+    maxWidth: 337,
     marginRight: 15,
     marginLeft: 15,
   },

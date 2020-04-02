@@ -10,6 +10,7 @@ const styles = {
     alignItems: 'center',
     marginTop: 30,
     width: '100%',
+    maxWidth: 440,
   },
 
   statsContainer: {

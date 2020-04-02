@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { capitalize } from './strings';
 
 export const spellMap = {
@@ -16,6 +17,11 @@ export const spellMap = {
   30: 'SummonerPoroRecall',
   31: 'SummonerPoroThrow',
   32: 'SummonerSnowball',
+};
+
+export const getItemsJsonData = async url => {
+  const json = await axios.get(`${url}/data/en_US/item.json`).then(res => res);
+  return json;
 };
 
 export const getLolChampionImgUrl = (url, name) =>

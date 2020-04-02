@@ -21,6 +21,8 @@ const PositionStats = ({ positionsStatsList }) => {
       );
     else
       renderedList = positionsStatsList.map((position, idx) => {
+        if (position.positionType === 'none')
+          return <div key={`${position.positionType}Position`} />;
         const rowContainerStyle =
           idx + 1 === positionsStatsList.size
             ? styles.positionRowContainer

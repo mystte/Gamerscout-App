@@ -14,7 +14,6 @@ export const POSITIONS = {
   MID: 'MIDDLE',
   JUNGlE: 'JUNGLE',
   BOTTOM: 'BOTTOM',
-  NONE: 'NONE',
 };
 
 const defaultProps = {

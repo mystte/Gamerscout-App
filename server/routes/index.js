@@ -19,6 +19,10 @@ router.get(
   }
 );
 
+router.get('/riot.txt', (req, res, next) => {
+  res.send('70576e4a-b6a7-4893-b666-d6fa9595fb8a');
+});
+
 router.get('/*', (req, res, next) => {
   const routePath = path.join(
     __dirname + '..',

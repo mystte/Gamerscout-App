@@ -1,21 +1,38 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
+import { PropTypes } from 'prop-types';
 
+import Localization from '../../../../../config/localization/Localization';
 import styles from './styles';
+import LiveTeamContainer from './_ui/liveteamcontainer/LiveTeamContainer';
 
-class LiveMatchTab extends PureComponent {
-  static propTypes = {};
+const labels = Localization.Labels.gamerDetails.liveMatchCard;
 
-  static defaultProps = {};
+const LiveMatchTab = ({ staticDataUrl }) => {
+  return (
+    <div style={styles.container}>
+      <div style={styles.teamContainer}>
+        <LiveTeamContainer
+          staticDataUrl={staticDataUrl}
+          title={labels.blueTeam}
+        />
+      </div>
+      <div style={styles.separator} />
+      <div style={styles.teamContainer}>
+        <LiveTeamContainer
+          staticDataUrl={staticDataUrl}
+          title={labels.redTeam}
+        />
+      </div>
+    </div>
+  );
+};
 
-  constructor(props) {
-    super(props);
+LiveMatchTab.propTypes = {
+  staticDataUrl: PropTypes.string,
+};
 
-    this.state = {};
-  }
-
-  render() {
-    return <div style={styles.container}>LiveMatchTab</div>;
-  }
-}
+LiveMatchTab.propTypes = {
+  staticDataUrl: null,
+};
 
 export default LiveMatchTab;

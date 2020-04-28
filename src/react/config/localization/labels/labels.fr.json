@@ -159,6 +159,13 @@
     "liveMatch": "Direct",
     "reviewButton": "Commenter",
 
+    "liveMatchCard": {
+      "blueTeam": "Équipe Bleue",
+      "redTeam": "Équipe Rouge",
+      "summoner": "Summoner",
+      "position": "Position"
+    },
+
     "rankedCard": {
       "leaguePoints": "Pts",
       "wins": "V",

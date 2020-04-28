@@ -191,7 +191,7 @@ const GamerDetails = ({
     } else if (selectedTab === BUTTON_TYPE.LEAGUES) {
       content = <LeaguesTab />;
     } else if (selectedTab === BUTTON_TYPE.LIVE_MATCH) {
-      content = <LiveMatchTab />;
+      content = <LiveMatchTab staticDataUrl={getStaticDataUrlForPlatform()} />;
     }
 
     return content;

@@ -164,6 +164,13 @@
     "liveMatch": "Live Match",
     "reviewButton": "Review",
 
+    "liveMatchCard": {
+      "blueTeam": "Blue Team",
+      "redTeam": "Red Team",
+      "summoner": "Summoner",
+      "position": "Position"
+    },
+
     "rankedCard": {
       "leaguePoints": "LP",
       "wins": "W",

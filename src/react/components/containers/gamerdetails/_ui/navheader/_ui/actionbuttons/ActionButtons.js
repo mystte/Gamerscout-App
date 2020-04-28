@@ -25,12 +25,12 @@ const ActionButtons = ({ onSelectTab, selectedTab }) => (
       type={BUTTON_TYPE.LEAGUES}
       onClick={onSelectTab}
       selected={selectedTab === BUTTON_TYPE.LEAGUES}
-    />
+    /> */}
     <ActionButton
       type={BUTTON_TYPE.LIVE_MATCH}
       onClick={onSelectTab}
       selected={selectedTab === BUTTON_TYPE.LIVE_MATCH}
-    /> */}
+    />
   </div>
 );
 

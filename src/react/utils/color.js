@@ -96,7 +96,7 @@ const namedColors = {
   limegreen: '#32cd32',
   linen: '#faf0e6',
   magenta: '#ff00ff',
-  manatee: '#90959D',
+  manatee: '#9499A1',
   mariner: '#2a7fbf',
   maroon: '#800000',
   matterhorn: '#472E41',

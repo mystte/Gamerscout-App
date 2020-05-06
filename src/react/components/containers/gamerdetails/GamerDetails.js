@@ -25,6 +25,7 @@ import Footer from '../footer/Footer';
 import { pushNotification } from '../../../redux/actions/notifications';
 import { NOTIFICATION_TYPE } from '../../../datamanager/models/NotificationRecord';
 import Validator from '../../../datamanager/api/Validator';
+import { getChampionsJsonData } from '../../../utils/lol';
 
 const mapStateToProps = state => ({
   config: state.app.get('data'),
@@ -46,6 +47,16 @@ const GamerDetails = ({
   const [selectedTab, setSelectedTab] = useState(BUTTON_TYPE.OVERVIEW);
   const [preselect, setPreselect] = useState(null);
   const [notifLabels] = useState(Localization.Labels.notifications);
+  const [staticChampions, setStaticChampions] = useState(null);
+  const staticDataUrl = config
+    ? config.getStaticDataUrlForPlatform(match.params.platform)
+    : null;
+
+  useEffect(() => {
+    getChampionsJsonData(staticDataUrl).then(res => {
+      setStaticChampions(res.data.data);
+    });
+  }, []);
 
   useEffect(() => {
     dispatch(
@@ -123,9 +134,6 @@ const GamerDetails = ({
     }
   };
 
-  const getStaticDataUrlForPlatform = () =>
-    config ? config.getStaticDataUrlForPlatform(match.params.platform) : null;
-
   const onReviewFilterChange = (show, filterBy) => {
     dispatch(
       applyReviewFilters(
@@ -170,7 +178,7 @@ const GamerDetails = ({
           onReviewButtonClick={onReviewButtonClick}
           trendsCardRecord={gamerData.trendsCardRecord}
           historyCardList={gamerData.gameHistoryList}
-          staticDataUrl={getStaticDataUrlForPlatform()}
+          staticDataUrl={staticDataUrl}
           doSearchPlayer={doSearchPlayer}
         />
       );
@@ -191,7 +199,12 @@ const GamerDetails = ({
     } else if (selectedTab === BUTTON_TYPE.LEAGUES) {
       content = <LeaguesTab />;
     } else if (selectedTab === BUTTON_TYPE.LIVE_MATCH) {
-      content = <LiveMatchTab staticDataUrl={getStaticDataUrlForPlatform()} />;
+      content = (
+        <LiveMatchTab
+          staticChampions={staticChampions}
+          staticDataUrl={staticDataUrl}
+        />
+      );
     }
 
     return content;
@@ -208,12 +221,10 @@ const GamerDetails = ({
             gamertag={gamerData.gamertag}
             gamerLevel={gamerData.level}
             region={gamerData.region}
-            gamerIconUrl={`${getStaticDataUrlForPlatform()}${
-              gamerData.gamerIconUrl
-            }`}
+            gamerIconUrl={`${staticDataUrl}${gamerData.gamerIconUrl}`}
             onSelectTab={onSelectHeaderTab}
             onReviewSubmitClick={onReviewSubmitClick}
-            staticDataUrl={getStaticDataUrlForPlatform()}
+            staticDataUrl={staticDataUrl}
           />
           {renderGamerDetailsContent()}
         </div>

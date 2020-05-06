@@ -163,7 +163,8 @@
       "blueTeam": "Équipe Bleue",
       "redTeam": "Équipe Rouge",
       "summoner": "Summoner",
-      "position": "Position"
+      "position": "Position",
+      "zeroState": "Pas de match en cours"
     },
 
     "rankedCard": {

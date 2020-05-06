@@ -168,7 +168,8 @@
       "blueTeam": "Blue Team",
       "redTeam": "Red Team",
       "summoner": "Summoner",
-      "position": "Position"
+      "position": "Position",
+      "zeroState": "There is no live match in progress"
     },
 
     "rankedCard": {

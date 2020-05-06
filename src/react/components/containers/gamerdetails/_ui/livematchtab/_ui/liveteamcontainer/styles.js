@@ -3,9 +3,23 @@ import { colorNameToHex } from '../../../../../../../utils/color';
 const styles = {
   container: {
     width: '100%',
+    minWidth: 370,
     minHeight: 362,
     backgroundColor: colorNameToHex('ebonyclay'),
-    border: `1px solid ${colorNameToHex('dimgrey')}`,
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderColor: colorNameToHex('dimgrey'),
+    borderRadius: 1,
+  },
+
+  mbContainer: {
+    width: '100%',
+    maxWidth: 350,
+    minHeight: 362,
+    backgroundColor: colorNameToHex('ebonyclay'),
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderColor: colorNameToHex('dimgrey'),
     borderRadius: 1,
   },
 

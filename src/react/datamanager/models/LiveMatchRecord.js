@@ -21,7 +21,6 @@ export default class LiveMatchRecord extends ExtendsWith(
   Record(defaultProps, 'LivaMatchRecord')
 ) {
   static apiParser(data) {
-    console.log('DATTAAAAA = ', data);
     const parsedData = {
       blueTeam: data.blue || [],
       redTeam: data.red || [],

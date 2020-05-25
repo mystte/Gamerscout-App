@@ -13,6 +13,14 @@
     "highestRated": "Most Reviewed",
     "mostReviewed": "Highest Rated"
   },
+  "valorantHome": {
+    "title": "Valorant.",
+    "title2": "Coming Soon.",
+    "desc": "Sign up to receive notifications when Valorant features are released.",
+    "placeholder": "Email Address",
+    "submit": "Get Notified",
+    "success": "Successfully subscribed to newsletter"
+  },
   "fourOFour": {
     "desc": "Alien invaders stole this page",
     "goHome": "Visit Homepage"

@@ -51,6 +51,13 @@ export default class Api {
     return doApiCall(url);
   }
 
+  static subscribeToNewsletter(email) {
+    const url = '/newsletter';
+    const data = { email, subscribed: true };
+
+    return doApiCall(url, data, CALL_TYPE.POST);
+  }
+
   static loadAuthenticatedUser() {
     const url = '/users/_/authenticated';
 

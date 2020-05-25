@@ -10,6 +10,8 @@ const formatUrlForRouter = (url) => {
 
 export const getHomeUrl = () => APP_URL_BASE;
 
+export const getValorantHomeUrl = () => Localization.Urls.getValorantHomeUrl;
+
 export const getSettingsUrl = () => Localization.Urls.settingsUrl;
 
 export const getPrivacyPolicyUrl = () => Localization.Urls.privacyPolicy;

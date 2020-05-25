@@ -16,7 +16,6 @@ import {
 import { loadGamerDetails } from '../../../redux/actions/gamerDetails';
 import { togglePopup, doLogout } from '../../../redux/actions/app';
 import SVGIcon from '../../views/elements/svgicon/SVGIcon';
-import SearchBar from './_ui/searchbar/SearchBar';
 import styles from './styles';
 import UserMenu from './_ui/usermenu/UserMenu';
 import { POPUP_TYPE } from '../../../datamanager/models/PopupRecord';
@@ -97,12 +96,6 @@ const NavBar = ({
             <Link style={styles.link} to={getHomeUrl()}>
               <SVGIcon width="120" height="22" name="logo-beta" />
             </Link>
-            <SearchBar
-              regionsList={config.regions.riot.regionsCode}
-              onRegionChange={onRegionChange}
-              onSearch={onSearchClick}
-              onSearchChange={onSearchInputChange}
-            />
             <div style={styles.userMenu}>
               <UserMenu
                 user={user}

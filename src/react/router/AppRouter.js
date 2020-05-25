@@ -14,11 +14,13 @@ import {
   getValidatePasswordUrl,
   getPrivacyPolicyUrl,
   getTermsAndConditionsUrl,
+  getValorantHomeUrl,
 } from '../config/routes';
 import NotificationsManager from '../components/containers/notifiationsmanager/NotificationsManager';
 import ValidatePassword from '../components/containers/validatepassword/ValidatePassword';
 import TermsAndConditions from '../components/containers/termsandconditions/TermsAndConditions';
 import PrivacyPolicy from '../components/containers/privacypolicy/PrivacyPolicy';
+import ValorantHome from '../components/containers/valoranthome/ValorantHome';
 
 const Home = React.lazy(() => import('../components/containers/home/Home'));
 const GamerDetails = React.lazy(() =>
@@ -36,6 +38,10 @@ const AppRouter = ({ cookies }) => {
     {
       path: getHomeUrl(),
       component: Home,
+    },
+    {
+      path: getValorantHomeUrl(),
+      component: ValorantHome,
     },
     {
       path: getSettingsUrl(),

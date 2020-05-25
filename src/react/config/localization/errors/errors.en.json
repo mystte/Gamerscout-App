@@ -18,6 +18,11 @@
     "errUserExists": "User already has an account"
   },
 
+  "newsletter": {
+    "errAlreadySubscribed": "You are already subscribed to the newsletter",
+    "errMissingEmail": "Invalid email"
+  },
+
   "userUpdate": {
     "errWrongEmail": "Email is bad formatted",
     "errEmailExists": "Email already taken",

@@ -13,6 +13,14 @@
     "highestRated": "Meilleur joueur",
     "mostReviewed": "Le plus noté"
   },
+  "valorantHome": {
+    "title": "Valorant.",
+    "title2": "Coming Soon.",
+    "desc": "Inscris toi pour recevoir une notification dès que Valorant sort.",
+    "placeholder": "Adresse Email",
+    "submit": "S'inscrire",
+    "success": "Votre email a bien été ajouté"
+  },
   "fourOFour": {
     "desc": "Les aliens ont volé cette page",
     "goHome": "Retour à la home"

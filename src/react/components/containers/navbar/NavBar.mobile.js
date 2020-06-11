@@ -2,21 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
 import SVGIcon from '../../views/elements/svgicon/SVGIcon';
-import SearchBar from './_ui/searchbar/SearchBar';
 import styles from './styles';
 import UserMenu from './_ui/usermenu/UserMenu';
 import { getHomeUrl } from '../../../config/routes';
 
-const NavBarMobile = ({
-  loading,
-  config,
-  onRegionChange,
-  onSearchInputChange,
-  onSearchClick,
-  isAuthenticated,
-  userMenuActions,
-  user,
-}) => {
+const NavBarMobile = ({ loading, isAuthenticated, userMenuActions, user }) => {
   return (
     <>
       {loading && <div>Loading...</div>}
@@ -34,12 +24,7 @@ const NavBarMobile = ({
               isAuthenticated={isAuthenticated}
             />
           </div>
-          <SearchBar
-            regionsList={config.regions.riot.regionsCode}
-            onRegionChange={onRegionChange}
-            onSearch={onSearchClick}
-            onSearchChange={onSearchInputChange}
-          />
+          <div>Game Selector</div>
         </div>
       )}
     </>

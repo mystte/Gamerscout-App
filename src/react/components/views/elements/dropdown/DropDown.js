@@ -42,6 +42,7 @@ const DropDown = ({
   });
 
   const renderSelectContent = () => {
+    const icon = options[select - 1].icon || null;
     let result = (
       <span
         style={{
@@ -49,7 +50,8 @@ const DropDown = ({
           ...getTextTransform(),
         }}
       >
-        {selectedLabel}
+        {icon && <div style={styles.icon}>{icon}</div>}
+        <div>{selectedLabel}</div>
       </span>
     );
 

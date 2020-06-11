@@ -17,6 +17,10 @@ const styles = {
     alignItems: 'center',
   },
 
+  icon: {
+    marginRight: 10,
+  },
+
   selectSimple: {
     border: 'none',
     background: 'none',
@@ -26,6 +30,10 @@ const styles = {
     textTransform: 'capitalize',
     marginRight: 10,
     color: colorNameToHex('regentgray'),
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 
   listViewContainer: {

@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router-dom';
+import { Link, withRouter, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import {
   getHomeUrl,
   getGamerDetailsUrl,
   getSettingsUrl,
+  getValorantHomeUrl,
 } from '../../../config/routes';
 import {
   GAME_PLATFORM,
@@ -22,6 +23,8 @@ import { POPUP_TYPE } from '../../../datamanager/models/PopupRecord';
 import { USER_MENU_ACTIONS } from './_ui/usermenu/enums';
 import UseMediaQueries from '../../views/hooks/UseMediaQueries';
 import NavBarMobile from './NavBar.mobile';
+import GameSelector from './_ui/gameselector/GameSelector';
+import Localization from '../../../config/localization/Localization';
 
 const mapStateToProps = state => ({
   config: state.app.get('data'),
@@ -40,10 +43,29 @@ const NavBar = ({
   user,
 }) => {
   const [selectedPlatform] = useState(GAME_PLATFORM.RIOT);
+  const [selectedGame, setSelectedGame] = useState(GAME_CODE.LEAGUE_OF_LEGENDS);
   const [searchValue, setSearchValue] = useState(null);
   const [selectedRegion, setSelectedRegion] = useState(GAME_REGIONS.NA);
   const { isDesktop } = UseMediaQueries();
+  const location = useLocation();
   let view = null;
+
+  useEffect(() => {
+    if (location.pathname === Localization.Urls.valorantHome) {
+      setSelectedGame(GAME_CODE.VALORANT);
+    }
+  }, []);
+
+  console.log('selectedGame = ', selectedGame);
+  const onGameSelect = selected => {
+    console.log('selected', selected);
+    if (selected.name === GAME_CODE.VALORANT) {
+      history.push(getValorantHomeUrl());
+    } else if (selected.name === GAME_CODE.LEAGUE_OF_LEGENDS) {
+      console.log('Push home');
+      history.push(getHomeUrl());
+    }
+  };
 
   const onRegionChange = newRegion => {
     setSelectedRegion(newRegion.name);
@@ -96,6 +118,9 @@ const NavBar = ({
             <Link style={styles.link} to={getHomeUrl()}>
               <SVGIcon width="120" height="22" name="logo-beta" />
             </Link>
+            <div style={styles.gameSelectorContainer}>
+              <GameSelector onGameSelect={onGameSelect} />
+            </div>
             <div style={styles.userMenu}>
               <UserMenu
                 user={user}

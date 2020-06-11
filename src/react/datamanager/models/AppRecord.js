@@ -26,6 +26,7 @@ export const GAME_PLATFORM = {
 export const GAME_CODE = {
   LEAGUE_OF_LEGENDS: 'lol',
   ROCKET_LEAGUE: 'rocketLeague',
+  VALORANT: 'valorant',
 };
 
 const defaultProps = {

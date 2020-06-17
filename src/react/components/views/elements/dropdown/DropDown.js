@@ -24,9 +24,10 @@ const DropDown = ({
   noSelectFeedback,
   height,
   uppercase,
+  selected,
 }) => {
   if (options.length === 0) return null;
-  const [select, setSelect] = useState(1);
+  const [select, setSelect] = useState(selected || 1);
   const selectedLabel = options[select - 1].label
     ? options[select - 1].label
     : options[select - 1].name;
@@ -93,9 +94,12 @@ const DropDown = ({
           style={styles.listElem}
           onClick={() => onSelect(idx + 1)}
         >
-          <span style={elemLabelStyle} className="noselect">
+          <div style={elemLabelStyle} className="noselect">
+            {elem.listIcon && (
+              <div style={styles.elemIcon}>{elem.listIcon}</div>
+            )}
             {elemLabel}
-          </span>
+          </div>
         </div>
       );
     });
@@ -144,6 +148,7 @@ const DropDown = ({
 
 DropDown.propTypes = {
   options: PropTypes.array.isRequired,
+  selected: PropTypes.number,
   selectType: PropTypes.string,
   dropDownType: PropTypes.string,
   onChange: PropTypes.func,
@@ -161,6 +166,7 @@ DropDown.defaultProps = {
   noSelectFeedback: false,
   uppercase: false,
   height: 36,
+  selected: 1,
 };
 
 export default DropDown;

@@ -50,7 +50,7 @@ const styles = {
 
   listElem: {
     width: '100%',
-    height: 37,
+    minHeight: 37,
     backgroundColor: colorNameToHex('ebonyclay'),
   },
 
@@ -62,6 +62,12 @@ const styles = {
     marginLeft: 15,
     marginRight: 15,
     marginTop: 9,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+
+  elemIcon: {
+    marginRight: 10,
   },
 
   elemLabelSelect: {

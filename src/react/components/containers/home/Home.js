@@ -112,7 +112,7 @@ const Home = ({ config, homeRecord, history }) => {
             type={IMG_TYPE.PNG}
             width={'100%'}
             height={'100%'}
-            name={'home/background'}
+            name={'home/lol'}
             fit="cover"
           />
         </div>

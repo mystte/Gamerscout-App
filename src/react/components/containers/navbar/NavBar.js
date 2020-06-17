@@ -119,7 +119,10 @@ const NavBar = ({
               <SVGIcon width="120" height="22" name="logo-beta" />
             </Link>
             <div style={styles.gameSelectorContainer}>
-              <GameSelector onGameSelect={onGameSelect} />
+              <GameSelector
+                selectedGame={selectedGame}
+                onGameSelect={onGameSelect}
+              />
             </div>
             <div style={styles.userMenu}>
               <UserMenu

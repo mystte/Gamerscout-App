@@ -8,6 +8,7 @@ import {
   getGamerDetailsUrl,
   getSettingsUrl,
   getValorantHomeUrl,
+  getLolHomeUrl,
 } from '../../../config/routes';
 import {
   GAME_PLATFORM,
@@ -53,16 +54,19 @@ const NavBar = ({
   useEffect(() => {
     if (location.pathname === Localization.Urls.valorantHome) {
       setSelectedGame(GAME_CODE.VALORANT);
+    } else if (location.pathname === getLolHomeUrl()) {
+      setSelectedGame(GAME_CODE.LEAGUE_OF_LEGENDS);
+    } else {
+      setSelectedGame(GAME_CODE.NONE);
     }
-  }, []);
+  }, [location]);
 
-  console.log('selectedGame = ', selectedGame);
   const onGameSelect = selected => {
-    console.log('selected', selected);
     if (selected.name === GAME_CODE.VALORANT) {
       history.push(getValorantHomeUrl());
     } else if (selected.name === GAME_CODE.LEAGUE_OF_LEGENDS) {
-      console.log('Push home');
+      history.push(getLolHomeUrl());
+    } else if (selected.name === GAME_CODE.NONE) {
       history.push(getHomeUrl());
     }
   };
@@ -146,6 +150,8 @@ const NavBar = ({
         isAuthenticated={isAuthenticated}
         userMenuActions={userMenuActions}
         user={user}
+        selectedGame={selectedGame}
+        onGameSelect={onGameSelect}
       />
     );
   return view;

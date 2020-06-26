@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import SVGIcon from '../svgicon/SVGIcon';
@@ -32,6 +32,12 @@ const DropDown = ({
     ? options[select - 1].label
     : options[select - 1].name;
   const { isOpen, toggle, node } = UseModal();
+
+  useEffect(() => {
+    if (selected !== select) {
+      setSelect(selected);
+    }
+  }, [selected]);
 
   const onSelect = selectedItemNumber => {
     setSelect(selectedItemNumber);
@@ -87,7 +93,7 @@ const DropDown = ({
             };
 
       const elemLabel = elem.label ? elem.label : elem.name;
-      return (
+      return elem.name !== 'default' ? (
         <div
           className={'option'}
           key={elem.name}
@@ -101,7 +107,7 @@ const DropDown = ({
             {elemLabel}
           </div>
         </div>
-      );
+      ) : null;
     });
 
   const getSelectContainerStyle = () => {

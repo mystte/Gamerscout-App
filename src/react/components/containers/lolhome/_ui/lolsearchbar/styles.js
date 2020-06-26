@@ -14,10 +14,11 @@ const styles = {
 
   searchContainer: {
     flexDirection: 'row',
+    width: '100%',
   },
 
   platformDropdown: {
-    flexDirection: 'row',
+    width: 54,
     padding: 8,
     paddingLeft: 9,
     height: '100%',
@@ -28,16 +29,6 @@ const styles = {
     alignItems: 'center',
   },
 
-  gameLabel: {
-    marginLeft: 10,
-    fontSize: 14,
-    fontWeight: 600,
-  },
-
-  mbGameLabel: {
-    display: 'none',
-  },
-
   inputStyle: {
     width: 200,
     height: 50,
@@ -46,7 +37,8 @@ const styles = {
   },
 
   dropdownContainer: {
-    width: 61,
+    width: 55,
+    marginRight: 10,
     height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
@@ -60,8 +52,8 @@ const styles = {
   },
 
   searchButton: {
-    width: '100%',
-    height: '100%',
+    width: 50,
+    height: 50,
     borderLeft: 'none',
     borderTop: 'none',
     borderRight: 'none',

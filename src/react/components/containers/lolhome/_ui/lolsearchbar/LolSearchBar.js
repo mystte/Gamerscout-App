@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import styles from './styles';
-import SVGIcon from '../../../../views/elements/svgicon/SVGIcon';
 import Input from '../../../../views/elements/input/Input';
 import Localisation from '../../../../../config/localization/Localization';
 import DropDown, {
@@ -10,28 +9,27 @@ import DropDown, {
   SELECT_TYPE,
 } from '../../../../views/elements/dropdown/DropDown';
 import Button, { BUTTON_THEME } from '../../../../views/elements/button/Button';
-import UseMediaQueries from '../../../../views/hooks/UseMediaQueries';
 
-const HomeSearchBar = ({
+const LolSearchBar = ({
   regionsList,
   onSearchClick,
   onRegionChange,
   onInputChange,
 }) => {
   const labels = Localisation.Labels.navBar;
-  const { getResponsiveStyle } = UseMediaQueries();
+
   const disableEnter = e => (e.which === 13 ? e.preventDefault() : null);
 
   return (
     <div style={styles.container}>
-      <div style={styles.platformDropdown}>
-        <SVGIcon width={28} height={28} name="icons/lol" />
-        <span style={styles[getResponsiveStyle('gameLabel')]}>
-          League of Legends
-        </span>
-      </div>
       <div style={styles.searchContainer}>
-        <form onKeyDown={disableEnter} autoComplete="false">
+        <form
+          style={{
+            width: '100%',
+          }}
+          onKeyDown={disableEnter}
+          autoComplete="false"
+        >
           <Input
             length="50"
             focus
@@ -64,13 +62,13 @@ const HomeSearchBar = ({
   );
 };
 
-HomeSearchBar.propTypes = {
+LolSearchBar.propTypes = {
   regionsList: PropTypes.object.isRequired,
   onInputChange: PropTypes.func.isRequired,
   onSearchClick: PropTypes.func.isRequired,
   onRegionChange: PropTypes.func.isRequired,
 };
 
-HomeSearchBar.defaultProps = {};
+LolSearchBar.defaultProps = {};
 
-export default HomeSearchBar;
+export default LolSearchBar;

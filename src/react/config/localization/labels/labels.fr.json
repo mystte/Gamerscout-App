@@ -13,6 +13,19 @@
     "highestRated": "Meilleur joueur",
     "mostReviewed": "Le plus noté"
   },
+  "lolHome": {
+    "title": "League of Legends",
+    "desc": "Find a gamer by entering their ID exactly as it appears in-game.",
+    "ratings": "Ratings",
+    "reviews": "Reviews",
+    "stats": "Stats",
+    "createAccountDesc": "Find out what they’re saying about you.",
+    "createAccount": "Create Account",
+    "featuredGamers": "Featured Gamers",
+    "recent": "Recently viewed",
+    "highestRated": "Most Reviewed",
+    "mostReviewed": "Highest Rated"
+  },
   "valorantHome": {
     "title": "Valorant.",
     "title2": "Coming Soon.",

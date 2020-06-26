@@ -5,12 +5,14 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import Notification from './_ui/notification/Notification';
 import styles from './styles';
 import { deleteNotification } from '../../../redux/actions/notifications';
+import UseMediaQueries from '../../views/hooks/UseMediaQueries';
 
 const NotificationsManager = () => {
   const notifications = useSelector(state =>
     state.notifications.get('notificationsManagerRecord')
   );
   const dispatch = useDispatch();
+  const { getResponsiveStyle } = UseMediaQueries();
 
   const onNotificationClose = id => {
     dispatch(deleteNotification(id));
@@ -40,7 +42,7 @@ const NotificationsManager = () => {
     ));
 
   return (
-    <div style={styles.container}>
+    <div style={styles[getResponsiveStyle('container')]}>
       {notifications && (
         <TransitionGroup>{renderNotifications()}</TransitionGroup>
       )}

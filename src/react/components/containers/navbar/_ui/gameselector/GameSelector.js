@@ -10,6 +10,10 @@ import { GAME_CODE } from '../../../../../datamanager/models/AppRecord';
 const GameSelector = ({ onGameSelect, selectedGame }) => {
   const gamesOptions = [
     {
+      name: 'default',
+      label: 'Choose a Game',
+    },
+    {
       name: GAME_CODE.LEAGUE_OF_LEGENDS,
       label: 'League of legends',
       icon: <SVGIcon width={28} height={28} name="icons/lol" />,
@@ -23,7 +27,8 @@ const GameSelector = ({ onGameSelect, selectedGame }) => {
     },
   ];
 
-  console.log(gamesOptions.findIndex(e => e.name === selectedGame) + 1);
+  console.log('selectedGame', selectedGame);
+
   return (
     <div>
       <DropDown

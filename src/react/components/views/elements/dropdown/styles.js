@@ -17,6 +17,10 @@ const styles = {
     alignItems: 'center',
   },
 
+  icon: {
+    marginRight: 10,
+  },
+
   selectSimple: {
     border: 'none',
     background: 'none',
@@ -26,6 +30,10 @@ const styles = {
     textTransform: 'capitalize',
     marginRight: 10,
     color: colorNameToHex('regentgray'),
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 
   listViewContainer: {
@@ -42,7 +50,7 @@ const styles = {
 
   listElem: {
     width: '100%',
-    height: 37,
+    minHeight: 37,
     backgroundColor: colorNameToHex('ebonyclay'),
   },
 
@@ -54,6 +62,12 @@ const styles = {
     marginLeft: 15,
     marginRight: 15,
     marginTop: 9,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+
+  elemIcon: {
+    marginRight: 10,
   },
 
   elemLabelSelect: {

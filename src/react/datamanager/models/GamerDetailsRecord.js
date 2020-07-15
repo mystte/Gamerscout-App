@@ -11,6 +11,7 @@ import AttributeRecord from './AttributeRecord';
 import HistoryListRecord from './HistoryListRecord';
 import RecentPerformanceCardRecord from './RecentPerformanceCardRecord';
 import { REVIEW_TYPE } from './ReviewRecord';
+import LiveMatchRecord from './LiveMatchRecord';
 
 const defaultProps = {
   accountId: String,
@@ -22,6 +23,7 @@ const defaultProps = {
   gamerIconUrl: String,
   region: String,
   level: Number,
+  liveMatchRecord: Maybe(LiveMatchRecord),
   rankedCardRecord: Maybe(RankedCardRecord),
   approvalsCardRecord: Maybe(ApprovalsCardRecord),
   championsCardRecord: Maybe(ChampionsCardRecord),
@@ -140,6 +142,9 @@ export default class GamerDetailsRecord extends ExtendsWith(
       gamertag: apiData.gamertag,
       gamerIconUrl: apiData.profile_picture,
       level: apiData.level,
+      liveMatchRecord: apiData.stats.live
+        ? LiveMatchRecord.apiParser(apiData.stats.live)
+        : null,
       region: apiData.region,
       rankedCardRecord: apiData.stats.ranked
         ? RankedCardRecord.apiParser(apiData.stats.ranked)

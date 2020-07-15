@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import SVGIcon from '../svgicon/SVGIcon';
@@ -24,13 +24,20 @@ const DropDown = ({
   noSelectFeedback,
   height,
   uppercase,
+  selected,
 }) => {
   if (options.length === 0) return null;
-  const [select, setSelect] = useState(1);
+  const [select, setSelect] = useState(selected || 1);
   const selectedLabel = options[select - 1].label
     ? options[select - 1].label
     : options[select - 1].name;
   const { isOpen, toggle, node } = UseModal();
+
+  useEffect(() => {
+    if (selected !== select) {
+      setSelect(selected);
+    }
+  }, [selected]);
 
   const onSelect = selectedItemNumber => {
     setSelect(selectedItemNumber);
@@ -42,6 +49,7 @@ const DropDown = ({
   });
 
   const renderSelectContent = () => {
+    const icon = options[select - 1].icon || null;
     let result = (
       <span
         style={{
@@ -49,7 +57,8 @@ const DropDown = ({
           ...getTextTransform(),
         }}
       >
-        {selectedLabel}
+        {icon && <div style={styles.icon}>{icon}</div>}
+        <div>{selectedLabel}</div>
       </span>
     );
 
@@ -84,18 +93,21 @@ const DropDown = ({
             };
 
       const elemLabel = elem.label ? elem.label : elem.name;
-      return (
+      return elem.name !== 'default' ? (
         <div
           className={'option'}
           key={elem.name}
           style={styles.listElem}
           onClick={() => onSelect(idx + 1)}
         >
-          <span style={elemLabelStyle} className="noselect">
+          <div style={elemLabelStyle} className="noselect">
+            {elem.listIcon && (
+              <div style={styles.elemIcon}>{elem.listIcon}</div>
+            )}
             {elemLabel}
-          </span>
+          </div>
         </div>
-      );
+      ) : null;
     });
 
   const getSelectContainerStyle = () => {
@@ -142,6 +154,7 @@ const DropDown = ({
 
 DropDown.propTypes = {
   options: PropTypes.array.isRequired,
+  selected: PropTypes.number,
   selectType: PropTypes.string,
   dropDownType: PropTypes.string,
   onChange: PropTypes.func,
@@ -159,6 +172,7 @@ DropDown.defaultProps = {
   noSelectFeedback: false,
   uppercase: false,
   height: 36,
+  selected: 1,
 };
 
 export default DropDown;

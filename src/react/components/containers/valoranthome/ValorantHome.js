@@ -7,11 +7,9 @@ import Localization from '../../../config/localization/Localization';
 import SVGIcon, { IMG_TYPE } from '../../views/elements/svgicon/SVGIcon';
 
 import styles from './styles';
-import HomeSearchBar from './_ui/homesearchbar/HomeSearchBar';
 import {
   GAME_PLATFORM,
   GAME_CODE,
-  GAME_REGIONS,
 } from '../../../datamanager/models/AppRecord';
 import { getGamerDetailsUrl } from '../../../config/routes';
 import { loadGamerDetails } from '../../../redux/actions/gamerDetails';
@@ -23,6 +21,11 @@ import Footer from '../footer/Footer';
 import { loadHome } from '../../../redux/actions/home';
 import Playerlist from '../../views/playerlist/Playerlist';
 import UseMediaQueries from '../../views/hooks/UseMediaQueries';
+import NewsletterInput from './_ui/newsletterinput/NewsletterInput';
+import Api from '../../../datamanager/api/Api';
+import { pushNotification } from '../../../redux/actions/notifications';
+import { NOTIFICATION_TYPE } from '../../../datamanager/models/NotificationRecord';
+import Validator from '../../../datamanager/api/Validator';
 
 const mapStateToProps = state => ({
   config: state.app.get('data'),
@@ -31,41 +34,59 @@ const mapStateToProps = state => ({
   error: state.app.get('error'),
 });
 
-const Home = ({ config, homeRecord, history }) => {
+const ValorantHome = ({ config, homeRecord, history }) => {
   if (!config) return null;
   const { getResponsiveStyle } = UseMediaQueries();
+  const errorLabels = Localization.Errors.newsletter;
   const labels = Localization.Labels.home;
+  const valorantLabels = Localization.Labels.valorantHome;
   const dispatch = useDispatch();
   const [searchPlatform] = useState(GAME_PLATFORM.RIOT);
+  const [newsletterEmail, setNewsletterEmail] = useState();
   const [searchGame] = useState(GAME_CODE.LEAGUE_OF_LEGENDS);
-  const [searchValue, setSearchValue] = useState(null);
-  const [searchRegion, setSearchRegion] = useState(GAME_REGIONS.NA);
   const enterPressed = UseKeyPress('Enter');
 
   const getStaticDataUrlForPlatform = () =>
     config ? config.getStaticDataUrlForPlatform(GAME_PLATFORM.RIOT) : null;
 
-  const onSearchClick = () => {
-    if (searchValue) {
-      history.push(
-        getGamerDetailsUrl(
-          searchPlatform,
-          searchRegion,
-          searchGame,
-          searchValue
-        )
-      );
-      dispatch(
-        loadGamerDetails(searchPlatform, searchRegion, searchGame, searchValue)
-      );
+  const onNewsletterChange = newEmail => {
+    setNewsletterEmail(newEmail);
+  };
+
+  const onNewsletterSubmit = async email => {
+    if (email) {
+      const isValid = Validator.doEmailValidator(email);
+      if (isValid === true) {
+        const res = await Api.subscribeToNewsletter(email);
+        if (res.data.error) {
+          dispatch(
+            pushNotification({
+              title: errorLabels[res.data.error],
+              type: NOTIFICATION_TYPE.ALERT,
+            })
+          );
+        } else {
+          dispatch(
+            pushNotification({
+              title: valorantLabels.success,
+              type: NOTIFICATION_TYPE.SUCCESS,
+            })
+          );
+        }
+      } else {
+        dispatch(
+          pushNotification({
+            title: errorLabels.errMissingEmail,
+            type: NOTIFICATION_TYPE.ALERT,
+          })
+        );
+      }
     }
   };
 
   const setAndGoToPlayer = player => {
     const newSearchValue = player.gamertag;
     const playerRegion = player.region;
-    setSearchValue(newSearchValue);
-    setSearchRegion(playerRegion);
     history.push(
       getGamerDetailsUrl(
         searchPlatform,
@@ -84,12 +105,8 @@ const Home = ({ config, homeRecord, history }) => {
   }, []);
 
   useEffect(() => {
-    if (enterPressed) onSearchClick();
+    if (enterPressed) onNewsletterSubmit(newsletterEmail);
   }, [enterPressed]);
-
-  const onRegionChanged = newRegion => {
-    setSearchRegion(newRegion.name);
-  };
 
   const onCreateAccountClick = () => {
     dispatch(togglePopup(POPUP_TYPE.SIGNUP));
@@ -98,21 +115,21 @@ const Home = ({ config, homeRecord, history }) => {
   return (
     <div style={styles.container}>
       <div style={styles.headerContainer}>
-        <h1 style={styles.title}>{labels.title}</h1>
-        <h1 style={styles.title}>{labels.title2}</h1>
-        <HomeSearchBar
-          onInputChange={e => setSearchValue(e.target.value)}
-          regionsList={config.regions.riot.regionsCode}
-          onRegionChange={onRegionChanged}
-          onSearchClick={onSearchClick}
-        />
-        <p style={styles.desc}>{labels.desc}</p>
+        <h1 style={styles.title}>{valorantLabels.title}</h1>
+        <h1 style={styles.title}>{valorantLabels.title2}</h1>
+        <div style={styles.newsletterContainer}>
+          <NewsletterInput
+            onChange={onNewsletterChange}
+            onSubmit={onNewsletterSubmit}
+          />
+        </div>
+        <p style={styles.desc}>{valorantLabels.desc}</p>
         <div style={styles.homeBg}>
           <SVGIcon
             type={IMG_TYPE.PNG}
             width={'100%'}
             height={'100%'}
-            name={'home/lol'}
+            name={'home/valorant'}
             fit="cover"
           />
         </div>
@@ -217,16 +234,16 @@ const Home = ({ config, homeRecord, history }) => {
   );
 };
 
-Home.propTypes = {
+ValorantHome.propTypes = {
   config: PropTypes.object,
   homeRecord: PropTypes.object,
   loading: PropTypes.bool.isRequired,
   history: PropTypes.object.isRequired,
 };
 
-Home.defaultProps = {
+ValorantHome.defaultProps = {
   config: null,
   homeRecord: null,
 };
 
-export default withRouter(connect(mapStateToProps)(Home));
+export default withRouter(connect(mapStateToProps)(ValorantHome));

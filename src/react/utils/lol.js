@@ -24,6 +24,11 @@ export const getItemsJsonData = async url => {
   return json;
 };
 
+export const getChampionsJsonData = async url => {
+  const json = await axios.get(`${url}/data/en_US/champion.json`);
+  return json;
+};
+
 export const getLolChampionImgUrl = (url, name) =>
   name
     ? `${url}/img/champion/${capitalize(

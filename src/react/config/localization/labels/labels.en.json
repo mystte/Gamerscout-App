@@ -13,6 +13,27 @@
     "highestRated": "Most Reviewed",
     "mostReviewed": "Highest Rated"
   },
+  "lolHome": {
+    "title": "League of Legends",
+    "desc": "Find a gamer by entering their ID exactly as it appears in-game.",
+    "ratings": "Ratings",
+    "reviews": "Reviews",
+    "stats": "Stats",
+    "createAccountDesc": "Find out what they’re saying about you.",
+    "createAccount": "Create Account",
+    "featuredGamers": "Featured Gamers",
+    "recent": "Recently viewed",
+    "highestRated": "Most Reviewed",
+    "mostReviewed": "Highest Rated"
+  },
+  "valorantHome": {
+    "title": "Valorant.",
+    "title2": "Coming Soon.",
+    "desc": "Sign up to receive notifications when Valorant features are released.",
+    "placeholder": "Email Address",
+    "submit": "Get Notified",
+    "success": "Successfully subscribed to newsletter"
+  },
   "fourOFour": {
     "desc": "Alien invaders stole this page",
     "goHome": "Visit Homepage"
@@ -163,6 +184,14 @@
     "leagues": "Leagues",
     "liveMatch": "Live Match",
     "reviewButton": "Review",
+
+    "liveMatchCard": {
+      "blueTeam": "Blue Team",
+      "redTeam": "Red Team",
+      "summoner": "Summoner",
+      "position": "Position",
+      "zeroState": "There is no live match in progress"
+    },
 
     "rankedCard": {
       "leaguePoints": "LP",

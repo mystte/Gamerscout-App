@@ -7,7 +7,7 @@ import Localization from '../../../config/localization/Localization';
 import SVGIcon, { IMG_TYPE } from '../../views/elements/svgicon/SVGIcon';
 
 import styles from './styles';
-import HomeSearchBar from './_ui/homesearchbar/HomeSearchBar';
+import LolSearchBar from './_ui/lolsearchbar/LolSearchBar';
 import {
   GAME_PLATFORM,
   GAME_CODE,
@@ -31,10 +31,10 @@ const mapStateToProps = state => ({
   error: state.app.get('error'),
 });
 
-const Home = ({ config, homeRecord, history }) => {
+const LolHome = ({ config, homeRecord, history }) => {
   if (!config) return null;
   const { getResponsiveStyle } = UseMediaQueries();
-  const labels = Localization.Labels.home;
+  const labels = Localization.Labels.lolHome;
   const dispatch = useDispatch();
   const [searchPlatform] = useState(GAME_PLATFORM.RIOT);
   const [searchGame] = useState(GAME_CODE.LEAGUE_OF_LEGENDS);
@@ -99,8 +99,7 @@ const Home = ({ config, homeRecord, history }) => {
     <div style={styles.container}>
       <div style={styles.headerContainer}>
         <h1 style={styles.title}>{labels.title}</h1>
-        <h1 style={styles.title}>{labels.title2}</h1>
-        <HomeSearchBar
+        <LolSearchBar
           onInputChange={e => setSearchValue(e.target.value)}
           regionsList={config.regions.riot.regionsCode}
           onRegionChange={onRegionChanged}
@@ -217,16 +216,16 @@ const Home = ({ config, homeRecord, history }) => {
   );
 };
 
-Home.propTypes = {
+LolHome.propTypes = {
   config: PropTypes.object,
   homeRecord: PropTypes.object,
   loading: PropTypes.bool.isRequired,
   history: PropTypes.object.isRequired,
 };
 
-Home.defaultProps = {
+LolHome.defaultProps = {
   config: null,
   homeRecord: null,
 };
 
-export default withRouter(connect(mapStateToProps)(Home));
+export default withRouter(connect(mapStateToProps)(LolHome));

@@ -13,6 +13,10 @@ const styles = {
     zIndex: 1,
   },
 
+  gameSelectorContainer: {
+    marginLeft: 15,
+  },
+
   mbContainer: {
     height: 120,
     backgroundColor: colorNameToHex('ebonyclay'),

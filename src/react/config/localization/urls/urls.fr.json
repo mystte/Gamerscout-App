@@ -4,5 +4,7 @@
   "gamerDetailsUrl": "/joueur/{platform}/{region}/{game}/{gamertag}",
   "settingsUrl": "/paramètres",
   "privacyPolicy": "/politiqueDeConfidentialite",
-  "termsAndConditions": "/termesEtConditions"
+  "termsAndConditions": "/termesEtConditions",
+  "valorantHome": "/valorant",
+  "lolHome": "/lol"
 }
